@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\Auth\AdminLoginController;
 use App\Http\Controllers\Admin\Localization\BackendLanguageController;
 use App\Http\Controllers\Admin\Localization\ChangeLanguageController;
 use App\Http\Controllers\Admin\Localization\LanguageController;
+use App\Http\Controllers\Admin\Pages\HomepageSettingController;
 use App\Http\Controllers\Admin\Role\RoleAndPermissionController;
 use App\Http\Controllers\Admin\Settings\MaintenanceModeController;
 use App\Http\Controllers\Admin\User\UserController;
@@ -41,13 +42,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::post('/give-user-permissions', 'giveUserPermission')->name('giveUserPermission');
         });
 
-        //language controller 
+        //language controller
         Route::resource('language', LanguageController::class)->except(['craete', 'show']);
         Route::controller(LanguageController::class)->name('language.')->prefix('language')->group(function () {
             Route::get('/update/status/{id}/{status}', 'updateStatus')->name('language_status');
         });
 
-        //backend language controller 
+        //backend language controller
         Route::resource('backend/language', BackendLanguageController::class, ['as' => 'backend'])->except(['craete', 'show', 'edit', 'distroy']);
         Route::controller(BackendLanguageController::class)->name('backend.language.')->prefix('backend/language')->group(function () {
             Route::post('/store/translate/string', 'storeTranslateString')->name('storeTranslateString');
@@ -63,6 +64,29 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/server/up', [MaintenanceModeController::class, 'up'])->name('server.up');
             Route::get('/secret-code/delete/{id}', [MaintenanceModeController::class, 'destroy'])->name('secret-code.delete');
             Route::get('/secret-code/delete-all', [MaintenanceModeController::class, 'destroyAll'])->name('secret-code.delete-all');
+        });
+
+        Route::prefix('pages')->name('pages.')->group(function () {
+            Route::controller(HomepageSettingController::class)->prefix('homepage')->name('homepage.')->group(function () {
+                Route::get('/main-slider', 'mainSlider')->name('main_slider');
+                Route::post('/main-slider', 'mainSliderStore')->name('main_slider_store');
+                Route::get('/main-slider-delete/{id}', 'mainSliderDelete')->name('main_slider_delete');
+                Route::get('/slider/update/status/{id}/{status}', 'updateSliderStatus');
+                Route::get('/slider/{id}/edit', 'edit');
+                Route::put('/slider/{id}', 'update');
+                Route::delete('/slider/{id}', 'destroySlider');
+
+                /** Video Part Start */
+                Route::get('/main-video', 'mainVideo')->name('main_video');
+                Route::post('/main-video', 'mainVideoStore')->name('main_video_store');
+                Route::get('/main-video-delete/{id}', 'mainVideoDelete')->name('main_video_delete');
+                Route::get('/video/update/status/{id}/{status}', 'updateVideoStatus');
+                Route::get('/video/{id}/edit', 'editVideo');
+                Route::put('/video/{id}', 'updateVideo');
+                Route::delete('/video/{id}', 'destroyVideo');
+                /** Video Part End */
+            });
+
         });
     });
     Route::get('/translate-string', function () {

@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
             // $admin->save();
 
         $this->call(PermissionSeeder::class);
-        $this->call(RoleSeeder::class);
-        $this->call(AdminSeeder::class);
+        // $this->call(RoleSeeder::class);
+        // $this->call(AdminSeeder::class);
     }
 }

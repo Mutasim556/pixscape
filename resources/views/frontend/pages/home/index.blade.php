@@ -802,109 +802,21 @@
                 </div>
                 <div class="home-hero_featured-project_component w-dyn-list">
                     <div role="list" class="w-dyn-items">
+                        @php
+                            $slider = App\Models\Admin\HomepageSilder::where([['status',1],['delete',0]])->inRandomOrder()->first();
+                        @endphp
                         <div role="listitem" class="home-hero_featured-project_item w-dyn-item">
                             <div class="img_overflow is-full"><img alt=""
-                                    src="https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/68b6446d3b96ba7135d45520_20250726_121309%20ed.jpg"
+                                    src="{{ asset('public/'.$slider->slider_image) }}"
                                     sizes="100vw"
-                                    srcset="https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/68b6446d3b96ba7135d45520_20250726_121309%20ed-p-500.jpg 500w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/68b6446d3b96ba7135d45520_20250726_121309%20ed-p-800.jpg 800w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/68b6446d3b96ba7135d45520_20250726_121309%20ed-p-1080.jpg 1080w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/68b6446d3b96ba7135d45520_20250726_121309%20ed-p-1600.jpg 1600w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/68b6446d3b96ba7135d45520_20250726_121309%20ed-p-2000.jpg 2000w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/68b6446d3b96ba7135d45520_20250726_121309%20ed.jpg 2406w"
                                     class="full-img" /></div>
                             <div class="home-hero_indicators page-padding">
                                 <div class="hero_text">Scroll Down</div>
                                 <div class="hero_text is-mobile-centered w-embed"><a
-                                        href="/project/halcyon-blu">Project: Halcyon
-                                        Coves</a></div>
+                                        href="/project/halcyon-blu">{{ $slider->slider_title }}</a></div>
                             </div>
                         </div>
-                        <div role="listitem" class="home-hero_featured-project_item w-dyn-item">
-                            <div class="img_overflow is-full"><img alt=""
-                                    src="https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/67c522110035fe2c758ddb03_20048_02_BrisbaneBotanicGardens_OptionC_View01.webp"
-                                    sizes="100vw"
-                                    srcset="https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/67c522110035fe2c758ddb03_20048_02_BrisbaneBotanicGardens_OptionC_View01-p-500.webp 500w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/67c522110035fe2c758ddb03_20048_02_BrisbaneBotanicGardens_OptionC_View01-p-800.webp 800w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/67c522110035fe2c758ddb03_20048_02_BrisbaneBotanicGardens_OptionC_View01-p-1080.webp 1080w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/67c522110035fe2c758ddb03_20048_02_BrisbaneBotanicGardens_OptionC_View01-p-1600.webp 1600w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/67c522110035fe2c758ddb03_20048_02_BrisbaneBotanicGardens_OptionC_View01-p-2000.webp 2000w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/67c522110035fe2c758ddb03_20048_02_BrisbaneBotanicGardens_OptionC_View01-p-2600.webp 2600w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/67c522110035fe2c758ddb03_20048_02_BrisbaneBotanicGardens_OptionC_View01-p-3200.webp 3200w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/67c522110035fe2c758ddb03_20048_02_BrisbaneBotanicGardens_OptionC_View01.webp 4000w"
-                                    class="full-img" /></div>
-                            <div class="home-hero_indicators page-padding">
-                                <div class="hero_text">Scroll Down</div>
-                                <div class="hero_text is-mobile-centered w-embed"><a
-                                        href="/project/mt-coot-tha-tropical-dome">Project:
-                                        Mt Coot-tha Tropical Dome</a></div>
-                            </div>
-                        </div>
-                        <div role="listitem" class="home-hero_featured-project_item w-dyn-item">
-                            <div class="img_overflow is-full"><img alt=""
-                                    src="https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/66c69ae47a159d9f4614908e_230925_AURA_Cam5_Uncropped_WIP2.webp"
-                                    sizes="100vw"
-                                    srcset="https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/66c69ae47a159d9f4614908e_230925_AURA_Cam5_Uncropped_WIP2-p-500.webp 500w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/66c69ae47a159d9f4614908e_230925_AURA_Cam5_Uncropped_WIP2-p-800.webp 800w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/66c69ae47a159d9f4614908e_230925_AURA_Cam5_Uncropped_WIP2-p-1080.webp 1080w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/66c69ae47a159d9f4614908e_230925_AURA_Cam5_Uncropped_WIP2-p-1600.webp 1600w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/66c69ae47a159d9f4614908e_230925_AURA_Cam5_Uncropped_WIP2-p-2000.webp 2000w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/66c69ae47a159d9f4614908e_230925_AURA_Cam5_Uncropped_WIP2.webp 2548w"
-                                    class="full-img" /></div>
-                            <div class="home-hero_indicators page-padding">
-                                <div class="hero_text">Scroll Down</div>
-                                <div class="hero_text is-mobile-centered w-embed"><a
-                                        href="/project/aura-central-urban-village">Project:
-                                        Aura Central Urban Village</a></div>
-                            </div>
-                        </div>
-                        <div role="listitem" class="home-hero_featured-project_item w-dyn-item">
-                            <div class="img_overflow is-full"><img alt=""
-                                    src="https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/67a2f0d5030eb4f44ab4c0a0_NAC-Hero-VIEW002B_03.webp"
-                                    sizes="100vw"
-                                    srcset="https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/67a2f0d5030eb4f44ab4c0a0_NAC-Hero-VIEW002B_03-p-500.webp 500w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/67a2f0d5030eb4f44ab4c0a0_NAC-Hero-VIEW002B_03-p-800.webp 800w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/67a2f0d5030eb4f44ab4c0a0_NAC-Hero-VIEW002B_03-p-1080.webp 1080w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/67a2f0d5030eb4f44ab4c0a0_NAC-Hero-VIEW002B_03-p-1600.webp 1600w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/67a2f0d5030eb4f44ab4c0a0_NAC-Hero-VIEW002B_03-p-2000.webp 2000w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/67a2f0d5030eb4f44ab4c0a0_NAC-Hero-VIEW002B_03-p-2600.webp 2600w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/67a2f0d5030eb4f44ab4c0a0_NAC-Hero-VIEW002B_03-p-3200.webp 3200w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/67a2f0d5030eb4f44ab4c0a0_NAC-Hero-VIEW002B_03.webp 3800w"
-                                    class="full-img" /></div>
-                            <div class="home-hero_indicators page-padding">
-                                <div class="hero_text">Scroll Down</div>
-                                <div class="hero_text is-mobile-centered w-embed"><a
-                                        href="/project/national-aquatics-centre">Project:
-                                        National Aquatics Centre</a></div>
-                            </div>
-                        </div>
-                        <div role="listitem" class="home-hero_featured-project_item w-dyn-item">
-                            <div class="img_overflow is-full"><img alt=""
-                                    src="https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/654abd754afc4f8e53a5276d_05_7880_WestAshgroveRevitalisation_Archipelago_JasonStarr%26DarcyStarr.webp"
-                                    sizes="100vw"
-                                    srcset="https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/654abd754afc4f8e53a5276d_05_7880_WestAshgroveRevitalisation_Archipelago_JasonStarr%26DarcyStarr-p-500.webp 500w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/654abd754afc4f8e53a5276d_05_7880_WestAshgroveRevitalisation_Archipelago_JasonStarr%26DarcyStarr-p-800.webp 800w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/654abd754afc4f8e53a5276d_05_7880_WestAshgroveRevitalisation_Archipelago_JasonStarr%26DarcyStarr-p-1080.webp 1080w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/654abd754afc4f8e53a5276d_05_7880_WestAshgroveRevitalisation_Archipelago_JasonStarr%26DarcyStarr-p-1600.webp 1600w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/654abd754afc4f8e53a5276d_05_7880_WestAshgroveRevitalisation_Archipelago_JasonStarr%26DarcyStarr.webp 1920w"
-                                    class="full-img" /></div>
-                            <div class="home-hero_indicators page-padding">
-                                <div class="hero_text">Scroll Down</div>
-                                <div class="hero_text is-mobile-centered w-embed"><a
-                                        href="/project/ashgrove-west-village-precinct-revitalisation">Project: Ashgrove
-                                        West Village
-                                        Precinct Revitalisation </a></div>
-                            </div>
-                        </div>
-                        <div role="listitem" class="home-hero_featured-project_item w-dyn-item">
-                            <div class="img_overflow is-full"><img alt=""
-                                    src="https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/66c6e1591e223e33f45a95b6_DSC_8046a.jpg"
-                                    class="full-img" /></div>
-                            <div class="home-hero_indicators page-padding">
-                                <div class="hero_text">Scroll Down</div>
-                                <div class="hero_text is-mobile-centered w-embed"><a
-                                        href="/project/underwood-social-housing">Project:
-                                        Underwood Social Housing</a></div>
-                            </div>
-                        </div>
-                        <div role="listitem" class="home-hero_featured-project_item w-dyn-item">
-                            <div class="img_overflow is-full"><img alt=""
-                                    src="https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/66c67f9c6db30cdd081a86a9_231116_YWS_cam16_6K%20copy%20(1).webp"
-                                    sizes="100vw"
-                                    srcset="https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/66c67f9c6db30cdd081a86a9_231116_YWS_cam16_6K%20copy%20(1)-p-500.webp 500w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/66c67f9c6db30cdd081a86a9_231116_YWS_cam16_6K%20copy%20(1)-p-800.webp 800w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/66c67f9c6db30cdd081a86a9_231116_YWS_cam16_6K%20copy%20(1)-p-1080.webp 1080w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/66c67f9c6db30cdd081a86a9_231116_YWS_cam16_6K%20copy%20(1)-p-1600.webp 1600w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/66c67f9c6db30cdd081a86a9_231116_YWS_cam16_6K%20copy%20(1).webp 1920w"
-                                    class="full-img" /></div>
-                            <div class="home-hero_indicators page-padding">
-                                <div class="hero_text">Scroll Down</div>
-                                <div class="hero_text is-mobile-centered w-embed"><a
-                                        href="/project/commercial-building-yeronga">Project: Commercial Building
-                                        Yeronga</a></div>
-                            </div>
-                        </div>
-                        <div role="listitem" class="home-hero_featured-project_item w-dyn-item">
-                            <div class="img_overflow is-full"><img alt=""
-                                    src="https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/65445c2f7188f411f873e832_03%2020200202_GREEN%20BRIDGE%20OPENING%20EVENT-18.webp"
-                                    sizes="100vw"
-                                    srcset="https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/65445c2f7188f411f873e832_03%2020200202_GREEN%20BRIDGE%20OPENING%20EVENT-18-p-500.webp 500w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/65445c2f7188f411f873e832_03%2020200202_GREEN%20BRIDGE%20OPENING%20EVENT-18-p-800.webp 800w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/65445c2f7188f411f873e832_03%2020200202_GREEN%20BRIDGE%20OPENING%20EVENT-18-p-1080.webp 1080w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/65445c2f7188f411f873e832_03%2020200202_GREEN%20BRIDGE%20OPENING%20EVENT-18-p-1600.webp 1600w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/65445c2f7188f411f873e832_03%2020200202_GREEN%20BRIDGE%20OPENING%20EVENT-18.webp 1920w"
-                                    class="full-img" /></div>
-                            <div class="home-hero_indicators page-padding">
-                                <div class="hero_text">Scroll Down</div>
-                                <div class="hero_text is-mobile-centered w-embed"><a
-                                        href="/project/hota-green-bridge-project">Project:
-                                        HOTA Green Bridge </a></div>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </section>
@@ -938,10 +850,13 @@
                     <div class="reveal_embed-wrap">
                         <div class="reveal_embed-contain">
                             <div class="reveal_embed w-embed w-iframe">
-                                <div style="padding:56.25% 0 0 0;position:relative;"><iframe
+                                <div style="padding:56.25% 0 0 0;position:relative;">
+                                    <iframe
                                         src="https://player.vimeo.com/video/877769402?background=1" loading="lazy"
                                         style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0"
-                                        allow="autoplay; fullscreen" allowfullscreen></iframe></div>
+                                        allow="autoplay; fullscreen" allowfullscreen>
+                                    </iframe>
+                                    </div>
                             </div>
                         </div>
                     </div>
