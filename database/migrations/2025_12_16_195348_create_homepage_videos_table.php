@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('homepage_videos', function (Blueprint $table) {
             $table->id();
+            $table->text('description')->nullable();
+            $table->text('video_link')->nullable();
+            $table->boolean('status')->default(1)->nullable();
+            $table->boolean('delete')->default(0)->nullable();
             $table->timestamps();
         });
     }
