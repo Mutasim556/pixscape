@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Pages;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\HomepageSilder;
+use App\Models\Admin\HomepageVideo;
 use App\Models\Admin\Language;
 use App\Models\Admin\Translation;
 use Carbon\Carbon;
@@ -167,9 +168,9 @@ class HomepageSettingController extends Controller
 
      public function mainVideo()
     {
-        $sliders = HomepageSilder::where([['status', 1], ['delete', 0]])->get();
+        $video = HomepageVideo::where([['status', 1], ['delete', 0]])->first();
         // dd($sliders);
-        return view('backend.blade.settings.homepage.main_slider', compact('sliders'));
+        return view('backend.blade.settings.homepage.main_video', compact('video'));
     }
 
 
@@ -256,62 +257,43 @@ class HomepageSettingController extends Controller
 
     public function editVideo(string $id)
     {
-        $slider = HomepageSilder::findOrFail($id);
-        return response($slider);
+        $video = HomepageVideo::findOrFail($id);
+        return response($video);
     }
 
     public function updateVideo(Request $data, string $id)
     {
         $data->validate([
-            'slider_title' => 'required',
-            // 'slider_short_description' => 'required',
-            // 'slider_button_text' => 'required',
-            'slider_image' => 'mimes:png,jpg,jpeg,avif',
-            // 'slider_image'=>'mimes:png,jpg,jpeg|dimensions:min_width=2376,min_height=807',
+            'video_title' => 'required',
+            'video_link' => 'required',
         ]);
+        // dd($data->all());
+        $video = HomepageVideo::findOrFail($id);
+        $video->description = $data->video_title;
+        $video->video_link = $data->video_link;
+        $video->status = 1;
 
-        $slider = HomepageSilder::findOrFail($id);
-        $slider->slider_title = $data->slider_title;
-        $slider->slider_short_description = $data->slider_short_description;
-        $slider->slider_link = $data->slider_link;
-        $slider->slider_button_text = $data->slider_button_text;
-        $slider->slider_video = $data->video_link;
-        $slider->status = 1;
-        $slider->updated_by = LoggedAdmin()->id;
-
-        if ($data->slider_image) {
-            $files = $data->slider_image;
-            $file = time() . 'img1.' . $files->getClientOriginalExtension();
-            $file_name = 'pixscape/files/pages/home/slider/' . $file;
-            $manager = new ImageManager(new Driver);
-            $manager->read($data->slider_image)->resize(1920, 896)->save(env('ASSET_DIRECTORY') . '/' . 'pixscape/files/pages/home/slider/' . $file);
-        } else {
-            $file_name = $slider->slider_image;
-        }
-
-        $slider->slider_image = $file_name;
-
-        $slider->save();
+        $video->save();
 
         $languages =  Language::where([['status', 1], ['delete', 0]])->get();
         foreach ($languages as $lang) {
-            if ($data->slider_title) {
+            if ($data->video_title) {
                 Translation::updateOrInsert([
-                    'translationable_type'  => 'App\Models\Admin\HomepageSilder',
-                    'translationable_id'    => $slider->id,
+                    'translationable_type'  => 'App\Models\Admin\HomepageVideo',
+                    'translationable_id'    => $video->id,
                     'locale'                => $lang->lang,
-                    'key'                   => 'slider_title',
+                    'key'                   => 'video_title',
                 ], [
-                    'value'                 =>  GoogleTranslate::trans($data->slider_title, $lang->lang, 'en'),
+                    'value'                 =>  GoogleTranslate::trans($data->video_title, $lang->lang, 'en'),
                     'updated_at'            => Carbon::now(),
                 ]);
             }
         }
 
         return response([
-            'slider' => HomepageSilder::findOrFail($id),
+            'video' => HomepageVideo::findOrFail($id),
             'title' => __('admin_local.Congratulations !'),
-            'text' => __('admin_local.Slider updated successfully.'),
+            'text' => __('admin_local.Hompage video updated successfully.'),
             'confirmButtonText' => __('admin_local.Ok'),
         ], 200);
     }

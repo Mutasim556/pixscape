@@ -53,7 +53,7 @@
                             @endif
                             @if (hasPermission(['homepage-video-index']))
                                 <li><a
-                                        href="{{ route('admin.pages.homepage.main_slider') }}">{{ __('admin_local.Video') }}</a>
+                                        href="{{ route('admin.pages.homepage.main_video') }}">{{ __('admin_local.Video') }}</a>
                                 </li>
                             @endif
                         </ul>

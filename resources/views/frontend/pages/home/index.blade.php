@@ -740,7 +740,8 @@
                                                 d="M114.145 114.748H50.519L82.2362 33.0332L110.92 106.895V106.859L140.059 181.064H164.545V164.033L100.127 3.7251H64.3571L-0.0605469 164.033V181.064H24.5817L39.9307 141.573H103.677L114.145 114.748Z"
                                                 fill="currentColor" />
                                         </svg> --}}
-                                        <img src="{{ asset('public/2.png') }}" alt="Logo" style="width: auto; height: 100%;" />
+                                        <img src="{{ asset('public/2.png') }}" alt="Logo"
+                                            style="width: auto; height: 100%;" />
                                     </div>
                                     <div class="home-hero_logo-mid">
                                         {{-- <div class="preloader_logo-rchipelago w-embed"><svg width="auto" height="100%"
@@ -803,12 +804,13 @@
                 <div class="home-hero_featured-project_component w-dyn-list">
                     <div role="list" class="w-dyn-items">
                         @php
-                            $slider = App\Models\Admin\HomepageSilder::where([['status',1],['delete',0]])->inRandomOrder()->first();
+                            $slider = App\Models\Admin\HomepageSilder::where([['status', 1], ['delete', 0]])
+                                ->inRandomOrder()
+                                ->first();
                         @endphp
                         <div role="listitem" class="home-hero_featured-project_item w-dyn-item">
                             <div class="img_overflow is-full"><img alt=""
-                                    src="{{ asset('public/'.$slider->slider_image) }}"
-                                    sizes="100vw"
+                                    src="{{ asset('public/' . $slider->slider_image) }}" sizes="100vw"
                                     class="full-img" /></div>
                             <div class="home-hero_indicators page-padding">
                                 <div class="hero_text">Scroll Down</div>
@@ -851,12 +853,11 @@
                         <div class="reveal_embed-contain">
                             <div class="reveal_embed w-embed w-iframe">
                                 <div style="padding:56.25% 0 0 0;position:relative;">
-                                    <iframe
-                                        src="https://player.vimeo.com/video/877769402?background=1" loading="lazy"
+                                    <iframe src="https://player.vimeo.com/video/877769402?background=1" loading="lazy"
                                         style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0"
                                         allow="autoplay; fullscreen" allowfullscreen>
                                     </iframe>
-                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1606,8 +1607,8 @@
                     <div class="footer_top">
                         <a aria-label="Archipelago Homepage" href="/" aria-current="page"
                             class="footer_home-link w-inline-block w--current">
-                            <div class="logo_footer w-embed"><svg width="100%" style=""
-                                    viewBox="0 0 485 97" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <div class="logo_footer w-embed"><svg width="100%" style="" viewBox="0 0 485 97"
+                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M126.759 58.0527L134.822 64.3665C130.645 69.0299 124.816 72.3347 118.21 72.3347C105.677 72.3347 94.6973 61.9355 94.6973 48.7259C94.6973 35.5162 105.481 25.1184 118.21 25.1184C124.33 25.1184 130.743 27.6452 133.852 32.017L126.662 39.3099C124.906 37.172 121.9 35.1327 118.21 35.1327C110.728 35.1327 105.19 41.5437 105.19 48.7326C105.19 55.8243 110.727 62.3339 118.21 62.3339C121.9 62.3339 124.62 60.4878 126.759 58.0595V58.0527Z"
                                         fill="currentColor" />
