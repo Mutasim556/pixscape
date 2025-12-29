@@ -45,12 +45,12 @@ $(document).on('submit', '#add_project_form', function (e) {
                 }
 
                 var projectImgs = JSON.parse(data.images);
-                var projectM_image =``;
-                $.each(projectImgs,function(key,val){
+                var projectM_image = ``;
+                $.each(projectImgs, function (key, val) {
                     projectM_image += val ? '<img  height="50px" style="border: 1px solid black;margin-right:2px;" src="' + base_url + '/' + val + '">' : '';
                 })
 
-                $('#basic-1 tbody').append(`<tr id="trid-${data.id}" data-id="${data.id}"><td>${projectM_image}</td><td>${data.title}</td><td>${data.details}</td><td>${data.type}</td>
+                $('#basic-1 tbody').append(`<tr id="trid-${data.id}" data-id="${data.id}"><td>${projectM_image}</td><td>${data.title}</td><td>${data.details}</td>
                 <td class="text-center">${update_status_btn}</td>
                 <td>${action_option}</td></tr>`);
 
@@ -104,7 +104,7 @@ $(document).on('submit', '#add_project_form', function (e) {
 });
 
 //update status
-$(document).on('change', '#status_change', function () { 
+$(document).on('change', '#status_change', function () {
     var status = $(this).data('status');
     var update_id = $(this).closest('tr').data('id');
     var cat_td = $(this).parent();
@@ -150,14 +150,26 @@ $(document).on('click', '#edit_button', function () {
         success: function (data) {
             $('#edit_project_form #project_id').val(data.id);
             $('#edit_project_form #project_title').val(data.title);
-            $('#edit_project_form #project_type').val(data.type);
-            $('#edit_project_form #video_link').val(data.video_link);
+            $('#edit_project_form #project_short_details').val(data.short_details);
 
-           
+            CKEDITOR.instances['challenges2'].setData(data.challenges);
+            CKEDITOR.instances['solutions2'].setData(data.solutions);
+            CKEDITOR.instances['values2'].setData(data.values);
             CKEDITOR.instances['project_details2'].setData(data.details);
+            if (data.has_team == 1) {
+                $('#edit_project_form #has_any_team').prop('checked', true);
+                team_members = JSON.parse(data.team_members)
+                $('#edit_project_form #team_members').val(team_members).trigger('change');
+
+                //  $('#edit_project_form #team_members').prop('checked', true);
+            } else {
+                $('#edit_project_form #has_any_team').prop('checked', false);
+                $('#edit_project_form #team_members').val('').trigger('change');
+            }
+
 
             var projectImgs = JSON.parse(data.images);
-            
+
             $.each(data.translations, function (key, val) {
                 if (val.locale == 'en') {
                 } else {
@@ -167,13 +179,79 @@ $(document).on('click', '#edit_button', function () {
                     if (val.key == 'details') {
                         CKEDITOR.instances['project_details2_' + val.locale].setData(val.value);
                     }
+                    if (val.key == 'short_details') {
+                        $('#edit_project_form #project_short_details_'+ val.locale).val(data.short_details);
+                    }
+                    if (val.key == 'challenges') {
+                        CKEDITOR.instances['challenges2_' + val.locale].setData(val.value);
+                    }
+                    if (val.key == 'solutions') {
+                        CKEDITOR.instances['solutions2_' + val.locale].setData(val.value);
+                    }
+                    if (val.key == 'values') {
+                        CKEDITOR.instances['values2_' + val.locale].setData(val.value);
+                    }
                 }
             })
 
+            options = JSON.parse(data.option_value);
+            let value = null;
 
+            if (Array.isArray(options) && options.length > 0) {
+                value = options[0].option;
+            }
+            $('#edit_project_form #option').first().val(value)
+            let opvalue = null;
 
+            if (Array.isArray(options) && options.length > 0) {
+                opvalue = options[0].option_value;
+            }
 
+            $('#edit_project_form #option_value').first().val(opvalue)
+            $('#edit_project_form .append_option_value2').empty();
+            if (Array.isArray(options) && options.length > 1) {
+                $('#edit_project_form .append_option_value2').empty();
+                $.each(options, function (key, val) {
+                    if (key == 0) {
+                        return true;
+                    }
 
+                    $('#edit_project_form .append_option_value2').append(`
+                        <div class="row appended_row2" >
+                            <div class="col-sm-12 col-xl-4">
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label for="">Option</label>
+                                        <input type="text" class="form-control" name="option[]"
+                                            id="option" value="${val.option}">
+                                        <span class="text-danger err-mgs" id="option_err"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-xl-6">
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label for="">Value</label>
+                                        <input type="text" class="form-control" name="option_value[]"
+                                            id="option_value" value="${val.option_value}">
+                                        <span class="text-danger err-mgs" id="option_value_err"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-xl-2">
+                                <div class="row">
+                                    <div class="form-group col-md-12" style="margin-top: 30px;">
+                                        <button type="button"  class="btn btn-sm btn-warning remove_option_value2">
+                                            Remove
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `);
+                })
+
+            }
         },
         error: function (err) {
             if (err.status === 403) {
@@ -228,14 +306,13 @@ $('#edit_project_form').submit(function (e) {
             $('button[type=submit]', '#edit_project_form').removeClass('disabled');
             var projectImgs = JSON.parse(data.project.images);
             var pImages = ``;
-            $.each(projectImgs,function(key,val){
+            $.each(projectImgs, function (key, val) {
                 pImages += `<img  height="50px" style="border: 1px solid black;margin-right:2px;" src="${base_url + '/' + projectImgs[0]}">`
             });
             $('td:nth-child(1)', trid).html(pImages);
             $('td:nth-child(2)', trid).html(data.project.title);
             $('td:nth-child(3)', trid).html(data.project.details);
-            $('td:nth-child(4)', trid).html(data.project.type);
-            
+
             swal({
                 icon: "success",
                 title: data.title,

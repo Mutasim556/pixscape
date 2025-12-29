@@ -17,8 +17,8 @@ return new class extends Migration
             $table->text('short_details')->nullable();
             $table->text('details')->nullable();
             $table->text('challenges')->nullable();
-            $table->text('solution')->nullable();
-            $table->text('value')->nullable();
+            $table->text('solutions')->nullable();
+            $table->text('values')->nullable();
             $table->text('option_value')->nullable();
             $table->boolean('has_team')->default(0);
             $table->text('team_members')->nullable();

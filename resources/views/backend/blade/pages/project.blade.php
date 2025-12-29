@@ -319,6 +319,31 @@
                                              <span class="text-danger err-mgs" id="project_title_err"></span>
                                          </div>
                                          <div class="form-group">
+                                             <label for="">{{ __('admin_local.Project Short Details') }} (
+                                                 {{ __('admin_local.Default') }} ) *</label>
+                                             <input type="text" class="form-control" name="project_short_details"
+                                                 id="project_short_details">
+                                             <span class="text-danger err-mgs" id="project_short_details_err"></span>
+                                         </div>
+                                         <div class="form-group">
+                                             <label for="">{{ __('admin_local.Challenges') }} (
+                                                 {{ __('admin_local.Default') }} ) *</label>
+                                             <textarea class="form-control ckeditorappend" name="challenges" id="challenges2"></textarea>
+                                             <span class="text-danger err-mgs" id="challenges_err"></span>
+                                         </div>
+                                         <div class="form-group">
+                                             <label for="">{{ __('admin_local.Solutions') }} (
+                                                 {{ __('admin_local.Default') }} ) *</label>
+                                             <textarea class="form-control ckeditorappend" name="solutions" id="solutions2"></textarea>
+                                             <span class="text-danger err-mgs" id="solutions_err"></span>
+                                         </div>
+                                         <div class="form-group">
+                                             <label for="">{{ __('admin_local.Values') }} (
+                                                 {{ __('admin_local.Default') }} ) *</label>
+                                             <textarea class="form-control ckeditorappend" name="values" id="values2"></textarea>
+                                             <span class="text-danger err-mgs" id="values_err"></span>
+                                         </div>
+                                         <div class="form-group">
                                              <label for="">{{ __('admin_local.Project Details') }} (
                                                  {{ __('admin_local.Default') }} ) *</label>
                                              <textarea class="form-control ckeditorappend" name="project_details" id="project_details2"></textarea>
@@ -341,6 +366,28 @@
                                                      name="project_title_{{ $lang->lang }}"
                                                      id="project_title_{{ $lang->lang }}">
                                              </div>
+                                              <div class="form-group">
+                                                 <label for="">{{ __('admin_local.Project Short Details') }} (
+                                                     {{ $lang->name }} )</label>
+                                                 <input type="text" class="form-control"
+                                                     name="project_short_details_{{ $lang->lang }}"
+                                                     id="project_short_details_{{ $lang->lang }}">
+                                             </div>
+                                             <div class="form-group">
+                                                 <label for="">{{ __('admin_local.Challenges') }} (
+                                                     {{ $lang->name }} ) </label>
+                                                 <textarea class="form-control" name="challenges_{{ $lang->lang }}" id="challenges2_{{ $lang->lang }}"></textarea>
+                                             </div>
+                                             <div class="form-group">
+                                                 <label for="">{{ __('admin_local.Solutions') }} (
+                                                     {{ $lang->name }} ) </label>
+                                                 <textarea class="form-control" name="solutions_{{ $lang->lang }}" id="solutions2_{{ $lang->lang }}"></textarea>
+                                             </div>
+                                             <div class="form-group">
+                                                 <label for="">{{ __('admin_local.Values') }} (
+                                                     {{ $lang->name }} ) </label>
+                                                 <textarea class="form-control" name="values_{{ $lang->lang }}" id="values2_{{ $lang->lang }}"></textarea>
+                                             </div>
                                              <div class="form-group">
                                                  <label for="">{{ __('admin_local.Project Details') }} (
                                                      {{ $lang->name }} ) </label>
@@ -353,34 +400,72 @@
                              </div>
                          </div>
                          <div class="row">
-                             <div class="col-sm-12 col-xl-6">
+                             <div class="col-sm-12 col-xl-4">
                                  <div class="row">
                                      <div class="form-group col-md-12">
-                                         <label for="">{{ __('admin_local.Video Link') }}</label>
-                                         <input type="text" class="form-control" name="video_link" id="video_link">
-                                         <span class="text-danger err-mgs" id="project_type_err"></span>
+                                         <label for="">{{ __('admin_local.Has Any Team ?') }}</label>
+                                         <input type="checkbox" name="has_any_team" id="has_any_team" value="1">
                                      </div>
                                  </div>
                              </div>
-                             <div class="col-sm-12 col-xl-6">
+                             <div class="col-sm-12 col-xl-8">
                                  <div class="row">
                                      <div class="form-group col-md-12">
-                                         <label for="">{{ __('admin_local.Project Type') }}
-                                             *</label>
-                                         <select class="form-control" name="project_type" id="project_type">
-                                             <option value="Branding">Branding</option>
-                                             <option value="Campaign">Campaign</option>
-                                             <option value="Tech">Tech</option>
-                                             <option value="Event">Event</option>
+                                         <label for="">{{ __('admin_local.Team Members') }}</label>
+                                         <select name="team_members[]" id="team_members"
+                                             class="form-control js-example-basic-multiple" multiple>
+                                             <option value="1-MD Mutasim Naib-CEO">MD Mutasim Naib</option>
+                                             <option value="2-MD Masroor Hasan-MD">MD Masroor Hasan</option>
+                                             <option value="3-Mamun Mahmood-Officer">Mamun Mahmood</option>
                                          </select>
-                                         <span class="text-danger err-mgs" id="project_type_err"></span>
+                                     </div>
+                                 </div>
+                             </div>
+
+                         </div>
+                         <div class="row">
+                             <div class="col-sm-12 col-xl-12">
+                                 <div class="row">
+                                     <div class="form-group col-md-12 text-end">
+                                         <button type="button" data-id="append_option_value2"
+                                             class="btn btn-sm btn-success py-1 add_new_option_value">
+                                             {{ __('admin_local.Add New Option') }}
+                                         </button>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="row">
+                             <div class="col-sm-12 col-xl-6">
+                                 <div class="row">
+                                     <div class="form-group col-md-12">
+                                         <label for="">{{ __('admin_local.Option') }}</label>
+                                         <input type="text" class="form-control" name="option[]" id="option">
+                                         <span class="text-danger err-mgs" id="option_err"></span>
                                      </div>
                                  </div>
                              </div>
                              <div class="col-sm-12 col-xl-6">
                                  <div class="row">
                                      <div class="form-group col-md-12">
-                                         <label for="">{{ __('admin_local.Project Images') }} ( 400X300 )
+                                         <label for="">{{ __('admin_local.Value') }}</label>
+                                         <input type="text" class="form-control" name="option_value[]"
+                                             id="option_value">
+                                         <span class="text-danger err-mgs" id="option_value_err"></span>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="row">
+                             <div class="col-xl-12 append_option_value2">
+
+                             </div>
+                         </div>
+                         <div class="row">
+                             <div class="col-sm-12 col-xl-6">
+                                 <div class="row">
+                                     <div class="form-group col-md-12">
+                                         <label for="">{{ __('admin_local.Project Images') }}
                                              *</label>
                                          <input type="file" class="form-control" name="project_images[]" multiple
                                              id="project_images" accept="image/*">
@@ -438,7 +523,6 @@
                                          <th>{{ __('admin_local.Images') }}</th>
                                          <th>{{ __('admin_local.Title') }}</th>
                                          <th>{{ __('admin_local.Details') }}</th>
-                                         <th>{{ __('admin_local.Type') }}</th>
                                          <th>{{ __('admin_local.Status') }}</th>
                                          <th>{{ __('admin_local.Action') }}</th>
                                      </tr>
@@ -452,8 +536,9 @@
                                                          $pImages = json_decode($project->images);
                                                      @endphp
                                                      @foreach ($pImages as $pImage)
-                                                         <img height="50px" style="border: 1px solid black"
-                                                             src="{{ asset($pImage) }}" alt="">
+                                                         <img height="50px"
+                                                             style="border: 1px solid black; margin-bottom:5px;"
+                                                             src="{{ asset($pImage) }}" alt=""> <br>
                                                      @endforeach
                                                  @else
                                                      {{ __('admin_local.No File') }}
@@ -462,7 +547,6 @@
                                              <td>{{ $project->title }}</td>
                                              <td>{{ \Illuminate\Support\Str::limit(strip_tags($project->details), 50) }}
                                              </td>
-                                             <td>{{ $project->type }}</td>
 
 
                                              <td class="text-center">
@@ -620,6 +704,55 @@
                  }
              });
          </script>
+
+         <script>
+             CKEDITOR.replace('challenges2_' + '{{ $lang->lang }}', {
+                 on: {
+                     contentDom: function(evt) {
+                         // Allow custom context menu only with table elemnts.
+                         evt.editor.editable().on('contextmenu', function(contextEvent) {
+                             var path = evt.editor.elementPath();
+
+                             if (!path.contains('table')) {
+                                 contextEvent.cancel();
+                             }
+                         }, null, null, 5);
+                     }
+                 }
+             });
+         </script>
+         <script>
+             CKEDITOR.replace('solutions2_' + '{{ $lang->lang }}', {
+                 on: {
+                     contentDom: function(evt) {
+                         // Allow custom context menu only with table elemnts.
+                         evt.editor.editable().on('contextmenu', function(contextEvent) {
+                             var path = evt.editor.elementPath();
+
+                             if (!path.contains('table')) {
+                                 contextEvent.cancel();
+                             }
+                         }, null, null, 5);
+                     }
+                 }
+             });
+         </script>
+         <script>
+             CKEDITOR.replace('values2_' + '{{ $lang->lang }}', {
+                 on: {
+                     contentDom: function(evt) {
+                         // Allow custom context menu only with table elemnts.
+                         evt.editor.editable().on('contextmenu', function(contextEvent) {
+                             var path = evt.editor.elementPath();
+
+                             if (!path.contains('table')) {
+                                 contextEvent.cancel();
+                             }
+                         }, null, null, 5);
+                     }
+                 }
+             });
+         </script>
      @endforeach
      <script>
          CKEDITOR.replace('project_details', {
@@ -679,6 +812,48 @@
              }
          });
          CKEDITOR.replace('project_details2', {
+             on: {
+                 contentDom: function(evt) {
+                     // Allow custom context menu only with table elemnts.
+                     evt.editor.editable().on('contextmenu', function(contextEvent) {
+                         var path = evt.editor.elementPath();
+
+                         if (!path.contains('table')) {
+                             contextEvent.cancel();
+                         }
+                     }, null, null, 5);
+                 }
+             }
+         });
+         CKEDITOR.replace('challenges2', {
+             on: {
+                 contentDom: function(evt) {
+                     // Allow custom context menu only with table elemnts.
+                     evt.editor.editable().on('contextmenu', function(contextEvent) {
+                         var path = evt.editor.elementPath();
+
+                         if (!path.contains('table')) {
+                             contextEvent.cancel();
+                         }
+                     }, null, null, 5);
+                 }
+             }
+         });
+         CKEDITOR.replace('solutions2', {
+             on: {
+                 contentDom: function(evt) {
+                     // Allow custom context menu only with table elemnts.
+                     evt.editor.editable().on('contextmenu', function(contextEvent) {
+                         var path = evt.editor.elementPath();
+
+                         if (!path.contains('table')) {
+                             contextEvent.cancel();
+                         }
+                     }, null, null, 5);
+                 }
+             }
+         });
+         CKEDITOR.replace('values2', {
              on: {
                  contentDom: function(evt) {
                      // Allow custom context menu only with table elemnts.
@@ -849,11 +1024,48 @@
                         </div>
                     </div>
                 `);
+             } else {
+                 $('.append_option_value2').append(`
+                    <div class="row appended_row2" >
+                        <div class="col-sm-12 col-xl-4">
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label for="">{{ __('admin_local.Option') }}</label>
+                                    <input type="text" class="form-control" name="option[]"
+                                        id="option">
+                                    <span class="text-danger err-mgs" id="option_err"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-xl-6">
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label for="">{{ __('admin_local.Value') }}</label>
+                                    <input type="text" class="form-control" name="option_value[]"
+                                        id="option_value">
+                                    <span class="text-danger err-mgs" id="option_value_err"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-xl-2">
+                            <div class="row">
+                                <div class="form-group col-md-12" style="margin-top: 30px;">
+                                    <button type="button"  class="btn btn-sm btn-warning remove_option_value2">
+                                        {{ __('admin_local.Remove') }}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `);
              }
          })
 
          $(document).on('click', '.remove_option_value', function() {
              $(this).closest('.appended_row').remove();
+         })
+         $(document).on('click', '.remove_option_value2', function() {
+             $(this).closest('.appended_row2').remove();
          })
 
          var projPoint = `{{ __('admin_local.Project Points') }}`;

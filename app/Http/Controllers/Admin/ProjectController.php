@@ -78,6 +78,8 @@ class ProjectController extends Controller
         }
         // dd(json_encode($option_value));
 
+        $newProject->option_value = json_encode($option_value);
+
         $newProject->has_team = $data->has_any_team??0;
         $newProject->team_members = $data->has_any_team?json_encode($data->team_members):NULL;
         // $newProject->video_link = $data->video_link;
@@ -210,15 +212,22 @@ class ProjectController extends Controller
      */
     public function update(Request $data, string $id)
     {
-        $data->validate([
+
+         $data->validate([
             'project_title' => 'required',
+            'project_short_details' => 'required',
             'project_details' => 'required',
-            'project_type' => 'required',
+            'challenges' => 'required',
+            'solutions' => 'required',
+            'values' => 'required',
             'project_images.*' => 'mimes:jpg,jpeg,png',
         ], [
             'project_title.required' => __('admin_local.Project title required'),
+            'project_short_details.required' => __('admin_local.Project stort details required'),
             'project_details.required' => __('admin_local.Project details required'),
-            'project_type.required' => __('admin_local.Project type required'),
+            'challenges.required' => __('admin_local.Challenges required'),
+            'solutions.required' => __('admin_local.Solution required'),
+            'values.required' => __('admin_local.Values required'),
             'project_images.*.mimes' => __('admin_local.Invalid image format. (jpeg,jpg,png)'),
         ]);
 
@@ -226,9 +235,25 @@ class ProjectController extends Controller
         $updateProject = Project::findOrFail($id);
 
         $updateProject->title = $data->project_title;
+        $updateProject->short_details = $data->project_short_details;
         $updateProject->details = $data->project_details;
-        $updateProject->type = $data->project_type;
-        $updateProject->video_link = $data->video_link;
+        $updateProject->challenges = $data->challenges;
+        $updateProject->solutions = $data->solutions;
+        $updateProject->values = $data->values;
+        $option_value = [];
+        foreach ($data->option as $key => $value) {
+            $option_value[]=[
+                'option' => $value,
+                'option_value' => $data->option_value[$key]
+            ];
+        }
+        // dd(json_encode($option_value));
+
+        $updateProject->option_value = json_encode($option_value);
+
+        $updateProject->has_team = $data->has_any_team??0;
+        $updateProject->team_members = $data->has_any_team?json_encode($data->team_members):NULL;
+        // $updateProject->video_link = $data->video_link;
 
         $dir = getDirectoryLink('project/project-images');
         $makeDir = createDirectory($dir);
@@ -239,7 +264,7 @@ class ProjectController extends Controller
                 $imageName = 'projectImg' . $key . time() . '.' . $image->getClientOriginalExtension();
                 $manager = new ImageManager(new Driver());
                 $imageName  =  $dir . '/' . $imageName;
-                $manager->read($image)->resize(400, 300)->save($imageName, 100);
+                $manager->read($image)->save($imageName, 100);
                 $allImages[] = $imageName;
             }
         }
@@ -255,6 +280,10 @@ class ProjectController extends Controller
         foreach ($languages as $lang) {
             $project_title = $lang->lang != 'en' ? 'project_title_' . $lang->lang : 'project_title';
             $project_details = $lang->lang != 'en' ? 'project_details_' . $lang->lang : 'project_details';
+            $project_short_details = $lang->lang != 'en' ? 'project_short_details_' . $lang->lang : 'project_short_details';
+            $solutions = $lang->lang != 'en' ? 'solutions_' . $lang->lang : 'solutions';
+            $challenges = $lang->lang != 'en' ? 'challenges_' . $lang->lang : 'challenges';
+            $values = $lang->lang != 'en' ? 'values_' . $lang->lang : 'values';
 
             if ($data->$project_title != null) {
                 Translation::updateOrInsert([
@@ -278,7 +307,52 @@ class ProjectController extends Controller
                     'updated_at'            => Carbon::now(),
                 ]);
             }
-            
+
+            if ($data->$project_short_details != null) {
+                Translation::updateOrInsert([
+                    'translationable_type'  => 'App\Models\Admin\Project',
+                    'translationable_id'    => $updateProject->id,
+                    'locale'                => $lang->lang,
+                    'key'                   => 'short_details',
+                ], [
+                    'value'                 => $data->$project_short_details,
+                    'updated_at'            => Carbon::now(),
+                ]);
+            }
+            if ($data->$solutions != null) {
+                Translation::updateOrInsert([
+                    'translationable_type'  => 'App\Models\Admin\Project',
+                    'translationable_id'    => $updateProject->id,
+                    'locale'                => $lang->lang,
+                    'key'                   => 'solutions',
+                ], [
+                    'value'                 => $data->$solutions,
+                    'updated_at'            => Carbon::now(),
+                ]);
+            }
+            if ($data->$challenges != null) {
+                Translation::updateOrInsert([
+                    'translationable_type'  => 'App\Models\Admin\Project',
+                    'translationable_id'    => $updateProject->id,
+                    'locale'                => $lang->lang,
+                    'key'                   => 'challenges',
+                ], [
+                    'value'                 => $data->$challenges,
+                    'updated_at'            => Carbon::now(),
+                ]);
+            }
+            if ($data->$values != null) {
+                Translation::updateOrInsert([
+                    'translationable_type'  => 'App\Models\Admin\Project',
+                    'translationable_id'    => $updateProject->id,
+                    'locale'                => $lang->lang,
+                    'key'                   => 'values',
+                ], [
+                    'value'                 => $data->$values,
+                    'updated_at'            => Carbon::now(),
+                ]);
+            }
+
         }
 
         return response([
