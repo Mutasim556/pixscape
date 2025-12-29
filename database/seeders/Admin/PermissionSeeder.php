@@ -59,5 +59,12 @@ class PermissionSeeder extends Seeder
         // Permission::create(['guard_name'=>'admin','name'=>'homepage-video-update','group_name'=>'Homepage Video']);
         // Permission::create(['guard_name'=>'admin','name'=>'homepage-video-delete','group_name'=>'Homepage Video']);
 
+
+        // permission for Project
+        // Permission::create(['guard_name'=>'admin','name'=>'project-index','group_name'=>'Project']);
+        // Permission::create(['guard_name'=>'admin','name'=>'project-create','group_name'=>'Project']);
+        // Permission::create(['guard_name'=>'admin','name'=>'project-update','group_name'=>'Project']);
+        // Permission::create(['guard_name'=>'admin','name'=>'project-delete','group_name'=>'Project']);
+
     }
 }

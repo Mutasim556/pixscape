@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\Localization\BackendLanguageController;
 use App\Http\Controllers\Admin\Localization\ChangeLanguageController;
 use App\Http\Controllers\Admin\Localization\LanguageController;
 use App\Http\Controllers\Admin\Pages\HomepageSettingController;
+use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\Role\RoleAndPermissionController;
 use App\Http\Controllers\Admin\Settings\MaintenanceModeController;
 use App\Http\Controllers\Admin\User\UserController;
@@ -86,7 +87,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::delete('/video/{id}', 'destroyVideo');
                 /** Video Part End */
             });
-
+            /** Project Start */
+            Route::resource('project', ProjectController::class)->except('create', 'show');
+            Route::controller(ProjectController::class)->prefix('project')->group(function () {
+                Route::get('/update/status/{id}/{status}', 'updateStatus');
+            });
+            /** Project End */
         });
     });
     Route::get('/translate-string', function () {

@@ -32,7 +32,7 @@
             </a>
         </li>
     @endif
-    @if (hasPermission(['homepage-slider-index']))
+    @if (hasPermission(['homepage-slider-index','project-index']))
         <li class="sidebar-list">
             <a class="sidebar-link sidebar-title" href="javascript:void(0)" aria-expanded="false">
                 <i data-feather="book-open"></i>
@@ -57,6 +57,12 @@
                                 </li>
                             @endif
                         </ul>
+                    </li>
+                @endif
+                @if (hasPermission(['project-index']))
+                    <li>
+                        <a class="sidebar-link"
+                            href="{{ route('admin.pages.project.index') }}">{{ __('admin_local.Projects') }}</a>
                     </li>
                 @endif
             </ul>
