@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Auth\AdminAuthController;
 use App\Http\Controllers\Admin\Auth\AdminLoginController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\Localization\BackendLanguageController;
 use App\Http\Controllers\Admin\Localization\ChangeLanguageController;
 use App\Http\Controllers\Admin\Localization\LanguageController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\Admin\Pages\HomepageSettingController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\Role\RoleAndPermissionController;
 use App\Http\Controllers\Admin\Settings\MaintenanceModeController;
+use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\User\UserController;
 use Illuminate\Support\Facades\Route;
 use Stichoza\GoogleTranslate\GoogleTranslate;
@@ -93,6 +95,21 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::get('/update/status/{id}/{status}', 'updateStatus');
             });
             /** Project End */
+
+            /** Blog Start */
+            Route::resource('blog', BlogController::class)->except('create', 'show');
+            Route::controller(BlogController::class)->prefix('blog')->group(function () {
+                Route::get('/update/status/{id}/{status}', 'updateStatus');
+            });
+            /** Blog End */
+
+            /** Team Start */
+            Route::resource('team', TeamController::class)->except('create', 'show');
+            Route::controller(TeamController::class)->prefix('team')->group(function () {
+                Route::get('/update/status/{id}/{status}', 'updateStatus');
+                Route::post('/update/team/info', 'updateTeamInfo')->name('updateTeamInfo');
+            });
+            /** Team End */
         });
     });
     Route::get('/translate-string', function () {

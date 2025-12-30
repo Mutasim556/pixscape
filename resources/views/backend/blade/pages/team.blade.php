@@ -222,10 +222,10 @@
                                          <span class="text-danger err-mgs" id="expertise_err"></span>
                                      </div>
                                      <div class="form-group col-md-6">
-                                         <label for="">{{ __('admin_local.Expertise Lavel') }}</label>
-                                         <input type="number" min="1" max="100" class="form-control"
-                                             name="expertiselavel[]" id="expertiselavel" placeholder="1 to 100">
-                                         <span class="text-danger err-mgs" id="expertiselavel_err"></span>
+                                         <label for="">{{ __('admin_local.Expertise Value') }}</label>
+                                         <textarea type="text" min="1" max="100" class="form-control" name="expertise_value[]"
+                                             id="expertise_value" placeholder="please use | for separation"></textarea>
+                                         <span class="text-danger err-mgs" id="expertise_value_err"></span>
                                      </div>
                                  </div>
                              </div>
@@ -233,8 +233,41 @@
                                  <div class="row">
                                      <div class="form-group col-md-12">
                                          <label for=""> &nbsp; </label><br>
-                                         <button style="float: right" class="btn btn-success" id="copy_row_btn"
-                                             type="button"><i class="fa fa-plus"></i></button>
+                                         <button style="float: right" class="btn btn-success" data-id="qpy"
+                                             id="copy_row_btn" type="button"><i class="fa fa-plus"></i></button>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                         <div>
+
+                         </div>
+                         <hr>
+                         <div class="row copy-row">
+                             <h5 class="text-center">{{ __('admin_local.Feature Projects') }}</h5>
+                             <hr>
+                             <div class="col-sm-12 col-xl-10">
+
+                                 <div class="row">
+                                     <div class="form-group col-md-6">
+                                         <label for="">{{ __('admin_local.Project') }}</label>
+                                         <input type="text" class="form-control" name="project[]" id="project">
+                                         <span class="text-danger err-mgs" id="project_err"></span>
+                                     </div>
+                                     <div class="form-group col-md-6">
+                                         <label for="">{{ __('admin_local.Project Details') }}</label>
+                                         <textarea type="text" min="1" max="100" class="form-control" name="project_details[]"
+                                             id="project_details" placeholder="please use | for separation"></textarea>
+                                         <span class="text-danger err-mgs" id="project_details_err"></span>
+                                     </div>
+                                 </div>
+                             </div>
+                             <div class="col-sm-12 col-xl-2">
+                                 <div class="row">
+                                     <div class="form-group col-md-12">
+                                         <label for=""> &nbsp; </label><br>
+                                         <button style="float: right" class="btn btn-success" data-id="cpy"
+                                             id="copy_row_btn" type="button"><i class="fa fa-plus"></i></button>
                                      </div>
                                  </div>
                              </div>
@@ -471,6 +504,8 @@
 
                          </div>
 
+
+
                          <div class="row mt-4 mb-2">
                              <div class="form-group col-lg-12">
                                  <button class="btn btn-danger text-white font-weight-medium waves-effect text-start"
@@ -596,6 +631,75 @@
 
          </div>
          <!-- Row -->
+     </div>
+     <div class="container-fluid">
+         <div class="row">
+             <!-- Column -->
+             <div class="col-lg-12 mx-auto">
+                 <div class="card">
+                     <div class="card-header py-3" style="border-bottom: 2px dashed gray">
+                         <h3 class="card-title mb-0 text-center">{{ __('admin_local.Other Informations') }}</h3>
+                     </div>
+
+                     <div class="card-body">
+                         <form action="{{ route('admin.pages.updateTeamInfo') }}" method="post"
+                             enctype="multipart/form-data">
+                             @csrf
+                             <div class="row">
+                                 <div class="col-lg-12">
+                                     <h5 class="text-center">{{ __('admin_local.Short Description') }}</h5>
+                                     <hr>
+                                 </div>
+                                 <div class="col-lg-4">
+
+                                     <textarea class="form-control" name="short_description"> {{ $teamInfo->short_description }}</textarea>
+                                 </div>
+                                 <div class="col-lg-8">
+                                     <p>
+                                         {{ $teamInfo->short_description }}
+                                     </p>
+                                 </div>
+                             </div>
+                             <div class="row">
+                                 <div class="col-lg-12">
+                                     <h5 class="text-center">{{ __('admin_local.Button Text') }}</h5>
+                                     <hr>
+                                 </div>
+                                 <div class="col-lg-4">
+                                     <input type="text" class="form-control" name="button_text"
+                                         value="{{ $teamInfo->button_text }}">
+                                 </div>
+                                 <div class="col-lg-8">
+                                     <p>
+                                         {{ $teamInfo->button_text }}
+                                     </p>
+                                 </div>
+                             </div>
+                             <hr>
+                             <div class="row">
+                                 <div class="col-lg-12">
+                                     <h5 class="text-center">{{ __('admin_local.Team Image') }}</h5>
+                                     <hr>
+                                 </div>
+                                 <div class="col-lg-4">
+                                     <input type="file" class="form-control" name="team_image">
+                                 </div>
+                                 <div class="col-lg-8">
+                                     <img width="100%" src="{{ asset($teamInfo->team_image) }}" alt="">
+                                 </div>
+                             </div>
+                             <hr>
+                             <div class="row">
+                                 <div class="col-lg-4">
+                                     <button class="btn btn-primary"
+                                         type="submit">{{ __('admin_local.Update') }}</button>
+                                 </div>
+                             </div>
+                         </form>
+                     </div>
+                 </div>
+             </div>
+         </div>
      </div>
  @endsection
  @push('js')
@@ -741,20 +845,24 @@
      <script>
          $(document).on('click', '#copy_row_btn', function() {
              var count = $(this).closest('.copy-row').next('div').find('.delete-row').length;
+             var dataid = $(this).data('id');
              $(this).closest('.copy-row').next('div').slideDown('slow', function() {
-                 let newRow = $(`
+                var newRow =``;
+                 if (dataid == "cpy") {
+                     newRow = $(`
                     <div class="row delete-row" >
                         <div class="col-sm-12 col-xl-10">
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label>{{ __('admin_local.Expertise') }}</label>
-                                    <input type="text" class="form-control" id="expertise" name="expertise[]" />
-                                    <span class="text-danger err-mgs expertise_err"></span>
+                                    <label>{{ __('admin_local.Project') }}</label>
+                                    <input type="text" class="form-control" id="project" name="project[]" />
+                                    <span class="text-danger err-mgs project_err"></span>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label>{{ __('admin_local.Expertise Lavel') }}</label>
-                                    <input type="number" min="1" max="100" class="form-control" id="expertiselavel" name="expertiselavel[]" placeholder="1 to 100"/>
-                                    <span class="text-danger err-mgs expertiselavel_err"></span>
+                                    <label for="">{{ __('admin_local.Project Details') }}</label>
+                                    <textarea type="text" min="1" max="100" class="form-control"
+                                        name="project_details[]" id="project_details" placeholder="please use | for separation"></textarea>
+                                    <span class="text-danger err-mgs" id="project_details_err"></span>
                                 </div>
                             </div>
                         </div>
@@ -770,6 +878,38 @@
                         </div>
                     </div>
                 `);
+                 } else {
+                     newRow = $(`
+                    <div class="row delete-row" >
+                        <div class="col-sm-12 col-xl-10">
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label>{{ __('admin_local.Expertise') }}</label>
+                                    <input type="text" class="form-control" id="expertise" name="expertise[]" />
+                                    <span class="text-danger err-mgs expertise_err"></span>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="">{{ __('admin_local.Expertise Value') }}</label>
+                                    <textarea type="text" min="1" max="100" class="form-control"
+                                        name="expertise_value[]" id="expertise_value" placeholder="please use | for separation"></textarea>
+                                    <span class="text-danger err-mgs" id="expertise_value_err"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-xl-2">
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label>&nbsp;</label><br>
+                                    <button style="float:right" class="btn btn-danger " id="delete_row_btn" type="button">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `);
+                 }
+
 
                  // append hidden, then fade in
                  $(this).append(newRow);

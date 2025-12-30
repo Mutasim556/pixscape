@@ -59,10 +59,22 @@
                         </ul>
                     </li>
                 @endif
+                @if (hasPermission(['service-index']))
+                    <li>
+                        <a class="sidebar-link"
+                            href="{{ route('admin.pages.team.index') }}">{{ __('admin_local.Team Members') }}</a>
+                    </li>
+                @endif
                 @if (hasPermission(['project-index']))
                     <li>
                         <a class="sidebar-link"
                             href="{{ route('admin.pages.project.index') }}">{{ __('admin_local.Projects') }}</a>
+                    </li>
+                @endif
+                @if (hasPermission(['blog-index']))
+                    <li>
+                        <a class="sidebar-link"
+                            href="{{ route('admin.pages.blog.index') }}">{{ __('admin_local.Blogs') }}</a>
                     </li>
                 @endif
             </ul>
