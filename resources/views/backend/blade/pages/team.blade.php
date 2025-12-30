@@ -214,7 +214,7 @@
                              </div>
                          </div>
                          <div class="row copy-row">
-                             <div class="col-sm-12 col-xl-10">
+                             <div class="col-sm-10 col-xl-10">
                                  <div class="row">
                                      <div class="form-group col-md-6">
                                          <label for="">{{ __('admin_local.Expertise') }}</label>
@@ -229,7 +229,7 @@
                                      </div>
                                  </div>
                              </div>
-                             <div class="col-sm-12 col-xl-2">
+                             <div class="col-sm-2 col-xl-2">
                                  <div class="row">
                                      <div class="form-group col-md-12">
                                          <label for=""> &nbsp; </label><br>
@@ -246,7 +246,7 @@
                          <div class="row copy-row">
                              <h5 class="text-center">{{ __('admin_local.Feature Projects') }}</h5>
                              <hr>
-                             <div class="col-sm-12 col-xl-10">
+                             <div class="col-sm-10 col-xl-10">
 
                                  <div class="row">
                                      <div class="form-group col-md-6">
@@ -262,7 +262,7 @@
                                      </div>
                                  </div>
                              </div>
-                             <div class="col-sm-12 col-xl-2">
+                             <div class="col-sm-2 col-xl-2">
                                  <div class="row">
                                      <div class="form-group col-md-12">
                                          <label for=""> &nbsp; </label><br>
@@ -460,7 +460,7 @@
                                          <span class="text-danger err-mgs" id="team_member_image_err"></span>
                                      </div>
                                      <div class="form-group col-md-12">
-                                         <label for="">{{ __('admin_local.Preview member Icon') }}
+                                         <label for="">{{ __('admin_local.Preview Member Image') }}
                                              *</label><br>
                                          <img src="" id="prev_team_member_image2" alt="" height="395px"
                                              width="100%">
@@ -475,7 +475,7 @@
                              </div>
                          </div>
                          <div class="row copy-row">
-                             <div class="col-sm-12 col-xl-10">
+                             <div class="col-sm-10 col-xl-10">
                                  <div class="row">
                                      <div class="form-group col-md-6">
                                          <label for="">{{ __('admin_local.Expertise') }}</label>
@@ -483,14 +483,14 @@
                                          <span class="text-danger err-mgs" id="expertise_err"></span>
                                      </div>
                                      <div class="form-group col-md-6">
-                                         <label for="">{{ __('admin_local.Expertise Lavel') }}</label>
-                                         <input type="number" min="1" max="100" class="form-control"
-                                             name="expertiselavel[]" id="expertiselavel" placeholder="1 to 100">
-                                         <span class="text-danger err-mgs" id="expertiselavel_err"></span>
+                                         <label for="">{{ __('admin_local.Expertise Value') }}</label>
+                                         <textarea class="form-control" name="expertise_value[]"
+                                                id="expertise_value" placeholder="please use | for separation"></textarea>
+                                            <span class="text-danger err-mgs" id="expertise_value_err"></span>
                                      </div>
                                  </div>
                              </div>
-                             <div class="col-sm-12 col-xl-2">
+                             <div class="col-sm-2 col-xl-2">
                                  <div class="row">
                                      <div class="form-group col-md-12">
                                          <label for=""> &nbsp; </label><br>
@@ -503,9 +503,38 @@
                          <div id="append_exp_div">
 
                          </div>
+                         <hr>
+                         <div class="row copy-row">
+                             <h5 class="text-center">{{ __('admin_local.Feature Projects') }}</h5>
+                             <hr>
+                             <div class="col-sm-10 col-xl-10">
+                                 <div class="row">
+                                     <div class="form-group col-md-6">
+                                         <label for="">{{ __('admin_local.Project') }}</label>
+                                         <input type="text" class="form-control" name="project[]" id="project">
+                                         <span class="text-danger err-mgs" id="project_err"></span>
+                                     </div>
+                                     <div class="form-group col-md-6">
+                                         <label for="">{{ __('admin_local.Project Details') }}</label>
+                                         <textarea type="text" min="1" max="100" class="form-control" name="project_details[]"
+                                             id="project_details" placeholder="please use | for separation"></textarea>
+                                         <span class="text-danger err-mgs" id="project_details_err"></span>
+                                     </div>
+                                 </div>
+                             </div>
+                             <div class="col-sm-2 col-xl-2">
+                                 <div class="row">
+                                     <div class="form-group col-md-12">
+                                         <label for=""> &nbsp; </label><br>
+                                         <button style="float: right" class="btn btn-success" data-id="cpy"
+                                             id="copy_row_btn" type="button"><i class="fa fa-plus"></i></button>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                         <div id="append_project_div">
 
-
-
+                         </div>
                          <div class="row mt-4 mb-2">
                              <div class="form-group col-lg-12">
                                  <button class="btn btn-danger text-white font-weight-medium waves-effect text-start"
@@ -851,7 +880,7 @@
                  if (dataid == "cpy") {
                      newRow = $(`
                     <div class="row delete-row" >
-                        <div class="col-sm-12 col-xl-10">
+                        <div class="col-sm-10 col-xl-10">
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label>{{ __('admin_local.Project') }}</label>
@@ -866,7 +895,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-xl-2">
+                        <div class="col-sm-2 col-xl-2">
                             <div class="row">
                                 <div class="form-group col-md-12">
                                     <label>&nbsp;</label><br>
@@ -881,7 +910,7 @@
                  } else {
                      newRow = $(`
                     <div class="row delete-row" >
-                        <div class="col-sm-12 col-xl-10">
+                        <div class="col-sm-10 col-xl-10">
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label>{{ __('admin_local.Expertise') }}</label>
@@ -896,7 +925,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-xl-2">
+                        <div class="col-sm-2 col-xl-2">
                             <div class="row">
                                 <div class="form-group col-md-12">
                                     <label>&nbsp;</label><br>
@@ -923,7 +952,7 @@
          })
 
          var expert = `{{ __('admin_local.Expertise') }}`;
-         var expertLvl = `{{ __('admin_local.Expertise Lavel') }}`;
+         var expertLvl = `{{ __('admin_local.Expertise Value') }}`;
      </script>
      <script src="{{ asset(env('ASSET_DIRECTORY', 'public') . '/' . 'admin/custom/team/team.js') }}"></script>
      {{-- <script src="{{ asset(env('ASSET_DIRECTORY','public').'/'.'inventory/custom/user/user_list.js') }}"></script> --}}

@@ -100,7 +100,7 @@ $(document).on('submit','#add_team_member_form',function(e){
 });
 
 //update status
-$(document).on('change','#status_change',function(){ 
+$(document).on('change','#status_change',function(){
     var status = $(this).data('status');
     var update_id = $(this).closest('tr').data('id');
     var cat_td = $(this).parent();
@@ -180,25 +180,27 @@ $(document).on('click', '#edit_button', function () {
                 $('#edit_member_form #append_exp_div').empty();
                 $.each(expDatas,function(key,val){
                     if(key==0){
-                        $("#edit_member_form #expertise").first().val(val);
+                        $("#edit_member_form #expertise").first().val(val.expertise);
+                        $("#edit_member_form #expertise_value").first().val(val.expertise_value);
                     }else{
-                        $('#edit_member_form #append_exp_div').empty().append(`
+                        $('#edit_member_form #append_exp_div').append(`
                             <div class="row delete-row" >
-                                <div class="col-sm-12 col-xl-10">
+                                <div class="col-sm-10 col-xl-10">
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                             <label>${expert}</label>
-                                            <input type="text" class="form-control" id="expertise" name="expertise[]" value="${val}"/>
+                                            <input type="text" class="form-control" id="expertise" name="expertise[]" value="${val.expertise}"/>
                                             <span class="text-danger err-mgs expertise_err"></span>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label>${expertLvl}</label>
-                                            <input type="number" min="1" max="100" class="form-control" id="expertiselavel" name="expertiselavel[]" placeholder="1 to 100"/>
-                                            <span class="text-danger err-mgs expertiselavel_err"></span>
+                                            <textarea type="text" min="1" max="100" class="form-control" name="expertise_value[]"
+                                                id="expertise_value" placeholder="please use | for separation">${val.expertise_value}</textarea>
+                                            <span class="text-danger err-mgs" id="expertise_value_err"></span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-12 col-xl-2">
+                                <div class="col-sm-2 col-xl-2">
                                     <div class="row">
                                         <div class="form-group col-md-12">
                                             <label>&nbsp;</label><br>
@@ -217,17 +219,48 @@ $(document).on('click', '#edit_button', function () {
                 $('#edit_member_form #append_exp_div').empty();
             }
 
-            if(data.team_member_exp_lavel!=''){
-                expLvlDatas = JSON.parse(data.team_member_exp_lavel);
+            if(data.team_member_feature_projects!=''){
+                expLvlDatas = JSON.parse(data.team_member_feature_projects);
+                $('#edit_member_form #append_project_div').empty();
                 $.each(expLvlDatas,function(key,val){
                     if(key==0){
-                        $("#edit_member_form #expertiselavel").first().val(val);
+                        $("#edit_member_form #project").first().val(val.project);
+                        $("#edit_member_form #project_details").first().val(val.project_details);
                     }else{
-                        $("#edit_member_form #expertiselavel").eq(key).val(val);
+                        $('#edit_member_form #append_project_div').append(`
+                            <div class="row delete-row" >
+                                <div class="col-sm-10 col-xl-10">
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label>Project</label>
+                                            <input value="${val.project}" type="text" class="form-control" id="project" name="project[]" />
+                                            <span class="text-danger err-mgs project_err"></span>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="">Project Details</label>
+                                            <textarea type="text" min="1" max="100" class="form-control"
+                                                name="project_details[]" id="project_details" placeholder="please use | for separation">${val.project_details}</textarea>
+                                            <span class="text-danger err-mgs" id="project_details_err"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 col-xl-2">
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <label>&nbsp;</label><br>
+                                            <button style="float:right" class="btn btn-danger " id="delete_row_btn" type="button">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `);
                     }
                 })
             }else{
-                $("#edit_member_form #expertiselavel").first().val('');
+                $("#edit_member_form #project").first().val('');
+                $("#edit_member_form #project_details").first().val('');
             }
 
 

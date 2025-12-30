@@ -220,8 +220,23 @@ class TeamController extends Controller
         $updateMember->team_member_instagram = $data->team_member_instagram;
         $updateMember->team_member_linkedin = $data->team_member_linkedin;
         $updateMember->team_member_youtube = $data->team_member_youtube;
-        $updateMember->team_member_expertise = json_encode($data->expertise);
-        $updateMember->team_member_exp_lavel = json_encode($data->expertiselavel);
+        $expertise = [];
+        foreach ($data->expertise as $key => $value) {
+            $expertise[]=[
+                'expertise' => $value,
+                'expertise_value' => $data->expertise_value[$key]
+            ];
+        }
+        $updateMember->team_member_expertise = json_encode($expertise);
+
+        $project = [];
+        foreach ($data->project as $key => $value) {
+            $project[]=[
+                'project' => $value,
+                'project_details' => $data->project_details[$key]
+            ];
+        }
+        $updateMember->team_member_feature_projects = json_encode($project);
 
         $dir = getDirectoryLink('team/team-members');
         $makeDir = createDirectory($dir);
