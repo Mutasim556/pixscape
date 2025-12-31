@@ -11,15 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Schema::create('blogs', function (Blueprint $table) {
-        //     $table->id();
-        //     $table->text('title')->nullable();
-        //     $table->text('details')->nullable();
-        //     $table->text('images')->nullable();
-        //     $table->string('video')->nullable();
-        //     $table->customDefaults();
-        //     $table->timestamps();
-        // });
+        Schema::create('blogs', function (Blueprint $table) {
+            $table->id();
+            $table->text('title')->nullable();
+            $table->text('details')->nullable();
+            $table->text('images')->nullable();
+            $table->string('video')->nullable();
+            $table->string('option_value')->nullable();
+            $table->foreignId('team_id')->constrained('teams');
+            $table->customDefaults();
+            $table->timestamps();
+        });
     }
 
     /**
