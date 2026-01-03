@@ -1,4 +1,4 @@
-$(document).on('submit', '#add_blog_form', function (e) {
+$(document).on('submit', '#add_counter_form', function (e) {
     e.preventDefault();
     $('button[type=submit]', this).html(submit_btn_after + '....');
     $('button[type=submit]', this).addClass('disabled');
@@ -15,15 +15,15 @@ $(document).on('submit', '#add_blog_form', function (e) {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (rdata) {
-            $('button[type=submit]', '#add_blog_form').html(submit_btn_before);
-            $('button[type=submit]', '#add_blog_form').removeClass('disabled');
+            $('button[type=submit]', '#add_counter_form').html(submit_btn_before);
+            $('button[type=submit]', '#add_counter_form').removeClass('disabled');
             swal({
                 icon: "success",
                 title: rdata.title,
                 text: rdata.text,
                 confirmButtonText: rdata.confirmButtonText,
             }).then(function () {
-                let data = rdata.blog;
+                let data = rdata.counter;
                 let update_status_btn = `<span class="badge badge-danger">${no_permission_mgs}</span>`;
                 if (rdata.hasEditPermission) {
                     update_status_btn = `<span class="mx-2">${data.status == 0 ? 'Inactive' : 'Active'}</span><input
@@ -44,30 +44,27 @@ $(document).on('submit', '#add_blog_form', function (e) {
                     action_option = action_option + `</div></div>`;
                 }
 
-                var blogImgs = JSON.parse(data.images);
-                var blogM_image = ``;
-                $.each(blogImgs, function (key, val) {
-                    blogM_image += val ? '<img  height="50px" style="border: 1px solid black;margin-right:2px;" src="' + base_url + '/' + val + '">' : '';
-                })
+                let counterM_image = data.image ? '<img style="height: 50px;width:50px;" src="' + base_url + '/' + data.image + '">' : no_file;
 
-                $('#basic-1 tbody').append(`<tr id="trid-${data.id}" data-id="${data.id}"><td>${blogM_image}</td><td>${data.title}</td><td>${data.details}</td>
+
+                $('#basic-1 tbody').append(`<tr id="trid-${data.id}" data-id="${data.id}"><td>${counterM_image}</td><td>${data.title}</td><td>${data.counter}</td>
                 <td class="text-center">${update_status_btn}</td>
                 <td>${action_option}</td></tr>`);
 
                 new Switchery($('#trid-' + data.id).find('input')[0], $('#trid-' + data.id).find('input').data());
 
-                $('#add_blog_form .err-mgs').each(function (id, val) {
+                $('#add_counter_form .err-mgs').each(function (id, val) {
                     $(this).prev('input').removeClass('border-danger is-invalid')
                     $(this).prev('textarea').removeClass('border-danger is-invalid')
                     $(this).empty();
                 })
-                $('#add_blog_form').trigger('reset');
-                $('button[type=button]', '#add_blog_form').click();
+                $('#add_counter_form').trigger('reset');
+                $('button[type=button]', '#add_counter_form').click();
             })
         },
         error: function (err) {
-            $('button[type=submit]', '#add_blog_form').html(submit_btn_before);
-            $('button[type=submit]', '#add_blog_form').removeClass('disabled');
+            $('button[type=submit]', '#add_counter_form').html(submit_btn_before);
+            $('button[type=submit]', '#add_counter_form').removeClass('disabled');
             if (err.status === 403) {
                 var err_message = err.responseJSON.message.split("(");
                 swal({
@@ -76,12 +73,12 @@ $(document).on('submit', '#add_blog_form', function (e) {
                     text: err_message[0],
                     confirmButtonText: "Ok",
                 }).then(function () {
-                    $('button[type=button]', '#add_blog_form').click();
+                    $('button[type=button]', '#add_counter_form').click();
                 });
 
             }
 
-            $('#add_blog_form .err-mgs').each(function (id, val) {
+            $('#add_counter_form .err-mgs').each(function (id, val) {
                 $(this).prev('input').removeClass('border-danger is-invalid')
                 $(this).prev('textarea').removeClass('border-danger is-invalid')
                 $(this).prev('span').find('.select2-selection--single').attr('id', '')
@@ -92,12 +89,12 @@ $(document).on('submit', '#add_blog_form', function (e) {
                 var exp = idx.replace('.', '_');
                 var exp2 = exp.replace('_0', '');
 
-                $('#add_blog_form #' + exp).addClass('border-danger is-invalid')
-                $('#add_blog_form #' + exp2).addClass('border-danger is-invalid')
-                $('#add_blog_form #' + exp).next('span').find('.select2-selection--single').attr('id', 'invalid-selec2')
-                $('#add_blog_form #' + exp).next('.err-mgs').empty().append(val);
+                $('#add_counter_form #' + exp).addClass('border-danger is-invalid')
+                $('#add_counter_form #' + exp2).addClass('border-danger is-invalid')
+                $('#add_counter_form #' + exp).next('span').find('.select2-selection--single').attr('id', 'invalid-selec2')
+                $('#add_counter_form #' + exp).next('.err-mgs').empty().append(val);
 
-                $('#add_blog_form #' + exp + "_err").empty().append(val);
+                $('#add_counter_form #' + exp + "_err").empty().append(val);
             })
         },
     })
@@ -111,7 +108,7 @@ $(document).on('change', '#status_change', function () {
     cat_td.empty().append(`<i class="fa fa-refresh fa-spin"></i>`);
     $.ajax({
         type: "get",
-        url: 'blog/update/status/' + update_id + "/" + status,
+        url: 'counter/update/status/' + update_id + "/" + status,
         success: function (data) {
             cat_td.empty().append(`<span class="mx-2">${data.status == 0 ? 'Inactive' : 'Active'}</span><input data-status="${data.status == 1 ? 0 : 1}" id="status_change" type="checkbox" data-toggle="switchery" data-color="green"  data-secondary-color="red" data-size="small" ${data.status == 1 ? 'checked' : ''} />`);
             // parent_td.children('input').each(function (idx, obj) {
@@ -132,48 +129,30 @@ $(document).on('change', '#status_change', function () {
 });
 
 $(document).on('click', '#edit_button', function () {
-    $('#edit_blog_form').trigger('reset');
-    $('#edit_blog_form .err-mgs').each(function (id, val) {
+    $('#edit_counter_form').trigger('reset');
+    $('#edit_counter_form .err-mgs').each(function (id, val) {
         $(this).prev('input').removeClass('border-danger is-invalid')
         $(this).prev('textarea').removeClass('border-danger is-invalid')
         $(this).empty();
     })
     let cat = $(this).closest('tr').data('id');
-    // alert(cat);
+    $("#edit_counter_form")[0].reset();
+    for (instance in CKEDITOR.instances) {
+        CKEDITOR.instances[instance].setData('');
+    }
     $.ajax({
         type: "get",
-        url: 'blog/' + cat + "/edit",
+        url: 'counter/' + cat + "/edit",
         dataType: 'JSON',
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (data) {
-            $('#edit_blog_form #blog_id').val(data.id);
-            $('#edit_blog_form #team_member').val(data.team_id).trigger('change');
-            $('#edit_blog_form #blog_title').val(data.title);
-            $('#edit_blog_form #video_link').val(data.video);
+            $('#edit_counter_form #counter_id').val(data.id);
+            $('#edit_counter_form #title').val(data.title);
+            $('#edit_counter_form #counter').val(data.counter);
 
-
-            CKEDITOR.instances['blog_details2'].setData(data.details);
-
-            var blogImgs = JSON.parse(data.images);
-
-            $.each(data.translations, function (key, val) {
-                if (val.locale == 'en') {
-                } else {
-                    if (val.key == 'title') {
-                        $('#edit_blog_form #blog_title_' + val.locale).val(val.value);
-                    }
-                    if (val.key == 'details') {
-                        CKEDITOR.instances['blog_details2_' + val.locale].setData(val.value);
-                    }
-                }
-            })
-
-
-
-
-
+            $('#edit_counter_form #eprev_image').prop('src', base_url + "/" + data.image);
         },
         error: function (err) {
             if (err.status === 403) {
@@ -184,7 +163,7 @@ $(document).on('click', '#edit_button', function () {
                     text: err_message[0],
                     confirmButtonText: "Ok",
                 }).then(function () {
-                    $('button[type=button]', '#edit_blog_form').click();
+                    $('button[type=button]', '#edit_counter_form').click();
                 });
 
             } else {
@@ -201,19 +180,21 @@ $(document).on('click', '#edit_button', function () {
 
 });
 
-$('#edit_blog_form').submit(function (e) {
-    e.preventDefault();
-    $('button[type=submit]', this).html(submit_btn_after + '....');
-    $('button[type=submit]', this).addClass('disabled');
-    var trid = '#trid-' + $('#blog_id', this).val();
+$('#edit_counter_form').submit(function (e) {
     for (instance in CKEDITOR.instances) {
         CKEDITOR.instances[instance].updateElement();
     }
+    e.preventDefault();
+    $('button[type=submit]', this).html(submit_btn_after + '....');
+    $('button[type=submit]', this).addClass('disabled');
+    var trid = '#trid-' + $('#counter_id', this).val();
+
     var formData = new FormData(this);
     formData.append("_method", "PUT");
+
     $.ajax({
         type: "post",
-        url: 'blog/' + $('#blog_id', '#edit_blog_form').val(),
+        url: 'counter/' + $('#counter_id', '#edit_counter_form').val(),
         data: formData,
         dataType: 'JSON',
         headers: {
@@ -224,30 +205,24 @@ $('#edit_blog_form').submit(function (e) {
         cache: false,
         processData: false,
         success: function (data) {
-            $('button[type=submit]', '#edit_blog_form').html(submit_btn_before);
-            $('button[type=submit]', '#edit_blog_form').removeClass('disabled');
-            var blogImgs = JSON.parse(data.blog.images);
-            var pImages = ``;
-            $.each(blogImgs, function (key, val) {
-                pImages += `<img  height="50px" style="border: 1px solid black;margin-right:2px;" src="${base_url + '/' + blogImgs[0]}">`
-            });
-            $('td:nth-child(1)', trid).html(pImages);
-            $('td:nth-child(2)', trid).html(data.blog.title);
-            $('td:nth-child(3)', trid).html(data.blog.details);
+            $('button[type=submit]', '#edit_counter_form').html(submit_btn_before);
+            $('button[type=submit]', '#edit_counter_form').removeClass('disabled');
 
+            $('td:nth-child(1)', trid).html(data.counter.image ? `<img style="height: 50px;" src="${base_url + '/' + data.counter.image}">` : no_file);
+            $('td:nth-child(2)', trid).html(data.counter.title);
+            $('td:nth-child(3)', trid).html(`${data.counter.counter}`);
             swal({
                 icon: "success",
                 title: data.title,
                 text: data.text,
                 confirmButtonText: data.confirmButtonText,
             }).then(function () {
-                // window.location.reload();
-                $('button[type=button]', '#edit_blog_form').click();
+                $('button[type=button]', '#edit_counter_form').click();
             });
         },
         error: function (err) {
-            $('button[type=submit]', '#edit_blog_form').html(submit_btn_before);
-            $('button[type=submit]', '#edit_blog_form').removeClass('disabled');
+            $('button[type=submit]', '#edit_counter_form').html(submit_btn_before);
+            $('button[type=submit]', '#edit_counter_form').removeClass('disabled');
             if (err.status === 403) {
                 var err_message = err.responseJSON.message.split("(");
                 swal({
@@ -256,12 +231,12 @@ $('#edit_blog_form').submit(function (e) {
                     text: err_message[0],
                     confirmButtonText: "Ok",
                 }).then(function () {
-                    $('button[type=button]', '#edit_blog_form').click();
+                    $('button[type=button]', '#edit_counter_form').click();
                 });
 
             }
 
-            $('#edit_blog_form .err-mgs').each(function (id, val) {
+            $('#edit_counter_form .err-mgs').each(function (id, val) {
                 $(this).prev('input').removeClass('border-danger is-invalid')
                 $(this).prev('textarea').removeClass('border-danger is-invalid')
                 $(this).empty();
@@ -269,15 +244,13 @@ $('#edit_blog_form').submit(function (e) {
 
             $.each(err.responseJSON.errors, function (idx, val) {
 
-                $('#edit_blog_form #' + idx).addClass('border-danger is-invalid')
-                $('#edit_blog_form #' + idx).next('.err-mgs').empty().append(val);
+                $('#edit_counter_form #' + idx).addClass('border-danger is-invalid')
+                $('#edit_counter_form #' + idx).next('.err-mgs').empty().append(val);
             })
         }
     });
 });
 
-
-//delete data
 $(document).on('click', '#delete_button', function () {
     var delete_id = $(this).closest('tr').data('id');
     swal({
@@ -290,7 +263,7 @@ $(document).on('click', '#delete_button', function () {
         if (willDelete) {
             $.ajax({
                 type: "delete",
-                url: 'blog/' + delete_id,
+                url: 'counter/' + delete_id,
                 data: {
                     _token: $("input[name=_token]").val(),
                 },

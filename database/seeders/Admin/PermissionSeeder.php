@@ -66,5 +66,17 @@ class PermissionSeeder extends Seeder
         // Permission::create(['guard_name'=>'admin','name'=>'project-update','group_name'=>'Project']);
         // Permission::create(['guard_name'=>'admin','name'=>'project-delete','group_name'=>'Project']);
 
+        // permission for Blog
+        // Permission::create(['guard_name'=>'admin','name'=>'blog-index','group_name'=>'Blogs']);
+        // Permission::create(['guard_name'=>'admin','name'=>'blog-create','group_name'=>'Blogs']);
+        // Permission::create(['guard_name'=>'admin','name'=>'blog-update','group_name'=>'Blogs']);
+        // Permission::create(['guard_name'=>'admin','name'=>'blog-delete','group_name'=>'Blogs']);
+
+        // permission for Conter
+        // Permission::create(['guard_name'=>'admin','name'=>'counter-index','group_name'=>'Homepage Counters']);
+        // Permission::create(['guard_name'=>'admin','name'=>'counter-create','group_name'=>'Homepage Counters']);
+        // Permission::create(['guard_name'=>'admin','name'=>'counter-update','group_name'=>'Homepage Counters']);
+        // Permission::create(['guard_name'=>'admin','name'=>'counter-delete','group_name'=>'Homepage Counters']);
+
     }
 }

@@ -44,10 +44,12 @@ class BlogController extends Controller
     public function store(Request $data)
     {
         $data->validate([
+            'team_member' => 'required',
             'blog_title' => 'required',
             'blog_details' => 'required',
             'blog_images.*' => 'required|mimes:jpg,jpeg,png',
         ], [
+            'team_member.required' => __('admin_local.Blog by required'),
             'blog_title.required' => __('admin_local.Blog title required'),
             'blog_details.required' => __('admin_local.Blog details required'),
             'blog_type.required' => __('admin_local.Blog type required'),
@@ -57,6 +59,7 @@ class BlogController extends Controller
 
         $newblog = new Blog();
 
+        $newblog->team_id = $data->team_member;
         $newblog->title = $data->blog_title;
         $newblog->details = $data->blog_details;
         $newblog->video = $data->video_link;
@@ -148,10 +151,12 @@ class BlogController extends Controller
     public function update(Request $data, string $id)
     {
         $data->validate([
+            'team_member' => 'required',
             'blog_title' => 'required',
             'blog_details' => 'required',
             'blog_images.*' => 'mimes:jpg,jpeg,png',
         ], [
+            'team_member.required' => __('admin_local.Team member required'),
             'blog_title.required' => __('admin_local.blog title required'),
             'blog_details.required' => __('admin_local.blog details required'),
             'blog_images.*.mimes' => __('admin_local.Invalid image format. (jpeg,jpg,png)'),
@@ -159,7 +164,7 @@ class BlogController extends Controller
 
 
         $updateblog = Blog::findOrFail($id);
-
+        $updateblog->team_id = $data->team_member;
         $updateblog->title = $data->blog_title;
         $updateblog->details = $data->blog_details;
         $updateblog->video = $data->video_link;

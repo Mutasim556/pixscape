@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\Auth\AdminAuthController;
 use App\Http\Controllers\Admin\Auth\AdminLoginController;
 use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\CounterController;
 use App\Http\Controllers\Admin\Localization\BackendLanguageController;
 use App\Http\Controllers\Admin\Localization\ChangeLanguageController;
 use App\Http\Controllers\Admin\Localization\LanguageController;
@@ -89,6 +90,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::delete('/video/{id}', 'destroyVideo');
                 /** Video Part End */
             });
+            Route::prefix('homepage')->name('homepage.')->group(function () {
+                /** Counter Start */
+                Route::resource('counter', CounterController::class)->except('create', 'show');
+                Route::controller(CounterController::class)->prefix('counter')->group(function () {
+                    Route::get('/update/status/{id}/{status}', 'updateStatus');
+                });
+            });
+            /** Counter End */
+
+
             /** Project Start */
             Route::resource('project', ProjectController::class)->except('create', 'show');
             Route::controller(ProjectController::class)->prefix('project')->group(function () {

@@ -56,6 +56,11 @@
                                         href="{{ route('admin.pages.homepage.main_video') }}">{{ __('admin_local.Video') }}</a>
                                 </li>
                             @endif
+                            @if (hasPermission(['counter-index']))
+                                <li><a
+                                        href="{{ route('admin.pages.homepage.counter.index') }}">{{ __('admin_local.Counters') }}</a>
+                                </li>
+                            @endif
                         </ul>
                     </li>
                 @endif
