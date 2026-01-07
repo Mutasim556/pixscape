@@ -1,4 +1,4 @@
-$(document).on('submit', '#add_project_form', function (e) {
+$(document).on('submit', '#add_projecttype_form', function (e) {
     e.preventDefault();
     $('button[type=submit]', this).html(submit_btn_after + '....');
     $('button[type=submit]', this).addClass('disabled');
@@ -15,15 +15,15 @@ $(document).on('submit', '#add_project_form', function (e) {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (rdata) {
-            $('button[type=submit]', '#add_project_form').html(submit_btn_before);
-            $('button[type=submit]', '#add_project_form').removeClass('disabled');
+            $('button[type=submit]', '#add_projecttype_form').html(submit_btn_before);
+            $('button[type=submit]', '#add_projecttype_form').removeClass('disabled');
             swal({
                 icon: "success",
                 title: rdata.title,
                 text: rdata.text,
                 confirmButtonText: rdata.confirmButtonText,
             }).then(function () {
-                let data = rdata.project;
+                let data = rdata.projecttype;
                 let update_status_btn = `<span class="badge badge-danger">${no_permission_mgs}</span>`;
                 if (rdata.hasEditPermission) {
                     update_status_btn = `<span class="mx-2">${data.status == 0 ? 'Inactive' : 'Active'}</span><input
@@ -44,30 +44,27 @@ $(document).on('submit', '#add_project_form', function (e) {
                     action_option = action_option + `</div></div>`;
                 }
 
-                var projectImgs = JSON.parse(data.images);
-                var projectM_image = ``;
-                $.each(projectImgs, function (key, val) {
-                    projectM_image += val ? '<img  height="50px" style="border: 1px solid black;margin-right:2px;" src="' + base_url + '/' + val + '">' : '';
-                })
+                let projecttypeM_image = data.image ? '<img style="height: 50px;width:50px;" src="' + base_url + '/' + data.image + '">' : no_file;
 
-                $('#basic-1 tbody').append(`<tr id="trid-${data.id}" data-id="${data.id}"><td>${projectM_image}</td><td>${data.title}</td><td>${data.details}</td>
+
+                $('#basic-1 tbody').append(`<tr id="trid-${data.id}" data-id="${data.id}"><td>${projecttypeM_image}</td><td>${data.title}</td><td>${data.short_description}</td>
                 <td class="text-center">${update_status_btn}</td>
                 <td>${action_option}</td></tr>`);
 
                 new Switchery($('#trid-' + data.id).find('input')[0], $('#trid-' + data.id).find('input').data());
 
-                $('#add_project_form .err-mgs').each(function (id, val) {
+                $('#add_projecttype_form .err-mgs').each(function (id, val) {
                     $(this).prev('input').removeClass('border-danger is-invalid')
                     $(this).prev('textarea').removeClass('border-danger is-invalid')
                     $(this).empty();
                 })
-                $('#add_project_form').trigger('reset');
-                $('button[type=button]', '#add_project_form').click();
+                $('#add_projecttype_form').trigger('reset');
+                $('button[type=button]', '#add_projecttype_form').click();
             })
         },
         error: function (err) {
-            $('button[type=submit]', '#add_project_form').html(submit_btn_before);
-            $('button[type=submit]', '#add_project_form').removeClass('disabled');
+            $('button[type=submit]', '#add_projecttype_form').html(submit_btn_before);
+            $('button[type=submit]', '#add_projecttype_form').removeClass('disabled');
             if (err.status === 403) {
                 var err_message = err.responseJSON.message.split("(");
                 swal({
@@ -76,12 +73,12 @@ $(document).on('submit', '#add_project_form', function (e) {
                     text: err_message[0],
                     confirmButtonText: "Ok",
                 }).then(function () {
-                    $('button[type=button]', '#add_project_form').click();
+                    $('button[type=button]', '#add_projecttype_form').click();
                 });
 
             }
 
-            $('#add_project_form .err-mgs').each(function (id, val) {
+            $('#add_projecttype_form .err-mgs').each(function (id, val) {
                 $(this).prev('input').removeClass('border-danger is-invalid')
                 $(this).prev('textarea').removeClass('border-danger is-invalid')
                 $(this).prev('span').find('.select2-selection--single').attr('id', '')
@@ -92,18 +89,17 @@ $(document).on('submit', '#add_project_form', function (e) {
                 var exp = idx.replace('.', '_');
                 var exp2 = exp.replace('_0', '');
 
-                $('#add_project_form #' + exp).addClass('border-danger is-invalid')
-                $('#add_project_form #' + exp2).addClass('border-danger is-invalid')
-                $('#add_project_form #' + exp).next('span').find('.select2-selection--single').attr('id', 'invalid-selec2')
-                $('#add_project_form #' + exp).next('.err-mgs').empty().append(val);
+                $('#add_projecttype_form #' + exp).addClass('border-danger is-invalid')
+                $('#add_projecttype_form #' + exp2).addClass('border-danger is-invalid')
+                $('#add_projecttype_form #' + exp).next('span').find('.select2-selection--single').attr('id', 'invalid-selec2')
+                $('#add_projecttype_form #' + exp).next('.err-mgs').empty().append(val);
 
-                $('#add_project_form #' + exp + "_err").empty().append(val);
+                $('#add_projecttype_form #' + exp + "_err").empty().append(val);
             })
         },
     })
 });
 
-//update status
 $(document).on('change', '#status_change', function () {
     var status = $(this).data('status');
     var update_id = $(this).closest('tr').data('id');
@@ -111,7 +107,7 @@ $(document).on('change', '#status_change', function () {
     cat_td.empty().append(`<i class="fa fa-refresh fa-spin"></i>`);
     $.ajax({
         type: "get",
-        url: 'project/update/status/' + update_id + "/" + status,
+        url: 'project-type/update/status/' + update_id + "/" + status,
         success: function (data) {
             cat_td.empty().append(`<span class="mx-2">${data.status == 0 ? 'Inactive' : 'Active'}</span><input data-status="${data.status == 1 ? 0 : 1}" id="status_change" type="checkbox" data-toggle="switchery" data-color="green"  data-secondary-color="red" data-size="small" ${data.status == 1 ? 'checked' : ''} />`);
             // parent_td.children('input').each(function (idx, obj) {
@@ -132,8 +128,8 @@ $(document).on('change', '#status_change', function () {
 });
 
 $(document).on('click', '#edit_button', function () {
-    $('#edit_project_form').trigger('reset');
-    $('#edit_project_form .err-mgs').each(function (id, val) {
+    $('#edit_projecttype_form').trigger('reset');
+    $('#edit_projecttype_form .err-mgs').each(function (id, val) {
         $(this).prev('input').removeClass('border-danger is-invalid')
         $(this).prev('textarea').removeClass('border-danger is-invalid')
         $(this).empty();
@@ -142,117 +138,28 @@ $(document).on('click', '#edit_button', function () {
     // alert(cat);
     $.ajax({
         type: "get",
-        url: 'project/' + cat + "/edit",
+        url: 'project-type/' + cat + "/edit",
         dataType: 'JSON',
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (data) {
-            $('#edit_project_form #project_id').val(data.id);
-            $('#edit_project_form #project_title').val(data.title);
-            $('#edit_project_form #project_short_details').val(data.short_details);
-            $('#edit_project_form #project_type').val(data.project_type_id);
+            $('#edit_projecttype_form #projecttype_id').val(data.id);
+            $('#edit_projecttype_form #title').val(data.title);
+            $('#edit_projecttype_form #short_description').val(data.short_description);
 
-            CKEDITOR.instances['challenges2'].setData(data.challenges);
-            CKEDITOR.instances['solutions2'].setData(data.solutions);
-            CKEDITOR.instances['values2'].setData(data.values);
-            CKEDITOR.instances['project_details2'].setData(data.details);
-            if (data.has_team == 1) {
-                $('#edit_project_form #has_any_team').prop('checked', true);
-                team_members = JSON.parse(data.team_members)
-                $('#edit_project_form #team_members').val(team_members).trigger('change');
-
-                //  $('#edit_project_form #team_members').prop('checked', true);
-            } else {
-                $('#edit_project_form #has_any_team').prop('checked', false);
-                $('#edit_project_form #team_members').val('').trigger('change');
-            }
-
-
-            var projectImgs = JSON.parse(data.images);
-
+            $('#edit_projecttype_form #eprev_logo').prop('src', base_url + "/" + data.image);
             $.each(data.translations, function (key, val) {
                 if (val.locale == 'en') {
                 } else {
                     if (val.key == 'title') {
-                        $('#edit_project_form #project_title_' + val.locale).val(val.value);
+                        $('#edit_projecttype_form #title_' + val.locale).val(val.value);
                     }
-                    if (val.key == 'details') {
-                        CKEDITOR.instances['project_details2_' + val.locale].setData(val.value);
-                    }
-                    if (val.key == 'short_details') {
-                        $('#edit_project_form #project_short_details_'+ val.locale).val(data.short_details);
-                    }
-                    if (val.key == 'challenges') {
-                        CKEDITOR.instances['challenges2_' + val.locale].setData(val.value);
-                    }
-                    if (val.key == 'solutions') {
-                        CKEDITOR.instances['solutions2_' + val.locale].setData(val.value);
-                    }
-                    if (val.key == 'values') {
-                        CKEDITOR.instances['values2_' + val.locale].setData(val.value);
+                    if (val.key == 'short_desription') {
+                        $('#edit_projecttype_form #short_desription_' + val.locale).val(val.value);
                     }
                 }
             })
-
-            options = JSON.parse(data.option_value);
-            let value = null;
-
-            if (Array.isArray(options) && options.length > 0) {
-                value = options[0].option;
-            }
-            $('#edit_project_form #option').first().val(value)
-            let opvalue = null;
-
-            if (Array.isArray(options) && options.length > 0) {
-                opvalue = options[0].option_value;
-            }
-
-            $('#edit_project_form #option_value').first().val(opvalue)
-            $('#edit_project_form .append_option_value2').empty();
-            if (Array.isArray(options) && options.length > 1) {
-                $('#edit_project_form .append_option_value2').empty();
-                $.each(options, function (key, val) {
-                    if (key == 0) {
-                        return true;
-                    }
-
-                    $('#edit_project_form .append_option_value2').append(`
-                        <div class="row appended_row2" >
-                            <div class="col-sm-12 col-xl-4">
-                                <div class="row">
-                                    <div class="form-group col-md-12">
-                                        <label for="">Option</label>
-                                        <input type="text" class="form-control" name="option[]"
-                                            id="option" value="${val.option}">
-                                        <span class="text-danger err-mgs" id="option_err"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-xl-6">
-                                <div class="row">
-                                    <div class="form-group col-md-12">
-                                        <label for="">Value</label>
-                                        <input type="text" class="form-control" name="option_value[]"
-                                            id="option_value" value="${val.option_value}">
-                                        <span class="text-danger err-mgs" id="option_value_err"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-xl-2">
-                                <div class="row">
-                                    <div class="form-group col-md-12" style="margin-top: 30px;">
-                                        <button type="button"  class="btn btn-sm btn-warning remove_option_value2">
-                                            Remove
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    `);
-                })
-
-            }
         },
         error: function (err) {
             if (err.status === 403) {
@@ -263,7 +170,7 @@ $(document).on('click', '#edit_button', function () {
                     text: err_message[0],
                     confirmButtonText: "Ok",
                 }).then(function () {
-                    $('button[type=button]', '#edit_project_form').click();
+                    $('button[type=button]', '#edit_projecttype_form').click();
                 });
 
             } else {
@@ -280,11 +187,11 @@ $(document).on('click', '#edit_button', function () {
 
 });
 
-$('#edit_project_form').submit(function (e) {
+$('#edit_projecttype_form').submit(function (e) {
     e.preventDefault();
     $('button[type=submit]', this).html(submit_btn_after + '....');
     $('button[type=submit]', this).addClass('disabled');
-    var trid = '#trid-' + $('#project_id', this).val();
+    var trid = '#trid-' + $('#projecttype_id', this).val();
     for (instance in CKEDITOR.instances) {
         CKEDITOR.instances[instance].updateElement();
     }
@@ -292,7 +199,7 @@ $('#edit_project_form').submit(function (e) {
     formData.append("_method", "PUT");
     $.ajax({
         type: "post",
-        url: 'project/' + $('#project_id', '#edit_project_form').val(),
+        url: 'project-type/' + $('#projecttype_id', '#edit_projecttype_form').val(),
         data: formData,
         dataType: 'JSON',
         headers: {
@@ -303,17 +210,14 @@ $('#edit_project_form').submit(function (e) {
         cache: false,
         processData: false,
         success: function (data) {
-            $('button[type=submit]', '#edit_project_form').html(submit_btn_before);
-            $('button[type=submit]', '#edit_project_form').removeClass('disabled');
-            var projectImgs = JSON.parse(data.project.images);
-            var pImages = ``;
-            $.each(projectImgs, function (key, val) {
-                pImages += `<img  height="50px" style="border: 1px solid black;margin-right:2px;" src="${base_url + '/' + projectImgs[0]}">`
-            });
-            $('td:nth-child(1)', trid).html(pImages);
-            $('td:nth-child(2)', trid).html(data.project.title);
-            $('td:nth-child(3)', trid).html(data.project.details);
+            $('button[type=submit]', '#edit_projecttype_form').html(submit_btn_before);
+            $('button[type=submit]', '#edit_projecttype_form').removeClass('disabled');
 
+            $('td:nth-child(1)', trid).html(data.projecttype.image ? `<img style="height: 50px;" src="${base_url + '/' + data.projecttype.image}">` : no_file);
+            $('td:nth-child(2)', trid).html(data.projecttype.title);
+            $('td:nth-child(3)', trid).html(data.projecttype.short_description);
+
+            // $('td:nth-child(6)', trid).html(data.team.team_member_address);
             swal({
                 icon: "success",
                 title: data.title,
@@ -321,12 +225,12 @@ $('#edit_project_form').submit(function (e) {
                 confirmButtonText: data.confirmButtonText,
             }).then(function () {
                 // window.location.reload();
-                $('button[type=button]', '#edit_project_form').click();
+                $('button[type=button]', '#edit_projecttype_form').click();
             });
         },
         error: function (err) {
-            $('button[type=submit]', '#edit_project_form').html(submit_btn_before);
-            $('button[type=submit]', '#edit_project_form').removeClass('disabled');
+            $('button[type=submit]', '#edit_projecttype_form').html(submit_btn_before);
+            $('button[type=submit]', '#edit_projecttype_form').removeClass('disabled');
             if (err.status === 403) {
                 var err_message = err.responseJSON.message.split("(");
                 swal({
@@ -335,12 +239,12 @@ $('#edit_project_form').submit(function (e) {
                     text: err_message[0],
                     confirmButtonText: "Ok",
                 }).then(function () {
-                    $('button[type=button]', '#edit_project_form').click();
+                    $('button[type=button]', '#edit_projecttype_form').click();
                 });
 
             }
 
-            $('#edit_project_form .err-mgs').each(function (id, val) {
+            $('#edit_projecttype_form .err-mgs').each(function (id, val) {
                 $(this).prev('input').removeClass('border-danger is-invalid')
                 $(this).prev('textarea').removeClass('border-danger is-invalid')
                 $(this).empty();
@@ -348,13 +252,12 @@ $('#edit_project_form').submit(function (e) {
 
             $.each(err.responseJSON.errors, function (idx, val) {
 
-                $('#edit_project_form #' + idx).addClass('border-danger is-invalid')
-                $('#edit_project_form #' + idx).next('.err-mgs').empty().append(val);
+                $('#edit_projecttype_form #' + idx).addClass('border-danger is-invalid')
+                $('#edit_projecttype_form #' + idx).next('.err-mgs').empty().append(val);
             })
         }
     });
 });
-
 
 //delete data
 $(document).on('click', '#delete_button', function () {
@@ -369,7 +272,7 @@ $(document).on('click', '#delete_button', function () {
         if (willDelete) {
             $.ajax({
                 type: "delete",
-                url: 'project/' + delete_id,
+                url: 'project-type/' + delete_id,
                 data: {
                     _token: $("input[name=_token]").val(),
                 },

@@ -2,6 +2,9 @@
 <!-- Last Published: Tue Nov 18 2025 23:26:56 GMT+0000 (Coordinated Universal Time) -->
 <html data-wf-domain="www.archipelago.com.au" data-wf-page="6543a9053fac558af9585fa4"
     data-wf-site="65249822a54c89915817034b">
+@php
+    $logo = \App\Models\Admin\Logo::first();
+@endphp
 
 <head>
     <meta charset="utf-8" />
@@ -405,6 +408,17 @@
                         aspect-ratio: 16/9
                     }
                 }
+
+
+                
+                .reveal_logomark {
+                    height: 250px;
+                    width: 250px;
+                }
+
+                /* .reveal_wrap {
+                    background: rgba(255, 0, 0, 0.05);
+                } */
             </style>
         </div>
         <div data-show-in-designer="false" class="preloader_component">
@@ -419,7 +433,8 @@
                                         d="M114.145 114.748H50.519L82.2362 33.0332L110.92 106.895V106.859L140.059 181.064H164.545V164.033L100.127 3.7251H64.3571L-0.0605469 164.033V181.064H24.5817L39.9307 141.573H103.677L114.145 114.748Z"
                                         fill="currentColor" />
                                 </svg> --}}
-                                <img src="path/to/your-logo.svg" alt="Logo" style="width: auto; height: 100%;" />
+                                <img src="{{ asset($logo ? $logo->main_site_header_logo : '') }}" alt="Logo"
+                                    style="width: auto; height: 100%;" />
                             </div>
                             <div class="preloader_mid-line">
                                 <div class="preloader_logo-rchipelago w-embed"><svg width="auto" height="100%"
@@ -457,7 +472,7 @@
                                             fill="currentColor" />
                                     </svg></div>
                             </div>
-                            <div class="preloader_logo-dot w-embed"><svg width="auto" height="100%" style=""
+                            {{-- <div class="preloader_logo-dot w-embed"><svg width="auto" height="100%" style=""
                                     viewBox="0 0 40 245" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip0_5756_1719)">
                                         <path
@@ -470,7 +485,8 @@
                                                 transform="translate(0.527344)" />
                                         </clipPath>
                                     </defs>
-                                </svg></div>
+                                </svg>
+                            </div> --}}
                         </div>
                     </div>
                     <div class="preloader_tagline-wrapper">
@@ -740,8 +756,8 @@
                                                 d="M114.145 114.748H50.519L82.2362 33.0332L110.92 106.895V106.859L140.059 181.064H164.545V164.033L100.127 3.7251H64.3571L-0.0605469 164.033V181.064H24.5817L39.9307 141.573H103.677L114.145 114.748Z"
                                                 fill="currentColor" />
                                         </svg> --}}
-                                        <img src="{{ asset('public/2.png') }}" alt="Logo"
-                                            style="width: auto; height: 100%;" />
+                                        <img src="{{ asset($logo ? $logo->main_site_header_logo : '') }}"
+                                            alt="Logo" style="width: auto; height: 100%;" />
                                     </div>
                                     <div class="home-hero_logo-mid">
                                         {{-- <div class="preloader_logo-rchipelago w-embed"><svg width="auto" height="100%"
@@ -845,9 +861,10 @@
                             src="https://cdn.prod.website-files.com/65249822a54c89915817034b/652eae4e45884e792765b9bb_archipelago-reveal-logo.svg"
                             loading="lazy" alt="" class="reveal_logo-img" /></div>
                     <div class="reveal_wrap">
-                        <div class="reveal_logomark-wrap"><img
-                                src="https://cdn.prod.website-files.com/65249822a54c89915817034b/652f74f0c512113d14cb58b8_archipelago-reveal-logo.svg"
-                                loading="lazy" alt="" class="reveal_logomark" /></div>
+                        <div class="reveal_logomark-wrap">
+                            <img src="{{ asset($logo ? $logo->main_site_header_logo : '') }}" loading="lazy"
+                                alt="" class="reveal_logomark" />
+                        </div>
                     </div>
                     <div class="reveal_embed-wrap">
                         <div class="reveal_embed-contain">
@@ -1650,8 +1667,8 @@
                         </a>
                         <div id="w-node-_3707be7f-7d62-d0fa-61da-a90f397b7524-397b751f"
                             class="footer_horizontal is-nav-links">
-                            <div class="footer_nav-contain"><a href="/projects"
-                                    class="footer_nav-link">Projects</a></div>
+                            <div class="footer_nav-contain"><a href="/projects" class="footer_nav-link">Projects</a>
+                            </div>
                             <div class="footer_nav-contain"><a href="/practice/about-us"
                                     class="footer_nav-link">About Us</a><a href="/practice/workshops"
                                     class="footer_nav-link">Workshops</a></div>

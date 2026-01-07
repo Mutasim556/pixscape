@@ -13,7 +13,7 @@ use Intervention\Image\ImageManager;
 
 class ProjectController extends Controller
 {
-    public function __construct()
+    public function __construct() 
     {
         $this->middleware('permission:project-index,admin');
         $this->middleware('permission:project-store,admin')->only('store');
@@ -68,6 +68,7 @@ class ProjectController extends Controller
         $newProject->details = $data->project_details;
         $newProject->challenges = $data->challenges;
         $newProject->solutions = $data->solutions;
+        $newProject->project_type_id = $data->project_type;
         $newProject->values = $data->values;
         $option_value = [];
         foreach ($data->option as $key => $value) {
@@ -239,6 +240,7 @@ class ProjectController extends Controller
         $updateProject->details = $data->project_details;
         $updateProject->challenges = $data->challenges;
         $updateProject->solutions = $data->solutions;
+        $updateProject->project_type_id = $data->project_type;
         $updateProject->values = $data->values;
         $option_value = [];
         foreach ($data->option as $key => $value) {

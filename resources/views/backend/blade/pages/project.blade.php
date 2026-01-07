@@ -170,6 +170,20 @@
                              </div>
                          </div>
                          <div class="row">
+                             <div class="col-sm-12 col-xl-12">
+                                 <div class="row">
+                                     <div class="form-group col-md-12">
+                                         <label for="">{{ __('admin_local.Project Type') }}</label>
+                                         <select name="project_type" id="project_type" class="form-control">
+                                             <option value="">{{ __('admin_local.Select Please') }}</option>
+                                             @foreach (\App\Models\Admin\ProjectType::where([['status', 1], ['delete', 0]])->get() as $projecttype)
+                                                 <option value="{{ $projecttype->id }}">{{ $projecttype->title }}
+                                                 </option>
+                                             @endforeach
+                                         </select>
+                                     </div>
+                                 </div>
+                             </div>
                              <div class="col-sm-12 col-xl-4">
                                  <div class="row">
                                      <div class="form-group col-md-12">
@@ -184,9 +198,11 @@
                                          <label for="">{{ __('admin_local.Team Members') }}</label>
                                          <select name="team_members[]" id="team_members"
                                              class="form-control js-example-basic-multiple" multiple>
-                                             <option value="1-MD Mutasim Naib-CEO">MD Mutasim Naib</option>
-                                             <option value="2-MD Masroor Hasan-MD">MD Masroor Hasan</option>
-                                             <option value="3-Mamun Mahmood-Officer">Mamun Mahmood</option>
+                                             @foreach (\App\Models\Admin\Team::where([['status', 1], ['delete', 0]])->get() as $team)
+                                                 <option
+                                                     value="{{ $team->id }}-{{ $team->team_member_name }}-{{ $team->team_member_designation }}">
+                                                     {{ $team->team_member_name }}</option>
+                                             @endforeach
                                          </select>
                                      </div>
                                  </div>
@@ -366,7 +382,7 @@
                                                      name="project_title_{{ $lang->lang }}"
                                                      id="project_title_{{ $lang->lang }}">
                                              </div>
-                                              <div class="form-group">
+                                             <div class="form-group">
                                                  <label for="">{{ __('admin_local.Project Short Details') }} (
                                                      {{ $lang->name }} )</label>
                                                  <input type="text" class="form-control"
@@ -400,6 +416,20 @@
                              </div>
                          </div>
                          <div class="row">
+                             <div class="col-sm-12 col-xl-12">
+                                 <div class="row">
+                                     <div class="form-group col-md-12">
+                                         <label for="">{{ __('admin_local.Project Type') }}</label>
+                                         <select name="project_type" id="project_type" class="form-control">
+                                             <option value="">{{ __('admin_local.Select Please') }}</option>
+                                             @foreach (\App\Models\Admin\ProjectType::where([['status', 1], ['delete', 0]])->get() as $projecttype)
+                                                 <option value="{{ $projecttype->id }}">{{ $projecttype->title }}
+                                                 </option>
+                                             @endforeach
+                                         </select>
+                                     </div>
+                                 </div>
+                             </div>
                              <div class="col-sm-12 col-xl-4">
                                  <div class="row">
                                      <div class="form-group col-md-12">
@@ -414,9 +444,11 @@
                                          <label for="">{{ __('admin_local.Team Members') }}</label>
                                          <select name="team_members[]" id="team_members"
                                              class="form-control js-example-basic-multiple" multiple>
-                                             <option value="1-MD Mutasim Naib-CEO">MD Mutasim Naib</option>
-                                             <option value="2-MD Masroor Hasan-MD">MD Masroor Hasan</option>
-                                             <option value="3-Mamun Mahmood-Officer">Mamun Mahmood</option>
+                                             @foreach (\App\Models\Admin\Team::where([['status', 1], ['delete', 0]])->get() as $team)
+                                                 <option
+                                                     value="{{ $team->id }}-{{ $team->team_member_name }}-{{ $team->team_member_designation }}">
+                                                     {{ $team->team_member_name }}</option>
+                                             @endforeach
                                          </select>
                                      </div>
                                  </div>
@@ -872,7 +904,7 @@
              new Switchery($(this)[0], $(this).data());
          });
          $('.js-example-basic-single').select2({
-             dropdownParent: $('#add-brand-modal')
+             dropdownParent: $('#add-project-modal')
          });
          $('.js-example-basic-single1').select2({
              dropdownParent: $('#edit-brand-modal')

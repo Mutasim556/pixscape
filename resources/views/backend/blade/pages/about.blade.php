@@ -99,55 +99,7 @@
                                                      id="short_details" value="{{ $aboutus->short_details }}">
                                                  <span class="text-danger err-mgs" id="short_details_err"></span>
                                              </div>
-                                             @php
-                                                 $dPoints = explode('||', $aboutus->points);
-                                             @endphp
-                                             <div class="row">
-                                                 <div class="form-group col-md-9">
-                                                     <label for="">{{ __('admin_local.Points') }} (
-                                                         {{ __('admin_local.Default') }} ) *</label>
-                                                     <input type="text" class="form-control" name="points[]"
-                                                         id="points" value="{{ $dPoints != '' ? $dPoints[0] : '' }}">
-                                                     <span class="text-danger err-mgs" id="points_err"></span>
-                                                 </div>
-                                                 <div class="form-group col-md-3">
-                                                     <label for=""> &nbsp;</label><br>
-                                                     <button type="button" id="add_more_point_btn"
-                                                         class="btn btn-success">+</button>
-                                                 </div>
-                                             </div>
-                                             <div>
-                                                 @if (count($dPoints) > 0)
-                                                     @foreach ($dPoints as $dKey => $dPoint)
-                                                         @php
-                                                             if ($dKey == 0) {
-                                                                 continue;
-                                                             }
-                                                         @endphp
-                                                         <div class="row">
-                                                             <div class="form-group col-md-9">
-                                                                 <label for="">{{ __('admin_local.Points') }}
-                                                                     {{ $dKey + 2 }}</label>
-                                                                 <input type="text" class="form-control" name="points[]"
-                                                                     id="points" value="{{ $dPoint }}">
-                                                                 <span class="text-danger err-mgs" id="points_err"></span>
-                                                             </div>
-                                                             <div class="form-group col-md-3">
-                                                                 <label for=""> &nbsp;</label><br>
-                                                                 <button type="button" id="remove_point_btn"
-                                                                     class="btn btn-danger">-</button>
-                                                             </div>
-                                                         </div>
-                                                     @endforeach
-                                                 @endif
-                                             </div>
-                                             <div class="form-group">
-                                                 <label for="">{{ __('admin_local.Project Line') }} (
-                                                     {{ __('admin_local.Default') }} ) *</label>
-                                                 <input type="text" class="form-control" name="project_line"
-                                                     id="project_line" value="{{ $aboutus->project_line }}">
-                                                 <span class="text-danger err-mgs" id="project_line_err"></span>
-                                             </div>
+                                             
                                              <div class="form-group">
                                                  <label for="">{{ __('admin_local.Details') }} (
                                                      {{ __('admin_local.Default') }} ) *</label>
@@ -235,65 +187,6 @@
                                                          id="short_details_{{ $lang->lang }}"
                                                          value="{{ isset($translate[$lang->lang]['short_details']) ? $translate[$lang->lang]['short_details'] : '' }}">
                                                  </div>
-                                                 @php
-                                                     $dPoints = explode(
-                                                         '||',
-                                                         isset($translate[$lang->lang]['points'])
-                                                             ? $translate[$lang->lang]['points']
-                                                             : '',
-                                                     );
-                                                 @endphp
-                                                 <div class="row">
-                                                     <div class="form-group col-md-9">
-                                                         <label for="">{{ __('admin_local.Points') }} (
-                                                             {{ $lang->name }} ) *</label>
-                                                         <input type="text" class="form-control"
-                                                             name="points_{{ $lang->lang }}[]" id="points"
-                                                             value="{{ $dPoints != '' ? $dPoints[0] : '' }}">
-                                                         <span class="text-danger err-mgs" id="points_err"></span>
-                                                     </div>
-                                                     <div class="form-group col-md-3">
-                                                         <label for="">&nbsp;
-                                                         </label><br>
-                                                         <button type="button" data-lang='{{ $lang->lang }}'
-                                                             id="add_more_point_btn2" class="btn btn-success">+</button>
-                                                     </div>
-                                                 </div>
-                                                 <div>
-                                                     @if (count($dPoints) > 0)
-                                                         @foreach ($dPoints as $dKey => $dPoint)
-                                                             @php
-                                                                 if ($dKey == 0) {
-                                                                     continue;
-                                                                 }
-                                                             @endphp
-                                                             <div class="row">
-                                                                 <div class="form-group col-md-9">
-                                                                     <label for="">{{ __('admin_local.Points') }}
-                                                                         {{ $dKey + 2 }}</label>
-                                                                     <input type="text" class="form-control"
-                                                                         name="points_{{ $lang->lang }}[]"
-                                                                         id="points" value="{{ $dPoint }}">
-                                                                     <span class="text-danger err-mgs"
-                                                                         id="points_err"></span>
-                                                                 </div>
-                                                                 <div class="form-group col-md-3">
-                                                                     <label for=""> &nbsp;</label><br>
-                                                                     <button type="button" id="remove_point_btn"
-                                                                         class="btn btn-danger">-</button>
-                                                                 </div>
-                                                             </div>
-                                                         @endforeach
-                                                     @endif
-                                                 </div>
-                                                 <div class="form-group">
-                                                     <label for="">{{ __('admin_local.Project Line') }} (
-                                                         {{ $lang->name }} ) </label>
-                                                     <input type="text" class="form-control"
-                                                         name="project_line_{{ $lang->lang }}"
-                                                         id="project_line_{{ $lang->lang }}"
-                                                         value="{{ isset($translate[$lang->lang]['project_line']) ? $translate[$lang->lang]['project_line'] : '' }}">
-                                                 </div>
                                                  <div class="form-group">
                                                      <label for="">{{ __('admin_local.Details') }} (
                                                          {{ $lang->name }} ) </label>
@@ -307,13 +200,7 @@
                              <div class="row">
                                  <div class="col-sm-12 col-xl-12">
                                      <div class="row">
-                                         <div class="form-group col-md-6">
-                                             <label for="">{{ __('admin_local.Experience') }}
-                                                 ({{ __('admin_local.Years') }})*</label>
-                                             <input type="number" min="1" class="form-control" name="experience"
-                                                 id="experience" value="{{ $aboutus->experience }}">
-                                             <span class="text-danger err-mgs" id="experience_err"></span>
-                                         </div>
+                                        
                                          <div class="form-group col-md-6">
                                              <label for="">{{ __('admin_local.Video Link') }} </label>
                                              <input type="text" class="form-control" name="video_link"
@@ -322,74 +209,18 @@
                                          </div>
                                      </div>
                                      <div class="row">
-
                                          <div class="form-group col-md-6">
-                                             <label for="">{{ __('admin_local.Responsible Person Name') }}
-                                                 *</label>
-                                             <input type="text" class="form-control" name="resp_person_name"
-                                                 id="resp_person_name" value="{{ $aboutus->resp_person_name }}">
-                                             <span class="text-danger err-mgs" id="resp_person_name_err"></span>
-                                         </div>
-                                         <div class="form-group col-md-6">
-                                             <label for="">{{ __('admin_local.Responsible Person Designation') }}
-                                                 *</label>
-                                             <input type="text" class="form-control" name="resp_person_desig"
-                                                 id="resp_person_desig" value="{{ $aboutus->resp_person_desig }}">
-                                             <span class="text-danger err-mgs" id="resp_person_desig_err"></span>
-                                         </div>
-                                         <div class="form-group col-md-6">
-                                             <label for="">{{ __('admin_local.Responsible Person Image') }}
-                                                 (80X80)*</label>
-                                             <input type="file" class="form-control" name="resp_person_image"
-                                                 id="resp_person_image" accept="image/*"
-                                                 onchange="document.getElementById('prev_resp_image').src = window.URL.createObjectURL(this.files[0])">
-                                             <span class="text-danger err-mgs" id="resp_person_image_err"></span>
-                                         </div>
-                                         <div class="form-group col-md-6">
-                                             <label for="">{{ __('admin_local.Responsible Person Signature') }}
-                                                 (196X100) *</label>
-                                             <input type="file" class="form-control" name="resp_person_sig"
-                                                 id="resp_person_sig" accept="image/*"
-                                                 onchange="document.getElementById('prev_resp_person_sig').src = window.URL.createObjectURL(this.files[0])">
-                                             <span class="text-danger err-mgs" id="resp_person_sig_err"></span>
-                                         </div>
-                                         <div class="form-group col-md-6">
-                                             <label
-                                                 for="">{{ __('admin_local.Preview Responsible Person Image') }}
-                                                 *</label><br>
-                                             <img src="{{ asset($aboutus->resp_person_image) }}" id="prev_resp_image"
-                                                 alt="" height="80px">
-                                         </div>
-                                         <div class="form-group col-md-6">
-                                             <label
-                                                 for="">{{ __('admin_local.Preview Responsible Person Signature') }}
-                                                 *</label><br>
-                                             <img src="{{ asset($aboutus->resp_person_signature) }}"
-                                                 id="prev_resp_person_sig" alt="" height="100px">
-                                         </div>
-                                         <div class="form-group col-md-6">
-                                             <label for="">{{ __('admin_local.Image 1') }} (309X290) *</label>
+                                             <label for="">{{ __('admin_local.Image 1') }} </label>
                                              <input type="file" class="form-control" name="image1" id="image1"
                                                  value="{{ $aboutus->phone }}" accept="image/*"
                                                  onchange="document.getElementById('prev_img_1').src = window.URL.createObjectURL(this.files[0])">
                                              <span class="text-danger err-mgs" id="image1_err"></span>
                                          </div>
-                                         <div class="form-group col-md-6">
-                                             <label for="">{{ __('admin_local.Image 2') }} (530X327) *</label>
-                                             <input type="file" class="form-control" name="image2" id="image2"
-                                                 value="{{ $aboutus->phone }}" accept="image/*"
-                                                 onchange="document.getElementById('prev_img_2').src = window.URL.createObjectURL(this.files[0])">
-                                             <span class="text-danger err-mgs" id="image2_err"></span>
-                                         </div>
+                                        
                                          <div class="form-group col-md-6">
                                              <label for="">{{ __('admin_local.Preview Image 1') }} *</label><br>
                                              <img src="{{ asset($aboutus->image1) }}" id="prev_img_1" alt=""
                                                  height="290px">
-                                         </div>
-                                         <div class="form-group col-md-6">
-                                             <label for="">{{ __('admin_local.Preview Image 2') }} *</label>
-                                             <img src="{{ asset($aboutus->image2) }}" id="prev_img_2" alt=""
-                                                 height="327px">
                                          </div>
                                      </div>
                                  </div>

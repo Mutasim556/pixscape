@@ -32,14 +32,21 @@
             </a>
         </li>
     @endif
-    @if (hasPermission(['homepage-slider-index','project-index']))
+    @if (hasPermission([
+            'homepage-slider-index',
+            'project-index',
+            'designexp-index',
+            'counter-index',
+            'homepage-video-index',
+            'contact-index',
+        ]))
         <li class="sidebar-list">
             <a class="sidebar-link sidebar-title" href="javascript:void(0)" aria-expanded="false">
                 <i data-feather="book-open"></i>
                 <span class="lan-3">{{ __('admin_local.Pages') }}</span>
             </a>
             <ul class="sidebar-submenu">
-                @if (hasPermission(['homepage-slider-index']))
+                @if (hasPermission(['homepage-slider-index', 'designexp-index', 'counter-index', 'homepage-video-index']))
                     <li>
                         <a class="submenu-title" href="javascript:void(0)"
                             style="margin-bottom:5px;">{{ __('admin_local.Home') }}<span class="sub-arrow"><i
@@ -61,6 +68,11 @@
                                         href="{{ route('admin.pages.homepage.counter.index') }}">{{ __('admin_local.Counters') }}</a>
                                 </li>
                             @endif
+                            @if (hasPermission(['designexp-index']))
+                                <li><a
+                                        href="{{ route('admin.pages.designexp.index') }}">{{ __('admin_local.Design and Expertise') }}</a>
+                                </li>
+                            @endif
                         </ul>
                     </li>
                 @endif
@@ -70,10 +82,24 @@
                             href="{{ route('admin.pages.team.index') }}">{{ __('admin_local.Team Members') }}</a>
                     </li>
                 @endif
-                @if (hasPermission(['project-index']))
+                @if (hasPermission(['project-index', 'project-type-index']))
                     <li>
-                        <a class="sidebar-link"
-                            href="{{ route('admin.pages.project.index') }}">{{ __('admin_local.Projects') }}</a>
+                        <a class="submenu-title" href="javascript:void(0)"
+                            style="margin-bottom:5px;">{{ __('admin_local.Projects') }}<span class="sub-arrow"><i
+                                    class="fa fa-angle-right"></i></span></a>
+
+                        <ul class="nav-sub-childmenu submenu-content">
+                            @if (hasPermission(['project-type-index']))
+                                <li><a class="sidebar-link"
+                                        href="{{ route('admin.pages.project-type.index') }}">{{ __('admin_local.Project Types') }}</a>
+                                </li>
+                            @endif
+                            @if (hasPermission(['project-index']))
+                                <li><a class="sidebar-link"
+                                        href="{{ route('admin.pages.project.index') }}">{{ __('admin_local.Projects') }}</a>
+                                </li>
+                            @endif
+                        </ul>
                     </li>
                 @endif
                 @if (hasPermission(['blog-index']))
@@ -82,6 +108,29 @@
                             href="{{ route('admin.pages.blog.index') }}">{{ __('admin_local.Blogs') }}</a>
                     </li>
                 @endif
+                @if (hasPermission(['contact-index']))
+                    <li>
+                        <a class="sidebar-link"
+                            href="{{ route('admin.pages.contactUs') }}">{{ __('admin_local.Contact') }}</a>
+                    </li>
+                @endif
+                @if (hasPermission(['aboutus-index']))
+                    <li>
+                        <a class="submenu-title" href="javascript:void(0)"
+                            style="margin-bottom:5px;">{{ __('admin_local.About Page') }}<span class="sub-arrow"><i
+                                    class="fa fa-angle-right"></i></span></a>
+
+                        <ul class="nav-sub-childmenu submenu-content">
+                            @if (hasPermission(['aboutus-index']))
+                                <li>
+                                    <a class="sidebar-link" href="{{ route('admin.pages.aboutUs') }}"
+                                        style="margin-bottom:5px;">{{ __('admin_local.About Us') }}</a>
+                                </li>
+                            @endif
+                        </ul>
+                    </li>
+                @endif
+
             </ul>
         </li>
     @endif
@@ -110,7 +159,7 @@
             </ul>
         </li>
     @endif
-    @if (hasPermission(['maintenance-mode-index']))
+    @if (hasPermission(['maintenance-mode-index', 'logo-index']))
         <li class="sidebar-list">
             <a class="sidebar-link sidebar-title" href="javascript:void(0)" aria-expanded="false">
                 <i data-feather="settings"></i>
@@ -121,6 +170,13 @@
                     <li>
                         <a href="{{ route('admin.settings.server.maintenanceMode') }}" class="sidebar-link">
                             <span> {{ __('admin_local.Maintenance Mode') }} </span>
+                        </a>
+                    </li>
+                @endif
+                @if (hasPermission(['logo-index']))
+                    <li>
+                        <a href="{{ route('admin.settings.logo.index') }}" class="sidebar-link">
+                            <span> {{ __('admin_local.Logos and Icons') }} </span>
                         </a>
                     </li>
                 @endif

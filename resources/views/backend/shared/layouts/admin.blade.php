@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+@php
+    $logo = \App\Models\Admin\Logo::first();
+@endphp
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -10,8 +13,8 @@
     <meta name="keywords"
         content="admin template, Tivo admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="pixelstrap">
-    <link rel="icon" href="{{ asset('public/admin/assets/images/favicon/favicon.png') }}" type="image/x-icon">
-    <link rel="shortcut icon" href="{{ asset('public/admin/assets/images/favicon/favicon.png') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset($logo?$logo->admin_panel_icon:'icon') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset($logo?$logo->admin_panel_icon:'icon') }}" type="image/x-icon">
     <title>{{ env('APP_BACKEND_NAME') }} -@stack('title')</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('public/admin/assets/css/vendors/font-awesome.css') }}">
     <!-- ico-font-->
@@ -96,10 +99,10 @@
                 <div class="header-logo-wrapper col-auto p-0">
                     <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="grid"> </i>
                     </div>
-                    <div class="logo-header-main"><a href="index.html"><img class="img-fluid for-light img-100"
-                                src="{{ asset('public/admin/assets/images/logo/logo2.png') }}" alt=""><img
-                                class="img-fluid for-dark"
-                                src="{{ asset('public/admin/assets/images/logo/logo.png') }}" alt=""></a></div>
+                    <div class="logo-header-main"><a href="{{ url('/admin/dashboard') }}"><img class="img-fluid for-light img-100"
+                                src="{{ asset($logo?$logo->admin_panel_logo:'public/admin/assets/images/logo/logo2.png') }}" alt=""><img
+                                class="img-fluid for-dark" src="{{ asset($logo?$logo->admin_panel_logo:'public/admin/assets/images/logo/logo.png') }}"
+                                alt=""></a></div>
                 </div>
                 <div class="left-header col horizontal-wrapper ps-0">
                     <div class="left-menu-header">
@@ -223,8 +226,8 @@
             <!-- Page Sidebar Start-->
             <div class="sidebar-wrapper">
                 <div>
-                    <div class="logo-wrapper"><a href="index.html"><img class="img-fluid for-light"
-                                src="{{ asset('public/admin/assets/images/logo/logo.png') }}" alt=""></a>
+                    <div class="logo-wrapper"><a href="{{ url('/admin/dashboard') }}"><img class="img-fluid for-light"
+                                src="{{ asset($logo?$logo->admin_panel_logo:'public/admin/assets/images/logo/logo.png') }}" alt=""></a>
                         <div class="back-btn"><i data-feather="grid"></i></div>
                         <div class="toggle-sidebar icon-box-sidebar"><i class="status_toggle middle sidebar-toggle"
                                 data-feather="grid"> </i></div>

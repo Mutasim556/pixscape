@@ -1,14 +1,19 @@
 <?php
 
+use App\Http\Controllers\Admin\AboutUsController;
 use App\Http\Controllers\Admin\Auth\AdminAuthController;
 use App\Http\Controllers\Admin\Auth\AdminLoginController;
 use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\ContactUsController;
 use App\Http\Controllers\Admin\CounterController;
+use App\Http\Controllers\Admin\DesignExpController;
 use App\Http\Controllers\Admin\Localization\BackendLanguageController;
 use App\Http\Controllers\Admin\Localization\ChangeLanguageController;
 use App\Http\Controllers\Admin\Localization\LanguageController;
+use App\Http\Controllers\Admin\LogoIconController;
 use App\Http\Controllers\Admin\Pages\HomepageSettingController;
 use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\ProjectTypeController;
 use App\Http\Controllers\Admin\Role\RoleAndPermissionController;
 use App\Http\Controllers\Admin\Settings\MaintenanceModeController;
 use App\Http\Controllers\Admin\TeamController;
@@ -68,6 +73,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/server/up', [MaintenanceModeController::class, 'up'])->name('server.up');
             Route::get('/secret-code/delete/{id}', [MaintenanceModeController::class, 'destroy'])->name('secret-code.delete');
             Route::get('/secret-code/delete-all', [MaintenanceModeController::class, 'destroyAll'])->name('secret-code.delete-all');
+
+            /** Logo Start */
+            Route::resource('logo', LogoIconController::class)->except('create', 'show', 'store');
+            /** Logo End */
         });
 
         Route::prefix('pages')->name('pages.')->group(function () {
@@ -99,6 +108,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
             });
             /** Counter End */
 
+             /** Project Type Start */
+            Route::resource('project-type', ProjectTypeController::class)->except('create', 'show');
+            Route::controller(ProjectTypeController::class)->prefix('project-type')->group(function () {
+                Route::get('/update/status/{id}/{status}', 'updateStatus');
+            });
+            /** Project Type End */
 
             /** Project Start */
             Route::resource('project', ProjectController::class)->except('create', 'show');
@@ -121,6 +136,24 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::post('/update/team/info', 'updateTeamInfo')->name('updateTeamInfo');
             });
             /** Team End */
+
+            /** Design Expertise Start */
+            Route::resource('designexp', DesignExpController::class)->except('create', 'show');
+            Route::controller(DesignExpController::class)->prefix('designexp')->group(function () {
+                Route::get('/update/status/{id}/{status}', 'updateStatus');
+                Route::post('/update/team/info', 'updateTeamInfo')->name('updateTeamInfo');
+            });
+            /** Design Expertise End */
+
+            Route::controller(ContactUsController::class)->prefix('contact-us')->group(function () {
+                Route::get('/update/contact-us', 'contactUs')->name('contactUs');
+                Route::post('/update/contact-us', 'updateContactUs')->name('updateContactUs');
+            });
+
+            Route::controller(AboutUsController::class)->prefix('about-us')->group(function () {
+                Route::get('/update/about-us', 'aboutUs')->name('aboutUs');
+                Route::post('/update/about-us', 'updateAboutUs')->name('updateAboutUs');
+            });
         });
     });
     Route::get('/translate-string', function () {

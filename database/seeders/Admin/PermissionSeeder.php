@@ -66,6 +66,11 @@ class PermissionSeeder extends Seeder
         // Permission::create(['guard_name'=>'admin','name'=>'project-update','group_name'=>'Project']);
         // Permission::create(['guard_name'=>'admin','name'=>'project-delete','group_name'=>'Project']);
 
+        // Permission::create(['guard_name'=>'admin','name'=>'project-type-index','group_name'=>'Project']);
+        // Permission::create(['guard_name'=>'admin','name'=>'project-type-create','group_name'=>'Project']);
+        // Permission::create(['guard_name'=>'admin','name'=>'project-type-update','group_name'=>'Project']);
+        // Permission::create(['guard_name'=>'admin','name'=>'project-type-delete','group_name'=>'Project']);
+
         // permission for Blog
         // Permission::create(['guard_name'=>'admin','name'=>'blog-index','group_name'=>'Blogs']);
         // Permission::create(['guard_name'=>'admin','name'=>'blog-create','group_name'=>'Blogs']);
@@ -77,6 +82,29 @@ class PermissionSeeder extends Seeder
         // Permission::create(['guard_name'=>'admin','name'=>'counter-create','group_name'=>'Homepage Counters']);
         // Permission::create(['guard_name'=>'admin','name'=>'counter-update','group_name'=>'Homepage Counters']);
         // Permission::create(['guard_name'=>'admin','name'=>'counter-delete','group_name'=>'Homepage Counters']);
+
+
+        // Permission::create(['guard_name'=>'admin','name'=>'designexp-index','group_name'=>'Design Expertise']);
+        // Permission::create(['guard_name'=>'admin','name'=>'designexp-create','group_name'=>'Design Expertise']);
+        // Permission::create(['guard_name'=>'admin','name'=>'designexp-update','group_name'=>'Design Expertise']);
+        // Permission::create(['guard_name'=>'admin','name'=>'designexp-delete','group_name'=>'Design Expertise']);
+
+
+        //permission for Contact Us
+        // Permission::create(['guard_name'=>'admin','name'=>'contact-index','group_name'=>'Contact Us']);
+        // Permission::create(['guard_name'=>'admin','name'=>'contact-update','group_name'=>'Contact Us']);
+
+
+        //permission for Logo
+        // Permission::create(['guard_name'=>'admin','name'=>'logo-index','group_name'=>'Logo and Icon']);
+        // Permission::create(['guard_name'=>'admin','name'=>'logo-create','group_name'=>'Logo and Icon']);
+        // Permission::create(['guard_name'=>'admin','name'=>'logo-update','group_name'=>'Logo and Icon']);
+        // Permission::create(['guard_name'=>'admin','name'=>'logo-delete','group_name'=>'Logo and Icon']);
+
+        //permission for About Us
+        // Permission::create(['guard_name'=>'admin','name'=>'aboutus-index','group_name'=>'About Us']);
+        // Permission::create(['guard_name'=>'admin','name'=>'aboutus-update','group_name'=>'About Us']);
+
 
     }
 }
