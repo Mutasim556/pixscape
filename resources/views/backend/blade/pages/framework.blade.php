@@ -1,6 +1,6 @@
  @extends('backend.shared.layouts.admin')
  @push('title')
-     {{ __('admin_local.Capabilities') }}
+     {{ __('admin_local.Framework') }}
  @endpush
  @push('css')
      <link rel="stylesheet" href="{{ asset(env('ASSET_DIRECTORY', 'public') . '/' . 'admin/assets/css/custom.css') }}">
@@ -41,12 +41,12 @@
  @section('content')
      {{-- Add User Modal Start --}}
 
-     <div class="modal fade" id="add-service-modal" tabindex="-1" aria-labelledby="bs-example-modal-lg" aria-hidden="true">
+     <div class="modal fade" id="add-framework-modal" tabindex="-1" aria-labelledby="bs-example-modal-lg" aria-hidden="true">
          <div class="modal-dialog modal-lg">
              <div class="modal-content">
                  <div class="modal-header d-flex align-items-center" style="border-bottom:1px dashed gray">
                      <h4 class="modal-title" id="myLargeModalLabel">
-                         {{ __('admin_local.Add Service') }}
+                         {{ __('admin_local.Add Framework Option') }}
                      </h4>
                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                  </div>
@@ -55,7 +55,7 @@
                      <i>{{ __('admin_local.The field labels marked with * are required input fields.') }}</i>
                  </p>
                  <div class="modal-body" style="margin-top: -20px">
-                     <form method="POSt" action="" id="add_service_form" enctype="multipart/form-data">
+                     <form method="POSt" action="" id="add_framework_form" enctype="multipart/form-data">
                          @csrf
                          <div class="row">
                              <div class="col-sm-12 col-xl-12">
@@ -82,26 +82,18 @@
                                      <div class="tab-pane fade show active" id="pills-defaultLang" role="tabpanel"
                                          aria-labelledby="pills-defaultLang-tab">
                                          <div class="form-group">
-                                             <label for="">{{ __('admin_local.Service Name') }} (
+                                             <label for="">{{ __('admin_local.Title') }} (
                                                  {{ __('admin_local.Default') }} ) *</label>
-                                             <input type="text" class="form-control" name="service_name"
-                                                 id="service_name">
-                                             <span class="text-danger err-mgs" id="service_name_err"></span>
+                                             <input type="text" class="form-control" name="title"
+                                                 id="title">
+                                             <span class="text-danger err-mgs" id="title_err"></span>
                                          </div>
 
                                          <div class="form-group">
-                                             <label for="">{{ __('admin_local.Short Details') }} (
+                                             <label for="">{{ __('admin_local.Details') }} (
                                                  {{ __('admin_local.Default') }} ) *</label>
-                                             <input type="text" class="form-control" name="service_short_details"
-                                                 id="service_short_details">
-                                             <span class="text-danger err-mgs" id="service_short_details_err"></span>
-                                         </div>
-
-                                         <div class="form-group">
-                                             <label for="">{{ __('admin_local.Services Details') }} (
-                                                 {{ __('admin_local.Default') }} ) *</label>
-                                             <textarea class="form-control ckeditorappend" name="service_details" id="service_details"></textarea>
-                                             <span class="text-danger err-mgs" id="service_details_err"></span>
+                                             <textarea class="form-control ckeditorappend" name="details" id="details"></textarea>
+                                             <span class="text-danger err-mgs" id="details_err"></span>
                                          </div>
                                      </div>
                                      <script>
@@ -114,61 +106,21 @@
                                          <div class="tab-pane fade" id="pills-{{ $lang->name }}" role="tabpanel"
                                              aria-labelledby="pills-{{ $lang->name }}-tab">
                                              <div class="form-group">
-                                                 <label for="">{{ __('admin_local.Service Name') }} (
+                                                 <label for="">{{ __('admin_local.Title') }} (
                                                      {{ $lang->name }} )</label>
                                                  <input type="text" class="form-control"
-                                                     name="service_name_{{ $lang->lang }}"
-                                                     id="service_name_{{ $lang->lang }}">
+                                                     name="title_{{ $lang->lang }}"
+                                                     id="title_{{ $lang->lang }}">
                                              </div>
                                              <div class="form-group">
-                                                 <label for="">{{ __('admin_local.Short Details') }} (
+                                                 <label for="">{{ __('admin_local.Details') }} (
                                                      {{ $lang->name }} ) </label>
-                                                 <input type="text" class="form-control"
-                                                     name="service_short_details_{{ $lang->lang }}"
-                                                     id="service_short_details_{{ $lang->lang }}">
-                                             </div>
-                                             <div class="form-group">
-                                                 <label for="">{{ __('admin_local.Services Details') }} (
-                                                     {{ $lang->name }} ) </label>
-                                                 <textarea class="form-control" name="service_details_{{ $lang->lang }}" id="service_details_{{ $lang->lang }}"></textarea>
+                                                 <textarea class="form-control" name="details_{{ $lang->lang }}" id="details_{{ $lang->lang }}"></textarea>
                                              </div>
                                          </div>
                                      @endforeach
                                  </div>
                              </div>
-                         </div>
-                         <div class="row">
-                            <div class="col-sm-12 col-xl-6">
-                                 <div class="row">
-                                     <div class="form-group col-md-12">
-                                         <label for="">{{ __('admin_local.Service Type') }}</label>
-                                         <select class="form-control" name="type"
-                                             id="type">
-                                            <option value="" selected disabled>{{ __('admin_local.Select Please') }}</option>
-                                            <option value="Our Expertise">{{ __('admin_local.Our Expirtise') }}</option>
-                                            <option value="Supporting Service">{{ __('admin_local.Supproting Service') }}</option>
-                                        </select>
-                                         <span class="text-danger err-mgs" id="type_err"></span>
-                                     </div>
-                                 </div>
-                             </div>
-                             <div class="col-sm-12 col-xl-6">
-                                 <div class="row">
-                                     <div class="form-group col-md-12">
-                                         <label for="">{{ __('admin_local.Service Image') }}</label>
-                                         <input type="file" class="form-control" name="service_image"
-                                             id="service_image"
-                                             onchange="document.getElementById('prev_service_image').src = window.URL.createObjectURL(this.files[0])">
-                                         <span class="text-danger err-mgs" id="service_image_err"></span>
-                                     </div>
-                                     <div class="form-group col-md-12">
-                                         <label for="">{{ __('admin_local.Preview Service Image') }}
-                                             *</label><br>
-                                         <img src="" id="prev_service_image" alt="" width="100%">
-                                     </div>
-                                 </div>
-                             </div>
-
                          </div>
 
                          <div class="row mt-4 mb-2">
@@ -194,13 +146,13 @@
 
      {{-- Add User Modal Start --}}
 
-     <div class="modal fade" id="edit-service-modal" tabindex="-1" aria-labelledby="bs-example-modal-lg"
+     <div class="modal fade" id="edit-framework-modal" tabindex="-1" aria-labelledby="bs-example-modal-lg"
          aria-hidden="true">
          <div class="modal-dialog modal-lg">
              <div class="modal-content">
                  <div class="modal-header d-flex align-items-center" style="border-bottom:1px dashed gray">
                      <h4 class="modal-title" id="myLargeModalLabel">
-                         {{ __('admin_local.Edit Services') }}
+                         {{ __('admin_local.Edit frameworks') }}
                      </h4>
                      <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
                  </div>
@@ -208,10 +160,10 @@
                      <i>{{ __('admin_local.The field labels marked with * are required input fields.') }}</i>
                  </p>
                  <div class="modal-body" style="margin-top: -20px">
-                     <form id="edit_service_form" enctype="multipart/form-data">
+                     <form id="edit_framework_form" enctype="multipart/form-data">
                          @csrf
                          @method('PUT')
-                         <input type="hidden" id="service_id" name="service_id" value="">
+                         <input type="hidden" id="framework_id" name="framework_id" value="">
                          <div class="row">
                              <div class="col-sm-12 col-xl-12">
                                  <ul class="nav nav-pills nav-primary my-0" id="pills-successtab" role="tablist">
@@ -237,26 +189,17 @@
                                      <div class="tab-pane fade show active" id="epills-defaultLang" role="tabpanel"
                                          aria-labelledby="epills-defaultLang-tab">
                                          <div class="form-group">
-                                             <label for="">{{ __('admin_local.Service Name') }} (
+                                             <label for="">{{ __('admin_local.Title') }} (
                                                  {{ __('admin_local.Default') }} ) *</label>
-                                             <input type="text" class="form-control" name="service_name"
-                                                 id="service_name">
-                                             <span class="text-danger err-mgs" id="service_name_err"></span>
+                                             <input type="text" class="form-control" name="title"
+                                                 id="title">
+                                             <span class="text-danger err-mgs" id="title_err"></span>
                                          </div>
-
                                          <div class="form-group">
-                                             <label for="">{{ __('admin_local.Short Details') }} (
+                                             <label for="">{{ __('admin_local.Details') }} (
                                                  {{ __('admin_local.Default') }} ) *</label>
-                                             <input type="text" class="form-control" name="service_short_details"
-                                                 id="service_short_details">
-                                             <span class="text-danger err-mgs" id="service_short_details_err"></span>
-                                         </div>
-
-                                         <div class="form-group">
-                                             <label for="">{{ __('admin_local.Services Details') }} (
-                                                 {{ __('admin_local.Default') }} ) *</label>
-                                             <textarea class="form-control ckeditorappend" name="service_details" id="service_details2"></textarea>
-                                             <span class="text-danger err-mgs" id="service_details_err"></span>
+                                             <textarea class="form-control ckeditorappend" name="details" id="details2"></textarea>
+                                             <span class="text-danger err-mgs" id="details_err"></span>
                                          </div>
                                      </div>
                                      <script>
@@ -269,64 +212,23 @@
                                          <div class="tab-pane fade" id="epills-{{ $lang->name }}" role="tabpanel"
                                              aria-labelledby="epills-{{ $lang->name }}-tab">
                                              <div class="form-group">
-                                                 <label for="">{{ __('admin_local.Service Name') }} (
+                                                 <label for="">{{ __('admin_local.Title') }} (
                                                      {{ $lang->name }} )</label>
                                                  <input type="text" class="form-control"
-                                                     name="service_name_{{ $lang->lang }}"
-                                                     id="service_name_{{ $lang->lang }}">
+                                                     name="title_{{ $lang->lang }}"
+                                                     id="title_{{ $lang->lang }}">
                                              </div>
                                              <div class="form-group">
-                                                 <label for="">{{ __('admin_local.Short Details') }} (
+                                                 <label for="">{{ __('admin_local.Details') }} (
                                                      {{ $lang->name }} ) </label>
-                                                 <input type="text" class="form-control"
-                                                     name="service_short_details_{{ $lang->lang }}"
-                                                     id="service_short_details_{{ $lang->lang }}">
-                                             </div>
-                                             <div class="form-group">
-                                                 <label for="">{{ __('admin_local.Services Details') }} (
-                                                     {{ $lang->name }} ) </label>
-                                                 <textarea class="form-control" name="service_details_{{ $lang->lang }}"
-                                                     id="service_details2_{{ $lang->lang }}"></textarea>
+                                                 <textarea class="form-control" name="details_{{ $lang->lang }}"
+                                                     id="details2_{{ $lang->lang }}"></textarea>
                                              </div>
                                          </div>
                                      @endforeach
                                  </div>
                              </div>
                          </div>
-                         <div class="row">
-                            <div class="col-sm-12 col-xl-6">
-                                 <div class="row">
-                                     <div class="form-group col-md-12">
-                                         <label for="">{{ __('admin_local.Service Type') }}</label>
-                                         <select class="form-control" name="type"
-                                             id="type">
-                                            <option value="" selected disabled>{{ __('admin_local.Select Please') }}</option>
-                                            <option value="Our Expertise">{{ __('admin_local.Our Expirtise') }}</option>
-                                            <option value="Supporting Service">{{ __('admin_local.Supproting Service') }}</option>
-                                        </select>
-                                         <span class="text-danger err-mgs" id="type_err"></span>
-                                     </div>
-                                 </div>
-                             </div>
-                             <div class="col-sm-12 col-xl-6">
-                                 <div class="row">
-                                     <div class="form-group col-md-12">
-                                         <label for="">{{ __('admin_local.Service Image') }}</label>
-                                         <input type="file" class="form-control" name="service_image"
-                                             id="service_image"
-                                             onchange="document.getElementById('eprev_service_image').src = window.URL.createObjectURL(this.files[0])">
-                                         <span class="text-danger err-mgs" id="service_image_err"></span>
-                                     </div>
-                                     <div class="form-group col-md-12">
-                                         <label for="">{{ __('admin_local.Preview Service Image') }}
-                                             *</label><br>
-                                         <img src="" id="eprev_service_image" alt="" width="100%">
-                                     </div>
-                                 </div>
-                             </div>
-
-                         </div>
-
                          <div class="row mt-4 mb-2">
                              <div class="form-group col-lg-12">
                                  <button class="btn btn-danger text-white font-weight-medium waves-effect text-start"
@@ -355,16 +257,16 @@
              <div class="col-lg-10 mx-auto">
                  <div class="card">
                      <div class="card-header py-3" style="border-bottom: 2px dashed gray">
-                         <h3 class="card-title mb-0 text-center">{{ __('admin_local.Services') }}</h3>
+                         <h3 class="card-title mb-0 text-center">{{ __('admin_local.Our Framework') }}</h3>
                      </div>
 
                      <div class="card-body">
-                         @if (hasPermission(['service-store']))
+                         @if (hasPermission(['framework-store']))
                              <div class="row mb-3">
                                  <div class="col-md-3">
                                      <button class="btn btn-success" type="btn" data-bs-toggle="modal"
-                                         data-bs-target="#add-service-modal">+
-                                         {{ __('admin_local.Add Service') }}</button>
+                                         data-bs-target="#add-framework-modal">+
+                                         {{ __('admin_local.Add Framework Option') }}</button>
                                  </div>
                              </div>
                          @endif
@@ -373,49 +275,45 @@
                              <table id="basic-1" class="display table-bordered">
                                  <thead>
                                      <tr>
-                                         <th>{{ __('admin_local.Name') }}</th>
-                                         <th>{{ __('admin_local.Short Details') }}</th>
+                                         <th>{{ __('admin_local.Title') }}</th>
                                          <th>{{ __('admin_local.Details') }}</th>
-                                         <th>{{ __('admin_local.Type') }}</th>
                                          <th>{{ __('admin_local.Status') }}</th>
                                          <th>{{ __('admin_local.Action') }}</th>
                                      </tr>
                                  </thead>
                                  <tbody>
-                                     @foreach ($services as $service)
-                                         <tr id="trid-{{ $service->id }}" data-id="{{ $service->id }}">
-                                             <td>{{ $service->service_name }}</td>
-                                             <td>{{ $service->service_short_details }}</td>
-                                             <td>{!! \Illuminate\Support\Str::limit(strip_tags($service->service_details),20) !!}</td>
-                                             <td>{{ $service->type }}</td>
+                                     @foreach ($frameworks as $framework)
+                                         <tr id="trid-{{ $framework->id }}" data-id="{{ $framework->id }}">
+                                             <td>{{ $framework->title }}</td>
+                                             <td>{!! $framework->details !!}</td>
 
                                              <td class="text-center">
-                                                 @if (hasPermission(['service-update']))
+                                                 @if (hasPermission(['framework-update']))
                                                      <span
-                                                         class="mx-2">{{ $service->status == 0 ? 'Inactive' : 'Active' }}</span><input
-                                                         data-status="{{ $service->status == 0 ? 1 : 0 }}"
+                                                         class="mx-2">{{ $framework->status == 0 ? 'Inactive' : 'Active' }}</span><input
+                                                         data-status="{{ $framework->status == 0 ? 1 : 0 }}"
                                                          id="status_change" type="checkbox" data-toggle="switchery"
                                                          data-color="green" data-secondary-color="red" data-size="small"
-                                                         {{ $service->status == 1 ? 'checked' : '' }} />
+                                                         {{ $framework->status == 1 ? 'checked' : '' }} />
                                                  @else
                                                      <span
                                                          class="badge badge-danger">{{ __('admin_local.No Permission') }}</span>
                                                  @endif
                                              </td>
                                              <td>
-                                                 @if (hasPermission(['service-update', 'service-delete']))
+                                                 @if (hasPermission(['framework-update', 'framework-delete']))
                                                      <div class="dropdown">
                                                          <button
                                                              class="btn btn-info text-white px-2 py-1 dropbtn">{{ __('admin_local.Action') }}
                                                              <i class="fa fa-angle-down"></i></button>
                                                          <div class="dropdown-content">
-                                                             @if (hasPermission(['service-update']))
+                                                             @if (hasPermission(['framework-update']))
                                                                  <a data-bs-toggle="modal" style="cursor: pointer;"
-                                                                     data-bs-target="#edit-service-modal"
+                                                                     data-bs-target="#edit-framework-modal"
                                                                      class="text-primary" id="edit_button"><i
                                                                          class=" fa fa-edit mx-1"></i>{{ __('admin_local.Edit') }}</a>
                                                              @endif
-                                                             @if (hasPermission(['service-delete']))
+                                                             @if (hasPermission(['framework-delete']))
                                                                  <a class="text-danger" id="delete_button"
                                                                      style="cursor: pointer;"><i
                                                                          class="fa fa-trash mx-1"></i>
@@ -465,7 +363,7 @@
      </script>
      @foreach (getLangs() as $lang)
          <script>
-             CKEDITOR.replace('service_details_' + '{{ $lang->lang }}', {
+             CKEDITOR.replace('details_' + '{{ $lang->lang }}', {
                  on: {
                      contentDom: function(evt) {
                          // Allow custom context menu only with table elemnts.
@@ -481,7 +379,7 @@
              });
          </script>
          <script>
-             CKEDITOR.replace('service_details2_' + '{{ $lang->lang }}', {
+             CKEDITOR.replace('details2_' + '{{ $lang->lang }}', {
                  on: {
                      contentDom: function(evt) {
                          // Allow custom context menu only with table elemnts.
@@ -498,7 +396,7 @@
          </script>
      @endforeach
      <script>
-         CKEDITOR.replace('service_details', {
+         CKEDITOR.replace('details', {
              on: {
                  contentDom: function(evt) {
                      // Allow custom context menu only with table elemnts.
@@ -512,7 +410,7 @@
                  }
              }
          });
-         CKEDITOR.replace('service_details2', {
+         CKEDITOR.replace('details2', {
              on: {
                  contentDom: function(evt) {
                      // Allow custom context menu only with table elemnts.
@@ -565,7 +463,7 @@
              }
          });
 
-         var form_url = "{{ route('admin.pages.service.store') }}";
+         var form_url = "{{ route('admin.pages.framework.store') }}";
          var submit_btn_after =
              `<strong>{{ __('admin_local.Saving ') }} &nbsp; <i class="fa fa-rotate-right fa-spin"></i></strong>`;
          var submit_btn_before =
@@ -582,6 +480,6 @@
          var base_url = `{{ baseUrl() }}`;
          var translate_url = `{{ route('admin.translateString') }}`;
      </script>
-     <script src="{{ asset(env('ASSET_DIRECTORY', 'public') . '/' . 'admin/custom/service/service.js') }}"></script>
+     <script src="{{ asset(env('ASSET_DIRECTORY', 'public') . '/' . 'admin/custom/framework/framework.js') }}"></script>
      {{-- <script src="{{ asset(env('ASSET_DIRECTORY','public').'/'.'inventory/custom/user/user_list.js') }}"></script> --}}
  @endpush

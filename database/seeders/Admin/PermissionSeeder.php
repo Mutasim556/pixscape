@@ -105,6 +105,19 @@ class PermissionSeeder extends Seeder
         // Permission::create(['guard_name'=>'admin','name'=>'aboutus-index','group_name'=>'About Us']);
         // Permission::create(['guard_name'=>'admin','name'=>'aboutus-update','group_name'=>'About Us']);
 
+        //permission for Service
+        // Permission::create(['guard_name'=>'admin','name'=>'service-index','group_name'=>'Service']);
+        // Permission::create(['guard_name'=>'admin','name'=>'service-create','group_name'=>'Service']);
+        // Permission::create(['guard_name'=>'admin','name'=>'service-update','group_name'=>'Service']);
+        // Permission::create(['guard_name'=>'admin','name'=>'service-delete','group_name'=>'Service']);
+
+        //permission for Framework
+        // Permission::create(['guard_name'=>'admin','name'=>'framework-index','group_name'=>'Framework']);
+        // Permission::create(['guard_name'=>'admin','name'=>'framework-create','group_name'=>'Framework']);
+        // Permission::create(['guard_name'=>'admin','name'=>'framework-update','group_name'=>'Framework']);
+        // Permission::create(['guard_name'=>'admin','name'=>'framework-delete','group_name'=>'Framework']);
+
+
 
     }
 }

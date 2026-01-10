@@ -1,4 +1,4 @@
-$(document).on('submit','#add_service_form',function(e){
+$(document).on('submit','#add_framework_form',function(e){
     e.preventDefault();
     $('button[type=submit]', this).html('Submitting'+'....');
     $('button[type=submit]', this).addClass('disabled');
@@ -15,8 +15,8 @@ $(document).on('submit','#add_service_form',function(e){
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (rdata) {
-            $('button[type=submit]', '#add_service_form').html('Submit');
-            $('button[type=submit]', '#add_service_form').removeClass('disabled');
+            $('button[type=submit]', '#add_framework_form').html('Submit');
+            $('button[type=submit]', '#add_framework_form').removeClass('disabled');
             swal({
                 icon: "success",
                 title: rdata.title,
@@ -27,8 +27,8 @@ $(document).on('submit','#add_service_form',function(e){
             })
         },
         error: function (err) {
-            $('button[type=submit]', '#add_service_form').html('Submit');
-            $('button[type=submit]', '#add_service_form').removeClass('disabled');
+            $('button[type=submit]', '#add_framework_form').html('Submit');
+            $('button[type=submit]', '#add_framework_form').removeClass('disabled');
             if(err.status===403){
                 var err_message = err.responseJSON.message.split("(");
                 swal({
@@ -37,12 +37,12 @@ $(document).on('submit','#add_service_form',function(e){
                     text: err_message[0],
                     confirmButtonText: "Ok",
                 }).then(function(){
-                    $('button[type=button]', '#add_service_form').click();
+                    $('button[type=button]', '#add_framework_form').click();
                 });
 
             }
 
-            $('#add_service_form .err-mgs').each(function(id,val){
+            $('#add_framework_form .err-mgs').each(function(id,val){
                 $(this).prev('input').removeClass('border-danger is-invalid')
                 $(this).prev('textarea').removeClass('border-danger is-invalid')
                 $(this).prev('span').find('.select2-selection--single').attr('id','')
@@ -53,12 +53,12 @@ $(document).on('submit','#add_service_form',function(e){
                 var exp = idx.replace('.','_');
                 var exp2 = exp.replace('_0','');
 
-                $('#add_service_form #'+exp).addClass('border-danger is-invalid')
-                $('#add_service_form #'+exp2).addClass('border-danger is-invalid')
-                $('#add_service_form #'+exp).next('span').find('.select2-selection--single').attr('id','invalid-selec2')
-                $('#add_service_form #'+exp).next('.err-mgs').empty().append(val);
+                $('#add_framework_form #'+exp).addClass('border-danger is-invalid')
+                $('#add_framework_form #'+exp2).addClass('border-danger is-invalid')
+                $('#add_framework_form #'+exp).next('span').find('.select2-selection--single').attr('id','invalid-selec2')
+                $('#add_framework_form #'+exp).next('.err-mgs').empty().append(val);
 
-                $('#add_service_form #'+exp+"_err").empty().append(val);
+                $('#add_framework_form #'+exp+"_err").empty().append(val);
             })
         },
     })
@@ -72,7 +72,7 @@ $(document).on('change','#status_change',function(){
     cat_td.empty().append(`<i class="fa fa-refresh fa-spin"></i>`);
     $.ajax({
         type: "get",
-        url: 'service/update/status/'+update_id+"/"+status,
+        url: 'framework/update/status/'+update_id+"/"+status,
         success: function (data) {
             cat_td.empty().append(`<span class="mx-2">${data.status==0?'Inactive':'Active'}</span><input data-status="${data.status==1?0:1}" id="status_change" type="checkbox" data-toggle="switchery" data-color="green"  data-secondary-color="red" data-size="small" ${data.status==1?'checked':''} />`);
             // parent_td.children('input').each(function (idx, obj) {
@@ -94,8 +94,8 @@ $(document).on('change','#status_change',function(){
 
 // Show data on edit modal
 $(document).on('click', '#edit_button', function () {
-    $('#edit_service_form').trigger('reset');
-    $('#edit_service_form .err-mgs').each(function(id,val){
+    $('#edit_framework_form').trigger('reset');
+    $('#edit_framework_form .err-mgs').each(function(id,val){
         $(this).prev('input').removeClass('border-danger is-invalid')
         $(this).prev('textarea').removeClass('border-danger is-invalid')
         $(this).empty();
@@ -103,36 +103,27 @@ $(document).on('click', '#edit_button', function () {
     let cat = $(this).closest('tr').data('id');
     $.ajax({
         type: "get",
-        url: 'service/' + cat + "/edit",
+        url: 'framework/' + cat + "/edit",
         dataType: 'JSON',
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (data) {
-            $('#edit_service_form #service_id').val(data.id);
-            $('#edit_service_form #service_name').val(data.service_name);
-            $('#edit_service_form #service_short_details').val(data.service_short_details);
-            $('#edit_service_form #type').val(data.type);
-            CKEDITOR.instances['service_details2'].setData(data.service_details);
-            $('#edit_service_form #eprev_service_image').prop('src',base_url+"/"+data.service_image);
+            $('#edit_framework_form #framework_id').val(data.id);
+            $('#edit_framework_form #title').val(data.title);
+            CKEDITOR.instances['details2'].setData(data.details);
             $.each(data.translations,function(key,val){
                 if(val.locale=='en'){
                     return true;
-                    // $('#edit_service_form #service_name').val(data.title);
-                    // $('#edit_service_form #service_short_details').val(data.service_short_details);
-                    // CKEDITOR.instances['service_details2'].setData(data.service_details);
+                    // $('#edit_framework_form #framework_name').val(data.title);
+                    // $('#edit_framework_form #framework_short_details').val(data.framework_short_details);
+                    // CKEDITOR.instances['framework_details2'].setData(data.framework_details);
                 }else{
-                    if(val.key=='service_name'){
-                        $('#edit_service_form #service_name_'+val.locale).val(val.value);
+                    if(val.key=='title'){
+                        $('#edit_framework_form #title_'+val.locale).val(val.value);
                     }
-                    if(val.key=='service_short_details'){
-                        $('#edit_service_form #service_short_details_'+val.locale).val(val.value);
-                    }
-                    if(val.key=='service_details'){
-                        CKEDITOR.instances['service_details2_'+val.locale].setData(val.value);
-                    }
-                    if(val.key=='type'){
-                        $('#edit_service_form #type_'+val.locale).val(val.value);
+                    if(val.key=='details'){
+                        CKEDITOR.instances['details2_'+val.locale].setData(val.value);
                     }
                 }
             })
@@ -147,7 +138,7 @@ $(document).on('click', '#edit_button', function () {
                     text: err_message[0],
                     confirmButtonText: "Ok",
                 }).then(function(){
-                    $('button[type=button]', '#edit_service_form').click();
+                    $('button[type=button]', '#edit_framework_form').click();
                 });
 
             }else{
@@ -164,16 +155,16 @@ $(document).on('click', '#edit_button', function () {
 
 });
 
-$('#edit_service_form').submit(function (e) {
+$('#edit_framework_form').submit(function (e) {
     e.preventDefault();
     $('button[type=submit]', this).html(submit_btn_after+'....');
     $('button[type=submit]', this).addClass('disabled');
-    var trid = '#trid-'+$('#service_id', this).val();
+    var trid = '#trid-'+$('#framework_id', this).val();
     var formData = new FormData(this);
     formData.append("_method","PUT");
     $.ajax({
         type: "post",
-        url: 'service/' + $('#service_id','#edit_service_form').val(),
+        url: 'framework/' + $('#framework_id','#edit_framework_form').val(),
         data: formData,
         dataType: 'JSON',
         headers: {
@@ -184,8 +175,8 @@ $('#edit_service_form').submit(function (e) {
         cache: false,
         processData: false,
         success: function (data) {
-            $('button[type=submit]', '#edit_service_form').html(submit_btn_before);
-            $('button[type=submit]', '#edit_service_form').removeClass('disabled');
+            $('button[type=submit]', '#edit_framework_form').html(submit_btn_before);
+            $('button[type=submit]', '#edit_framework_form').removeClass('disabled');
             swal({
                 icon: "success",
                 title: data.title,
@@ -196,8 +187,8 @@ $('#edit_service_form').submit(function (e) {
             });
         },
         error: function (err) {
-            $('button[type=submit]', '#edit_service_form').html(submit_btn_before);
-            $('button[type=submit]', '#edit_service_form').removeClass('disabled');
+            $('button[type=submit]', '#edit_framework_form').html(submit_btn_before);
+            $('button[type=submit]', '#edit_framework_form').removeClass('disabled');
             if(err.status===403){
                 var err_message = err.responseJSON.message.split("(");
                 swal({
@@ -206,12 +197,12 @@ $('#edit_service_form').submit(function (e) {
                     text: err_message[0],
                     confirmButtonText: "Ok",
                 }).then(function(){
-                    $('button[type=button]', '#edit_service_form').click();
+                    $('button[type=button]', '#edit_framework_form').click();
                 });
 
             }
 
-            $('#edit_service_form .err-mgs').each(function(id,val){
+            $('#edit_framework_form .err-mgs').each(function(id,val){
                 $(this).prev('input').removeClass('border-danger is-invalid')
                 $(this).prev('textarea').removeClass('border-danger is-invalid')
                 $(this).empty();
@@ -219,8 +210,8 @@ $('#edit_service_form').submit(function (e) {
 
             $.each(err.responseJSON.errors,function(idx,val){
 
-                $('#edit_service_form #'+idx).addClass('border-danger is-invalid')
-                $('#edit_service_form #'+idx).next('.err-mgs').empty().append(val);
+                $('#edit_framework_form #'+idx).addClass('border-danger is-invalid')
+                $('#edit_framework_form #'+idx).next('.err-mgs').empty().append(val);
             })
         }
     });
@@ -239,7 +230,7 @@ $(document).on('click','#delete_button',function(){
         if (willDelete) {
             $.ajax({
                 type: "delete",
-                url: 'service/'+delete_id,
+                url: 'framework/'+delete_id,
                 data: {
                     _token : $("input[name=_token]").val(),
                 },
