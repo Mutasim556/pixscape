@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AboutUsController;
 use App\Http\Controllers\Admin\Auth\AdminAuthController;
 use App\Http\Controllers\Admin\Auth\AdminLoginController;
+use App\Http\Controllers\Admin\AwardController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\ContactUsController;
 use App\Http\Controllers\Admin\CounterController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\Admin\Localization\ChangeLanguageController;
 use App\Http\Controllers\Admin\Localization\LanguageController;
 use App\Http\Controllers\Admin\LogoIconController;
 use App\Http\Controllers\Admin\Pages\HomepageSettingController;
+use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\ProjectTypeController;
 use App\Http\Controllers\Admin\Role\RoleAndPermissionController;
@@ -20,6 +22,7 @@ use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\Settings\MaintenanceModeController;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\User\UserController;
+use App\Http\Controllers\Admin\ValuesController;
 use Illuminate\Support\Facades\Route;
 use Stichoza\GoogleTranslate\GoogleTranslate;
 
@@ -171,12 +174,26 @@ Route::prefix('admin')->name('admin.')->group(function () {
             });
             /** Framework End */
 
-             /** Our Values Start */
-            Route::resource('values', FrameworkController::class)->except('create', 'show');
-            Route::controller(FrameworkController::class)->prefix('values')->group(function () {
+            /** Our Values Start */
+            Route::resource('values', ValuesController::class)->except('create', 'show');
+            Route::controller(ValuesController::class)->prefix('values')->group(function () {
                 Route::get('/update/status/{id}/{status}', 'updateStatus');
             });
             /** Our Values End */
+
+            /** Partner Start */
+            Route::resource('partner', PartnerController::class)->except('create', 'show');
+            Route::controller(PartnerController::class)->prefix('partner')->group(function () {
+                Route::get('/update/status/{id}/{status}', 'updateStatus');
+            });
+            /** Partner End */
+
+            /** Award Start */
+            Route::resource('award', AwardController::class)->except('create', 'show');
+            Route::controller(AwardController::class)->prefix('award')->group(function () {
+                Route::get('/update/status/{id}/{status}', 'updateStatus');
+            });
+            /** Award End */
         });
     });
     Route::get('/translate-string', function () {
