@@ -17,7 +17,7 @@
                                 <div class="home-hero_logo-mid">
                                 </div>
                                 <div class="preloader_logo-dot w-embed">
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -36,9 +36,9 @@
                                 src="{{ asset('public/' . $slider->slider_image) }}" sizes="100vw" class="full-img" />
                         </div>
                         <div class="home-hero_indicators page-padding">
-                            <div class="hero_text">Scroll Down</div>
+                            <div class="hero_text" style="color:white">Scroll Down</div>
                             <div class="hero_text is-mobile-centered w-embed"><a
-                                    href="/project/halcyon-blu">{{ $slider->slider_title }}</a></div>
+                                    href="/project/halcyon-blu" style="color:white">{{ $slider->slider_title }}</a></div>
                         </div>
                     </div>
 
@@ -78,12 +78,12 @@
                     <div class="reveal_embed-contain">
                         <div class="reveal_embed w-embed w-iframe">
                             <div style="padding:56.25% 0 0 0;position:relative;">
-                                <iframe src="https://player.vimeo.com/video/1154255421?background=1" loading="lazy"
-                                    style="position:absolute;top:0;left:0;width:2000px !important;height:100%;" frameborder="0"
+                                <iframe src="https://player.vimeo.com/video/{{ $video ? $video->video_link : '' }}?background=1" loading="lazy"
+                                    style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0"
                                     allow="autoplay; fullscreen" allowfullscreen>
                                 </iframe>
-
-                                {{-- <iframe src="https://player.vimeo.com/video/1154255421?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="400" height="300" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="IMG_8169"></iframe> --}}
+{{--
+                               <iframe src="https://player.vimeo.com/video/1154338273?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="1920" height="1080" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="WhatsApp Video 2026-01-14 at 7.39.54 PM"></iframe> --}}
                             </div>
                         </div>
                     </div>
@@ -160,7 +160,7 @@
                                             </a>
                                         </div>
                                     @endforeach
-                                    
+
                                 </div>
                             </div>
                             <div>
@@ -280,7 +280,7 @@
                                     class="about_card w-inline-block">
                                     <div class="img_overflow"><img src="{{ $projectType->image }}" loading="lazy"
                                             alt="" class="about_img" />
-                                        <div class="about_card-label">{{ $projectType->title }}</div>
+                                        <div class="about_card-label" style="color:white">{{ $projectType->title }}</div>
                                     </div>
                                     <p>{{ $projectType->short_description }}</p>
                                 </a>
@@ -500,11 +500,11 @@
                         </div>
                         <div class="blog_collection-wrapper w-dyn-list">
                             <div role="list" class="blog_collection-list w-dyn-items">
-                                {{-- @php
+                                @php
                                         $blogs = \App\Models\Admin\Blog::where([['status',1],['delete',0]])->get();
                                     @endphp
                                     @foreach ($blogs as $blog)
-                                    
+
                                     <div data-animate="" role="listitem" class="blog_collection-item w-dyn-item">
                                         <a href="/blog/victoria-park-a-vision-realised-a-legacy-secured"
                                             class="blog_link w-inline-block">
@@ -515,14 +515,11 @@
                                                     class="blog_item-img" /></div>
                                             <div class="blog_card-content">
                                                 <h3 class="blog_card-heading">{{ $blog->title }}</h3>
-                                                <p class="blog_card-p">Victoria Park will be the centrepiece of
-                                                    Brisbane’s 2032 Games - this
-                                                    announcement is an incredible milestone for the city, and
-                                                    Archipelago!</p>
+                                                <p class="blog_card-p">{!! \Illuminate\Support\Str::limit(strip_tags($blog->details), 200) !!}</p>
                                             </div>
                                         </a>
                                     </div>
-                                    @endforeach --}}
+                                    @endforeach
                             </div>
                         </div>
                         <div class="section_content-grid">

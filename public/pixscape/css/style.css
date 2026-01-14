@@ -1885,7 +1885,8 @@ textarea.w-select {
     --font-size--h-xxl: 12.5em;
     --swatch--transparent: #fff0;
     --font-size--p-large: 1.25em;
-    --swatch--white: #fff;
+    --swatch--white: #272626;
+    /* --swatch--brack: #1f1c1c; */
     --font-size--p-medium: 1.125em;
     --font-size--p-tiny: 0.75em;
     --swatch--charcoal-opacity70: #272520b3;

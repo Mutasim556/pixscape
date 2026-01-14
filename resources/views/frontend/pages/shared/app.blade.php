@@ -521,7 +521,7 @@
                                 </div>
                             </div>
                             <div class="nav_logo-dot w-embed" style="width: 70px !important;">
-                               
+
                                 <a href=""> <img style="width:300px;" src="{{ asset($logo ? $logo->main_site_logo3 : '') }}" alt=""></a>
                             </div>
                         </div>
@@ -654,7 +654,7 @@
                         <div id="w-node-_3707be7f-7d62-d0fa-61da-a90f397b753d-397b751f" class="footer_horizontal">
                             <div class="footer_info-wrap">
                                 <div class="footer_heading">Office</div>
-                                <a href="https://maps.app.goo.gl/iaWKoJ1an3ZV8L4R6" target="_blank"
+                                <a href="{{ $contact ? $contact->location : '' }}" target="_blank"
                                     class="footer_a w-inline-block">
                                     <p>{{ $contact ? $contact->address : '' }}</p>
                                 </a>
@@ -799,9 +799,9 @@
     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=65249822a54c89915817034b"
         type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.prod.website-files.com/65249822a54c89915817034b/js/webflow.schunk.36b8fb49256177c8.js"
+    <script src="{{ asset('public/pixscape/js/script.js') }}"
         type="text/javascript"></script>
-    <script src="https://cdn.prod.website-files.com/65249822a54c89915817034b/js/webflow.a1efb5ce.d29d89f837d84d50.js"
+    <script src="{{ asset('public/pixscape/js/app.js') }}"
         type="text/javascript"></script>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WGX68N5X" height="0" width="0"
