@@ -47,14 +47,23 @@ class DesignExpController extends Controller
         $imageName = null;
 
         if (!empty($data->image)) {
-            $image = $data->image;
-            $imageName = 'designexp' . time() . '.' . $image->getClientOriginalExtension();
 
-            $manager = new ImageManager(new Driver());
+            $image = $data->image;
+            $ext   = strtolower($image->getClientOriginalExtension());
+            $imageName = 'designexp' . time() . '.' . $ext;
             $imagePath = $dir . '/' . $imageName;
 
-            $manager->read($image)
-                ->save($imagePath,100);
+            // ✅ SVG → store directly
+            if ($ext === 'svg') {
+                $image->move($dir, $imageName);
+            }
+            // ✅ PNG / JPG → Intervention
+            else {
+                $manager = new ImageManager(new Driver());
+                $manager
+                    ->read($image)
+                    ->save($imagePath, 100);
+            }
         }
 
         $create = DesignExpertise::updateOrCreate(

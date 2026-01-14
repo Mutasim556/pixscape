@@ -95,6 +95,39 @@
                             </div>
                             <div class="row mt-3">
                                 <div class="col-md-5 py-2">
+                                    <label for="">{{ __('admin_local.Main Site Logo 2') }}</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="file" class="form-control" name="main_site_logo2" id="main_site_logo2" onchange="document.getElementById('prev_main_site_logo2').src = window.URL.createObjectURL(this.files[0])">
+                                </div>
+                                <div class="col-md-4">
+                                    <img src="{{ asset($logo->main_site_logo2??'') }}" id="prev_main_site_logo2" style="float: right;" height="40px" width="165px" alt="">
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-5 py-2">
+                                    <label for="">{{ __('admin_local.Main Site Logo 3') }}</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="file" class="form-control" name="main_site_logo3" id="main_site_logo3" onchange="document.getElementById('prev_main_site_logo3').src = window.URL.createObjectURL(this.files[0])">
+                                </div>
+                                <div class="col-md-4">
+                                    <img src="{{ asset($logo->main_site_logo3??'') }}" id="prev_main_site_logo3" style="float: right;" height="40px" width="165px" alt="">
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-5 py-2">
+                                    <label for="">{{ __('admin_local.Main Site Logo 4') }}</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="file" class="form-control" name="main_site_logo4" id="main_site_logo4" onchange="document.getElementById('prev_main_site_logo4').src = window.URL.createObjectURL(this.files[0])">
+                                </div>
+                                <div class="col-md-4">
+                                    <img src="{{ asset($logo->main_site_logo4??'') }}" id="prev_main_site_logo4" style="float: right;" height="40px" width="165px" alt="">
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-5 py-2">
                                     <label for="">{{ __('admin_local.Main Site Icon') }}</label>
                                 </div>
                                 <div class="col-md-3">

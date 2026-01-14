@@ -93,6 +93,33 @@ class LogoIconController extends Controller
             // $manager->read($image)->resize(193, 46)->save($imageName);
             $updateLogo->main_site_header_logo = $imageName;
         }
+        if($data->main_site_logo2){
+            $image = $data->main_site_logo2;
+            $imageName = 'mainSiteLogo2' . time() . '.' . $image->getClientOriginalExtension();
+            $manager = new ImageManager(new Driver());
+            $imageName  =  $dir . '/' . $imageName;
+            $manager->read($image)->save($imageName,100);
+            // $manager->read($image)->resize(193, 46)->save($imageName);
+            $updateLogo->main_site_logo2 = $imageName;
+        }
+        if($data->main_site_logo3){
+            $image = $data->main_site_logo3;
+            $imageName = 'mainSiteLogo3' . time() . '.' . $image->getClientOriginalExtension();
+            $manager = new ImageManager(new Driver());
+            $imageName  =  $dir . '/' . $imageName;
+            $manager->read($image)->save($imageName,100);
+            // $manager->read($image)->resize(193, 46)->save($imageName);
+            $updateLogo->main_site_logo3 = $imageName;
+        }
+        if($data->main_site_logo4){
+            $image = $data->main_site_logo4;
+            $imageName = 'mainSiteLogo4' . time() . '.' . $image->getClientOriginalExtension();
+            $manager = new ImageManager(new Driver());
+            $imageName  =  $dir . '/' . $imageName;
+            $manager->read($image)->save($imageName,100);
+            // $manager->read($image)->resize(193, 46)->save($imageName);
+            $updateLogo->main_site_logo4 = $imageName;
+        }
         if($data->main_site_footer_logo){
             $image = $data->main_site_footer_logo;
             $imageName = 'mainSiteFooterLogo' . time() . '.' . $image->getClientOriginalExtension();

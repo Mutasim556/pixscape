@@ -25,8 +25,8 @@ class CounterController extends Controller
      */
     public function index()
     {
-        $counters = Counter::where([['delete',0]])->get();
-        return view('backend.blade.settings.homepage.counter',compact('counters'));
+        $counters = Counter::where([['delete', 0]])->get();
+        return view('backend.blade.settings.homepage.counter', compact('counters'));
     }
 
     /**
@@ -45,30 +45,50 @@ class CounterController extends Controller
         $data->validate([
             'title' => 'required',
             'counter' => 'required',
-            'icon' => 'required|mimes:jpg,jpeg,png',
+            'icon' => 'required|mimes:jpg,jpeg,png,svg',
         ], [
             'title.required' => __('admin_local.Title required'),
             'counter.required' => __('admin_local.Counter required'),
             'icon.required' => __('admin_local.Icon required'),
-            'icon.mimes' => __('admin_local.Invalid icon format. (jpeg,jpg,png)'),
+            'icon.mimes' => __('admin_local.Invalid icon format. (jpeg,jpg,png,svg)'),
         ]);
 
         $newcounter = new Counter();
 
-        $newcounter->title = $data->title;
+        $newcounter->title   = $data->title;
         $newcounter->counter = $data->counter;
 
         $dir = getDirectoryLink('homepage/counter-images');
-        $makeDir = createDirectory($dir);
-        $allImages = [];
+        createDirectory($dir);
+
         if ($data->icon) {
+
             $image = $data->icon;
-            $imageName = 'counterImg' . time() . '.' . $image->getClientOriginalExtension();
-            $manager = new ImageManager(new Driver());
-            $imageName  =  $dir . '/' . $imageName;
-            $manager->read($image)->save($imageName,100);
-            $newcounter->image = $imageName;
+            $ext   = strtolower($image->getClientOriginalExtension());
+
+            // SVG HANDLING (NO Intervention)
+            if ($ext === 'svg') {
+
+                $imageName = 'counterImg' . time() . '.svg';
+                $image->move($dir, $imageName);
+                $newcounter->image = $dir . '/' . $imageName;
+            }
+            // JPG / PNG HANDLING
+            else {
+
+                $imageName = 'counterImg' . time() . '.' . $ext;
+                $manager   = new ImageManager(new Driver());
+
+                $path = $dir . '/' . $imageName;
+
+                $manager
+                    ->read($image)
+                    ->save($path, 100);
+
+                $newcounter->image = $path;
+            }
         }
+
         $newcounter->save();
 
         /** Insert Translations Start */
@@ -86,7 +106,6 @@ class CounterController extends Controller
                     'created_at'            => Carbon::now(),
                 ));
             }
-
         }
         Translation::insert($datas);
         /** Insert Translations End */
@@ -130,7 +149,7 @@ class CounterController extends Controller
      */
     public function update(Request $data, string $id)
     {
-         $data->validate([
+        $data->validate([
             'title' => 'required',
             'counter' => 'required',
             'icon' => 'mimes:jpg,jpeg,png',
@@ -141,24 +160,48 @@ class CounterController extends Controller
             'icon.mimes' => __('admin_local.Invalid icon format. (jpeg,jpg,png)'),
         ]);
 
-
         $updatecounter = Counter::findOrFail($id);
 
-        $updatecounter->title = $data->title;
+        $updatecounter->title   = $data->title;
         $updatecounter->counter = $data->counter;
 
         $dir = getDirectoryLink('homepage/counter-images');
-        $makeDir = createDirectory($dir);
+        createDirectory($dir);
+
         if ($data->image) {
+
             $image = $data->image;
-            $imageName = 'counterImg' . time() . '.' . $image->getClientOriginalExtension();
-            $manager = new ImageManager(new Driver());
-            $imageName  =  $dir . '/' . $imageName;
-            $manager->read($image)->save($imageName,100);
-            $updatecounter->image = $imageName;
+            $ext   = strtolower($image->getClientOriginalExtension());
+            $imageName = 'counterImg' . time() . '.' . $ext;
+            $path = $dir . '/' . $imageName;
+
+            // ✅ SVG: store directly (NO Intervention)
+            if ($ext === 'svg') {
+
+                // Optional: delete old image
+                if ($updatecounter->image && file_exists($updatecounter->image)) {
+                    @unlink($updatecounter->image);
+                }
+
+                $image->move($dir, $imageName);
+                $updatecounter->image = $path;
+            }
+            // ✅ JPG / PNG: use Intervention
+            else {
+
+                // Optional: delete old image
+                if ($updatecounter->image && file_exists($updatecounter->image)) {
+                    @unlink($updatecounter->image);
+                }
+
+                $manager = new ImageManager(new Driver());
+                $manager
+                    ->read($image)
+                    ->save($path, 100);
+
+                $updatecounter->image = $path;
+            }
         }
-
-
 
         $updatecounter->save();
 
@@ -178,8 +221,6 @@ class CounterController extends Controller
                     'updated_at'            => Carbon::now(),
                 ]);
             }
-
-
         }
 
         return response([
