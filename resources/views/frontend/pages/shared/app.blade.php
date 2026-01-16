@@ -548,7 +548,7 @@
                                     </svg></div>
                             </div>
                             <div class="nav_dropdown-links">
-                                <div class="nav_link-wrap"><a href="/practice/about-us"
+                                <div class="nav_link-wrap"><a href="{{ route('frontend.aboutUs') }}"
                                         class="nav_link is-dropdown">About Us</a>
                                     <div class="nav_link-underline"></div>
                                 </div>
