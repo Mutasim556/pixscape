@@ -8,7 +8,7 @@ use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Blog extends Model
-{ 
+{
     public function translations()
     {
         return $this->morphMany(Translation::class, 'translationable');
@@ -25,7 +25,7 @@ class Blog extends Model
         return $value;
     }
 
-   
+
     public function getDetailsAttribute($value){
         if (count($this->translations) > 0) {
             foreach ($this->translations as $translation) {
@@ -50,5 +50,8 @@ class Blog extends Model
 
     public function admin(){
         return $this->belongsTo(Admin::class,'created_by','id');
+    }
+    public function team(){
+        return $this->belongsTo(Team::class,'team_id','id');
     }
 }

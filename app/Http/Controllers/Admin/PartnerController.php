@@ -59,7 +59,7 @@ class PartnerController extends Controller
             $imageName = 'partnerImg' . time() . '.' . $image->getClientOriginalExtension();
             $manager = new ImageManager(new Driver());
             $imageName  =  $dir . '/' . $imageName;
-            $manager->read($image)->resize(180, 150)->save($imageName);
+            $manager->read($image)->save($imageName);
             $newpartner->partner_image = $imageName;
         }
         $newpartner->save();
@@ -153,7 +153,7 @@ class PartnerController extends Controller
             $imageName = 'partnerImg' . time() . '.' . $image->getClientOriginalExtension();
             $manager = new ImageManager(new Driver());
             $imageName  =  $dir . '/' . $imageName;
-            $manager->read($image)->resize(180, 150)->save($imageName);
+            $manager->read($image)->save($imageName);
             $updatepartner->partner_image = $imageName;
         }
 
@@ -179,7 +179,7 @@ class PartnerController extends Controller
                     'updated_at'            => Carbon::now(),
                 ]);
             }
-            
+
             if ($data->$partner_details != null) {
                 Translation::updateOrInsert([
                     'translationable_type'  => 'App\Models\Admin\Partner',
@@ -191,7 +191,7 @@ class PartnerController extends Controller
                     'updated_at'            => Carbon::now(),
                 ]);
             }
-            
+
         }
 
         return response([

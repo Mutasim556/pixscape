@@ -63,6 +63,7 @@ class BlogController extends Controller
         $newblog->title = $data->blog_title;
         $newblog->details = $data->blog_details;
         $newblog->video = $data->video_link;
+        $newblog->filter_by = $data->filter_by;
 
         $newblog->created_by = Auth::guard('admin')->user()->id;
 
@@ -168,7 +169,7 @@ class BlogController extends Controller
         $updateblog->title = $data->blog_title;
         $updateblog->details = $data->blog_details;
         $updateblog->video = $data->video_link;
-
+        $updateblog->filter_by = $data->filter_by;
         $dir = getDirectoryLink('blog/blog-images');
         $makeDir = createDirectory($dir);
         $allImages = [];

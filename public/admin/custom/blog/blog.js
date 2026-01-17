@@ -152,6 +152,7 @@ $(document).on('click', '#edit_button', function () {
             $('#edit_blog_form #team_member').val(data.team_id).trigger('change');
             $('#edit_blog_form #blog_title').val(data.title);
             $('#edit_blog_form #video_link').val(data.video);
+            $('#edit_blog_form #filter_by').val(data.filter_by);
 
 
             CKEDITOR.instances['blog_details2'].setData(data.details);

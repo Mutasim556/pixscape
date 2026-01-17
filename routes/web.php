@@ -23,6 +23,33 @@ Route::controller(FrontendController::class)->name('frontend.')->group(function(
     /** About Page Start */
     Route::get('/about-us','aboutUs')->name('aboutUs');
     /** About Page End */
+
+    /** Team Page Start */
+    Route::get('/team','team')->name('team');
+    Route::get('/team-member/{slug?}','teamMember')->name('teamMember');
+    /** Team Page End */
+
+    /** Contact Page Start */
+    Route::get('/contact','contact')->name('contact');
+    /** Contact Page End */
+
+    /** Article Page Start */
+    Route::get('/article','article')->name('article');
+    Route::get('/article-single/{slug?}','articleSingle')->name('articleSingle');
+    /** Article Page End */
+
+    /** Project Page Start */
+    Route::get('/project','project')->name('project');
+    Route::get('/project-single/{slug?}','projectSingle')->name('projectSingle');
+    /** Project Page End */
+
+    /** Workshop Page Start */
+    Route::get('/workshop','workshop')->name('workshop');
+    /** Workshop Page End */
+
+    /** Careers Page Start */
+    Route::get('/careers','careers')->name('careers');
+    /** Careers Page End */
 });
 
 
@@ -66,14 +93,14 @@ Route::get('modulec',function(){
                 }else{
                     $zz = $zz."        '$dkey'=>'$dd',\n";
                 }
-                
+
                }
             }
-    
+
             $tt = $tt."\n    '$key'=>[\n$zz\n    ],";
         }
     }
-    
+
     $tt = $tt."\n    'subscription'=>[       $content],";
     $phpArray = "<?php\n\nreturn [  $tt \n];";
     file_put_contents(config_path('modules.php'), $phpArray);

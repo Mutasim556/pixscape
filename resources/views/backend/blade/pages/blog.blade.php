@@ -135,7 +135,15 @@
                          </div>
 
                          <div class="row">
-
+                            <div class="col-sm-12 col-xl-6">
+                                 <div class="row">
+                                     <div class="form-group col-md-12">
+                                         <label for="">{{ __('admin_local.Filter By') }}</label>
+                                         <input type="text" class="form-control" name="filter_by" id="filter_by">
+                                         <span class="text-danger err-mgs" id="filter_by_err"></span>
+                                     </div>
+                                 </div>
+                             </div>
                              <div class="col-sm-12 col-xl-6">
                                  <div class="row">
                                      <div class="form-group col-md-12">
@@ -283,6 +291,15 @@
                              </div>
                          </div>
                          <div class="row">
+                            <div class="col-sm-12 col-xl-6">
+                                 <div class="row">
+                                     <div class="form-group col-md-12">
+                                         <label for="">{{ __('admin_local.Filter By') }}</label>
+                                         <input type="text" class="form-control" name="filter_by" id="filter_by">
+                                         <span class="text-danger err-mgs" id="filter_by_err"></span>
+                                     </div>
+                                 </div>
+                             </div>
                              <div class="col-sm-12 col-xl-6">
                                  <div class="row">
                                      <div class="form-group col-md-12">

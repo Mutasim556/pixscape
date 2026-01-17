@@ -1,27 +1,20 @@
-<!DOCTYPE html>
-<!-- Last Published: Tue Nov 18 2025 23:26:56 GMT+0000 (Coordinated Universal Time) -->
-<html data-wf-domain="www.archipelago.com.au" data-wf-page="6543a9053fac558af9585fa4"
+<!DOCTYPE html><!-- Last Published: Fri Jan 16 2026 12:12:39 GMT+0000 (Coordinated Universal Time) -->
+<html data-wf-domain="www.archipelago.com.au" data-wf-page="6543a9053fac558af9585fad"
     data-wf-site="65249822a54c89915817034b">
-@php
-    $logo = \App\Models\Admin\Logo::first();
-@endphp
 
 <head>
     <meta charset="utf-8" />
-    <title>Australian City-Making Architecture Practice | Archipelago</title>
-    <meta
-        content="Archipelago is an award-winning Brisbane Architecture, Urban Design and Landscape Architecture Practice creating great cities and buildings for our future."
+    <title>News and Articles | Archipelago</title>
+    <meta content="Stay informed with the latest news and insightful Articles from our team here at Archipelago"
         name="description" />
-    <meta content="Australian City-Making Architecture Practice | Archipelago" property="og:title" />
-    <meta
-        content="Archipelago is an award-winning Brisbane Architecture, Urban Design and Landscape Architecture Practice creating great cities and buildings for our future."
+    <meta content="News and Articles | Archipelago" property="og:title" />
+    <meta content="Stay informed with the latest news and insightful Articles from our team here at Archipelago"
         property="og:description" />
     <meta
         content="https://cdn.prod.website-files.com/65249822a54c89915817034b/65544131f135374d9a9d65c9_ArchiOGimage%20(2).jpg"
         property="og:image" />
-    <meta content="Australian City-Making Architecture Practice | Archipelago" property="twitter:title" />
-    <meta
-        content="Archipelago is an award-winning Brisbane Architecture, Urban Design and Landscape Architecture Practice creating great cities and buildings for our future."
+    <meta content="News and Articles | Archipelago" property="twitter:title" />
+    <meta content="Stay informed with the latest news and insightful Articles from our team here at Archipelago"
         property="twitter:description" />
     <meta
         content="https://cdn.prod.website-files.com/65249822a54c89915817034b/65544131f135374d9a9d65c9_ArchiOGimage%20(2).jpg"
@@ -29,10 +22,7 @@
     <meta property="og:type" content="website" />
     <meta content="summary_large_image" name="twitter:card" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <link
-        href="{{ asset('public/pixscape/css/style.css') }}"
-        rel="stylesheet" type="text/css" />
-    @stack('css')
+    <link href="{{ asset('public/pixscape/css/style.css') }}" rel="stylesheet" type="text/css" />
     <script src="https://use.typekit.net/qns3mjk.js" type="text/javascript"></script>
     <script type="text/javascript">
         try {
@@ -57,7 +47,6 @@
 
     <style>
         /* Page wrapper opacity */
-
         .page-wrapper {
             opacity: 0;
             animation: pageWrapperFadeIn 1000ms linear forwards;
@@ -74,7 +63,7 @@
 
         /*.page-wrapper.has-preloader .preloader_mid-line,
   .page-wrapper.has-preloader .home-hero_logo-mid {
-    width: 0px;
+  width: 0px;
   }*/
 
         @keyframes pageWrapperFadeIn {
@@ -87,8 +76,8 @@
             }
         }
 
-        /* Lenis scroll smoothing */
 
+        /* Lenis scroll smoothing */
         html.lenis {
             height: auto;
         }
@@ -106,19 +95,16 @@
         }
 
         /* Hide */
-
         .hide {
             display: none !important;
         }
 
         /* Show loader */
-
         .loader_mask {
             display: flex;
         }
 
         /* Split text */
-
         [text-split] {
             opacity: 0;
         }
@@ -162,21 +148,18 @@
             f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-WGX68N5X');
     </script>
-    <!-- End Google Tag Manager -->
-    {{-- <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            "name": "Archipelago",
-            "url": "https://www.archipelago.com.au/",
-            "logo": "https://cdn.prod.website-files.com/65249822a54c89915817034b/6551bd4775979089cb1c796b_Archipelago%20logo_black%20shrunk.png",
-            "description": "We challenge the boundaries of conventional design to create great cities and buildings for people, now and in the future."
-        }
-    </script> --}}
+    <!-- End Google Tag Manager --><!-- [Attributes by Finsweet] CMS Nest -->
+    <script async src="https://cdn.jsdelivr.net/npm/@finsweet/attributes-cmsnest@1/cmsnest.js"></script>
+    <!-- [Attributes by Finsweet] CMS Filter -->
+    <script async src="https://cdn.jsdelivr.net/npm/@finsweet/attributes-cmsfilter@1/cmsfilter.js"></script>
+    <!-- [Attributes by Finsweet] CMS Load -->
+    <script async src="https://cdn.jsdelivr.net/npm/@finsweet/attributes-cmsload@1/cmsload.js"></script>
+    <!-- [Attributes by Finsweet] CMS Static -->
+    <script async src="https://cdn.jsdelivr.net/npm/@finsweet/attributes-cmsstatic@1/cmsstatic.js"></script>
 </head>
 
 <body>
-    <div class="page-wrapper has-preloader">
+    <div class="page-wrapper">
         <div class="cursor">
             <div class="cursor_move">
                 <div class="cursor_dot">
@@ -277,7 +260,7 @@
                 }
 
                 .cms-marquee_link .dot[data-dot-color=orange] {
-                    /* background-color: var(--swatch--orange) */
+                    background-color: var(--swatch--orange)
                 }
 
                 @media screen and (min-width: 992px) {
@@ -410,17 +393,6 @@
                     }
                 }
 
-
-
-                .reveal_logomark {
-                    height: 250px;
-                    width: 250px;
-                }
-
-                /* .reveal_wrap {
-                    background: rgba(255, 0, 0, 0.05);
-                } */
-
                 .nav-logo-link {
                     display: block;
                 }
@@ -449,71 +421,308 @@
                 }
             </style>
         </div>
-        <div data-show-in-designer="false" class="preloader_component">
-            <div class="preloader_flexbox page-padding">
-                <div class="preloader_content">
-                    <div class="preloader_logo-wrap">
-                        <div class="preloader_logo">
-                            <div class="preloader_logo-a w-embed">
-                                {{-- <svg width="auto" height="100%"
-                                    viewBox="0 0 165 245" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M114.145 114.748H50.519L82.2362 33.0332L110.92 106.895V106.859L140.059 181.064H164.545V164.033L100.127 3.7251H64.3571L-0.0605469 164.033V181.064H24.5817L39.9307 141.573H103.677L114.145 114.748Z"
-                                        fill="currentColor" />
-                                </svg> --}}
-                                <img src="{{ asset($logo ? $logo->main_site_header_logo : '') }}" alt="Logo"
-                                    style="width: auto; height: 100%;" />
+        @php
+            $logo = \App\Models\Admin\Logo::first();
+            $aboutus = \App\Models\Admin\AboutUs::first();
+        @endphp
+        @include('frontend.pages.shared.nav')
+
+        <style class="articles-css">
+            @media(min-width: 992px) {
+                :root {
+                    --gap: 0.75em
+                }
+
+                .blog_collection-wrapper {
+                    width: calc(100% + var(--gap)*2);
+                    margin-left: calc(var(--gap)*-1)
+                }
+
+                .blog-grid_collection-item[data-blog-featured=yes i] {
+                    grid-column: span 3
+                }
+
+                .blog-grid_collection-item[data-blog-featured=yes i] .blog_card-content {
+                    padding-left: calc(33.3333333333% + var(--gap));
+                    padding-right: 8.5em;
+                    width: 100%;
+                    gap: 1em
+                }
+
+                .blog-grid_collection-item[data-blog-featured=yes i] .blog_card-heading {
+                    font-size: var(--font-size--h2)
+                }
+
+                .blog-grid_collection-item[data-blog-featured=yes i] .blog_card-p {
+                    width: calc(33.3333333333vw - var(--gap)*6)
+                }
+
+                .articles_sticky_component {
+                    grid-row-end: span 3;
+                    grid-column: 1/span 1
+                }
+            }
+        </style>
+        <div class="page-main">
+            <section class="section">
+                <div class="w-layout-blockcontainer container w-container">
+                    <div class="page-padding">
+                        <div no-gradient="" class="page_no-gradient"></div>
+                        <div class="section-padding is-5em is-page">
+                            <div class="page_top">
+                                <div class="page_heading-wrap">
+                                    <div class="page_heading-logo"><a href="/" class="w-inline-block">
+                                            <div class="page_logo w-embed">
+                                                <h1 style="font-weight: 500;">
+                                                    {{ $aboutus ? $aboutus->company_name : '' }}
+                                                </h1>
+                                            </div>
+                                        </a></div>
+                                    <div class="page_breadcrumb-wrap"><a href="{{ url('/') }}"
+                                            class="page_breadcrumb-text">Home</a>
+                                        <div class="page_breadcrumb-text">/</div><a href="#" aria-current="page"
+                                            class="page_breadcrumb-text w--current">Articles</a>
+                                    </div>
+                                </div>
+                                <div fs-cmsload-element="scroll-anchor" class="filter_wrap">
+                                    <h1 class="h-xl">Articles</h1>
+                                    <div class="form w-form">
+                                        <form id="wf-form-Blog-Filter-Form" name="wf-form-Blog-Filter-Form"
+                                            data-name="Blog Filter Form" method="get" fs-cmsfilter-element="filters"
+                                            class="form" data-wf-page-id="6543a9053fac558af9585fad"
+                                            data-wf-element-id="efd395c3-e7a0-72fd-e800-5875b0744baf">
+                                            <div class="filter_ui-wrap">
+                                                <div class="submit-form is-filter"><input
+                                                        class="submit-field is-filter w-input" maxlength="256"
+                                                        name="field" fs-cmsfilter-field="*" data-name="Field"
+                                                        placeholder="Search" type="text" id="field"
+                                                        required="" /></div>
+                                                <div class="filter_ui-contain">
+                                                    <div class="filter_dropdown">
+                                                        <div class="filter_dropdown_underline-contain">
+                                                            <div class="filter_dropdown-button">
+                                                                <div class="filter_dropdown-label">Filter by Sector
+                                                                </div>
+                                                                <div class="accordion_icon">
+                                                                    <div class="accordion_minus is-vertical w-embed">
+                                                                        <svg width="100%" style=""
+                                                                            viewBox="0 0 12 2" fill="currentColor"
+                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                            <path d="M5.5 0.5H6.5V1.5H5.5V0.5Z"
+                                                                                fill="currentColor" />
+                                                                            <path d="M0 1.5V0.5H12V1.5H0Z"
+                                                                                fill="currentColor" />
+                                                                        </svg>
+                                                                    </div>
+                                                                    <div class="accordion_minus w-embed"><svg
+                                                                            width="100%" style=""
+                                                                            viewBox="0 0 12 2" fill="currentColor"
+                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                            <path d="M5.5 0.5H6.5V1.5H5.5V0.5Z"
+                                                                                fill="currentColor" />
+                                                                            <path d="M0 1.5V0.5H12V1.5H0Z"
+                                                                                fill="currentColor" />
+                                                                        </svg></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="filter_dropdown_underline"></div>
+                                                        </div>
+                                                        <div class="filter_dropdown-wrapper w-dyn-list">
+                                                            <div role="list"
+                                                                class="filter_dropdown-options w-dyn-items">
+                                                                @php
+                                                                    $articles = \App\Models\Admin\Blog::where(
+                                                                        'status',
+                                                                        1,
+                                                                    )
+                                                                        ->where('delete', 0)
+                                                                        ->select('filter_by')
+                                                                        ->distinct()
+                                                                        ->get();
+                                                                @endphp
+                                                                @foreach ($articles as $article)
+                                                                    <div role="listitem" class="w-dyn-item"><label
+                                                                            class="w-checkbox filter_dropdown-item">
+                                                                            <div
+                                                                                class="w-checkbox-input w-checkbox-input--inputType-custom filter_radio">
+                                                                            </div><input type="checkbox"
+                                                                                id="sector[]-2" name="sector[]-2"
+                                                                                data-name="Sector 2"
+                                                                                style="opacity:0;position:absolute;z-index:-1" /><span
+                                                                                fs-cmsfilter-field="sector"
+                                                                                class="filter_option-label w-form-label"
+                                                                                for="sector[]-2">{{ $article->filter_by }}</span>
+                                                                        </label></div>
+                                                                @endforeach
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <div class="w-form-done">
+                                            <div>Thank you! Your submission has been received!</div>
+                                        </div>
+                                        <div class="w-form-fail">
+                                            <div>Oops! Something went wrong while submitting the form.</div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="preloader_mid-line">
-                                <div class="preloader_logo-rchipelago w-embed"></div>
-                            </div>
-                            {{-- <div class="preloader_logo-dot w-embed"><svg width="auto" height="100%" style=""
-                                    viewBox="0 0 40 245" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <g clip-path="url(#clip0_5756_1719)">
-                                        <path
-                                            d="M39.0539 19.0065C39.0539 8.51567 30.4321 0 19.7838 0C9.13547 0 0.513672 8.50384 0.513672 19.0065C0.513672 29.5092 9.14747 38.013 19.7838 38.013C30.4202 38.013 39.0539 29.5092 39.0539 19.0065Z"
-                                            fill="currentColor" />
-                                    </g>
-                                    <defs>
-                                        <clipPath id="clip0_5756_1719">
-                                            <rect width="38.5273" height="244.648" fill="currentColor"
-                                                transform="translate(0.527344)" />
-                                        </clipPath>
-                                    </defs>
-                                </svg>
-                            </div> --}}
                         </div>
                     </div>
-                    <div class="preloader_tagline-wrapper">
-                        <div class="preloader_tagline is-1">Cities.</div>
-                        <div class="preloader_tagline is-2"> People.</div>
-                        <div class="preloader_tagline is-3">Design.</div>
-                    </div>
-                    <div class="preloader_para-wrap">
-                        <div class="loader_acknowledge-p">Archipelago acknowledges the Turrbal and Yuggera people as the
-                            Traditional
-                            Custodians of the land on which our office is located, where we are privileged to design and
-                            create. We
-                            pay our respects to Elders past, present, and emerging.</div>
+                </div>
+            </section>
+            <section class="section">
+                <div class="w-layout-blockcontainer container w-container">
+                    <div class="page-padding">
+                        <div class="section-padding is-5em is-articles">
+                            <div class="blog-grid_collection-wrapper w-dyn-list">
+                                <div fs-cmsstatic-element="list" fs-cmsfilter-element="list"
+                                    fs-cmsload-element="list" fs-cmsload-mode="pagination" fs-cmsnest-element="list"
+                                    role="list" class="blog-grid_collection-list w-dyn-items">
+                                    @php
+                                        $articles = \App\Models\Admin\Blog::where([
+                                            ['status', 1],
+                                            ['delete', 0],
+                                        ])->get();
+                                    @endphp
+                                    @foreach ($articles as $key => $article)
+                                        @if ($key < 2)
+                                            @php
+                                                $articleImgs = json_decode($article->images);
+                                            @endphp
+                                            <div data-blog-featured="yes" role="listitem"
+                                                class="blog-grid_collection-item w-dyn-item"><a
+                                                    href="{{ route('frontend.articleSingle',\Illuminate\Support\Str::slug( $article->title) ) }}?articleid={{ $article->id }}"
+                                                    class="blog_link w-inline-block">
+                                                    <div class="img_overflow"><img alt="" loading="lazy"
+                                                            src="{{ $articleImgs[0] }}" class="blog_item-img" /></div>
+                                                    <div class="blog_card-content">
+                                                        <h3 fs-cmsfilter-field="title" class="blog_card-heading">
+                                                            {{ $article->title }}</h3>
+                                                        <p fs-cmsfilter-field="summary" class="blog_card-p">
+                                                            {!! \Illuminate\Support\Str::limit(strip_tags($article->details), 200) !!}</p>
+                                                    </div>
+                                                    <div fs-cmsfilter-field="category"
+                                                        class="filter_hidden-identifier-wrapper">
+                                                        Article</div>
+                                                </a>
+                                                <div class="filter_hidden-identifier-wrapper">
+                                                    <div fs-cmsnest-collection="sector"
+                                                        fs-cmsnest-element="nest-target"
+                                                        class="filter_cms-nest_target"></div>
+                                                </div>
+                                            </div>
+                                        @else
+                                            @php
+                                                $articleImgs = json_decode($article->images);
+                                            @endphp
+                                            <div data-blog-featured="" role="listitem"
+                                                class="blog-grid_collection-item w-dyn-item"><a
+                                                    href="/blog/urban-pedestrianisation-how-prioritising-pedestrians-can-transform-urban-spaces"
+                                                    class="blog_link w-inline-block">
+                                                    <div class="img_overflow"><img alt="" loading="lazy"
+                                                            src="{{ $articleImgs[0] }}"
+                                                            sizes="(max-width: 767px) 100vw, (max-width: 991px) 728px, 940px"
+                                                            srcset="{{ $articleImgs[0] }}" class="blog_item-img" />
+                                                    </div>
+                                                    <div class="blog_card-content">
+                                                        <h3 fs-cmsfilter-field="title" class="blog_card-heading">
+                                                            {{ $article->title }}</h3>
+                                                        <p fs-cmsfilter-field="summary" class="blog_card-p">
+                                                            {!! \Illuminate\Support\Str::limit(strip_tags($article->details), 200) !!}
+                                                        </p>
+                                                    </div>
+                                                    <div fs-cmsfilter-field="category"
+                                                        class="filter_hidden-identifier-wrapper">
+                                                        Article</div>
+                                                </a>
+                                                <div class="filter_hidden-identifier-wrapper">
+                                                    <div fs-cmsnest-collection="sector"
+                                                        fs-cmsnest-element="nest-target"
+                                                        class="filter_cms-nest_target"></div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                                <div role="navigation" aria-label="List"
+                                    class="w-pagination-wrapper blog-grid_pagination"></div>
+                            </div>
+                            <div class="cms_nest-hidden-wrapper">
+                                <div class="projects_nest-collection w-dyn-list">
+                                    <div fs-cmsnest-collection="sector" fs-cmsnest-element="nest-source"
+                                        role="list" class="projects_nest-list w-dyn-items">
+                                        <div role="listitem" class="projects_nest-item w-dyn-item"><a
+                                                fs-cmsfilter-field="sector"
+                                                href="/project-blog-sectors/workplace-interiors"
+                                                class="projects_nest-item-hidden-link">Workplace + Interiors</a></div>
+                                        <div role="listitem" class="projects_nest-item w-dyn-item"><a
+                                                fs-cmsfilter-field="sector"
+                                                href="/project-blog-sectors/complex-master-plans"
+                                                class="projects_nest-item-hidden-link">Complex master plans</a></div>
+                                        <div role="listitem" class="projects_nest-item w-dyn-item"><a
+                                                fs-cmsfilter-field="sector"
+                                                href="/project-blog-sectors/education-science"
+                                                class="projects_nest-item-hidden-link">Education + Science</a></div>
+                                        <div role="listitem" class="projects_nest-item w-dyn-item"><a
+                                                fs-cmsfilter-field="sector" href="/project-blog-sectors/commercial"
+                                                class="projects_nest-item-hidden-link">Commercial</a></div>
+                                        <div role="listitem" class="projects_nest-item w-dyn-item"><a
+                                                fs-cmsfilter-field="sector"
+                                                href="/project-blog-sectors/city-shaping-master-plans"
+                                                class="projects_nest-item-hidden-link">City Shaping Master Plans</a>
+                                        </div>
+                                        <div role="listitem" class="projects_nest-item w-dyn-item"><a
+                                                fs-cmsfilter-field="sector"
+                                                href="/project-blog-sectors/major-urban-projects"
+                                                class="projects_nest-item-hidden-link">Major Urban Projects</a></div>
+                                        <div role="listitem" class="projects_nest-item w-dyn-item"><a
+                                                fs-cmsfilter-field="sector"
+                                                href="/project-blog-sectors/olympic-precincts-games-overlay"
+                                                class="projects_nest-item-hidden-link">Olympic Precincts + Games
+                                                Overlay</a></div>
+                                        <div role="listitem" class="projects_nest-item w-dyn-item"><a
+                                                fs-cmsfilter-field="sector"
+                                                href="/project-blog-sectors/housing-lifestyle"
+                                                class="projects_nest-item-hidden-link">Housing + Lifestyle</a></div>
+                                        <div role="listitem" class="projects_nest-item w-dyn-item"><a
+                                                fs-cmsfilter-field="sector"
+                                                href="/project-blog-sectors/public-realm-open-space"
+                                                class="projects_nest-item-hidden-link">Public Realm + Open Space</a>
+                                        </div>
+                                        <div role="listitem" class="projects_nest-item w-dyn-item"><a
+                                                fs-cmsfilter-field="sector" href="/project-blog-sectors/urban-renewal"
+                                                class="projects_nest-item-hidden-link">Urban Renewal</a></div>
+                                        <div role="listitem" class="projects_nest-item w-dyn-item"><a
+                                                fs-cmsfilter-field="sector" href="/project-blog-sectors/interiors"
+                                                class="projects_nest-item-hidden-link">Interiors</a></div>
+                                        <div role="listitem" class="projects_nest-item w-dyn-item"><a
+                                                fs-cmsfilter-field="sector"
+                                                href="/project-blog-sectors/transport-infrastructure"
+                                                class="projects_nest-item-hidden-link">Transport + Infrastructure</a>
+                                        </div>
+                                        <div role="listitem" class="projects_nest-item w-dyn-item"><a
+                                                fs-cmsfilter-field="sector" href="/project-blog-sectors/community"
+                                                class="projects_nest-item-hidden-link">Community</a></div>
+                                        <div role="listitem" class="projects_nest-item w-dyn-item"><a
+                                                fs-cmsfilter-field="sector"
+                                                href="/project-blog-sectors/health-knowledge"
+                                                class="projects_nest-item-hidden-link">Health + Knowledge</a></div>
+                                        <div role="listitem" class="projects_nest-item w-dyn-item"><a
+                                                fs-cmsfilter-field="sector"
+                                                href="/project-blog-sectors/guidelines-advisory"
+                                                class="projects_nest-item-hidden-link">Guidelines + Advisory</a></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
-                <div class="preloader_image-wrapper">
-                    <div class="preloader_image-shaded-mask"><img
-                            src="https://cdn.prod.website-files.com/65249822a54c89915817034b/654dd624c6129fd928ad45ff_Citscape4shaded.webp"
-                            loading="eager" sizes="100vw"
-                            srcset="https://cdn.prod.website-files.com/65249822a54c89915817034b/654dd624c6129fd928ad45ff_Citscape4shaded-p-500.webp 500w, https://cdn.prod.website-files.com/65249822a54c89915817034b/654dd624c6129fd928ad45ff_Citscape4shaded-p-800.webp 800w, https://cdn.prod.website-files.com/65249822a54c89915817034b/654dd624c6129fd928ad45ff_Citscape4shaded.webp 1200w"
-                            alt="" class="preloader_image-shaded" /></div>
-                    <div class="preloader_image-unshaded-mask"><img
-                            src="https://cdn.prod.website-files.com/65249822a54c89915817034b/654dd5fa16c68ced7a706dad_Citscape3unshaded.webp"
-                            loading="eager" sizes="100vw"
-                            srcset="https://cdn.prod.website-files.com/65249822a54c89915817034b/654dd5fa16c68ced7a706dad_Citscape3unshaded-p-500.webp 500w, https://cdn.prod.website-files.com/65249822a54c89915817034b/654dd5fa16c68ced7a706dad_Citscape3unshaded-p-800.webp 800w, https://cdn.prod.website-files.com/65249822a54c89915817034b/654dd5fa16c68ced7a706dad_Citscape3unshaded.webp 1200w"
-                            alt="" class="preloader_image-unshaded" /></div>
-                </div>
-            </div>
+            </section>
         </div>
-        
-        @include('frontend.pages.shared.nav')
-        @yield('content')
         @php
             $contact = \App\Models\Admin\Contact::first();
         @endphp
@@ -687,18 +896,18 @@
     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=65249822a54c89915817034b"
         type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous">
     </script>
-    <script src="{{ asset('public/pixscape/js/script.js') }}"
-        type="text/javascript"></script>
-    <script src="{{ asset('public/pixscape/js/app.js') }}"
-        type="text/javascript"></script>
-    @stack('js')
-    <!-- Google Tag Manager (noscript) -->
+    <script src="https://cdn.prod.website-files.com/65249822a54c89915817034b/js/webflow.schunk.36b8fb49256177c8.js"
+        type="text/javascript" integrity="sha384-4abIlA5/v7XaW1HMXKBgnUuhnjBYJ/Z9C1OSg4OhmVw9O3QeHJ/qJqFBERCDPv7G"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.prod.website-files.com/65249822a54c89915817034b/js/webflow.a1efb5ce.2c11213f8d3c734f.js"
+        type="text/javascript" integrity="sha384-XbiTwasTo6b0lAXOMhRAUaAyUS3a/VzAWgCjvoVaz1cOPtjcHBYHMlJjrM5B/Etc"
+        crossorigin="anonymous"></script><!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WGX68N5X" height="0" width="0"
             style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <script>
         window.JS_SCRIPTS.push({
-            'src': 'pages/home/index.js'
+            'src': 'pages/articles.js'
         });
     </script>
 </body>

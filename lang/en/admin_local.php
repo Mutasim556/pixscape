@@ -79,6 +79,7 @@ return array (
   'Blog By' => 'Blog By',
   'Blog Title' => 'Blog Title',
   'Blog Details' => 'Blog Details',
+  'Filter By' => 'Filter By',
   'Blog Images' => 'Blog Images',
   'Edit Blog' => 'Edit Blog',
   'blogs' => 'blogs',
