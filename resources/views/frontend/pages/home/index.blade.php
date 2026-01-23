@@ -37,8 +37,8 @@
                         </div>
                         <div class="home-hero_indicators page-padding">
                             <div class="hero_text" style="color:white">Scroll Down</div>
-                            <div class="hero_text is-mobile-centered w-embed"><a
-                                    href="/project/halcyon-blu" style="color:white">{{ $slider->slider_title }}</a></div>
+                            <div class="hero_text is-mobile-centered w-embed"><a href="/project/halcyon-blu"
+                                    style="color:white">{{ $slider->slider_title }}</a></div>
                         </div>
                     </div>
 
@@ -65,9 +65,8 @@
         </section>
         <div class="reveal_section">
             <div class="reveal_sticky">
-                <div class="reveal_path"><img
-                        src="{{ asset('public/back.svg') }}"
-                        loading="lazy" alt="" class="reveal_logo-img" /></div>
+                <div class="reveal_path"><img src="{{ asset('public/back.svg') }}" loading="lazy" alt=""
+                        class="reveal_logo-img" /></div>
                 <div class="reveal_wrap">
                     <div class="reveal_logomark-wrap">
                         <img src="{{ asset($logo ? $logo->main_site_header_logo : '') }}" loading="lazy" alt=""
@@ -78,11 +77,12 @@
                     <div class="reveal_embed-contain">
                         <div class="reveal_embed w-embed w-iframe">
                             <div style="padding:56.25% 0 0 0;position:relative;">
-                                <iframe src="https://player.vimeo.com/video/{{ $video ? $video->video_link : '' }}?background=1" loading="lazy"
-                                    style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0"
-                                    allow="autoplay; fullscreen" allowfullscreen>
+                                <iframe
+                                    src="https://player.vimeo.com/video/{{ $video ? $video->video_link : '' }}?background=1"
+                                    loading="lazy" style="position:absolute;top:0;left:0;width:100%;height:100%;"
+                                    frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
                                 </iframe>
-{{--
+                                {{--
                                <iframe src="https://player.vimeo.com/video/1154338273?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="1920" height="1080" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="WhatsApp Video 2026-01-14 at 7.39.54 PM"></iframe> --}}
                             </div>
                         </div>
@@ -90,6 +90,111 @@
                 </div>
             </div>
         </div>
+        @php
+            $expertise = \App\Models\Admin\DesignExpertise::first();
+        @endphp
+        <section class="section is-dark-tan">
+            <div class="w-layout-blockcontainer container w-container">
+                <div class="page-padding">
+                    <div class="section-padding is-5em">
+                        <div class="section_top is-5em">
+                            <div class="section_heading-wrap">
+                                <h2 class="h1">Design Expertise</h2>
+                            </div>
+                            <div class="section_content-grid">
+                                <div class="section_info-wrap">
+                                    <p>{{ $expertise ? $expertise->short_description : '' }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section_middle">
+                            <div class="about_content"><img
+                                    src="https://cdn.prod.website-files.com/65249822a54c89915817034b/652690e72bd83a63a1d3c2c3_archipelago-design-expertise.svg"
+                                    loading="lazy" alt="" class="about_diagram" /></div>
+                            <div class="about_content is-left-padding">
+                                <p class="h5">{{ $expertise ? $expertise->title : '' }}</p>
+                                <a href="/practice/about-us" class="button w-inline-block">
+                                    <div class="button_label">{{ $expertise ? $expertise->button_text : '' }}</div>
+                                    <div class="button_arrow w-embed"><svg width="100%" style="" viewBox="0 0 23 17"
+                                            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M23.0001 8.22269L14.7774 0L14.0703 0.707107L21.1005 7.7373H0.28125V8.7373H21.0713L14.0703 15.7383L14.7774 16.4454L23.0001 8.22269Z"
+                                                fill="currentColor" />
+                                        </svg></div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="section_bottom is-about">
+                            @php
+                                $projectTypes = \App\Models\Admin\ProjectType::where([
+                                    ['status', 1],
+                                    ['delete', 0],
+                                ])->get();
+                            @endphp
+                            @foreach ($projectTypes as $projectType)
+                                <a data-animate="" href="/projects?discipline=Architecture"
+                                    class="about_card w-inline-block">
+                                    <div class="img_overflow"><img src="{{ $projectType->image }}" loading="lazy"
+                                            alt="" class="about_img" />
+                                        <div class="about_card-label" style="color:white">{{ $projectType->title }}</div>
+                                    </div>
+                                    <p>{{ $projectType->short_description }}</p>
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section data-light-nav="" class="section is-olive">
+            <div class="w-layout-blockcontainer container w-container">
+                <div class="page-padding">
+                    <div class="section-padding is-5em">
+                        <div class="section_top ">
+                            <h2 class="h1">We&#x27;re City Making Design Leaders</h2>
+                        </div>
+                        <div class="section_middle">
+                            <div class="section_content-grid">
+                                <div class="section_info-wrap">
+                                    <p>From health and knowledge precincts to club houses...</p>
+                                    <a href="/practice/about-us" class="button is-light w-inline-block">
+                                        <div class="button_label">Discover Our Process</div>
+                                        <div class="button_arrow w-embed"><svg width="100%" style=""
+                                                viewBox="0 0 23 17" fill="currentColor"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M23.0001 8.22269L14.7774 0L14.0703 0.707107L21.1005 7.7373H0.28125V8.7373H21.0713L14.0703 15.7383L14.7774 16.4454L23.0001 8.22269Z"
+                                                    fill="currentColor" />
+                                            </svg></div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section_bottom">
+                            <div class="section_bottom is-call-out">
+                                @php
+                                    $counters = \App\Models\Admin\Counter::where([['delete', 0], ['status', 1]])->get();
+                                @endphp
+                                @foreach ($counters as $counter)
+                                    <div id="w-node-_4b76f278-a6fe-147c-4a15-adc1cf470d1b-f9585fa4" class="call-out_wrap">
+                                        <div id="w-node-_7a6add67-4f18-df75-9166-3e37a2566f49-f9585fa4"
+                                            class="h-xl is-call-out"><span
+                                                class="counter">{{ $counter->counter }}</span>+</div>
+                                        <p id="w-node-_87801875-707b-373d-8432-4101b570e374-f9585fa4" class="call-out_p">
+                                            {{ $counter->title }}
+                                        </p>
+                                        <div id="w-node-ad91baad-964f-256b-aa05-c068d794fc67-f9585fa4"
+                                            class="call-out_illustration-contain"><img src="{{ $counter->image }}"
+                                                loading="lazy" alt=""
+                                                class="call-out_illustration is-workshops" /></div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <section class="section">
             <div class="w-layout-blockcontainer container w-container">
                 <div class="page-padding">
@@ -107,7 +212,8 @@
                                     <a href="/projects" class="button w-inline-block">
                                         <div class="button_label">View All Projects</div>
                                         <div class="button_arrow w-embed"><svg width="100%" style=""
-                                                viewBox="0 0 23 17" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                viewBox="0 0 23 17" fill="currentColor"
+                                                xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd" clip-rule="evenodd"
                                                     d="M23.0001 8.22269L14.7774 0L14.0703 0.707107L21.1005 7.7373H0.28125V8.7373H21.0713L14.0703 15.7383L14.7774 16.4454L23.0001 8.22269Z"
                                                     fill="currentColor" />
@@ -185,111 +291,8 @@
                 </div>
             </div>
         </section>
-        <section data-light-nav="" class="section is-olive">
-            <div class="w-layout-blockcontainer container w-container">
-                <div class="page-padding">
-                    <div class="section-padding is-5em">
-                        <div class="section_top ">
-                            <h2 class="h1">We&#x27;re City Making Design Leaders</h2>
-                        </div>
-                        <div class="section_middle">
-                            <div class="section_content-grid">
-                                <div class="section_info-wrap">
-                                    <p>From health and knowledge precincts to club houses...</p>
-                                    <a href="/practice/about-us" class="button is-light w-inline-block">
-                                        <div class="button_label">Discover Our Process</div>
-                                        <div class="button_arrow w-embed"><svg width="100%" style=""
-                                                viewBox="0 0 23 17" fill="currentColor"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                                    d="M23.0001 8.22269L14.7774 0L14.0703 0.707107L21.1005 7.7373H0.28125V8.7373H21.0713L14.0703 15.7383L14.7774 16.4454L23.0001 8.22269Z"
-                                                    fill="currentColor" />
-                                            </svg></div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="section_bottom">
-                            <div class="section_bottom is-call-out">
-                                @php
-                                    $counters = \App\Models\Admin\Counter::where([['delete', 0], ['status', 1]])->get();
-                                @endphp
-                                @foreach ($counters as $counter)
-                                    <div id="w-node-_4b76f278-a6fe-147c-4a15-adc1cf470d1b-f9585fa4" class="call-out_wrap">
-                                        <div id="w-node-_7a6add67-4f18-df75-9166-3e37a2566f49-f9585fa4"
-                                            class="h-xl is-call-out"><span
-                                                class="counter">{{ $counter->counter }}</span>+</div>
-                                        <p id="w-node-_87801875-707b-373d-8432-4101b570e374-f9585fa4" class="call-out_p">
-                                            {{ $counter->title }}
-                                        </p>
-                                        <div id="w-node-ad91baad-964f-256b-aa05-c068d794fc67-f9585fa4"
-                                            class="call-out_illustration-contain"><img src="{{ $counter->image }}"
-                                                loading="lazy" alt=""
-                                                class="call-out_illustration is-workshops" /></div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        @php
-            $expertise = \App\Models\Admin\DesignExpertise::first();
-        @endphp
-        <section class="section is-dark-tan">
-            <div class="w-layout-blockcontainer container w-container">
-                <div class="page-padding">
-                    <div class="section-padding is-5em">
-                        <div class="section_top is-5em">
-                            <div class="section_heading-wrap">
-                                <h2 class="h1">Design Expertise</h2>
-                            </div>
-                            <div class="section_content-grid">
-                                <div class="section_info-wrap">
-                                    <p>{{ $expertise ? $expertise->short_description : '' }}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="section_middle">
-                            <div class="about_content"><img
-                                    src="https://cdn.prod.website-files.com/65249822a54c89915817034b/652690e72bd83a63a1d3c2c3_archipelago-design-expertise.svg"
-                                    loading="lazy" alt="" class="about_diagram" /></div>
-                            <div class="about_content is-left-padding">
-                                <p class="h5">{{ $expertise ? $expertise->title : '' }}</p>
-                                <a href="/practice/about-us" class="button w-inline-block">
-                                    <div class="button_label">{{ $expertise ? $expertise->button_text : '' }}</div>
-                                    <div class="button_arrow w-embed"><svg width="100%" style=""
-                                            viewBox="0 0 23 17" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                                d="M23.0001 8.22269L14.7774 0L14.0703 0.707107L21.1005 7.7373H0.28125V8.7373H21.0713L14.0703 15.7383L14.7774 16.4454L23.0001 8.22269Z"
-                                                fill="currentColor" />
-                                        </svg></div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="section_bottom is-about">
-                            @php
-                                $projectTypes = \App\Models\Admin\ProjectType::where([
-                                    ['status', 1],
-                                    ['delete', 0],
-                                ])->get();
-                            @endphp
-                            @foreach ($projectTypes as $projectType)
-                                <a data-animate="" href="/projects?discipline=Architecture"
-                                    class="about_card w-inline-block">
-                                    <div class="img_overflow"><img src="{{ $projectType->image }}" loading="lazy"
-                                            alt="" class="about_img" />
-                                        <div class="about_card-label" style="color:white">{{ $projectType->title }}</div>
-                                    </div>
-                                    <p>{{ $projectType->short_description }}</p>
-                                </a>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+
+
         <section data-cms-marquee-section="" data-light-nav="" class="section is-olive">
             <div class="w-layout-blockcontainer container w-container">
                 <div class="section-padding is-6-5em">
@@ -501,10 +504,9 @@
                         <div class="blog_collection-wrapper w-dyn-list">
                             <div role="list" class="blog_collection-list w-dyn-items">
                                 @php
-                                        $blogs = \App\Models\Admin\Blog::where([['status',1],['delete',0]])->get();
-                                    @endphp
-                                    @foreach ($blogs as $blog)
-
+                                    $blogs = \App\Models\Admin\Blog::where([['status', 1], ['delete', 0]])->get();
+                                @endphp
+                                @foreach ($blogs as $blog)
                                     <div data-animate="" role="listitem" class="blog_collection-item w-dyn-item">
                                         <a href="/blog/victoria-park-a-vision-realised-a-legacy-secured"
                                             class="blog_link w-inline-block">
@@ -519,7 +521,7 @@
                                             </div>
                                         </a>
                                     </div>
-                                    @endforeach
+                                @endforeach
                             </div>
                         </div>
                         <div class="section_content-grid">
