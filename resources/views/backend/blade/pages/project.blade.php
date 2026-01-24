@@ -200,7 +200,7 @@
                                              class="form-control js-example-basic-multiple" multiple>
                                              @foreach (\App\Models\Admin\Team::where([['status', 1], ['delete', 0]])->get() as $team)
                                                  <option
-                                                     value="{{ $team->id }}-{{ $team->team_member_name }}-{{ $team->team_member_designation }}">
+                                                     value="{{ $team->id }}-{{ $team->team_member_name }}-{{ $team->team_member_design }}">
                                                      {{ $team->team_member_name }}</option>
                                              @endforeach
                                          </select>
@@ -446,7 +446,7 @@
                                              class="form-control js-example-basic-multiple" multiple>
                                              @foreach (\App\Models\Admin\Team::where([['status', 1], ['delete', 0]])->get() as $team)
                                                  <option
-                                                     value="{{ $team->id }}-{{ $team->team_member_name }}-{{ $team->team_member_designation }}">
+                                                     value="{{ $team->id }}-{{ $team->team_member_name }}-{{ $team->team_member_desig }}">
                                                      {{ $team->team_member_name }}</option>
                                              @endforeach
                                          </select>

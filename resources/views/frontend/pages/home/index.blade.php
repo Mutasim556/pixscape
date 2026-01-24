@@ -2,6 +2,26 @@
 @php
     $logo = \App\Models\Admin\Logo::first();
 @endphp
+@push('css')
+    <style>
+        .section_bottom.is-about {
+            display: flex;
+            flex-wrap: wrap;
+            /* 👈 REQUIRED */
+            gap: 1.5rem;
+        }
+
+        .about_card {
+            flex: 0 0 100%;
+        }
+
+        @media (min-width: 992px) {
+            .about_card {
+                flex: 0 0 calc(33.3333% - 1.5rem);
+            }
+        }
+    </style>
+@endpush
 @section('content')
     <main class="page-main">
         <section class="section">
@@ -113,7 +133,7 @@
                                     loading="lazy" alt="" class="about_diagram" /></div>
                             <div class="about_content is-left-padding">
                                 <p class="h5">{{ $expertise ? $expertise->title : '' }}</p>
-                                <a href="/practice/about-us" class="button w-inline-block">
+                                <a href="{{ route('frontend.aboutUs') }}" class="button w-inline-block">
                                     <div class="button_label">{{ $expertise ? $expertise->button_text : '' }}</div>
                                     <div class="button_arrow w-embed"><svg width="100%" style="" viewBox="0 0 23 17"
                                             fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -157,7 +177,7 @@
                             <div class="section_content-grid">
                                 <div class="section_info-wrap">
                                     <p>From health and knowledge precincts to club houses...</p>
-                                    <a href="/practice/about-us" class="button is-light w-inline-block">
+                                    <a href="{{ route('frontend.aboutUs') }}" class="button is-light w-inline-block">
                                         <div class="button_label">Discover Our Process</div>
                                         <div class="button_arrow w-embed"><svg width="100%" style=""
                                                 viewBox="0 0 23 17" fill="currentColor"
@@ -201,7 +221,7 @@
                     <div class="section-padding is-5em">
                         <div class="section_top is-5em">
                             <div class="section_heading-wrap">
-                                <h2 class="h1">Featured Projects</h2>
+                                <h2 class="h1">Featured Works</h2>
                             </div>
                             <div class="section_content-grid">
                                 <div class="section_info-wrap">
@@ -209,7 +229,7 @@
                                         renewal to intimate
                                         residential spaces, showcases our innovative and people-centric approach to
                                         city making.</p>
-                                    <a href="/projects" class="button w-inline-block">
+                                    <a href="{{ route('frontend.project') }}" class="button w-inline-block">
                                         <div class="button_label">View All Projects</div>
                                         <div class="button_arrow w-embed"><svg width="100%" style=""
                                                 viewBox="0 0 23 17" fill="currentColor"
@@ -229,11 +249,11 @@
                                         $projects = \App\Models\Admin\Project::where([
                                             ['delete', 0],
                                             ['status', 1],
-                                        ])->get();
+                                        ])->orderBy('id','DESC')->limit(4)->get();
                                     @endphp
                                     @foreach ($projects as $project)
                                         <div role="listitem" class="projects-list_item w-dyn-item">
-                                            <a data-animate="" href="/project/the-mill-at-moreton-bay"
+                                            <a data-animate="" href="{{ route('frontend.projectSingle',\Illuminate\Support\Str::slug( $project->title) ) }}?projectid={{ $project->id }}"
                                                 class="vertical_0-5em w-inline-block">
                                                 @php
                                                     $pimages = json_decode($project->images);
@@ -273,7 +293,7 @@
                                 <div data-wf--block-button-group--position="center" class="button_group">
                                     <div class="display-contents">
                                         <div class="spacer-2"></div>
-                                        <a href="/projects" class="button w-inline-block">
+                                        <a href="{{ route('frontend.project') }}" class="button w-inline-block">
                                             <div class="button_label">View All Projects</div>
                                             <div class="button_arrow w-embed"><svg width="100%" style=""
                                                     viewBox="0 0 23 17" fill="currentColor"

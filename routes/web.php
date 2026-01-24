@@ -41,6 +41,7 @@ Route::controller(FrontendController::class)->name('frontend.')->group(function(
     /** Project Page Start */
     Route::get('/project','project')->name('project');
     Route::get('/project-single/{slug?}','projectSingle')->name('projectSingle');
+    Route::get('/project-search/{search?}','projectSearch')->name('projectSearch');
     /** Project Page End */
 
     /** Workshop Page Start */

@@ -13,7 +13,7 @@ use Intervention\Image\ImageManager;
 
 class ProjectController extends Controller
 {
-    public function __construct() 
+    public function __construct()
     {
         $this->middleware('permission:project-index,admin');
         $this->middleware('permission:project-store,admin')->only('store');
