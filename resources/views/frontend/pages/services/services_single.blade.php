@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Pixscape&#x27;s Project | {{ $project->title }}</title>
+    <title>Pixscape&#x27;s Services | {{ $service->service_name }}</title>
     <meta content="Innovation and employment hub for the next generation of health &amp; knowledge industries"
         name="description" />
     <meta content="Archipelago&#x27;s Project | The Mill at Moreton Bay" property="og:title" />
@@ -478,11 +478,12 @@
                                         </a></div>
                                     <div class="page_breadcrumb-wrap"><a href="{{ url('/') }}"
                                             class="page_breadcrumb-text">Home</a>
-                                        <div class="page_breadcrumb-text">/</div><a
-                                            href="{{ route('frontend.project') }}"
-                                            class="page_breadcrumb-text">Projects</a>
+                                        <div class="page_breadcrumb-text">/</div><a href="#"
+                                            class="page_breadcrumb-text">Services</a>
+                                        <div class="page_breadcrumb-text">/</div><a href="#"
+                                            class="page_breadcrumb-text">{{ $service->type }}</a>
                                         <div class="page_breadcrumb-text">/</div><a href="#" aria-current="page"
-                                            class="page_breadcrumb-text w--current">{{ $project->title }}</a>
+                                            class="page_breadcrumb-text w--current">{{ $service->service_name }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -495,42 +496,36 @@
                     <div class="cta_wrap">
                         <div class="cta_marquee"><a href="#" class="cta_marquee-content w-inline-block">
 
-                                <div class="cta_marquee-text h-xl">{{ $project->title }}
+                                <div class="cta_marquee-text h-xl">{{ $service->service_name }}
                                 </div>
                                 <div class="dot is-light"></div>
-                                <div class="cta_marquee-text h-xl">{{ $project->title }}
+                                <div class="cta_marquee-text h-xl">{{ $service->service_name }}
                                 </div>
                                 <div class="dot is-light"></div>
-                                <div class="cta_marquee-text h-xl">{{ $project->title }}
+                                <div class="cta_marquee-text h-xl">{{ $service->service_name }}
                                 </div>
                                 <div class="dot is-light"></div>
-                                <div class="cta_marquee-text h-xl">{{ $project->title }}
+                                <div class="cta_marquee-text h-xl">{{ $service->service_name }}
                                 </div>
                                 <div class="dot is-light"></div>
-                                <div class="cta_marquee-text h-xl">{{ $project->title }}
+                                <div class="cta_marquee-text h-xl">{{ $service->service_name }}
                                 </div>
                                 <div class="dot is-light"></div>
                             </a></div>
                     </div>
                 </div>
-                @php
-                    $images = json_decode($project->images);
-                @endphp
-                <div class="img_overflow is-cta"><img loading="lazy"
-                        src="{{ asset($images[0]) }}"
-                        alt="" sizes="100vw"
-                        srcset="{{ asset($images[0]) }}"
-                        class="cta_img" /></div>
+                <div class="img_overflow is-cta"><img loading="lazy" src="{{ asset($service->service_image) }}" alt=""
+                        sizes="100vw" srcset="{{ asset($service->service_image) }}" class="cta_img" /></div>
             </section>
             <section class="section">
                 <div class="w-layout-blockcontainer container w-container">
                     <div class="page-padding">
                         <div class="section-padding is-project-info">
                             <div class="project_layout">
-                                <div class="vertical_1-5em is-project">
+                                {{-- <div class="vertical_1-5em is-project">
                                     <div class="project_info">
                                         @php
-                                            $options = json_decode($project->option_value);
+                                            $options = json_decode($service->option_value);
                                         @endphp
                                         @foreach ($options as $option)
                                             <div class="project_info-row">
@@ -570,15 +565,15 @@
 
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="vertical_3-75em is-project">
                                     <div class="project_content-top">
-                                        <p class="page_sub-heading">{{ $project->title }}</p>
+                                        <p class="page_sub-heading">{{ $service->service_name }}</p>
                                         <div class="rich-text is-project w-richtext">
-                                            {!! $project->details !!}
+                                            {!! $service->service_details !!}
                                         </div>
                                     </div>
-                                    <div class="vertical_1-5em">
+                                    {{-- <div class="vertical_1-5em">
                                         <div class="accordion_wrap">
                                             @if ($project->challenges)
                                                 <div class="accordion_condition">
@@ -689,7 +684,7 @@
                                                 </div>
                                             @endif
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
@@ -720,7 +715,7 @@
                                     </div>
                                 </div>
                             </div> --}}
-                            @php
+                            {{-- @php
                                 $images = json_decode($project->images);
                             @endphp
                             @foreach ($images as $image)
@@ -731,7 +726,7 @@
                                         <p class="w-dyn-bind-empty"></p>
                                     </div>
                                 </div>
-                            @endforeach
+                            @endforeach --}}
                         </div>
                     </div>
                 </div>

@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AboutUsController;
 use App\Http\Controllers\Admin\Auth\AdminAuthController;
 use App\Http\Controllers\Admin\Auth\AdminLoginController;
 use App\Http\Controllers\Admin\AwardController;
+use App\Http\Controllers\Admin\CareerController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\ContactUsController;
 use App\Http\Controllers\Admin\CounterController;
@@ -194,6 +195,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::get('/update/status/{id}/{status}', 'updateStatus');
             });
             /** Award End */
+
+            /** Career Start */
+            Route::resource('career', CareerController::class)->except('create', 'show');
+            Route::controller(CareerController::class)->prefix('career')->group(function () {
+                Route::get('/update/status/{id}/{status}', 'updateStatus');
+                Route::get('/job/applications', 'jobApplications');
+            });
+            /** Career End */
         });
     });
     Route::get('/translate-string', function () {

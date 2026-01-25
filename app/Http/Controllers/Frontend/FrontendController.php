@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Blog;
+use App\Models\Admin\Career;
+use App\Models\Admin\JobApplication;
 use App\Models\Admin\Project;
+use App\Models\Admin\Service;
 use App\Models\Admin\Team;
 use Illuminate\Http\Request;
 
@@ -100,23 +103,24 @@ class FrontendController extends Controller
 
     public function careers()
     {
-        return view('frontend.pages.careers.index');
+        $career = Career::first();
+        return view('frontend.pages.careers.index',compact('career'));
     }
 
 
     public function services()
     {
-        $projects = Project::where([['status', 1], ['delete', 0]])->get();
-
-        return view('frontend.pages.project.index', compact('projects'));
+        $services = Service::where([['status', 1], ['delete', 0],['type',request()->get('type')]])->get();
+        $service_type = request()->get('type');
+        return view('frontend.pages.services.index', compact('services','service_type'));
     }
 
     public function serviceSingle()
     {
-        if (request()->has('projectid')) {
-            $project = Project::where([['status', 1], ['delete', 0], ['id', request()->get('projectid')]])->with('team')->first();
-            $projects = Project::where([['status', 1], ['delete', 0]])->get();
-            return view('frontend.pages.project.project_single', compact('project', 'projects'));
+        if (request()->has('serviceid')) {
+            $service = Service::where([['status', 1], ['delete', 0], ['id', request()->get('serviceid')]])->first();
+            $services = Service::where([['status', 1], ['delete', 0]])->get();
+            return view('frontend.pages.services.services_single', compact('service', 'services'));
         }
     }
 
@@ -142,8 +146,37 @@ class FrontendController extends Controller
         } else {
             $search = request()->search;
 
-            $projects = Project::where([['status', 1], ['delete', 0], ['title', 'like', '%' . $search . '%']])->get();
-            return $projects;
+            $services = Service::where([['status', 1], ['delete', 0], ['service_name', 'like', '%' . $search . '%'],['type',request()->type]])->get();
+            return $services;
+        }
+    }
+
+    public function postResume(Request $data){
+        $data->validate([
+            'applicant_name'=>'required',
+            'applicant_email'=>'required',
+            'applicant_resume'=>'required|mimes:pdf|max:2000',
+        ],[
+            'applicant_name.required'=>'Applicant Name Required',
+            'applicant_email.required'=>'Applicant Email Required',
+            'applicant_resume.required'=>'Applicant Resume Required',
+            'applicant_resume.mimes'=>'Applicant resume must be pdf',
+        ]);
+
+        $newResume = new JobApplication();
+        $newResume->app_name = $data->applicant_name;
+        $newResume->app_email = $data->applicant_email;
+
+        $dir = getDirectoryLink('career/career-resume');
+        $makeDir = createDirectory($dir);
+
+         if ($data->hasFile('applicant_resume')) {
+            $file = $data->file('applicant_resume');
+
+            $fileName = time() . '_' . $file->getClientOriginalName();
+
+            // storage/app/public/pdfs
+            $filePath = $file->storeAs('pdf', $fileName, 'public');
         }
     }
 }

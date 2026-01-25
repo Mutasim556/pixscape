@@ -168,7 +168,23 @@
                         </ul>
                     </li>
                 @endif
+                @if (hasPermission(['career-index']))
+                    <li>
+                        <a class="submenu-title" href="javascript:void(0)"
+                            style="margin-bottom:5px;">{{ __('admin_local.Career Page') }}<span class="sub-arrow"><i
+                                    class="fa fa-angle-right"></i></span></a>
 
+                        <ul class="nav-sub-childmenu submenu-content">
+                            @if (hasPermission(['career-index']))
+                                <li>
+                                    <a class="sidebar-link" href="{{ route('admin.pages.career.index') }}"
+                                        style="margin-bottom:5px;">{{ __('admin_local.Career') }}</a>
+                                </li>
+                            @endif
+
+                        </ul>
+                    </li>
+                @endif
             </ul>
         </li>
     @endif

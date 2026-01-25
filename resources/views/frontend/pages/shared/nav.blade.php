@@ -83,11 +83,11 @@
                             </svg></div>
                     </div>
                     <div class="nav_dropdown-links">
-                        <div class="nav_link-wrap"><a href="{{ route('frontend.aboutUs') }}"
+                        <div class="nav_link-wrap"><a href="{{ route('frontend.services') }}?type=Our Expertise"
                                 class="nav_link is-dropdown">Our Expertise</a>
                             <div class="nav_link-underline"></div>
                         </div>
-                        <div class="nav_link-wrap"><a href="{{ route('frontend.workshop') }}"
+                        <div class="nav_link-wrap"><a href="{{ route('frontend.services') }}?type=Supporting Service"
                                 class="nav_link is-dropdown">Others Supporting Services</a>
                             <div class="nav_link-underline"></div>
                         </div>
@@ -97,7 +97,7 @@
                         style="color: black !important">Works</a>
                     <div class="nav_link-underline"></div>
                 </div>
-                <div class="nav_link-wrap"><a href="{{ route('frontend.project') }}" class="nav_link"
+                <div class="nav_link-wrap"><a href="{{ route('frontend.careers') }}" class="nav_link"
                         style="color: black !important">Career</a>
                     <div class="nav_link-underline"></div>
                 </div>
@@ -112,7 +112,7 @@
                             </svg></div>
                     </div>
                     <div class="nav_dropdown-links">
-                        
+
                         <div class="nav_link-wrap"><a href="{{ route('frontend.careers') }}" class="nav_link is-dropdown">Careers</a>
                             <div class="nav_link-underline"></div>
                         </div>
