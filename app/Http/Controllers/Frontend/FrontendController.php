@@ -78,7 +78,7 @@ class FrontendController extends Controller
             }
             if ($filter) {
                 $projects = $projects->where(function ($q) use ($filter) {
-                    foreach (explode(',',$filter) as $term) {
+                    foreach (explode(',', $filter) as $term) {
                         $q->orWhere('project_type_id', $term);
                     }
                 });
@@ -101,5 +101,49 @@ class FrontendController extends Controller
     public function careers()
     {
         return view('frontend.pages.careers.index');
+    }
+
+
+    public function services()
+    {
+        $projects = Project::where([['status', 1], ['delete', 0]])->get();
+
+        return view('frontend.pages.project.index', compact('projects'));
+    }
+
+    public function serviceSingle()
+    {
+        if (request()->has('projectid')) {
+            $project = Project::where([['status', 1], ['delete', 0], ['id', request()->get('projectid')]])->with('team')->first();
+            $projects = Project::where([['status', 1], ['delete', 0]])->get();
+            return view('frontend.pages.project.project_single', compact('project', 'projects'));
+        }
+    }
+
+    public function serviceSearch()
+    {
+        if (request()->filter) {
+            $search = request()->search;
+            $filter = request()->items;
+
+            $projects = Project::where([['status', 1], ['delete', 0]]);
+            if ($search) {
+                $projects = $projects->where('title', 'like', '%' . $search . '%');
+            }
+            if ($filter) {
+                $projects = $projects->where(function ($q) use ($filter) {
+                    foreach (explode(',', $filter) as $term) {
+                        $q->orWhere('project_type_id', $term);
+                    }
+                });
+            }
+
+            return $projects->get();
+        } else {
+            $search = request()->search;
+
+            $projects = Project::where([['status', 1], ['delete', 0], ['title', 'like', '%' . $search . '%']])->get();
+            return $projects;
+        }
     }
 }
