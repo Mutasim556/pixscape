@@ -514,53 +514,7 @@
                 </div>
             </div>
         </section>
-        <section class="section is-dark-tan">
-            <div class="w-layout-blockcontainer container w-container">
-                <div class="page-padding">
-                    <div class="section-padding is-5em">
-                        <div class="section_heading-wrap">
-                            <h2 class="h1">Recent Articles</h2>
-                        </div>
-                        <div class="blog_collection-wrapper w-dyn-list">
-                            <div role="list" class="blog_collection-list w-dyn-items">
-                                @php
-                                    $blogs = \App\Models\Admin\Blog::where([['status', 1], ['delete', 0]])->get();
-                                @endphp
-                                @foreach ($blogs as $blog)
-                                    <div data-animate="" role="listitem" class="blog_collection-item w-dyn-item">
-                                        <a href="/blog/victoria-park-a-vision-realised-a-legacy-secured"
-                                            class="blog_link w-inline-block">
-                                            <div class="img_overflow"><img alt="" loading="lazy"
-                                                    src="https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/67e5f0a64fa2ffda85681fe6_BOLD_hero_01_stadium%20crop.webp"
-                                                    sizes="(max-width: 767px) 100vw, (max-width: 991px) 727.0700073242188px, 939.0899658203125px"
-                                                    srcset="https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/67e5f0a64fa2ffda85681fe6_BOLD_hero_01_stadium%20crop-p-500.webp 500w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/67e5f0a64fa2ffda85681fe6_BOLD_hero_01_stadium%20crop-p-800.webp 800w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/67e5f0a64fa2ffda85681fe6_BOLD_hero_01_stadium%20crop-p-1080.webp 1080w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/67e5f0a64fa2ffda85681fe6_BOLD_hero_01_stadium%20crop-p-1600.webp 1600w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/67e5f0a64fa2ffda85681fe6_BOLD_hero_01_stadium%20crop-p-2000.webp 2000w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/67e5f0a64fa2ffda85681fe6_BOLD_hero_01_stadium%20crop.webp 2500w"
-                                                    class="blog_item-img" /></div>
-                                            <div class="blog_card-content">
-                                                <h3 class="blog_card-heading">{{ $blog->title }}</h3>
-                                                <p class="blog_card-p">{!! \Illuminate\Support\Str::limit(strip_tags($blog->details), 200) !!}</p>
-                                            </div>
-                                        </a>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                        <div class="section_content-grid">
-                            <div id="w-node-bc9b4950-63c8-df04-627c-835b2b42fc1b-f9585fa4" class="section_info-wrap">
-                                <a href="/resources/articles" class="button w-inline-block">
-                                    <div class="button_label">View All Articles</div>
-                                    <div class="button_arrow w-embed"><svg width="100%" style=""
-                                            viewBox="0 0 23 17" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                                d="M23.0001 8.22269L14.7774 0L14.0703 0.707107L21.1005 7.7373H0.28125V8.7373H21.0713L14.0703 15.7383L14.7774 16.4454L23.0001 8.22269Z"
-                                                fill="currentColor" />
-                                        </svg></div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        @include('frontend.pages.shared.footer')
         @php
             $teaminfo = \App\Models\Admin\TeamInfo::first();
         @endphp

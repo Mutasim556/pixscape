@@ -250,4 +250,5 @@ class BlogController extends Controller
         $blog = Blog::where('id', $data->id)->first();
         return $blog;
     }
+    
 }

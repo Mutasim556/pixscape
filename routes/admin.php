@@ -154,6 +154,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::controller(ContactUsController::class)->prefix('contact-us')->group(function () {
                 Route::get('/update/contact-us', 'contactUs')->name('contactUs');
                 Route::post('/update/contact-us', 'updateContactUs')->name('updateContactUs');
+                Route::get('/messages', 'contactUsMessages')->name('contactUsMessages');
+                Route::get('/messages/update/status/{id}/{status}', 'updateMessageStatus')->name('updateMessageStatus');
+                Route::delete('/messages/delete/{id}', 'deleteMessage')->name('deleteMessage');
             });
 
             Route::controller(AboutUsController::class)->prefix('about-us')->group(function () {
@@ -163,7 +166,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
             /** Services Start */
             Route::resource('service', ServiceController::class)->except('create', 'show');
-            Route::controller(ServiceController::class)->prefix('service')->group(function () { 
+            Route::controller(ServiceController::class)->prefix('service')->group(function () {
                 Route::get('/update/status/{id}/{status}', 'updateStatus');
             });
             /** Services End */

@@ -31,6 +31,8 @@ Route::controller(FrontendController::class)->name('frontend.')->group(function(
 
     /** Contact Page Start */
     Route::get('/contact','contact')->name('contact');
+    Route::post('/message-post','messagePost')->name('messagePost');
+    Route::post('/subscribe-post','subscribePost')->name('subscribePost');
     /** Contact Page End */
 
     /** Article Page Start */

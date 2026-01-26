@@ -6,10 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\Blog;
 use App\Models\Admin\Career;
 use App\Models\Admin\JobApplication;
+use App\Models\Admin\Message;
 use App\Models\Admin\Project;
 use App\Models\Admin\Service;
 use App\Models\Admin\Team;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Mews\Purifier\Facades\Purifier;
 
 class FrontendController extends Controller
 {
@@ -36,6 +39,91 @@ class FrontendController extends Controller
     public function contact()
     {
         return view('frontend.pages.contact.index');
+    }
+
+    public function messagePost(Request $data)
+    {
+        $data->merge([
+            'phone' => Purifier::clean(preg_replace('/\D/', '', $data->phone), [
+                'HTML.Allowed' => ''
+            ]),
+            'email' =>  Purifier::clean(strtolower(trim($data->email)), [
+                'HTML.Allowed' => ''
+            ]),
+            'name' => Purifier::clean($data->name, [
+                'HTML.Allowed' => ''
+            ]),
+            'message' => Purifier::clean($data->message, [
+                'HTML.Allowed' => ''
+            ]),
+            'type' => Purifier::clean($data->type, [
+                'HTML.Allowed' => ''
+            ]),
+        ]);
+        $data->validate([
+            'name' => 'required|max:49',
+            'email' => 'email|max:49',
+            'phone' => 'required|digits_between:10,15',
+            'message' => 'required',
+        ], [
+            'name.required' => 'Name field is required',
+            'name.max' => 'Maximum 49 letters are allowed',
+            'email.required' => 'Email field is required',
+            'email.email' => 'Invalid email',
+            'email.max' => 'Email shoul not greater then 49 letters',
+            'phone.required' => 'Phone number is required',
+            'phone.digits_between' => 'The phone field must be between 10 and 15 digits',
+            'message.required' => 'Message is required',
+        ]);
+
+        $message = new Message();
+        $message->name = $data->name;
+        $message->email = $data->email;
+        $message->phone = $data->phone;
+        $message->type = $data->type;
+        $message->message = $data->message;
+        $message->subscription = 0;
+
+        if ($message->save()) {
+            return redirect()->to(url()->previous() . '#message_form')
+                ->with('success', 'Thanks for messaging. We will contact you within a short time');
+        }
+    }
+
+    public function subscribePost(Request $data)
+    {
+        $data->merge([
+            'email' =>  Purifier::clean(strtolower(trim($data->email)), [
+                'HTML.Allowed' => ''
+            ]),
+        ]);
+        $validator = Validator::make($data->all(), [
+            'email' => 'required|email|max:49|unique:messages,email',
+        ], [
+            'name.required' => 'Name field is required',
+            'name.max' => 'Maximum 49 letters are allowed',
+            'email.required' => 'Email field is required',
+            'email.unique' => 'Email already used',
+            'email.email' => 'Invalid email',
+            'email.max' => 'Email should not be greater than 49 letters',
+            'phone.required' => 'Phone number is required',
+            'phone.digits_between' => 'The phone field must be between 10 and 15 digits',
+            'message.required' => 'Message is required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->to(url()->previous() . '#message_form')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $message = new Message();
+        $message->email = $data->email;
+        if ($message->save()) {
+            return redirect()->to(url()->previous() . '#message_form')
+                ->with('success', 'Thanks for messaging. We will contact you within a short time');
+        }
     }
 
     public function article()

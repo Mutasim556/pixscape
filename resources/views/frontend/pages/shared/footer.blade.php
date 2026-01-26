@@ -4,8 +4,8 @@
         $logo = \App\Models\Admin\Logo::first();
     @endphp
     <div class="page-padding">
-        <div class="footer_wrap">
-            <div class="footer_top">
+        <div class="footer_wrap" >
+            <div class="footer_top" id="message_form">
                 <a aria-label="Archipelago Homepage" href="/" aria-current="page"
                     class="footer_home-link w-inline-block w--current">
                     <div class="logo_footer w-embed" style="">
@@ -13,12 +13,16 @@
                     </div>
                 </a>
                 <div id="w-node-_3707be7f-7d62-d0fa-61da-a90f397b7524-397b751f" class="footer_horizontal is-nav-links">
-                    <div class="footer_nav-contain"><a href="{{ route('frontend.project') }}" class="footer_nav-link">Works</a>
+                    <div class="footer_nav-contain"><a href="{{ route('frontend.project') }}"
+                            class="footer_nav-link">Works</a>
                     </div>
-                    <div class="footer_nav-contain"><a href="{{ route('frontend.aboutUs') }}" class="footer_nav-link">About Us</a></div>
-                    <div class="footer_nav-contain"><a href="{{ route('frontend.team') }}" class="footer_nav-link">Team</a><a
-                            href="{{ route('frontend.careers') }}" class="footer_nav-link">Careers</a></div>
-                    <div class="footer_nav-contain"><a href="{{ route('frontend.article') }}" class="footer_nav-link">Articles</a>
+                    <div class="footer_nav-contain"><a href="{{ route('frontend.aboutUs') }}"
+                            class="footer_nav-link">About Us</a></div>
+                    <div class="footer_nav-contain"><a href="{{ route('frontend.team') }}"
+                            class="footer_nav-link">Team</a><a href="{{ route('frontend.careers') }}"
+                            class="footer_nav-link">Careers</a></div>
+                    <div class="footer_nav-contain"><a href="{{ route('frontend.article') }}"
+                            class="footer_nav-link">Articles</a>
                     </div>
                 </div>
                 <div id="w-node-_3707be7f-7d62-d0fa-61da-a90f397b753d-397b751f" class="footer_horizontal">
@@ -54,24 +58,25 @@
                         <div>Our strategy, thinking and insights. Shared with you.</div>
                     </div>
                     <div class="form w-form">
-                        <form id="wf-form-Footer-Subscribe-Form" name="wf-form-Footer-Subscribe-Form"
-                            data-name="Footer Subscribe Form" method="get" class="submit-form"
-                            data-wf-page-id="6543a9053fac558af9585fa4"
-                            data-wf-element-id="3707be7f-7d62-d0fa-61da-a90f397b7553">
-                            <div class="submit-form recaptcha"><input class="submit-field is-footer-email w-input"
-                                    maxlength="256" name="Email" data-name="Email" placeholder="Enter Your Email"
-                                    type="email" id="Email-3" required="" /><input type="submit"
-                                    data-wait="Please wait..." title="Submit" class="submit-button w-button"
-                                    value="" /></div>
-
-
+                        <form method="post" class="submit-form" action="{{ route('frontend.subscribePost') }}">
+                            @csrf
+                            <div class="submit-form recaptcha">
+                                <input class="submit-field is-footer-email w-input" maxlength="256" name="email"
+                                    placeholder="Enter Your Email" type="email" required="" />
+                                <input type="submit"title="Submit" class="submit-button w-button" value="" />
+                            </div>
                         </form>
-                        <div class="form_success w-form-done">
-                            <div>Thank you! Your submission has been received!</div>
-                        </div>
-                        <div class="form_error w-form-fail">
-                            <div>Oops! Something went wrong while submitting the form.</div>
-                        </div>
+                        @if (session()->has('success'))
+                            <div class="form_success">
+                                <div>Thank you! Your submission has been received!</div>
+                            </div>
+                        @endif
+                        @error('email')
+                            <div class="form_error">
+                                <div>{{ $message }}</div>
+                            </div>
+                        @enderror
+
                     </div>
                 </div>
             </div>
@@ -155,8 +160,8 @@
                         </div> --}}
                 <div class="footer_horizontal is-right">
                     <div class="footer_legal">
-                        <div>© {{ env('COMPANY_NAME') }} <span data-copyright-year=""></span></div><a
-                            href="https://igniteonline.com.au/" target="_blank">Website by Md. Mutasim</a>
+                        <div>© {{ env('COMPANY_NAME') }} <span data-copyright-year=""></span></div><a href="#"
+                            target="_blank">Website by Md. Mutasim</a>
                     </div>
                 </div>
             </div>

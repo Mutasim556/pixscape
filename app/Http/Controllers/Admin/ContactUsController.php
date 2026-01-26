@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Contact;
 use App\Models\Admin\Message;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ContactUsController extends Controller
@@ -46,7 +47,24 @@ class ContactUsController extends Controller
 
 
     public function contactUsMessages(){
-        $messages =Message::where('reply_status',0)->get();
+        $messages = Message::get();
         return view('backend.blade.pages.messages',compact('messages'));
+    }
+
+    public function updateMessageStatus(Request $data){
+        Message::where('id', $data->id)->update(['reply_status' => $data->status, 'updated_at' => Carbon::now()]);
+        $Message = Message::where('id', $data->id)->first();
+        return $Message;
+    }
+
+
+    public function deleteMessage(string $id){
+        $message = Message::findOrFail($id);
+        $message->delete();
+        return response([
+            'title' => __('admin_local.Congratulations !'),
+            'text' => __('admin_local.Message deleted successfully.'),
+            'confirmButtonText' => __('admin_local.Ok'),
+        ]);
     }
 }

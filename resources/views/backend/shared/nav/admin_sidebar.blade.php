@@ -168,7 +168,7 @@
                         </ul>
                     </li>
                 @endif
-                @if (hasPermission(['career-index']))
+                @if (hasPermission(['career-index','job-application-index']))
                     <li>
                         <a class="submenu-title" href="javascript:void(0)"
                             style="margin-bottom:5px;">{{ __('admin_local.Career Page') }}<span class="sub-arrow"><i
@@ -190,7 +190,12 @@
                         </ul>
                     </li>
                 @endif
-                
+                @if (hasPermission(['message-index']))
+                    <li>
+                        <a class="sidebar-link"
+                            href="{{ route('admin.pages.contactUsMessages') }}">{{ __('admin_local.Messages') }}</a>
+                    </li>
+                @endif
             </ul>
         </li>
     @endif

@@ -202,7 +202,6 @@
                                          <th>{{ __('admin_local.Sender Name') }}</th>
                                          <th>{{ __('admin_local.Sender Phone') }}</th>
                                          <th>{{ __('admin_local.Sender Email') }}</th>
-                                         <th>{{ __('admin_local.Sender Address') }}</th>
                                          <th>{{ __('admin_local.Reason') }}</th>
                                          <th>{{ __('admin_local.Messages') }}</th>
                                          <th>{{ __('admin_local.Date') }}</th>
@@ -217,8 +216,7 @@
                                              <td>{{ $message->name }}</td>
                                              <td>{{ $message->phone }}</td>
                                              <td>{{ $message->email }}</td>
-                                             <td>{{ $message->address }}</td>
-                                             <td>{{ str_replace('_', ' ', strtoupper($message->reason)) }}</td>
+                                             <td>{!! $message->type?str_replace('_', ' ', strtoupper($message->type)):'<span class="badge badge-danger">Subscription</span>' !!}</td>
                                              <td>{{ $message->message }}</td>
                                              <td>{{ date('Y-m-d', strtotime($message->created_at)) }}</td>
                                              <td class="text-center">
@@ -235,12 +233,9 @@
                                                          class="btn btn-info text-white px-2 py-1 dropbtn">{{ __('admin_local.Action') }}
                                                          <i class="fa fa-angle-down"></i></button>
                                                      <div class="dropdown-content">
-                                                         <a data-bs-toggle="modal" style="cursor: pointer;"
-                                                             data-bs-target="#edit-jummah-modal" class="text-primary"
-                                                             id="edit_button"><i
-                                                                 class=" fa fa-edit mx-1"></i>{{ __('admin_local.Edit') }}</a>
+
                                                          <a class="text-danger" id="delete_button"
-                                                             style="cursor: pointer;"><i class="fa fa-trash mx-1"></i>
+                                                             style="cursor: pointer;margin-top:20px;"><i class="fa fa-trash mx-1"></i>
                                                              {{ __('admin_local.Delete') }}</a>
                                                      </div>
                                                  </div>
@@ -336,7 +331,7 @@
          var base_url = `{{ baseUrl() }}`;
          var translate_url = `{{ route('admin.translateString') }}`;
      </script>
-     <script src="{{ asset(env('ASSET_DIRECTORY', 'public') . '/' . 'admin/custom/jummah/jummah.js') }}"></script>
+     <script src="{{ asset(env('ASSET_DIRECTORY', 'public') . '/' . 'admin/custom/message/message.js') }}"></script>
      {{-- <script src="{{ asset(env('ASSET_DIRECTORY','public').'/'.'inventory/custom/user/user_list.js') }}"></script> --}}
  @endpush
 
