@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Career;
+use App\Models\Admin\JobApplication;
 use Illuminate\Http\Request;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
@@ -89,6 +90,25 @@ class CareerController extends Controller
     }
 
     public function jobApplications(){
-        
+
+        $applications = JobApplication::query();
+        if(request()->start_date){
+            $applications = $applications->where('created_at','>=',request()->start_date);
+        }
+        if(request()->send_date){
+            $applications = $applications->where('created_at','<=',request()->end_date);
+        }
+        if(!request()->start_date && !request()->send_date){
+            $applications = $applications->orderBy('id','DESC')->limit(10);
+        }
+        $applications = $applications->get();
+        return view('backend.blade.pages.job_application',compact('applications'));
+    }
+
+    public function jobApplicationsDelete(string $id){
+        $ja = JobApplication::where('id',$id)->first();
+        unlink($ja->app_resume);
+        $delete = JobApplication::where('id',$id)->delete();
+        return back();
     }
 }

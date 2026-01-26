@@ -104,15 +104,15 @@ class FrontendController extends Controller
     public function careers()
     {
         $career = Career::first();
-        return view('frontend.pages.careers.index',compact('career'));
+        return view('frontend.pages.careers.index', compact('career'));
     }
 
 
     public function services()
     {
-        $services = Service::where([['status', 1], ['delete', 0],['type',request()->get('type')]])->get();
+        $services = Service::where([['status', 1], ['delete', 0], ['type', request()->get('type')]])->get();
         $service_type = request()->get('type');
-        return view('frontend.pages.services.index', compact('services','service_type'));
+        return view('frontend.pages.services.index', compact('services', 'service_type'));
     }
 
     public function serviceSingle()
@@ -146,21 +146,22 @@ class FrontendController extends Controller
         } else {
             $search = request()->search;
 
-            $services = Service::where([['status', 1], ['delete', 0], ['service_name', 'like', '%' . $search . '%'],['type',request()->type]])->get();
+            $services = Service::where([['status', 1], ['delete', 0], ['service_name', 'like', '%' . $search . '%'], ['type', request()->type]])->get();
             return $services;
         }
     }
 
-    public function postResume(Request $data){
+    public function postResume(Request $data)
+    {
         $data->validate([
-            'applicant_name'=>'required',
-            'applicant_email'=>'required',
-            'applicant_resume'=>'required|mimes:pdf|max:2000',
-        ],[
-            'applicant_name.required'=>'Applicant Name Required',
-            'applicant_email.required'=>'Applicant Email Required',
-            'applicant_resume.required'=>'Applicant Resume Required',
-            'applicant_resume.mimes'=>'Applicant resume must be pdf',
+            'applicant_name' => 'required',
+            'applicant_email' => 'required',
+            'applicant_resume' => 'required|mimes:pdf',
+        ], [
+            'applicant_name.required' => 'Applicant Name Required',
+            'applicant_email.required' => 'Applicant Email Required',
+            'applicant_resume.required' => 'Applicant Resume Required',
+            'applicant_resume.mimes' => 'Applicant resume must be pdf',
         ]);
 
         $newResume = new JobApplication();
@@ -170,13 +171,20 @@ class FrontendController extends Controller
         $dir = getDirectoryLink('career/career-resume');
         $makeDir = createDirectory($dir);
 
-         if ($data->hasFile('applicant_resume')) {
-            $file = $data->file('applicant_resume');
+        if ($data->hasFile('applicant_resume')) {
 
-            $fileName = time() . '_' . $file->getClientOriginalName();
+            $pdf = $data->file('applicant_resume');
 
-            // storage/app/public/pdfs
-            $filePath = $file->storeAs('pdf', $fileName, 'public');
+            $fileName = time() . '_' . $pdf->getClientOriginalName();
+
+            // Move PDF to directory
+            $pdf->move($dir, $fileName);
         }
+
+        $newResume->app_resume = $dir . "/" . $fileName;
+
+        $newResume->save();
+
+        return redirect()->back()->with('success', 'Application submitted successfully!')->withFragment('applicant_form');
     }
 }

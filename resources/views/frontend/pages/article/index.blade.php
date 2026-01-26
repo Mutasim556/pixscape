@@ -497,7 +497,7 @@
                                                         name="field" fs-cmsfilter-field="*" data-name="Field"
                                                         placeholder="Search" type="text" id="field"
                                                         required="" /></div>
-                                                <div class="filter_ui-contain">
+                                                {{-- <div class="filter_ui-contain">
                                                     <div class="filter_dropdown">
                                                         <div class="filter_dropdown_underline-contain">
                                                             <div class="filter_dropdown-button">
@@ -557,7 +557,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                             </div>
                                         </form>
                                         <div class="w-form-done">

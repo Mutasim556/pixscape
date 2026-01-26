@@ -163,7 +163,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
             /** Services Start */
             Route::resource('service', ServiceController::class)->except('create', 'show');
-            Route::controller(ServiceController::class)->prefix('service')->group(function () {
+            Route::controller(ServiceController::class)->prefix('service')->group(function () { 
                 Route::get('/update/status/{id}/{status}', 'updateStatus');
             });
             /** Services End */
@@ -200,7 +200,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::resource('career', CareerController::class)->except('create', 'show');
             Route::controller(CareerController::class)->prefix('career')->group(function () {
                 Route::get('/update/status/{id}/{status}', 'updateStatus');
-                Route::get('/job/applications', 'jobApplications');
+                Route::get('/job/applications', 'jobApplications')->name('jobApplications');
+                Route::get('/job/applications/delete/{id}', 'jobApplicationsDelete')->name('jobApplicationsDelete');
             });
             /** Career End */
         });

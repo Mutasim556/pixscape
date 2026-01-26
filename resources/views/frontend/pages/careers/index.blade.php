@@ -143,19 +143,26 @@
                             <div class="section_heading-wrap">
                                 <h2 class="h1" style="text-align: center">Drop your resume here</h2>
                             </div>
-                            <div class="section_content-grid is-2">
+                            <div class="section_content-grid is-2" id="applicant_form">
                                 <div class="">
                                     <p class="p-large">We are seeking expressions of interest from passionate individuals to
                                         join our
                                         great team!</p>
                                 </div>
-                                <div >
-                                    <form method="POST" enctype="multipart/form-data" action="{{ route('frontend.postResume') }}">
+                                <div>
+                                    @if (session()->has('success'))
+                                        <div
+                                            style="width: 100%;padding:10px; background:#3f8639;text-align: center;color:white">
+                                            <span style="text-align: center">{{ session()->get('success') }}</span>
+                                        </div>
+                                    @endif
+                                    <form method="POST" enctype="multipart/form-data" 
+                                        action="{{ route('frontend.postResume') }}">
                                         @csrf
                                         <div class="field-group">
                                             <label class="field-label">Applicant Name</label>
-                                            <input type="text" class="text-input" name="applicant_name" placeholder="Name"
-                                                required>
+                                            <input type="text" class="text-input" name="applicant_name"
+                                                placeholder="Name" required>
                                             @error('applicant_name')
                                                 <span style="color:red">{{ $message }}</span>
                                             @enderror
@@ -163,8 +170,8 @@
                                         </div>
                                         <div class="field-group">
                                             <label class="field-label">Email address</label>
-                                            <input type="email" class="text-input" name="applicant_email" placeholder="name@example.com"
-                                                required>
+                                            <input type="email" class="text-input" name="applicant_email"
+                                                placeholder="name@example.com" required>
                                             @error('applicant_email')
                                                 <span style="color:red">{{ $message }}</span>
                                             @enderror
@@ -172,8 +179,9 @@
 
                                         <div class="field-group">
                                             <label class="field-label">Upload PDF</label>
-                                            <input type="file" name="applican_resume" class="file-input" accept="application/pdf" required>
-                                            @error('applican_resume')
+                                            <input type="file" name="applicant_resume" class="file-input"
+                                                accept="application/pdf" required>
+                                            @error('applicant_resume')
                                                 <span style="color:red">{{ $message }}</span>
                                             @enderror
                                         </div>
@@ -185,11 +193,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="section_middle"><img class="careers_city-img"
-                                src="https://cdn.prod.website-files.com/65249822a54c89915817034b/653871397e1136fb05d51386_archipelago_citycape.webp"
-                                alt="" sizes="100vw" loading="lazy" data-animate=""
-                                srcset="https://cdn.prod.website-files.com/65249822a54c89915817034b/653871397e1136fb05d51386_archipelago_citycape-p-500.webp 500w, https://cdn.prod.website-files.com/65249822a54c89915817034b/653871397e1136fb05d51386_archipelago_citycape-p-800.webp 800w, https://cdn.prod.website-files.com/65249822a54c89915817034b/653871397e1136fb05d51386_archipelago_citycape-p-1080.webp 1080w, https://cdn.prod.website-files.com/65249822a54c89915817034b/653871397e1136fb05d51386_archipelago_citycape.webp 1200w" />
-                        </div>
+                        
                     </div>
                 </div>
             </div>

@@ -181,10 +181,16 @@
                                         style="margin-bottom:5px;">{{ __('admin_local.Career') }}</a>
                                 </li>
                             @endif
-
+                             @if (hasPermission(['job-application-index']))
+                                <li>
+                                    <a class="sidebar-link" href="{{ route('admin.pages.jobApplications') }}"
+                                        style="margin-bottom:5px;">{{ __('admin_local.Applications') }}</a>
+                                </li>
+                            @endif
                         </ul>
                     </li>
                 @endif
+                
             </ul>
         </li>
     @endif

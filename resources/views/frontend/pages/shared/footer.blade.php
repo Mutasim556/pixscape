@@ -13,13 +13,12 @@
                     </div>
                 </a>
                 <div id="w-node-_3707be7f-7d62-d0fa-61da-a90f397b7524-397b751f" class="footer_horizontal is-nav-links">
-                    <div class="footer_nav-contain"><a href="/projects" class="footer_nav-link">Projects</a>
+                    <div class="footer_nav-contain"><a href="{{ route('frontend.project') }}" class="footer_nav-link">Works</a>
                     </div>
-                    <div class="footer_nav-contain"><a href="/practice/about-us" class="footer_nav-link">About Us</a><a
-                            href="/practice/workshops" class="footer_nav-link">Workshops</a></div>
-                    <div class="footer_nav-contain"><a href="/people/team" class="footer_nav-link">Team</a><a
-                            href="/people/careers" class="footer_nav-link">Careers</a></div>
-                    <div class="footer_nav-contain"><a href="/resources/articles" class="footer_nav-link">Articles</a>
+                    <div class="footer_nav-contain"><a href="{{ route('frontend.aboutUs') }}" class="footer_nav-link">About Us</a></div>
+                    <div class="footer_nav-contain"><a href="{{ route('frontend.team') }}" class="footer_nav-link">Team</a><a
+                            href="{{ route('frontend.careers') }}" class="footer_nav-link">Careers</a></div>
+                    <div class="footer_nav-contain"><a href="{{ route('frontend.article') }}" class="footer_nav-link">Articles</a>
                     </div>
                 </div>
                 <div id="w-node-_3707be7f-7d62-d0fa-61da-a90f397b753d-397b751f" class="footer_horizontal">

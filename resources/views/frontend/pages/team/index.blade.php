@@ -80,15 +80,7 @@
                                 srcset="https://cdn.prod.website-files.com/65249822a54c89915817034b/65540f3105b0d57b256f81b0_Two%20Archipelago%20team%20members%20having%20a%20conversation%20at%20a%20table-p-500.webp 500w, https://cdn.prod.website-files.com/65249822a54c89915817034b/65540f3105b0d57b256f81b0_Two%20Archipelago%20team%20members%20having%20a%20conversation%20at%20a%20table-p-800.webp 800w, https://cdn.prod.website-files.com/65249822a54c89915817034b/65540f3105b0d57b256f81b0_Two%20Archipelago%20team%20members%20having%20a%20conversation%20at%20a%20table-p-1080.webp 1080w, https://cdn.prod.website-files.com/65249822a54c89915817034b/65540f3105b0d57b256f81b0_Two%20Archipelago%20team%20members%20having%20a%20conversation%20at%20a%20table-p-1600.webp 1600w, https://cdn.prod.website-files.com/65249822a54c89915817034b/65540f3105b0d57b256f81b0_Two%20Archipelago%20team%20members%20having%20a%20conversation%20at%20a%20table.webp 2003w"
                                 alt="" class="ratio_img" /></div>
                         <div id="w-node-cfb97ec3-8808-cc9d-a022-0136105c2368-105c2362" class="hiring_info-wrap">
-                            <div class="hiring_logo w-embed"><svg width="100%" style="" viewBox="0 0 51 49"
-                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M30.4866 31.0518H13.5001L21.969 8.93703L29.625 28.926V28.9185L37.4016 48.9999H43.9399V44.394L26.7432 1.00537H17.1968L0 44.394V48.9999H6.57763L10.6761 38.3116H27.6898L30.4866 31.0518Z"
-                                        fill="currentColor" />
-                                    <path
-                                        d="M50.9284 5.1395C50.9284 4.123 50.627 3.12934 50.0623 2.28415C49.4975 1.43897 48.6948 0.780217 47.7557 0.39122C46.8166 0.00222301 45.7832 -0.0995511 44.7862 0.0987578C43.7893 0.297067 42.8735 0.78655 42.1547 1.50532C41.436 2.2241 40.9465 3.13988 40.7482 4.13684C40.5499 5.13381 40.6516 6.16718 41.0406 7.1063C41.4296 8.04543 42.0884 8.84811 42.9336 9.41284C43.7788 9.97758 44.7724 10.279 45.7889 10.279C47.152 10.279 48.4592 9.73752 49.4231 8.77368C50.3869 7.80983 50.9284 6.50258 50.9284 5.1395Z"
-                                        fill="currentColor" />
-                                </svg></div>
+                            <div class="hiring_logo w-embed"><h2>{{ $aboutus ? $aboutus->company_name : '' }}</h2></div>
                             <div class="hiring_info-contain">
                                 <div class="hiring_callout">We’re hiring!</div>
                                 <p class="hiring_heading">Are you a passionate city maker eager to leave your mark on the
@@ -96,7 +88,7 @@
                                     landscape?</p>
                                 <p class="hiring_p">Join our dynamic Archipelago team and be part of crafting spaces that
                                     will shape
-                                    Australia&#x27;s cities for generations to come.</p><a href="/people/careers"
+                                    Australia&#x27;s cities for generations to come.</p><a href="{{ route('frontend.careers') }}"
                                     class="button is-hiring w-inline-block">
                                     <div class="button_label">Join The Team</div>
                                     <div class="button_arrow w-embed"><svg width="100%" style="" viewBox="0 0 23 17"

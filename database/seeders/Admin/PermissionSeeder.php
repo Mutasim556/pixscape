@@ -140,5 +140,6 @@ class PermissionSeeder extends Seeder
         // Permission::create(['guard_name' => 'admin', 'name' => 'career-create', 'group_name' => 'Career']);
         // Permission::create(['guard_name' => 'admin', 'name' => 'career-update', 'group_name' => 'Career']);
         // Permission::create(['guard_name' => 'admin', 'name' => 'career-delete', 'group_name' => 'Career']);
+        // Permission::create(['guard_name' => 'admin', 'name' => 'job-application-index', 'group_name' => 'Career']);
     }
 }
