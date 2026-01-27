@@ -67,9 +67,16 @@
                 </div>
             </div>
             <div class="nav_menu">
-
+                <div class="nav_link-wrap"><a href="{{ url('/') }}" class="nav_link"
+                        style="color: black !important">Home</a>
+                    <div class="nav_link-underline"></div>
+                </div>
                 <div class="nav_link-wrap"><a href="{{ route('frontend.aboutUs') }}" class="nav_link"
                         style="color: black !important">About Us</a>
+                    <div class="nav_link-underline"></div>
+                </div>
+                <div class="nav_link-wrap"><a href="{{ route('frontend.team') }}" class="nav_link"
+                        style="color: black !important">Team</a>
                     <div class="nav_link-underline"></div>
                 </div>
                 <div class="nav_dropdown">
@@ -86,14 +93,35 @@
                         <div class="nav_link-wrap"><a href="{{ route('frontend.services') }}?type=Our Expertise"
                                 class="nav_link is-dropdown">Our Expertise</a>
                             <div class="nav_link-underline"></div>
+                            {{-- <ul style="list-style: none">
+                                <li>URBAN PLANNING & DESIGN</li>
+                                <li>ARCHITECTURE & BUILDING DESIGN</li>
+                                <li>TRANSPORTATION</li>
+                                <li>ENVIRONMENTAL</li>
+                                <li>WATER AND HYDROLOGY</li>
+                                <li>GEOSPETIAL (inc. GIS) & SURVEY</li>
+                                <li>IT & SOFTWARE</li>
+                                <li>CONSTRUCTION & DEVELOPMENT WOR</li>
+                            </ul> --}}
                         </div>
+
                         <div class="nav_link-wrap"><a href="{{ route('frontend.services') }}?type=Supporting Service"
                                 class="nav_link is-dropdown">Others Supporting Services</a>
                             <div class="nav_link-underline"></div>
+                            {{-- <ul style="list-style: none">
+                                <li>URBAN PLANNING & DESIGN</li>
+                                <li>ARCHITECTURE & BUILDING DESIGN</li>
+                                <li>TRANSPORTATION</li>
+                                <li>ENVIRONMENTAL</li>
+                                <li>WATER AND HYDROLOGY</li>
+                                <li>GEOSPETIAL (inc. GIS) & SURVEY</li>
+                                <li>IT & SOFTWARE</li>
+                                <li>CONSTRUCTION & DEVELOPMENT WOR</li>
+                            </ul> --}}
                         </div>
                     </div>
                 </div>
-                <div class="nav_link-wrap"><a href="{{ route('frontend.project') }}" class="nav_link"
+                <div class="nav_link-wrap" style="border-right:1px solid black;padding-right:30px;"><a href="{{ route('frontend.project') }}" class="nav_link"
                         style="color: black !important">Works</a>
                     <div class="nav_link-underline"></div>
                 </div>
@@ -118,10 +146,7 @@
                         </div>
                     </div>
                 </div> --}}
-                <div class="nav_link-wrap"><a href="{{ route('frontend.team') }}" class="nav_link"
-                        style="color: black !important">Team</a>
-                    <div class="nav_link-underline"></div>
-                </div>
+
                 <div class="nav_link-wrap"><a href="{{ route('frontend.article') }}" class="nav_link"
                         style="color: black !important">Articles</a>
                     <div class="nav_link-underline"></div>

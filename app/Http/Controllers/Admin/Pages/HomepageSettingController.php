@@ -17,7 +17,7 @@ class HomepageSettingController extends Controller
 {
      public function mainSlider()
     {
-        $sliders = HomepageSilder::where([['status', 1], ['delete', 0]])->get();
+        $sliders = HomepageSilder::where([['delete', 0]])->get();
         // dd($sliders);
         return view('backend.blade.settings.homepage.main_slider', compact('sliders'));
     }

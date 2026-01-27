@@ -85,7 +85,7 @@
         </section>
         <div class="reveal_section">
             <div class="reveal_sticky">
-                <div class="reveal_path"><img src="{{ asset('public/back.svg') }}" loading="lazy" alt=""
+                <div class="reveal_path"><img src="{{ asset('public/back2.svg') }}" loading="lazy" alt=""
                         class="reveal_logo-img" /></div>
                 <div class="reveal_wrap">
                     <div class="reveal_logomark-wrap">
@@ -119,7 +119,7 @@
                     <div class="section-padding is-5em">
                         <div class="section_top is-5em">
                             <div class="section_heading-wrap">
-                                <h2 class="h1">Design Expertise</h2>
+                                <h2 class="h1">Our Expertise</h2>
                             </div>
                             <div class="section_content-grid">
                                 <div class="section_info-wrap">
@@ -133,7 +133,7 @@
                                     loading="lazy" alt="" class="about_diagram" /></div>
                             <div class="about_content is-left-padding">
                                 <p class="h5">{{ $expertise ? $expertise->title : '' }}</p>
-                                <a href="{{ route('frontend.aboutUs') }}" class="button w-inline-block">
+                                <a href="{{ route('frontend.services') }}?type=Our Expertise" class="button w-inline-block">
                                     <div class="button_label">{{ $expertise ? $expertise->button_text : '' }}</div>
                                     <div class="button_arrow w-embed"><svg width="100%" style="" viewBox="0 0 23 17"
                                             fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -514,7 +514,7 @@
                 </div>
             </div>
         </section>
-        @include('frontend.pages.shared.footer')
+
         @php
             $teaminfo = \App\Models\Admin\TeamInfo::first();
         @endphp
