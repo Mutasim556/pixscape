@@ -128,12 +128,12 @@
                             </div>
                         </div>
                         <div class="section_middle">
-                            <div class="about_content"><img
-                                    src="https://cdn.prod.website-files.com/65249822a54c89915817034b/652690e72bd83a63a1d3c2c3_archipelago-design-expertise.svg"
-                                    loading="lazy" alt="" class="about_diagram" /></div>
+                            <div class="about_content"><img src="{{ $expertise ? $expertise->image : '' }}" loading="lazy"
+                                    alt="" class="about_diagram" /></div>
                             <div class="about_content is-left-padding">
                                 <p class="h5">{{ $expertise ? $expertise->title : '' }}</p>
-                                <a href="{{ route('frontend.services') }}?type=Our Expertise" class="button w-inline-block">
+                                <a href="{{ route('frontend.services') }}?type=Our Expertise"
+                                    class="button w-inline-block">
                                     <div class="button_label">{{ $expertise ? $expertise->button_text : '' }}</div>
                                     <div class="button_arrow w-embed"><svg width="100%" style="" viewBox="0 0 23 17"
                                             fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -171,12 +171,13 @@
                 <div class="page-padding">
                     <div class="section-padding is-5em">
                         <div class="section_top ">
-                            <h2 class="h1">We&#x27;re City Making Design Leaders</h2>
+                            <h2 class="h1">We are the Architects of the Modern Urban Experience.</h2>
                         </div>
                         <div class="section_middle">
                             <div class="section_content-grid">
                                 <div class="section_info-wrap">
-                                    <p>From health and knowledge precincts to club houses...</p>
+                                    <p>Specializing in diverse urban typologies, from technical knowledge hubs to bespoke
+                                        leisure spaces</p>
                                     <a href="{{ route('frontend.aboutUs') }}" class="button is-light w-inline-block">
                                         <div class="button_label">Discover Our Process</div>
                                         <div class="button_arrow w-embed"><svg width="100%" style=""
@@ -225,10 +226,9 @@
                             </div>
                             <div class="section_content-grid">
                                 <div class="section_info-wrap">
-                                    <p>Pixscape&#x27;s portfolio of city making projects, from expansive urban
-                                        renewal to intimate
-                                        residential spaces, showcases our innovative and people-centric approach to
-                                        city making.</p>
+                                    <p>Pixscape’s portfolio spans city-shaping initiatives of all scales—from large-scale
+                                        urban renewal to thoughtfully designed residential environments—reflecting our
+                                        innovative, people-focused approach to city making.</p>
                                     <a href="{{ route('frontend.project') }}" class="button w-inline-block">
                                         <div class="button_label">View All Projects</div>
                                         <div class="button_arrow w-embed"><svg width="100%" style=""
@@ -246,14 +246,15 @@
                             <div class="projects-list_grid-wrapper w-dyn-list">
                                 <div role="list" class="projects-list_grid w-dyn-items">
                                     @php
-                                        $projects = \App\Models\Admin\Project::where([
-                                            ['delete', 0],
-                                            ['status', 1],
-                                        ])->orderBy('id','DESC')->limit(4)->get();
+                                        $projects = \App\Models\Admin\Project::where([['delete', 0], ['status', 1]])
+                                            ->inRandomOrder()
+                                            ->limit(4)
+                                            ->get();
                                     @endphp
                                     @foreach ($projects as $project)
                                         <div role="listitem" class="projects-list_item w-dyn-item">
-                                            <a data-animate="" href="{{ route('frontend.projectSingle',\Illuminate\Support\Str::slug( $project->title) ) }}?projectid={{ $project->id }}"
+                                            <a data-animate=""
+                                                href="{{ route('frontend.projectSingle', \Illuminate\Support\Str::slug($project->title)) }}?projectid={{ $project->id }}"
                                                 class="vertical_0-5em w-inline-block">
                                                 @php
                                                     $pimages = json_decode($project->images);
@@ -319,41 +320,39 @@
                     <div class="page-padding">
                         <h3 class="projects_sub-heading">What we&#x27;re currently working on</h3>
                     </div>
+                    @php
+                        $projects = \App\Models\Admin\Project::where([['delete', 0], ['status', 1]])
+                            ->inRandomOrder()
+                            ->limit(10)
+                            ->get();
+                    @endphp
                     <div class="cms-marquee_component">
                         <div class="cms-marquee_row-wrapper is-no-hover-pause">
                             <div class="cms-marquee_row">
                                 <div class="w-dyn-list">
                                     <div role="list" class="cms-marquee_list w-dyn-items">
+                                        @foreach ($projects as $project)
                                         <div role="listitem" class="cms-marquee_item w-dyn-item">
                                             <a href="#" class="cms-marquee_link w-inline-block">
                                                 <div data-dot-color="light-tan" class="dot"></div>
-                                                <div class="cms-marquee_text h-xl">Logan Gold Coast Faster Rail
+                                                <div class="cms-marquee_text h-xl">{{ $project->title }}
                                                 </div>
                                             </a>
                                         </div>
-                                        <div role="listitem" class="cms-marquee_item w-dyn-item">
-                                            <a href="#" class="cms-marquee_link w-inline-block">
-                                                <div data-dot-color="light-tan" class="dot"></div>
-                                                <div class="cms-marquee_text h-xl">Ipswich Hospital</div>
-                                            </a>
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="w-dyn-list">
                                     <div role="list" class="cms-marquee_list w-dyn-items">
+                                         @foreach ($projects as $project)
                                         <div role="listitem" class="cms-marquee_item w-dyn-item">
                                             <a href="#" class="cms-marquee_link w-inline-block">
                                                 <div data-dot-color="light-tan" class="dot"></div>
-                                                <div class="cms-marquee_text h-xl">Logan Gold Coast Faster Rail
+                                                <div class="cms-marquee_text h-xl">{{ $project->title }}
                                                 </div>
                                             </a>
                                         </div>
-                                        <div role="listitem" class="cms-marquee_item w-dyn-item">
-                                            <a href="#" class="cms-marquee_link w-inline-block">
-                                                <div data-dot-color="light-tan" class="dot"></div>
-                                                <div class="cms-marquee_text h-xl">Ipswich Hospital</div>
-                                            </a>
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -362,36 +361,28 @@
                             <div class="cms-marquee_row">
                                 <div class="w-dyn-list">
                                     <div role="list" class="cms-marquee_list w-dyn-items">
+                                         @foreach ($projects as $project)
                                         <div role="listitem" class="cms-marquee_item w-dyn-item">
                                             <a href="#" class="cms-marquee_link w-inline-block">
                                                 <div data-dot-color="light-tan" class="dot"></div>
-                                                <div class="cms-marquee_text h-xl">Coomera Connector North and
-                                                    South</div>
+                                                <div class="cms-marquee_text h-xl">{{ $project->title }}
+                                                </div>
                                             </a>
                                         </div>
-                                        <div role="listitem" class="cms-marquee_item w-dyn-item">
-                                            <a href="#" class="cms-marquee_link w-inline-block">
-                                                <div data-dot-color="light-tan" class="dot"></div>
-                                                <div class="cms-marquee_text h-xl">Future Medical Facility</div>
-                                            </a>
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="w-dyn-list">
                                     <div role="list" class="cms-marquee_list w-dyn-items">
+                                         @foreach ($projects as $project)
                                         <div role="listitem" class="cms-marquee_item w-dyn-item">
                                             <a href="#" class="cms-marquee_link w-inline-block">
                                                 <div data-dot-color="light-tan" class="dot"></div>
-                                                <div class="cms-marquee_text h-xl">Coomera Connector North and
-                                                    South</div>
+                                                <div class="cms-marquee_text h-xl">{{ $project->title }}
+                                                </div>
                                             </a>
                                         </div>
-                                        <div role="listitem" class="cms-marquee_item w-dyn-item">
-                                            <a href="#" class="cms-marquee_link w-inline-block">
-                                                <div data-dot-color="light-tan" class="dot"></div>
-                                                <div class="cms-marquee_text h-xl">Future Medical Facility</div>
-                                            </a>
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -400,36 +391,28 @@
                             <div class="cms-marquee_row">
                                 <div class="w-dyn-list">
                                     <div role="list" class="cms-marquee_list w-dyn-items">
+                                         @foreach ($projects as $project)
                                         <div role="listitem" class="cms-marquee_item w-dyn-item">
                                             <a href="#" class="cms-marquee_link w-inline-block">
                                                 <div data-dot-color="light-tan" class="dot"></div>
-                                                <div class="cms-marquee_text h-xl">Yeronga Community Centre is
-                                                    under construction</div>
+                                                <div class="cms-marquee_text h-xl">{{ $project->title }}
+                                                </div>
                                             </a>
                                         </div>
-                                        <div role="listitem" class="cms-marquee_item w-dyn-item">
-                                            <a href="#" class="cms-marquee_link w-inline-block">
-                                                <div data-dot-color="light-tan" class="dot"></div>
-                                                <div class="cms-marquee_text h-xl">Pomona Placemaking Pilot</div>
-                                            </a>
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="w-dyn-list">
                                     <div role="list" class="cms-marquee_list w-dyn-items">
+                                         @foreach ($projects as $project)
                                         <div role="listitem" class="cms-marquee_item w-dyn-item">
                                             <a href="#" class="cms-marquee_link w-inline-block">
                                                 <div data-dot-color="light-tan" class="dot"></div>
-                                                <div class="cms-marquee_text h-xl">Yeronga Community Centre is
-                                                    under construction</div>
+                                                <div class="cms-marquee_text h-xl">{{ $project->title }}
+                                                </div>
                                             </a>
                                         </div>
-                                        <div role="listitem" class="cms-marquee_item w-dyn-item">
-                                            <a href="#" class="cms-marquee_link w-inline-block">
-                                                <div data-dot-color="light-tan" class="dot"></div>
-                                                <div class="cms-marquee_text h-xl">Pomona Placemaking Pilot</div>
-                                            </a>
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -438,36 +421,28 @@
                             <div class="cms-marquee_row">
                                 <div class="w-dyn-list">
                                     <div role="list" class="cms-marquee_list w-dyn-items">
+                                         @foreach ($projects as $project)
                                         <div role="listitem" class="cms-marquee_item w-dyn-item">
                                             <a href="#" class="cms-marquee_link w-inline-block">
                                                 <div data-dot-color="light-tan" class="dot"></div>
-                                                <div class="cms-marquee_text h-xl">Halycon Blu</div>
-                                            </a>
-                                        </div>
-                                        <div role="listitem" class="cms-marquee_item w-dyn-item">
-                                            <a href="#" class="cms-marquee_link w-inline-block">
-                                                <div data-dot-color="light-tan" class="dot"></div>
-                                                <div class="cms-marquee_text h-xl">Redlands Performing Arts Centre
+                                                <div class="cms-marquee_text h-xl">{{ $project->title }}
                                                 </div>
                                             </a>
                                         </div>
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="w-dyn-list">
                                     <div role="list" class="cms-marquee_list w-dyn-items">
+                                         @foreach ($projects as $project)
                                         <div role="listitem" class="cms-marquee_item w-dyn-item">
                                             <a href="#" class="cms-marquee_link w-inline-block">
                                                 <div data-dot-color="light-tan" class="dot"></div>
-                                                <div class="cms-marquee_text h-xl">Halycon Blu</div>
-                                            </a>
-                                        </div>
-                                        <div role="listitem" class="cms-marquee_item w-dyn-item">
-                                            <a href="#" class="cms-marquee_link w-inline-block">
-                                                <div data-dot-color="light-tan" class="dot"></div>
-                                                <div class="cms-marquee_text h-xl">Redlands Performing Arts Centre
+                                                <div class="cms-marquee_text h-xl">{{ $project->title }}
                                                 </div>
                                             </a>
                                         </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -476,36 +451,28 @@
                             <div class="cms-marquee_row">
                                 <div class="w-dyn-list">
                                     <div role="list" class="cms-marquee_list w-dyn-items">
+                                         @foreach ($projects as $project)
                                         <div role="listitem" class="cms-marquee_item w-dyn-item">
                                             <a href="#" class="cms-marquee_link w-inline-block">
                                                 <div data-dot-color="light-tan" class="dot"></div>
-                                                <div class="cms-marquee_text h-xl">Aura Central Urban Village</div>
+                                                <div class="cms-marquee_text h-xl">{{ $project->title }}
+                                                </div>
                                             </a>
                                         </div>
-                                        <div role="listitem" class="cms-marquee_item w-dyn-item">
-                                            <a href="#" class="cms-marquee_link w-inline-block">
-                                                <div data-dot-color="light-tan" class="dot"></div>
-                                                <div class="cms-marquee_text h-xl">Logan Shared Ring Road is under
-                                                    construction</div>
-                                            </a>
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="w-dyn-list">
                                     <div role="list" class="cms-marquee_list w-dyn-items">
+                                         @foreach ($projects as $project)
                                         <div role="listitem" class="cms-marquee_item w-dyn-item">
                                             <a href="#" class="cms-marquee_link w-inline-block">
                                                 <div data-dot-color="light-tan" class="dot"></div>
-                                                <div class="cms-marquee_text h-xl">Aura Central Urban Village</div>
+                                                <div class="cms-marquee_text h-xl">{{ $project->title }}
+                                                </div>
                                             </a>
                                         </div>
-                                        <div role="listitem" class="cms-marquee_item w-dyn-item">
-                                            <a href="#" class="cms-marquee_link w-inline-block">
-                                                <div data-dot-color="light-tan" class="dot"></div>
-                                                <div class="cms-marquee_text h-xl">Logan Shared Ring Road is under
-                                                    construction</div>
-                                            </a>
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -558,14 +525,14 @@
             <div class="w-layout-blockcontainer container w-container">
                 <div class="cta_wrap">
                     <div class="cta_marquee">
-                        <a href="/contact" class="cta_marquee-content w-inline-block">
-                            <div class="cta_marquee-text h-xl">Contact Archipelago</div>
+                        <a href="{{ route('frontend.contact') }}" class="cta_marquee-content w-inline-block">
+                            <div class="cta_marquee-text h-xl">Contact Pixscape</div>
                             <div class="dot is-light"></div>
-                            <div aria-hidden="true" class="cta_marquee-text h-xl">Contact Archipelago</div>
+                            <div aria-hidden="true" class="cta_marquee-text h-xl">Contact Pixscape</div>
                             <div class="dot is-light"></div>
-                            <div aria-hidden="true" class="cta_marquee-text h-xl">Contact Archipelago</div>
+                            <div aria-hidden="true" class="cta_marquee-text h-xl">Contact Pixscape</div>
                             <div class="dot is-light"></div>
-                            <div aria-hidden="true" class="cta_marquee-text h-xl">Contact Archipelago</div>
+                            <div aria-hidden="true" class="cta_marquee-text h-xl">Contact Pixscape</div>
                             <div class="dot is-light"></div>
                         </a>
                     </div>

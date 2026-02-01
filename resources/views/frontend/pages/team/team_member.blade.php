@@ -1,19 +1,32 @@
 <!DOCTYPE html><!-- Last Published: Fri Jan 16 2026 12:12:39 GMT+0000 (Coordinated Universal Time) -->
-<html data-wf-domain="www.archipelago.com.au" data-wf-page="6543a9053fac558af9585fb2"
+<html data-wf-domain="www.pixscape-bd.com" data-wf-page="6543a9053fac558af9585fb2"
     data-wf-site="65249822a54c89915817034b" data-wf-collection="6543a9053fac558af958600b"
     data-wf-item-slug="dannielle-jenkins-b813d">
-
+@php
+    $logo = \App\Models\Admin\Logo::first();
+@endphp
 <head>
-    <meta charset="utf-8" />
-    <title>Meet Danni’elle Jenkins | Architect at Archipelago</title>
-    <meta content="Meet Danni’elle Jenkins | Architect at Archipelago" property="og:title" />
+   <meta charset="utf-8" />
+    <title>Pixscape - where tomorrows cities are engineered</title>
     <meta
-        content="https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/65516f6a4d1a59b8870edd5e_Dannielle%20Jenkins%20up.webp"
+        content="Pixscape - where tomorrows cities are engineered"
+        name="description" />
+    <meta content="Pixscape - where tomorrows cities are engineered" property="og:title" />
+    <meta
+        content="Pixscape - where tomorrows cities are engineered"
+        property="og:description" />
+    <meta
+        content="{{ asset($logo->main_site_icon) }}"
         property="og:image" />
-    <meta content="Meet Danni’elle Jenkins | Architect at Archipelago" property="twitter:title" />
+    <meta content="Pixscape - where tomorrows cities are engineered" property="twitter:title" />
     <meta
-        content="https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/65516f6a4d1a59b8870edd5e_Dannielle%20Jenkins%20up.webp"
+        content="Pixscape - where tomorrows cities are engineered"
+        property="twitter:description" />
+    <meta
+        content="{{ asset($logo->main_site_icon) }}"
         property="twitter:image" />
+    <meta property="og:type" content="website" />
+    <meta content="summary_large_image" name="twitter:card" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <link href="{{ asset('public/pixscape/css/style.css') }}" rel="stylesheet" type="text/css" />
     <script src="https://use.typekit.net/qns3mjk.js" type="text/javascript"></script>
@@ -30,11 +43,11 @@
                 .className += t + "touch")
         }(window, document);
     </script>
-    <link href="https://cdn.prod.website-files.com/65249822a54c89915817034b/655189bd10a99fe2eda48fa8_archi-favB.jpg"
+    <link href="{{ asset($logo->main_site_icon) }}"
         rel="shortcut icon" type="image/x-icon" />
-    <link href="https://cdn.prod.website-files.com/65249822a54c89915817034b/655189c7864d515f877ff5c0_archi-webclipB.jpg"
+    <link href="{{ asset($logo->main_site_icon) }}"
         rel="apple-touch-icon" />
-    <script src="https://www.google.com/recaptcha/api.js" type="text/javascript"></script>
+    {{-- <script src="https://www.google.com/recaptcha/api.js" type="text/javascript"></script> --}}
     <link rel="preconnect" href="https://d25vfild7rvz0k.cloudfront.net" crossorigin />
     <link rel="dns-prefetch" href="https://d25vfild7rvz0k.cloudfront.net" />
 

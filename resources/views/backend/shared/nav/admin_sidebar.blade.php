@@ -122,7 +122,7 @@
                             href="{{ route('admin.pages.contactUs') }}">{{ __('admin_local.Contact') }}</a>
                     </li>
                 @endif
-                @if (hasPermission(['aboutus-index', 'service-index', 'famework-index', 'value-index']))
+                @if (hasPermission(['aboutus-index', 'service-index', 'famework-index', 'value-index','sub-service-index']))
                     <li>
                         <a class="submenu-title" href="javascript:void(0)"
                             style="margin-bottom:5px;">{{ __('admin_local.About Page') }}<span class="sub-arrow"><i
@@ -139,6 +139,12 @@
                                 <li>
                                     <a class="sidebar-link" href="{{ route('admin.pages.service.index') }}"
                                         style="margin-bottom:5px;">{{ __('admin_local.Services') }}</a>
+                                </li>
+                            @endif
+                            @if (hasPermission(['sub-service-index']))
+                                <li>
+                                    <a class="sidebar-link" href="{{ route('admin.pages.sub-service.index') }}"
+                                        style="margin-bottom:5px;">{{ __('admin_local.Sub-Services') }}</a>
                                 </li>
                             @endif
                             @if (hasPermission(['famework-index']))

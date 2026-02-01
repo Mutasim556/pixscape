@@ -1,23 +1,18 @@
 <!DOCTYPE html><!-- Last Published: Wed Jan 21 2026 00:34:30 GMT+0000 (Coordinated Universal Time) -->
 <html data-wf-domain="www.pixscape-bd.com" data-wf-page="6543a9053fac558af9585fb5" data-wf-site="65249822a54c89915817034b">
-
+@php
+    $logo = \App\Models\Admin\Logo::first();
+@endphp
 <head>
     <meta charset="utf-8" />
-    <title>Explore Our Services | Pixscape</title>
-    <meta content="Discover stunning architectural projects from Archipelago, the premier source for modern design."
-        name="description" />
-    <meta content="Explore Architectural Projects by our Team | Archipelago" property="og:title" />
-    <meta content="Discover stunning architectural projects from Archipelago, the premier source for modern design."
-        property="og:description" />
-    <meta
-        content="https://cdn.prod.website-files.com/65249822a54c89915817034b/65544131f135374d9a9d65c9_ArchiOGimage%20(2).jpg"
-        property="og:image" />
-    <meta content="Explore Architectural Projects by our Team | Archipelago" property="twitter:title" />
-    <meta content="Discover stunning architectural projects from Archipelago, the premier source for modern design."
-        property="twitter:description" />
-    <meta
-        content="https://cdn.prod.website-files.com/65249822a54c89915817034b/65544131f135374d9a9d65c9_ArchiOGimage%20(2).jpg"
-        property="twitter:image" />
+    <title>Pixscape - where tomorrows cities are engineered</title>
+    <meta content="Pixscape - where tomorrows cities are engineered" name="description" />
+    <meta content="Pixscape - where tomorrows cities are engineered" property="og:title" />
+    <meta content="Pixscape - where tomorrows cities are engineered" property="og:description" />
+    <meta content="{{ asset($logo->main_site_icon) }}" property="og:image" />
+    <meta content="Pixscape - where tomorrows cities are engineered" property="twitter:title" />
+    <meta content="Pixscape - where tomorrows cities are engineered" property="twitter:description" />
+    <meta content="{{ asset($logo->main_site_icon) }}" property="twitter:image" />
     <meta property="og:type" content="website" />
     <meta content="summary_large_image" name="twitter:card" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
@@ -36,10 +31,8 @@
                 .className += t + "touch")
         }(window, document);
     </script>
-    <link href="https://cdn.prod.website-files.com/65249822a54c89915817034b/655189bd10a99fe2eda48fa8_archi-favB.jpg"
-        rel="shortcut icon" type="image/x-icon" />
-    <link href="https://cdn.prod.website-files.com/65249822a54c89915817034b/655189c7864d515f877ff5c0_archi-webclipB.jpg"
-        rel="apple-touch-icon" />
+    <link href="{{ asset($logo->main_site_icon) }}" rel="shortcut icon" type="image/x-icon" />
+    <link href="{{ asset($logo->main_site_icon) }}" rel="apple-touch-icon" />
     <script src="https://www.google.com/recaptcha/api.js" type="text/javascript"></script>
     <link rel="preconnect" href="https://d25vfild7rvz0k.cloudfront.net" crossorigin />
     <link rel="dns-prefetch" href="https://d25vfild7rvz0k.cloudfront.net" />
@@ -463,7 +456,7 @@
                                                         class="submit-field is-filter w-input" maxlength="256"
                                                         name="Search" fs-cmsfilter-field="*" data-name="Search"
                                                         placeholder="Search" fs-cmsfilter-debounce="300" type="text"
-                                                        id="search_btn" required="" style="width: 70%;"/></div>
+                                                        id="search_btn" required="" style="width: 70%;" /></div>
                                                 {{-- <div class="filter_ui-contain">
                                                     <div class="filter_dropdown">
                                                         <div class="filter_dropdown_underline-contain">
@@ -789,8 +782,6 @@
                 }, doneTypingInterval);
             }
         });
-
-
     </script>
 </body>
 

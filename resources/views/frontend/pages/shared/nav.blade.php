@@ -32,6 +32,71 @@
                 transform: translateX(-50%);
             }
         }
+
+        /* .nav,
+        .nav_menu,
+        .nav_dropdown,
+        .nav_dropdown-links, */
+        .expertise-dropdown {
+            overflow: visible !important;
+        }
+
+        /* Positioning */
+        .expertise-dropdown {
+            position: relative;
+        }
+
+        /* Dropdown menu */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            /* left: -10%; */
+            width: 350px;
+            background: #fff;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            padding: 8px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.25s ease;
+            z-index: 999999;
+        }
+
+        /* Dropdown items */
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 18px;
+            color: #111;
+            text-decoration: none;
+        }
+
+        .dropdown-menu a:hover {
+            background: #f5f5f5;
+        }
+
+        /* SHOW ON HOVER */
+        .expertise-dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .mobile-menu-nav-link {
+            display: none;
+        }
+
+        @media (max-width: 450px) {
+
+            /* styles here */
+            .desktop-menu-nav-link {
+                display: none;
+            }
+
+            .mobile-menu-nav-link {
+                display: block;
+            }
+        }
     </style>
     <div class="w-layout-blockcontainer container w-container">
         <div class="marquee-box">
@@ -66,22 +131,27 @@
                         </svg></div>
                 </div>
             </div>
+
             <div class="nav_menu">
-                <div class="nav_link-wrap"><a href="{{ url('/') }}" class="nav_link"
+                <div class="nav_link-wrap" style="width: 100px;border-right: 1px solid black"><a href="{{ url('/') }}" class="nav_link"
                         style="color: black !important">Home</a>
                     <div class="nav_link-underline"></div>
                 </div>
-                <div class="nav_link-wrap"><a href="{{ route('frontend.aboutUs') }}" class="nav_link"
+                <div class="nav_link-wrap" style="width: 120px;border-right: 1px solid black"><a href="{{ route('frontend.aboutUs') }}" class="nav_link"
                         style="color: black !important">About Us</a>
                     <div class="nav_link-underline"></div>
                 </div>
-                <div class="nav_link-wrap"><a href="{{ route('frontend.team') }}" class="nav_link"
+                <div class="nav_link-wrap" style="width: 100px;border-right: 1px solid black"><a href="{{ route('frontend.team') }}" class="nav_link"
                         style="color: black !important">Team</a>
                     <div class="nav_link-underline"></div>
                 </div>
+                
+                @php
+                    $services = \App\Models\Admin\Service::where([['status', 1], ['delete', 0]])->get();
+                @endphp
                 <div class="nav_dropdown">
-                    <div class="nav_dropdown-label">
-                        <div class="nav_link is-label ">Our Services</div>
+                    <div class="nav_dropdown-label" style="width: 200px;border-right: 1px solid black">
+                        <div class="nav_link is-label" >Our Services</div>
                         <div class="nav_chevron w-embed"><svg width="100%" style="" viewBox="0 0 21 11"
                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -91,41 +161,49 @@
                     </div>
                     <div class="nav_dropdown-links">
                         <div class="nav_link-wrap"><a href="{{ route('frontend.services') }}?type=Our Expertise"
-                                class="nav_link is-dropdown">Our Expertise</a>
+                                class="nav_link is-dropdown"> Our Expertise</a>
                             <div class="nav_link-underline"></div>
-                            {{-- <ul style="list-style: none">
-                                <li>URBAN PLANNING & DESIGN</li>
-                                <li>ARCHITECTURE & BUILDING DESIGN</li>
-                                <li>TRANSPORTATION</li>
-                                <li>ENVIRONMENTAL</li>
-                                <li>WATER AND HYDROLOGY</li>
-                                <li>GEOSPETIAL (inc. GIS) & SURVEY</li>
-                                <li>IT & SOFTWARE</li>
-                                <li>CONSTRUCTION & DEVELOPMENT WOR</li>
-                            </ul> --}}
-                        </div>
 
-                        <div class="nav_link-wrap"><a href="{{ route('frontend.services') }}?type=Supporting Service"
-                                class="nav_link is-dropdown">Others Supporting Services</a>
-                            <div class="nav_link-underline"></div>
-                            {{-- <ul style="list-style: none">
-                                <li>URBAN PLANNING & DESIGN</li>
-                                <li>ARCHITECTURE & BUILDING DESIGN</li>
-                                <li>TRANSPORTATION</li>
-                                <li>ENVIRONMENTAL</li>
-                                <li>WATER AND HYDROLOGY</li>
-                                <li>GEOSPETIAL (inc. GIS) & SURVEY</li>
-                                <li>IT & SOFTWARE</li>
-                                <li>CONSTRUCTION & DEVELOPMENT WOR</li>
-                            </ul> --}}
+
                         </div>
+                        <ul style="list-style: none;margin: 0;padding:0">
+                            @foreach ($services as $service)
+                                @if ($service->type == 'Our Expertise')
+                                    <li> <a href="{{ route('frontend.serviceSingle', \Illuminate\Support\Str::slug($service->service_name)) }}?serviceid={{ $service->id }}">{{ $service->service_name }}</a></li>
+                                @endif
+                            @endforeach
+                        </ul>
                     </div>
                 </div>
-                <div class="nav_link-wrap" style="border-right:1px solid black;padding-right:30px;"><a href="{{ route('frontend.project') }}" class="nav_link"
-                        style="color: black !important">Works</a>
+                <div class="nav_dropdown">
+                    <div class="nav_dropdown-label" style="width: 290px;border-right: 1px solid black">
+                        <div class="nav_link is-label">Supporting Services</div>
+                        <div class="nav_chevron w-embed"><svg width="100%" style="" viewBox="0 0 21 11"
+                                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M0.65625 0.86316L1.34399 0.137207L10.5001 8.81143L19.6562 0.137207L20.344 0.86316L10.5001 10.1889L0.65625 0.86316Z"
+                                    fill="currentColor" />
+                            </svg></div>
+                    </div>
+                    <div class="nav_dropdown-links">
+                        <div class="nav_link-wrap"><a href="{{ route('frontend.services') }}?type=Supporting Service"
+                                class="nav_link is-dropdown"> Other Services</a>
+                            <div class="nav_link-underline"></div>
+                        </div>
+                        <ul style="list-style: none;margin: 0;padding:0">
+                            @foreach ($services as $service)
+                                @if ($service->type == 'Supporting Service')
+                                    <li><a href="{{ route('frontend.serviceSingle', \Illuminate\Support\Str::slug($service->service_name)) }}?serviceid={{ $service->id }}">{{ $service->service_name }}</a></li>
+                                @endif
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+                <div class="nav_link-wrap"  style="width: 100px;border-right: 1px solid black"><a
+                        href="{{ route('frontend.project') }}" class="nav_link" >Works</a>
                     <div class="nav_link-underline"></div>
                 </div>
-                <div class="nav_link-wrap"><a href="{{ route('frontend.careers') }}" class="nav_link"
+                <div class="nav_link-wrap" style="width: 100px;border-right: 1px solid black"><a href="{{ route('frontend.careers') }}" class="nav_link"
                         style="color: black !important">Career</a>
                     <div class="nav_link-underline"></div>
                 </div>
@@ -147,11 +225,11 @@
                     </div>
                 </div> --}}
 
-                <div class="nav_link-wrap"><a href="{{ route('frontend.article') }}" class="nav_link"
+                <div class="nav_link-wrap" style="width: 100px;border-right: 1px solid black"><a href="{{ route('frontend.article') }}" class="nav_link"
                         style="color: black !important">Articles</a>
                     <div class="nav_link-underline"></div>
                 </div>
-                <div class="nav_link-wrap"><a href="{{ route('frontend.contact') }}" class="nav_link">Contact</a>
+                <div class="nav_link-wrap" ><a href="{{ route('frontend.contact') }}" class="nav_link">Contact</a>
                     <div class="nav_link-underline"></div>
                 </div>
             </div>

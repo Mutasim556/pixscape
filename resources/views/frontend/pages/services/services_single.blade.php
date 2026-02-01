@@ -2,23 +2,28 @@
 <html data-wf-domain="www.archipelago.com.au" data-wf-page="6543a9053fac558af9585fb1"
     data-wf-site="65249822a54c89915817034b" data-wf-collection="6543a9053fac558af9585feb"
     data-wf-item-slug="the-mill-at-moreton-bay">
-
+@php
+    $logo = \App\Models\Admin\Logo::first();
+@endphp
 <head>
-    <meta charset="utf-8" />
-    <title>Pixscape&#x27;s Services | {{ $service->service_name }}</title>
-    <meta content="Innovation and employment hub for the next generation of health &amp; knowledge industries"
+   <meta charset="utf-8" />
+    <title>Pixscape - where tomorrows cities are engineered</title>
+    <meta
+        content="Pixscape - where tomorrows cities are engineered"
         name="description" />
-    <meta content="Archipelago&#x27;s Project | The Mill at Moreton Bay" property="og:title" />
-    <meta content="Innovation and employment hub for the next generation of health &amp; knowledge industries"
+    <meta content="Pixscape - where tomorrows cities are engineered" property="og:title" />
+    <meta
+        content="Pixscape - where tomorrows cities are engineered"
         property="og:description" />
     <meta
-        content="https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/6553fb8485c6a17d96c23969_Economy%20of%20Place%20Aerial.webp"
+        content="{{ asset($logo->main_site_icon) }}"
         property="og:image" />
-    <meta content="Archipelago&#x27;s Project | The Mill at Moreton Bay" property="twitter:title" />
-    <meta content="Innovation and employment hub for the next generation of health &amp; knowledge industries"
+    <meta content="Pixscape - where tomorrows cities are engineered" property="twitter:title" />
+    <meta
+        content="Pixscape - where tomorrows cities are engineered"
         property="twitter:description" />
     <meta
-        content="https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/6553fb8485c6a17d96c23969_Economy%20of%20Place%20Aerial.webp"
+        content="{{ asset($logo->main_site_icon) }}"
         property="twitter:image" />
     <meta property="og:type" content="website" />
     <meta content="summary_large_image" name="twitter:card" />
@@ -38,9 +43,9 @@
                 .className += t + "touch")
         }(window, document);
     </script>
-    <link href="https://cdn.prod.website-files.com/65249822a54c89915817034b/655189bd10a99fe2eda48fa8_archi-favB.jpg"
+   <link href="{{ asset($logo->main_site_icon) }}"
         rel="shortcut icon" type="image/x-icon" />
-    <link href="https://cdn.prod.website-files.com/65249822a54c89915817034b/655189c7864d515f877ff5c0_archi-webclipB.jpg"
+    <link href="{{ asset($logo->main_site_icon) }}"
         rel="apple-touch-icon" />
     <script src="https://www.google.com/recaptcha/api.js" type="text/javascript"></script>
     <link rel="preconnect" href="https://d25vfild7rvz0k.cloudfront.net" crossorigin />

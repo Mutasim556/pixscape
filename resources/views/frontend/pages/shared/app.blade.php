@@ -1,37 +1,24 @@
 <!DOCTYPE html>
 <!-- Last Published: Tue Nov 18 2025 23:26:56 GMT+0000 (Coordinated Universal Time) -->
-<html data-wf-domain="www.archipelago.com.au" data-wf-page="6543a9053fac558af9585fa4"
-    data-wf-site="65249822a54c89915817034b">
+<html data-wf-domain="www.pixscape-bd.com" data-wf-page="6543a9053fac558af9585fa4" data-wf-site="65249822a54c89915817034b">
 @php
     $logo = \App\Models\Admin\Logo::first();
 @endphp
 
 <head>
     <meta charset="utf-8" />
-    <title>Australian City-Making Architecture Practice | Archipelago</title>
-    <meta
-        content="Archipelago is an award-winning Brisbane Architecture, Urban Design and Landscape Architecture Practice creating great cities and buildings for our future."
-        name="description" />
-    <meta content="Australian City-Making Architecture Practice | Archipelago" property="og:title" />
-    <meta
-        content="Archipelago is an award-winning Brisbane Architecture, Urban Design and Landscape Architecture Practice creating great cities and buildings for our future."
-        property="og:description" />
-    <meta
-        content="https://cdn.prod.website-files.com/65249822a54c89915817034b/65544131f135374d9a9d65c9_ArchiOGimage%20(2).jpg"
-        property="og:image" />
-    <meta content="Australian City-Making Architecture Practice | Archipelago" property="twitter:title" />
-    <meta
-        content="Archipelago is an award-winning Brisbane Architecture, Urban Design and Landscape Architecture Practice creating great cities and buildings for our future."
-        property="twitter:description" />
-    <meta
-        content="https://cdn.prod.website-files.com/65249822a54c89915817034b/65544131f135374d9a9d65c9_ArchiOGimage%20(2).jpg"
-        property="twitter:image" />
+    <title>Pixscape - where tomorrows cities are engineered</title>
+    <meta content="Pixscape - where tomorrows cities are engineered" name="description" />
+    <meta content="Pixscape - where tomorrows cities are engineered" property="og:title" />
+    <meta content="Pixscape - where tomorrows cities are engineered" property="og:description" />
+    <meta content="{{ asset($logo->main_site_icon) }}" property="og:image" />
+    <meta content="Pixscape - where tomorrows cities are engineered" property="twitter:title" />
+    <meta content="Pixscape - where tomorrows cities are engineered" property="twitter:description" />
+    <meta content="{{ asset($logo->main_site_icon) }}" property="twitter:image" />
     <meta property="og:type" content="website" />
     <meta content="summary_large_image" name="twitter:card" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <link
-        href="{{ asset('public/pixscape/css/style.css') }}"
-        rel="stylesheet" type="text/css" />
+    <link href="{{ asset('public/pixscape/css/style.css') }}" rel="stylesheet" type="text/css" />
     @stack('css')
     <script src="https://use.typekit.net/qns3mjk.js" type="text/javascript"></script>
     <script type="text/javascript">
@@ -47,10 +34,9 @@
                 .className += t + "touch")
         }(window, document);
     </script>
-    <link href="https://cdn.prod.website-files.com/65249822a54c89915817034b/655189bd10a99fe2eda48fa8_archi-favB.jpg"
-        rel="shortcut icon" type="image/x-icon" />
-    <link href="https://cdn.prod.website-files.com/65249822a54c89915817034b/655189c7864d515f877ff5c0_archi-webclipB.jpg"
-        rel="apple-touch-icon" />
+    <link rel="icon" href="{{ asset($logo->main_site_icon) }}" type="image/png">
+    <link href="{{ asset($logo->main_site_icon) }}" rel="shortcut icon" type="image/x-icon" />
+    <link href="{{ asset($logo->main_site_icon) }}" rel="apple-touch-icon" />
     <script src="https://www.google.com/recaptcha/api.js" type="text/javascript"></script>
     <link rel="preconnect" href="https://d25vfild7rvz0k.cloudfront.net" crossorigin />
     <link rel="dns-prefetch" href="https://d25vfild7rvz0k.cloudfront.net" />
@@ -519,10 +505,8 @@
     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=65249822a54c89915817034b"
         type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous">
     </script>
-    <script src="{{ asset('public/pixscape/js/script.js') }}"
-        type="text/javascript"></script>
-    <script src="{{ asset('public/pixscape/js/app.js') }}"
-        type="text/javascript"></script>
+    <script src="{{ asset('public/pixscape/js/script.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('public/pixscape/js/app.js') }}" type="text/javascript"></script>
     @stack('js')
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WGX68N5X" height="0" width="0"

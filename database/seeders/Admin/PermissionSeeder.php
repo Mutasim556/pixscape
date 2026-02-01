@@ -111,6 +111,12 @@ class PermissionSeeder extends Seeder
         // Permission::create(['guard_name'=>'admin','name'=>'service-update','group_name'=>'Service']);
         // Permission::create(['guard_name'=>'admin','name'=>'service-delete','group_name'=>'Service']);
 
+        //permission for Sub-Service
+        // Permission::create(['guard_name'=>'admin','name'=>'sub-service-index','group_name'=>'Sub Service']);
+        // Permission::create(['guard_name'=>'admin','name'=>'sub-service-create','group_name'=>'Sub Service']);
+        // Permission::create(['guard_name'=>'admin','name'=>'sub-service-update','group_name'=>'Sub Service']);
+        // Permission::create(['guard_name'=>'admin','name'=>'sub-service-delete','group_name'=>'Sub Service']);
+
         //permission for Framework
         // Permission::create(['guard_name'=>'admin','name'=>'framework-index','group_name'=>'Framework']);
         // Permission::create(['guard_name'=>'admin','name'=>'framework-create','group_name'=>'Framework']);

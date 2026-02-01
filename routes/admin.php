@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\ProjectTypeController;
 use App\Http\Controllers\Admin\Role\RoleAndPermissionController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\Settings\MaintenanceModeController;
+use App\Http\Controllers\Admin\SubServiceController;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\User\UserController;
 use App\Http\Controllers\Admin\ValuesController;
@@ -170,6 +171,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::get('/update/status/{id}/{status}', 'updateStatus');
             });
             /** Services End */
+
+            /** Sub Services Start */
+            Route::resource('sub-service', SubServiceController::class)->except('create', 'show');
+            Route::controller(SubServiceController::class)->prefix('sub-service')->group(function () {
+                Route::get('/update/status/{id}/{status}', 'updateStatus');
+            });
+            /** Sub Services End */
 
             /** Framework Start */
             Route::resource('framework', FrameworkController::class)->except('create', 'show');

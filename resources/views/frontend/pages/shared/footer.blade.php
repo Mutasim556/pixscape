@@ -4,28 +4,50 @@
         $logo = \App\Models\Admin\Logo::first();
     @endphp
     <div class="page-padding">
-        <div class="footer_wrap" >
-            <div class="footer_top" id="message_form">
-                <a aria-label="Archipelago Homepage" href="/" aria-current="page"
+        <div class="footer_wrap">
+            <div class="footer_top">
+                <a aria-label="Pixscape Homepage" href="{{ url('/') }}" aria-current="page"
                     class="footer_home-link w-inline-block w--current">
                     <div class="logo_footer w-embed" style="">
-                        <img src="{{ asset($logo->main_site_footer_logo) }}" style="width:100%;" alt="">
+                        <img src="{{ asset($logo->main_site_footer_logo) }}" alt="">
                     </div>
                 </a>
-                <div id="w-node-_3707be7f-7d62-d0fa-61da-a90f397b7524-397b751f" class="footer_horizontal is-nav-links">
+                <div class="footer_horizontal is-nav-links">
+                    <div class="footer_nav-contain" s><a href="{{ url('/') }}" class="footer_nav-link">Home</a>
+                    </div>
+                    <div class="footer_nav-contain"><a href="{{ route('frontend.aboutUs') }}"
+                            class="footer_nav-link">About Us</a>
+                    </div>
+                    <div class="footer_nav-contain"><a href="{{ route('frontend.team') }}"
+                            class="footer_nav-link">Team</a></div>
+
+                    <div class="footer_nav-contain">
+                        <a style="margin-bottom: 10px;" href="{{ route('frontend.services') }}?type=Our Expertise" class="footer_nav-link">Our
+                            Expertise</a>
+                    </div>
+                    <div class="footer_nav-contain"><a href="{{ route('frontend.services') }}?type=Supporting Service" class="footer_nav-link">Supproting
+                            Services</a>
+
+                    </div>
                     <div class="footer_nav-contain"><a href="{{ route('frontend.project') }}"
                             class="footer_nav-link">Works</a>
                     </div>
-                    <div class="footer_nav-contain"><a href="{{ route('frontend.aboutUs') }}"
-                            class="footer_nav-link">About Us</a></div>
-                    <div class="footer_nav-contain"><a href="{{ route('frontend.team') }}"
-                            class="footer_nav-link">Team</a><a href="{{ route('frontend.careers') }}"
-                            class="footer_nav-link">Careers</a></div>
-                    <div class="footer_nav-contain"><a href="{{ route('frontend.article') }}"
-                            class="footer_nav-link">Articles</a>
+                    <div class="footer_nav-contain"><a href="{{ route('frontend.careers') }}"
+                            class="footer_nav-link">Career</a>
                     </div>
+                    {{-- <div class="footer_nav-contain"><a href="{{ route('frontend.article') }}"
+                            class="footer_nav-link">Articles</a>
+                    </div> --}}
+                    <div class="footer_nav-contain"><a href="{{ route('frontend.contact') }}"
+                            class="footer_nav-link">Contact</a>
+                    </div>
+                    
                 </div>
-                <div id="w-node-_3707be7f-7d62-d0fa-61da-a90f397b753d-397b751f" class="footer_horizontal">
+                
+
+            </div>
+            <div class="footer_top2">
+                <div class="footer_horizontal">
                     <div class="footer_info-wrap">
                         <div class="footer_heading">Office</div>
                         <a href="{{ $contact ? $contact->location : '' }}" target="_blank"
