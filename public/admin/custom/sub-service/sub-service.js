@@ -94,8 +94,8 @@ $(document).on('change','#status_change',function(){
 
 // Show data on edit modal
 $(document).on('click', '#edit_button', function () {
-    $('#edit_sub-service_form').trigger('reset');
-    $('#edit_sub-service_form .err-mgs').each(function(id,val){
+    $('#edit_sub_service_form').trigger('reset');
+    $('#edit_sub_service_form .err-mgs').each(function(id,val){
         $(this).prev('input').removeClass('border-danger is-invalid')
         $(this).prev('textarea').removeClass('border-danger is-invalid')
         $(this).empty();
@@ -109,30 +109,27 @@ $(document).on('click', '#edit_button', function () {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (data) {
-            $('#edit_sub-service_form #sub-service_id').val(data.id);
-            $('#edit_sub-service_form #sub-service_name').val(data.sub-service_name);
-            $('#edit_sub-service_form #sub-service_short_details').val(data.sub-service_short_details);
-            $('#edit_sub-service_form #type').val(data.type);
-            CKEDITOR.instances['sub-service_details2'].setData(data.sub-service_details);
-            $('#edit_sub-service_form #eprev_sub-service_image').prop('src',base_url+"/"+data.sub-service_image);
+            $('#edit_sub_service_form #sub_service_id').val(data.id);
+            $('#edit_sub_service_form #sub_service_name').val(data.name);
+            $('#edit_sub_service_form #sub_service_short_details').val(data.short_details);
+            $('#edit_sub_service_form #service').val(data.service_id);
+            CKEDITOR.instances['sub_service_details2'].setData(data.details);
+            $('#edit_sub_service_form #eprev_sub_service_image').prop('src',base_url+"/"+data.image);
             $.each(data.translations,function(key,val){
                 if(val.locale=='en'){
                     return true;
-                    // $('#edit_sub-service_form #sub-service_name').val(data.title);
-                    // $('#edit_sub-service_form #sub-service_short_details').val(data.sub-service_short_details);
-                    // CKEDITOR.instances['sub-service_details2'].setData(data.sub-service_details);
+                    // $('#edit_sub_service_form #sub_service_name').val(data.title);
+                    // $('#edit_sub_service_form #sub_service_short_details').val(data.sub_service_short_details);
+                    // CKEDITOR.instances['sub_service_details2'].setData(data.sub_service_details);
                 }else{
-                    if(val.key=='sub-service_name'){
-                        $('#edit_sub-service_form #sub-service_name_'+val.locale).val(val.value);
+                    if(val.key=='name'){
+                        $('#edit_sub_service_form #sub_service_name_'+val.locale).val(val.value);
                     }
-                    if(val.key=='sub-service_short_details'){
-                        $('#edit_sub-service_form #sub-service_short_details_'+val.locale).val(val.value);
+                    if(val.key=='short_details'){
+                        $('#edit_sub_service_form #sub_service_short_details_'+val.locale).val(val.value);
                     }
-                    if(val.key=='sub-service_details'){
-                        CKEDITOR.instances['sub-service_details2_'+val.locale].setData(val.value);
-                    }
-                    if(val.key=='type'){
-                        $('#edit_sub-service_form #type_'+val.locale).val(val.value);
+                    if(val.key=='details'){
+                        CKEDITOR.instances['sub_service_details2_'+val.locale].setData(val.value);
                     }
                 }
             })
@@ -147,7 +144,7 @@ $(document).on('click', '#edit_button', function () {
                     text: err_message[0],
                     confirmButtonText: "Ok",
                 }).then(function(){
-                    $('button[type=button]', '#edit_sub-service_form').click();
+                    $('button[type=button]', '#edit_sub_service_form').click();
                 });
 
             }else{
@@ -164,16 +161,16 @@ $(document).on('click', '#edit_button', function () {
 
 });
 
-$('#edit_sub-service_form').submit(function (e) {
+$('#edit_sub_service_form').submit(function (e) {
     e.preventDefault();
     $('button[type=submit]', this).html(submit_btn_after+'....');
     $('button[type=submit]', this).addClass('disabled');
-    var trid = '#trid-'+$('#sub-service_id', this).val();
+    var trid = '#trid-'+$('#sub_service_id', this).val();
     var formData = new FormData(this);
     formData.append("_method","PUT");
     $.ajax({
         type: "post",
-        url: 'sub-service/' + $('#sub-service_id','#edit_sub-service_form').val(),
+        url: 'sub-service/' + $('#sub_service_id','#edit_sub_service_form').val(),
         data: formData,
         dataType: 'JSON',
         headers: {
@@ -184,8 +181,8 @@ $('#edit_sub-service_form').submit(function (e) {
         cache: false,
         processData: false,
         success: function (data) {
-            $('button[type=submit]', '#edit_sub-service_form').html(submit_btn_before);
-            $('button[type=submit]', '#edit_sub-service_form').removeClass('disabled');
+            $('button[type=submit]', '#edit_sub_service_form').html(submit_btn_before);
+            $('button[type=submit]', '#edit_sub_service_form').removeClass('disabled');
             swal({
                 icon: "success",
                 title: data.title,
@@ -196,8 +193,8 @@ $('#edit_sub-service_form').submit(function (e) {
             });
         },
         error: function (err) {
-            $('button[type=submit]', '#edit_sub-service_form').html(submit_btn_before);
-            $('button[type=submit]', '#edit_sub-service_form').removeClass('disabled');
+            $('button[type=submit]', '#edit_sub_service_form').html(submit_btn_before);
+            $('button[type=submit]', '#edit_sub_service_form').removeClass('disabled');
             if(err.status===403){
                 var err_message = err.responseJSON.message.split("(");
                 swal({
@@ -206,12 +203,12 @@ $('#edit_sub-service_form').submit(function (e) {
                     text: err_message[0],
                     confirmButtonText: "Ok",
                 }).then(function(){
-                    $('button[type=button]', '#edit_sub-service_form').click();
+                    $('button[type=button]', '#edit_sub_service_form').click();
                 });
 
             }
 
-            $('#edit_sub-service_form .err-mgs').each(function(id,val){
+            $('#edit_sub_service_form .err-mgs').each(function(id,val){
                 $(this).prev('input').removeClass('border-danger is-invalid')
                 $(this).prev('textarea').removeClass('border-danger is-invalid')
                 $(this).empty();
@@ -219,8 +216,8 @@ $('#edit_sub-service_form').submit(function (e) {
 
             $.each(err.responseJSON.errors,function(idx,val){
 
-                $('#edit_sub-service_form #'+idx).addClass('border-danger is-invalid')
-                $('#edit_sub-service_form #'+idx).next('.err-mgs').empty().append(val);
+                $('#edit_sub_service_form #'+idx).addClass('border-danger is-invalid')
+                $('#edit_sub_service_form #'+idx).next('.err-mgs').empty().append(val);
             })
         }
     });

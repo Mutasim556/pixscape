@@ -5,26 +5,17 @@
 @php
     $logo = \App\Models\Admin\Logo::first();
 @endphp
+
 <head>
-   <meta charset="utf-8" />
+    <meta charset="utf-8" />
     <title>Pixscape - where tomorrows cities are engineered</title>
-    <meta
-        content="Pixscape - where tomorrows cities are engineered"
-        name="description" />
+    <meta content="Pixscape - where tomorrows cities are engineered" name="description" />
     <meta content="Pixscape - where tomorrows cities are engineered" property="og:title" />
-    <meta
-        content="Pixscape - where tomorrows cities are engineered"
-        property="og:description" />
-    <meta
-        content="{{ asset($logo->main_site_icon) }}"
-        property="og:image" />
+    <meta content="Pixscape - where tomorrows cities are engineered" property="og:description" />
+    <meta content="{{ asset($logo->main_site_icon) }}" property="og:image" />
     <meta content="Pixscape - where tomorrows cities are engineered" property="twitter:title" />
-    <meta
-        content="Pixscape - where tomorrows cities are engineered"
-        property="twitter:description" />
-    <meta
-        content="{{ asset($logo->main_site_icon) }}"
-        property="twitter:image" />
+    <meta content="Pixscape - where tomorrows cities are engineered" property="twitter:description" />
+    <meta content="{{ asset($logo->main_site_icon) }}" property="twitter:image" />
     <meta property="og:type" content="website" />
     <meta content="summary_large_image" name="twitter:card" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
@@ -43,10 +34,8 @@
                 .className += t + "touch")
         }(window, document);
     </script>
-   <link href="{{ asset($logo->main_site_icon) }}"
-        rel="shortcut icon" type="image/x-icon" />
-    <link href="{{ asset($logo->main_site_icon) }}"
-        rel="apple-touch-icon" />
+    <link href="{{ asset($logo->main_site_icon) }}" rel="shortcut icon" type="image/x-icon" />
+    <link href="{{ asset($logo->main_site_icon) }}" rel="apple-touch-icon" />
     <script src="https://www.google.com/recaptcha/api.js" type="text/javascript"></script>
     <link rel="preconnect" href="https://d25vfild7rvz0k.cloudfront.net" crossorigin />
     <link rel="dns-prefetch" href="https://d25vfild7rvz0k.cloudfront.net" />
@@ -464,6 +453,85 @@
                     display: inline-block;
                     transform: translateX(5px);
                 }
+
+                .card-container {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                    gap: 20px;
+                }
+
+                .card {
+                    background: #fff;
+                    border-radius: 10px;
+                    overflow: hidden;
+                    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+                    transition: transform 0.3s ease;
+                }
+
+                .card:hover {
+                    transform: translateY(-6px);
+                }
+
+                .card-image {
+                    position: relative;
+                }
+
+                .card-image img {
+                    width: 100%;
+                    height: 220px;
+                    object-fit: cover;
+                    display: block;
+                }
+
+                .card-title {
+                    position: absolute;
+                    bottom: 10px;
+                    left: 10px;
+                    right: 10px;
+                    color: #fff;
+                    background: rgba(0, 0, 0, 0.6);
+                    padding: 8px 12px;
+                    border-radius: 5px;
+                    font-size: 18px;
+                }
+
+                .card-body {
+                    padding: 15px;
+                }
+
+                .card-body p {
+                    font-size: 14px;
+                    color: #555;
+                    line-height: 1.5;
+                }
+
+                .card-container {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 20px;
+                }
+
+                @media (max-width: 992px) {
+                    .card-container {
+                        grid-template-columns: repeat(2, 1fr);
+                    }
+                }
+
+                @media (max-width: 576px) {
+                    .card-container {
+                        grid-template-columns: 1fr;
+                    }
+                }
+
+                .card-link {
+                    display: block;
+                    text-decoration: none;
+                    color: inherit;
+                }
+
+                .card-link:hover .card {
+                    transform: translateY(-6px);
+                }
             </style>
         </div>
         <div class="page-main">
@@ -519,8 +587,9 @@
                             </a></div>
                     </div>
                 </div>
-                <div class="img_overflow is-cta"><img loading="lazy" src="{{ asset($service->service_image) }}" alt=""
-                        sizes="100vw" srcset="{{ asset($service->service_image) }}" class="cta_img" /></div>
+                <div class="img_overflow is-cta"><img loading="lazy" src="{{ asset($service->service_image) }}"
+                        alt="" sizes="100vw" srcset="{{ asset($service->service_image) }}"
+                        class="cta_img" /></div>
             </section>
             <section class="section">
                 <div class="w-layout-blockcontainer container w-container">
@@ -699,39 +768,23 @@
                 <div class="w-layout-blockcontainer container w-container">
                     <div class="page-padding">
                         <div class="section-padding is-5em is-project-images">
-                            <div class="section_middle w-condition-invisible">
-                                <div class="vertical_0-5em">
-                                    <div class="w-dyn-bind-empty w-video w-embed"></div>
-                                </div>
+                            <h3 style="text-align: center">Other Sub-Services</h3>
+                            <div class="card-container">
+                                @foreach ($service->subServices as $subservice)
+                                {{-- {{ route('subservice.show', $subservice->id) }} --}}
+                                    <a href="{{ route('frontend.subServiceSingle', \Illuminate\Support\Str::slug($subservice->name)) }}?subserviceid={{ $subservice->id }}" class="card-link">
+                                        <div class="card">
+                                            <div class="card-image">
+                                                <img src="{{ asset($subservice->image) }}" alt="Image">
+                                                <h3 class="card-title">{{ $subservice->name }}</h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <p>{{ $subservice->short_details }}</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                @endforeach
                             </div>
-                            {{-- <div class="section_middle">
-                                <div class="projects_portrait-row">
-                                    <div class="vertical_0-5em">
-                                        <div class="img_overflow"><img loading="lazy"
-                                                src="https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/67ff287a48e223bb30b68337_15.%20Multi-Purpose%20Room%20with%20Kitchen%201(portrait).webp"
-                                                alt="" class="img is-portrait" /></div>
-                                        <p class="w-dyn-bind-empty"></p>
-                                    </div>
-                                    <div class="vertical_0-5em">
-                                        <div class="img_overflow"><img loading="lazy"
-                                                src="https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/67ff287d32c051f7a3c7a0e4_9.Family%20Interview%20Room(portrait).webp"
-                                                alt="" class="img is-portrait" /></div>
-                                        <p class="w-dyn-bind-empty"></p>
-                                    </div>
-                                </div>
-                            </div> --}}
-                            {{-- @php
-                                $images = json_decode($project->images);
-                            @endphp
-                            @foreach ($images as $image)
-                                <div class="section_middle">
-                                    <div class="vertical_0-5em">
-                                        <div class="img_overflow"><img loading="lazy" src="{{ asset($image) }}"
-                                                alt="" class="img is-wide" /></div>
-                                        <p class="w-dyn-bind-empty"></p>
-                                    </div>
-                                </div>
-                            @endforeach --}}
                         </div>
                     </div>
                 </div>

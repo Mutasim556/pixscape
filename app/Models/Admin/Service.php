@@ -55,4 +55,8 @@ class Service extends Model
             }]);
         });
     }
+
+    public function subServices(){
+        return $this->hasMany(SubService::class,'service_id','id')->where([['status', 1],['delete',0]]);
+    }
 }

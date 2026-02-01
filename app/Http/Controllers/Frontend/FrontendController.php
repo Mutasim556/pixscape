@@ -9,6 +9,7 @@ use App\Models\Admin\JobApplication;
 use App\Models\Admin\Message;
 use App\Models\Admin\Project;
 use App\Models\Admin\Service;
+use App\Models\Admin\SubService;
 use App\Models\Admin\Team;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -206,9 +207,16 @@ class FrontendController extends Controller
     public function serviceSingle()
     {
         if (request()->has('serviceid')) {
-            $service = Service::where([['status', 1], ['delete', 0], ['id', request()->get('serviceid')]])->first();
+            $service = Service::with('subServices')->where([['status', 1], ['delete', 0], ['id', request()->get('serviceid')]])->first();
             $services = Service::where([['status', 1], ['delete', 0]])->get();
             return view('frontend.pages.services.services_single', compact('service', 'services'));
+        }
+    }
+
+    public function subServiceSingle(){
+        if (request()->has('subserviceid')) {
+            $subservice = SubService::with('service')->where([['status', 1], ['delete', 0], ['id', request()->get('subserviceid')]])->first();
+            return view('frontend.pages.services.sub_services_single', compact('subservice'));
         }
     }
 

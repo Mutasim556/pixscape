@@ -59,6 +59,7 @@ Route::controller(FrontendController::class)->name('frontend.')->group(function(
     Route::get('/services','services')->name('services');
     Route::get('/service-single/{slug?}','serviceSingle')->name('serviceSingle');
     Route::get('/service-search/{search?}','serviceSearch')->name('serviceSearch');
+    Route::get('/sub-service-single/{slug?}','subServiceSingle')->name('subServiceSingle');
     /** Service Page End */
 });
 
