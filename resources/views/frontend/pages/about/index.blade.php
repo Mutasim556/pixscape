@@ -4,26 +4,17 @@
 @php
     $logo = \App\Models\Admin\Logo::first();
 @endphp
+
 <head>
     <meta charset="utf-8" />
-    <title>Pixscape - where tomorrows cities are engineered</title>
-    <meta
-        content="Pixscape - where tomorrows cities are engineered"
-        name="description" />
+    <title>About Pixscape - where tomorrows cities are engineered</title>
+    <meta content="Pixscape - where tomorrows cities are engineered" name="description" />
     <meta content="Pixscape - where tomorrows cities are engineered" property="og:title" />
-    <meta
-        content="Pixscape - where tomorrows cities are engineered"
-        property="og:description" />
-    <meta
-        content="{{ asset($logo->main_site_icon) }}"
-        property="og:image" />
+    <meta content="Pixscape - where tomorrows cities are engineered" property="og:description" />
+    <meta content="{{ asset($logo->main_site_icon) }}" property="og:image" />
     <meta content="Pixscape - where tomorrows cities are engineered" property="twitter:title" />
-    <meta
-        content="Pixscape - where tomorrows cities are engineered"
-        property="twitter:description" />
-    <meta
-        content="{{ asset($logo->main_site_icon) }}"
-        property="twitter:image" />
+    <meta content="Pixscape - where tomorrows cities are engineered" property="twitter:description" />
+    <meta content="{{ asset($logo->main_site_icon) }}" property="twitter:image" />
     <meta property="og:type" content="website" />
     <meta content="summary_large_image" name="twitter:card" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
@@ -42,10 +33,8 @@
                 .className += t + "touch")
         }(window, document);
     </script>
-     <link href="{{ asset($logo->main_site_icon) }}"
-        rel="shortcut icon" type="image/x-icon" />
-    <link href="{{ asset($logo->main_site_icon) }}"
-        rel="apple-touch-icon" />
+    <link href="{{ asset($logo->main_site_icon) }}" rel="shortcut icon" type="image/x-icon" />
+    <link href="{{ asset($logo->main_site_icon) }}" rel="apple-touch-icon" />
     <script src="https://www.google.com/recaptcha/api.js" type="text/javascript"></script>
     <link rel="preconnect" href="https://d25vfild7rvz0k.cloudfront.net" crossorigin />
     <link rel="dns-prefetch" href="https://d25vfild7rvz0k.cloudfront.net" />
@@ -441,8 +430,8 @@
                                         </a></div>
                                     <div class="page_breadcrumb-wrap"><a href="{{ url('/') }}"
                                             class="page_breadcrumb-text">Home</a>
-                                        <div class="page_breadcrumb-text">/</div><a href="#"
-                                            aria-current="page" class="page_breadcrumb-text w--current">About Us</a>
+                                        <div class="page_breadcrumb-text">/</div><a href="#" aria-current="page"
+                                            class="page_breadcrumb-text w--current">About Us</a>
                                     </div>
                                 </div>
                                 <h1 class="h-xl">About Us</h1>
@@ -480,23 +469,20 @@
                                 </div>
                                 <div class="section_content-grid">
                                     <div class="section_info-wrap">
-                                        <p>Our thoughtful consideration of the bigger picture - including how different
-                                            services interact
-                                            and complement one another demonstrates our thorough understanding of
-                                            industry requirements,
-                                            regulations, expectations and opportunities. <br />We believe architecture
-                                            does not exist in
-                                            isolation, so our services and expertise don’t either.</p>
+                                        <p>We always look at the bigger picture—how different services work together and
+                                            support each other—which shows our strong understanding of industry needs,
+                                            regulations, and opportunities. We believe creative work is interconnected,
+                                            and our services and expertise are designed with that same mindset.</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="section_middle is-accordian">
                                 <div class="about_services-wrap"><img class="about_left-img"
-                                        src="https://cdn.prod.website-files.com/65249822a54c89915817034b/65441a596dd9553796885668_archipelago_about-services.webp"
-                                        alt="Archipelago&#x27;s Architecture, Urban Design, Landscape Architecture team"
+                                        src="{{ asset('public/static_image/about_page_service.png') }}"
+                                        alt="Pixscape&#x27;s Architecture, Urban Design, Landscape Architecture team"
                                         sizes="(max-width: 767px) 100vw, (max-width: 991px) 95vw, 940px" loading="lazy"
                                         data-animate=""
-                                        srcset="https://cdn.prod.website-files.com/65249822a54c89915817034b/65441a596dd9553796885668_archipelago_about-services-p-500.webp 500w, https://cdn.prod.website-files.com/65249822a54c89915817034b/65441a596dd9553796885668_archipelago_about-services-p-800.webp 800w, https://cdn.prod.website-files.com/65249822a54c89915817034b/65441a596dd9553796885668_archipelago_about-services-p-1080.webp 1080w, https://cdn.prod.website-files.com/65249822a54c89915817034b/65441a596dd9553796885668_archipelago_about-services.webp 1280w" />
+                                        srcset="{{ asset('public/static_image/about_page_service.png') }}" />
                                 </div>
                                 <div class="about_services-wrap">
                                     @php
@@ -556,29 +542,23 @@
                     <div class="page-padding">
                         <div class="section-padding is-5em">
                             <div class="section_top is-right-padding">
-                                <h2 class="h1">The Archipelago Framework</h2>
+                                <h2 class="h1">The PIXSCAPE Framework</h2>
                             </div>
                             <div class="section_middle is-framework">
-                                <p id="w-node-cd87aaec-6c01-ac6f-6c96-4531983be464-f9585fac">Our approach, driven by
-                                    creative ideas and
-                                    grounded in evidence-based research, unveils opportunities often unseen at a
-                                    project&#x27;s inception.
-                                    This methodology ensures we reach positive, transformative outcomes. <br /><br />Our
-                                    portfolio of
-                                    city-shaping master plans and extensive urban projects showcases our ability to
-                                    harness opportunities
-                                    within the context. We unlock each site&#x27;s full potential, crafting public
-                                    spaces and respectful
-                                    buildings that enhance the unique character of the neighbourhoods we engage with.
+                                <p id="w-node-cd87aaec-6c01-ac6f-6c96-4531983be464-f9585fac">We use creative ideas
+                                    supported by research to reveal opportunities that aren’t always apparent at the
+                                    beginning of a project, ensuring outcomes that create real and lasting change.
+                                    <br><br>
+                                    Our portfolio of work in master planning and urban development reveals a commitment
+                                    to shaping cities through context-driven design. We realize the full potential of
+                                    every site, creating public spaces and thoughtfully designed buildings that
+                                    strengthen the unique identity of the neighborhoods we work in.
                                 </p>
-                                <p id="w-node-_59e720e2-a366-09ff-993e-12e52932f5ea-f9585fac">Looking widely, we are
-                                    able to discern
-                                    opportunities, patterns, and connections. This results in improved project quality
-                                    and amenity,
-                                    without compromising on cost-effectiveness. <br /><br />The value we infuse through
-                                    design benefits
-                                    not only our clients but also those who live, learn, work, and play in the places we
-                                    shape.</p>
+                                <p id="w-node-_59e720e2-a366-09ff-993e-12e52932f5ea-f9585fac">Seeing the bigger picture
+                                    enables us to recognize valuable connections and opportunities, delivering improved
+                                    quality and amenity with a balanced, cost-conscious approach. <br><br>
+                                    We design with people in mind, creating places that support life in all its
+                                    forms—learning, working, resting, and connecting.</p>
                             </div>
                             <div hide-scrollbar="" data-lenis-prevent="" class="section_bottom is-about-framework">
                                 <div id="w-node-_2029f510-8504-e3f0-c696-9f89819280ee-f9585fac" class="vertical_3em">
@@ -893,6 +873,10 @@
                     </div>
                 </div>
             </section> --}}
+            @php
+                $contact = \App\Models\Admin\Contact::first();
+                $logo = \App\Models\Admin\Logo::first();
+            @endphp
             <section class="section">
                 <div class="w-layout-blockcontainer container w-container">
                     <div class="page-padding">
@@ -902,23 +886,16 @@
                                     class="about_workshop-card-wrap">
                                     <div class="about_workshop-card-color"></div>
                                     <div class="about_workshop-card">
-                                        <div class="hiring_logo w-embed"><svg width="100%" style=""
-                                                viewBox="0 0 51 49" fill="currentColor"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M30.4866 31.0518H13.5001L21.969 8.93703L29.625 28.926V28.9185L37.4016 48.9999H43.9399V44.394L26.7432 1.00537H17.1968L0 44.394V48.9999H6.57763L10.6761 38.3116H27.6898L30.4866 31.0518Z"
-                                                    fill="currentColor" />
-                                                <path
-                                                    d="M50.9284 5.1395C50.9284 4.123 50.627 3.12934 50.0623 2.28415C49.4975 1.43897 48.6948 0.780217 47.7557 0.39122C46.8166 0.00222301 45.7832 -0.0995511 44.7862 0.0987578C43.7893 0.297067 42.8735 0.78655 42.1547 1.50532C41.436 2.2241 40.9465 3.13988 40.7482 4.13684C40.5499 5.13381 40.6516 6.16718 41.0406 7.1063C41.4296 8.04543 42.0884 8.84811 42.9336 9.41284C43.7788 9.97758 44.7724 10.279 45.7889 10.279C47.152 10.279 48.4592 9.73752 49.4231 8.77368C50.3869 7.80983 50.9284 6.50258 50.9284 5.1395Z"
-                                                    fill="currentColor" />
-                                            </svg></div>
+                                        <div class="hiring_logo w-embed" style="width: 10em"><img
+                                                src="{{ asset($logo->main_site_footer_logo) }}" alt=""></div>
                                         <div class="vertical_3em is-left">
                                             <div class="vertical_1em">
-                                                <div class="about_workshop-heading">Book a Workshop</div>
-                                                <p class="about_workshop-p">Elevate your project with
-                                                    Archipelago&#x27;s enquiry-by-design
-                                                    approach.</p>
-                                            </div><a href="/contact" class="button is-small w-inline-block">
+                                                <div class="about_workshop-heading">Book an Appointment </div>
+                                                <p class="about_workshop-p">Ready to take the next step with
+                                                    confidence? Let’s bring your vision to life—connect with Pixscape
+                                                    and book a friendly project consultation today.</p>
+                                            </div><a href="{{ route('frontend.contact') }}#message_form"
+                                                class="button is-small w-inline-block">
                                                 <div class="button_label">Book Now</div>
                                                 <div class="button_arrow w-embed"><svg width="100%" style=""
                                                         viewBox="0 0 23 17" fill="currentColor"
@@ -942,7 +919,7 @@
                     </div>
                 </div>
             </section>
-            <section class="section">
+            {{-- <section class="section">
                 <div class="w-layout-blockcontainer container w-container">
                     <div class="page-padding">
                         <div class="section-padding is-7-5em">
@@ -991,7 +968,8 @@
                                                                                 fill="currentColor" />
                                                                             <path d="M0 1.5V0.5H12V1.5H0Z"
                                                                                 fill="currentColor" />
-                                                                        </svg></div>
+                                                                        </svg>
+                                                                    </div>
                                                                     <div class="accordion_minus w-embed"><svg
                                                                             width="100%" style=""
                                                                             viewBox="0 0 12 2" fill="currentColor"
@@ -1019,45 +997,13 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- <div class="accordion_item">
-                            <div class="accordion_toggle">
-                                <div>Architecture</div>
-                                <div class="accordion_icon">
-                                    <div class="accordion_minus is-vertical w-embed"><svg width="100%"
-                                            style="" viewBox="0 0 12 2" fill="currentColor"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M5.5 0.5H6.5V1.5H5.5V0.5Z" fill="currentColor" />
-                                            <path d="M0 1.5V0.5H12V1.5H0Z" fill="currentColor" />
-                                        </svg></div>
-                                    <div class="accordion_minus w-embed"><svg width="100%" style=""
-                                            viewBox="0 0 12 2" fill="currentColor"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M5.5 0.5H6.5V1.5H5.5V0.5Z" fill="currentColor" />
-                                            <path d="M0 1.5V0.5H12V1.5H0Z" fill="currentColor" />
-                                        </svg></div>
-                                </div>
-                            </div>
-                            <div class="accordion_content">
-                                <div class="accordion_content-padding">
-                                    <div class="rich-text w-richtext">
-                                        <ul role="list">
-                                            <li>Full architectural design and documentation services</li>
-                                            <li>Site testing</li>
-                                            <li>Feasibility studies and business cases</li>
-                                            <li>Due diligence</li>
-                                            <li>Interior architecture including furniture and finishes specification
-                                            </li>
-                                            <li>Research and publications</li>
-                                            <li>3D Modelling, fly-throughs + renders + visualisations Graphic design
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> --}}
+                        
                     </div>
                 </div>
-            </section>
+            </section> --}}
+            @php
+                $teaminfo = \App\Models\Admin\TeamInfo::first();
+            @endphp
             <section class="section">
                 <div class="w-layout-blockcontainer container w-container">
                     <div class="page-padding">
@@ -1068,11 +1014,10 @@
                                 </div>
                                 <div class="section_content-grid">
                                     <div class="section_info-wrap">
-                                        <p>Meet the creative force behind Archipelago. Our teams blend of skill and
-                                            passion is shaping
-                                            Australia&#x27;s most inspiring spaces.<br /><br />Discover the talent that
-                                            sets us apart.</p><a href="{{ route('frontend.team') }}" class="button w-inline-block">
-                                            <div class="button_label">Meet The Team</div>
+                                        <p>{{ $teaminfo ? $teaminfo->short_description : '' }}</p>
+                                        <a href="{{ route('frontend.team') }}" class="button w-inline-block">
+                                            <div class="button_label">{{ $teaminfo ? $teaminfo->button_text : '' }}
+                                            </div>
                                             <div class="button_arrow w-embed"><svg width="100%" style=""
                                                     viewBox="0 0 23 17" fill="currentColor"
                                                     xmlns="http://www.w3.org/2000/svg">
@@ -1084,16 +1029,19 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="section_bottom"><img
-                                    src="https://cdn.prod.website-files.com/65249822a54c89915817034b/654421a673bc0abf704a5bd5_archipelago_about-team.webp"
-                                    loading="lazy" sizes="100vw"
-                                    srcset="https://cdn.prod.website-files.com/65249822a54c89915817034b/654421a673bc0abf704a5bd5_archipelago_about-team-p-500.webp 500w, https://cdn.prod.website-files.com/65249822a54c89915817034b/654421a673bc0abf704a5bd5_archipelago_about-team-p-800.webp 800w, https://cdn.prod.website-files.com/65249822a54c89915817034b/654421a673bc0abf704a5bd5_archipelago_about-team-p-1080.webp 1080w, https://cdn.prod.website-files.com/65249822a54c89915817034b/654421a673bc0abf704a5bd5_archipelago_about-team-p-1600.webp 1600w, https://cdn.prod.website-files.com/65249822a54c89915817034b/654421a673bc0abf704a5bd5_archipelago_about-team.webp 1920w"
-                                    alt="Archipelago&#x27;s Architecture, Urban Design, Landscape Architecture team"
-                                    class="page_hero-img" /></div>
+                            <div class="section_bottom">
+                                <div class="vertical_0-5em"><img src="{{ $teaminfo ? $teaminfo->team_image : '' }}"
+                                        loading="lazy"
+                                        sizes="(max-width: 767px) 100vw, (max-width: 991px) 727.989990234375px, 939.989990234375px"
+                                        alt="" class="img_wide" />
+                                    <p>The Pixscape Team</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
+
             <section class="section is-dark-tan">
                 <div class="w-layout-blockcontainer container w-container">
                     <div class="page-padding is-hiring">
@@ -1105,23 +1053,15 @@
                                     alt="" class="ratio_img" />
                             </div>
                             <div id="w-node-cfb97ec3-8808-cc9d-a022-0136105c2368-105c2362" class="hiring_info-wrap">
-                                <div class="hiring_logo w-embed"><svg width="100%" style=""
-                                        viewBox="0 0 51 49" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M30.4866 31.0518H13.5001L21.969 8.93703L29.625 28.926V28.9185L37.4016 48.9999H43.9399V44.394L26.7432 1.00537H17.1968L0 44.394V48.9999H6.57763L10.6761 38.3116H27.6898L30.4866 31.0518Z"
-                                            fill="currentColor" />
-                                        <path
-                                            d="M50.9284 5.1395C50.9284 4.123 50.627 3.12934 50.0623 2.28415C49.4975 1.43897 48.6948 0.780217 47.7557 0.39122C46.8166 0.00222301 45.7832 -0.0995511 44.7862 0.0987578C43.7893 0.297067 42.8735 0.78655 42.1547 1.50532C41.436 2.2241 40.9465 3.13988 40.7482 4.13684C40.5499 5.13381 40.6516 6.16718 41.0406 7.1063C41.4296 8.04543 42.0884 8.84811 42.9336 9.41284C43.7788 9.97758 44.7724 10.279 45.7889 10.279C47.152 10.279 48.4592 9.73752 49.4231 8.77368C50.3869 7.80983 50.9284 6.50258 50.9284 5.1395Z"
-                                            fill="currentColor" />
-                                    </svg></div>
+                                <div class="hiring_logo w-embed" style="width: 10em"><img
+                                        src="{{ asset($logo->main_site_logo3) }}" alt=""></div>
                                 <div class="hiring_info-contain">
                                     <div class="hiring_callout">We’re hiring!</div>
-                                    <p class="hiring_heading">Are you a passionate city maker eager to leave your mark
-                                        on the urban
-                                        landscape?</p>
-                                    <p class="hiring_p">Join our dynamic Archipelago team and be part of crafting
-                                        spaces that will shape
-                                        Australia&#x27;s cities for generations to come.</p><a href="/people/careers"
+                                    <p class="hiring_heading">Do you have a passion for shaping cities and creating
+                                        impactful urban environments? Join PIXSCAPE and make your mark on the future of
+                                        city living! </p>
+                                    <p class="hiring_p">Join the dynamic PIXSCAPE team and help design the spaces where
+                                        tomorrow’s cities are engineered.</p><a href="{{ route('frontend.careers') }}"
                                         class="button is-hiring w-inline-block">
                                         <div class="button_label">Join The Team</div>
                                         <div class="button_arrow w-embed"><svg width="100%" style=""

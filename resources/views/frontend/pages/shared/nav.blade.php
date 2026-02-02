@@ -166,10 +166,10 @@
 
 
                         </div>
-                        <ul style="list-style: none;margin: 0;padding:0">
+                        <ul style="list-style: none;margin: 0;padding:0;">
                             @foreach ($services as $service)
                                 @if ($service->type == 'Our Expertise')
-                                    <li> <a href="{{ route('frontend.serviceSingle', \Illuminate\Support\Str::slug($service->service_name)) }}?serviceid={{ $service->id }}">{{ $service->service_name }}</a></li>
+                                    <li> <a style="text-transform: capitalize !important;" href="{{ route('frontend.serviceSingle', \Illuminate\Support\Str::slug($service->service_name)) }}?serviceid={{ $service->id }}">{{ \Illuminate\Support\Str::title($service->service_name) }}</a></li>
                                 @endif
                             @endforeach
                         </ul>
@@ -193,7 +193,7 @@
                         <ul style="list-style: none;margin: 0;padding:0">
                             @foreach ($services as $service)
                                 @if ($service->type == 'Supporting Service')
-                                    <li><a href="{{ route('frontend.serviceSingle', \Illuminate\Support\Str::slug($service->service_name)) }}?serviceid={{ $service->id }}">{{ $service->service_name }}</a></li>
+                                    <li><a href="{{ route('frontend.serviceSingle', \Illuminate\Support\Str::slug($service->service_name)) }}?serviceid={{ $service->id }}">{{ \Illuminate\Support\Str::title($service->service_name) }}</a></li>
                                 @endif
                             @endforeach
                         </ul>

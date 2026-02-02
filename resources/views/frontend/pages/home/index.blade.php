@@ -496,7 +496,7 @@
                             <div class="section_content-grid">
                                 <div class="section_info-wrap">
                                     <p>{{ $teaminfo ? $teaminfo->short_description : '' }}</p>
-                                    <a href="/people/team" class="button w-inline-block">
+                                    <a href="{{ route('frontend.team') }}" class="button w-inline-block">
                                         <div class="button_label">{{ $teaminfo ? $teaminfo->button_text : '' }}</div>
                                         <div class="button_arrow w-embed"><svg width="100%" style=""
                                                 viewBox="0 0 23 17" fill="currentColor"
