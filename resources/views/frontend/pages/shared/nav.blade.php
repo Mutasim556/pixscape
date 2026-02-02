@@ -145,9 +145,9 @@
                         style="color: black !important">Team</a>
                     <div class="nav_link-underline"></div>
                 </div>
-                
+
                 @php
-                    $services = \App\Models\Admin\Service::where([['status', 1], ['delete', 0]])->get();
+                    $services = \App\Models\Admin\Service::where([['status', 1], ['delete', 0]])->orderBy('id','ASC')->get();
                 @endphp
                 <div class="nav_dropdown">
                     <div class="nav_dropdown-label" style="width: 200px;border-right: 1px solid black">
@@ -169,7 +169,7 @@
                         <ul style="list-style: none;margin: 0;padding:0;">
                             @foreach ($services as $service)
                                 @if ($service->type == 'Our Expertise')
-                                    <li> <a style="text-transform: capitalize !important;" href="{{ route('frontend.serviceSingle', \Illuminate\Support\Str::slug($service->service_name)) }}?serviceid={{ $service->id }}">{{ \Illuminate\Support\Str::title($service->service_name) }}</a></li>
+                                    <li> <a style="text-transform: capitalize !important;" href="{{ route('frontend.serviceSingle', \Illuminate\Support\Str::slug($service->service_name)) }}?serviceid={{ $service->id }}">{{ $service->service_name }}</a></li>
                                 @endif
                             @endforeach
                         </ul>
@@ -193,7 +193,8 @@
                         <ul style="list-style: none;margin: 0;padding:0">
                             @foreach ($services as $service)
                                 @if ($service->type == 'Supporting Service')
-                                    <li><a href="{{ route('frontend.serviceSingle', \Illuminate\Support\Str::slug($service->service_name)) }}?serviceid={{ $service->id }}">{{ \Illuminate\Support\Str::title($service->service_name) }}</a></li>
+                                    {{-- <li><a href="{{ route('frontend.serviceSingle', \Illuminate\Support\Str::slug($service->service_name)) }}?serviceid={{ $service->id }}">{{ \Illuminate\Support\Str::title($service->service_name) }}</a></li> --}}
+                                    <li><a href="{{ route('frontend.serviceSingle', \Illuminate\Support\Str::slug($service->service_name)) }}?serviceid={{ $service->id }}">{{ $service->service_name }}</a></li>
                                 @endif
                             @endforeach
                         </ul>

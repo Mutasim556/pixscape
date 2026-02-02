@@ -4,6 +4,9 @@
     $aboutus = \App\Models\Admin\AboutUs::first();
     $contact = \App\Models\Admin\Contact::first();
 @endphp
+@php
+    $content = \App\Models\Admin\Content::first();
+@endphp
 @push('css')
     <style>
         .app-wrapper {
@@ -89,10 +92,10 @@
                                 <div class="page_breadcrumb-wrap"><a href="{{ url('/') }}"
                                         class="page_breadcrumb-text">Home</a>
                                     <div class="page_breadcrumb-text">/</div><a href="/people/careers" aria-current="page"
-                                        class="page_breadcrumb-text w--current">Careers</a>
+                                        class="page_breadcrumb-text w--current">{{ $content->career_title }}</a>
                                 </div>
                             </div>
-                            <h1 class="h-xl">Careers</h1>
+                            <h1 class="h-xl">{{ $content->career_title }}</h1>
                         </div>
                     </div>
                 </div>
@@ -113,7 +116,7 @@
                     <div class="section-padding is-opportunity">
                         <div class="section_top is-5em">
                             <div class="section_heading-wrap">
-                                <h2 class="h1" style="text-align: center;">Why Join Us ?</h2>
+                                <h2 class="h1" style="text-align: center;">{{ $content->career_join_text }}</h2>
                             </div>
                         </div>
                         <div class="section-padding is-5em">
@@ -141,13 +144,11 @@
                     <div class="section-padding is-7-5em is-careers">
                         <div class="section_top is-5em">
                             <div class="section_heading-wrap">
-                                <h2 class="h1" style="text-align: center">Drop your resume here</h2>
+                                <h2 class="h1" style="text-align: center">{{ $content->career_resume_text }}</h2>
                             </div>
                             <div class="section_content-grid is-2" id="applicant_form">
                                 <div class="">
-                                    <p class="p-large">We are seeking expressions of interest from passionate individuals to
-                                        join our
-                                        great team!</p>
+                                    <p class="p-large">{{ $content->career_resume_short_details }}</p>
                                 </div>
                                 <div>
                                     @if (session()->has('success'))
@@ -156,7 +157,7 @@
                                             <span style="text-align: center">{{ session()->get('success') }}</span>
                                         </div>
                                     @endif
-                                    <form method="POST" enctype="multipart/form-data" 
+                                    <form method="POST" enctype="multipart/form-data"
                                         action="{{ route('frontend.postResume') }}">
                                         @csrf
                                         <div class="field-group">
@@ -193,7 +194,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>

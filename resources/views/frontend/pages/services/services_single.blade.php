@@ -764,15 +764,19 @@
                         </div>
                     </div>
             </section>
+            @php
+                $content = \App\Models\Admin\Content::first();
+            @endphp
             <section class="section">
                 <div class="w-layout-blockcontainer container w-container">
                     <div class="page-padding">
                         <div class="section-padding is-5em is-project-images">
-                            <h3 style="text-align: center">Other Sub-Services</h3>
+                            <h3 style="text-align: center">{{ $content->service_sub_service_title }}</h3>
                             <div class="card-container">
                                 @foreach ($service->subServices as $subservice)
-                                {{-- {{ route('subservice.show', $subservice->id) }} --}}
-                                    <a href="{{ route('frontend.subServiceSingle', \Illuminate\Support\Str::slug($subservice->name)) }}?subserviceid={{ $subservice->id }}" class="card-link">
+                                    {{-- {{ route('subservice.show', $subservice->id) }} --}}
+                                    <a href="{{ route('frontend.subServiceSingle', \Illuminate\Support\Str::slug($subservice->name)) }}?subserviceid={{ $subservice->id }}"
+                                        class="card-link">
                                         <div class="card">
                                             <div class="card-image">
                                                 <img src="{{ asset($subservice->image) }}" alt="Image">

@@ -22,6 +22,9 @@
         }
     </style>
 @endpush
+@php
+    $content = \App\Models\Admin\Content::first();
+@endphp
 @section('content')
     <main class="page-main">
         <section class="section">
@@ -171,15 +174,14 @@
                 <div class="page-padding">
                     <div class="section-padding is-5em">
                         <div class="section_top ">
-                            <h2 class="h1">We are the Architects of the Modern Urban Experience.</h2>
+                            <h2 class="h1">{{ $content->home_counter_title }}</h2>
                         </div>
                         <div class="section_middle">
                             <div class="section_content-grid">
                                 <div class="section_info-wrap">
-                                    <p>Specializing in diverse urban typologies, from technical knowledge hubs to bespoke
-                                        leisure spaces</p>
+                                    <p>{{ $content->home_counter_short_details }}</p>
                                     <a href="{{ route('frontend.aboutUs') }}" class="button is-light w-inline-block">
-                                        <div class="button_label">Discover Our Process</div>
+                                        <div class="button_label">{{ $content->home_counter_btn_text }}</div>
                                         <div class="button_arrow w-embed"><svg width="100%" style=""
                                                 viewBox="0 0 23 17" fill="currentColor"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -222,15 +224,13 @@
                     <div class="section-padding is-5em">
                         <div class="section_top is-5em">
                             <div class="section_heading-wrap">
-                                <h2 class="h1">Featured Works</h2>
+                                <h2 class="h1">{{ $content->home_work_title }}</h2>
                             </div>
                             <div class="section_content-grid">
                                 <div class="section_info-wrap">
-                                    <p>Pixscape’s portfolio spans city-shaping initiatives of all scales—from large-scale
-                                        urban renewal to thoughtfully designed residential environments—reflecting our
-                                        innovative, people-focused approach to city making.</p>
+                                    <p>{{ $content->home_work_short_details }}</p>
                                     <a href="{{ route('frontend.project') }}" class="button w-inline-block">
-                                        <div class="button_label">View All Projects</div>
+                                        <div class="button_label">{{ $content->home_work_btn_text }}</div>
                                         <div class="button_arrow w-embed"><svg width="100%" style=""
                                                 viewBox="0 0 23 17" fill="currentColor"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -295,7 +295,7 @@
                                     <div class="display-contents">
                                         <div class="spacer-2"></div>
                                         <a href="{{ route('frontend.project') }}" class="button w-inline-block">
-                                            <div class="button_label">View All Projects</div>
+                                            <div class="button_label">{{ $content->home_work_btn_text }}</div>
                                             <div class="button_arrow w-embed"><svg width="100%" style=""
                                                     viewBox="0 0 23 17" fill="currentColor"
                                                     xmlns="http://www.w3.org/2000/svg">
@@ -318,7 +318,7 @@
             <div class="w-layout-blockcontainer container w-container">
                 <div class="section-padding is-6-5em">
                     <div class="page-padding">
-                        <h3 class="projects_sub-heading">What we&#x27;re currently working on</h3>
+                        <h3 class="projects_sub-heading">{{ $content->home_work_current_text }}</h3>
                     </div>
                     @php
                         $projects = \App\Models\Admin\Project::where([['delete', 0], ['status', 1]])
@@ -526,22 +526,22 @@
                 <div class="cta_wrap">
                     <div class="cta_marquee">
                         <a href="{{ route('frontend.contact') }}" class="cta_marquee-content w-inline-block">
-                            <div class="cta_marquee-text h-xl">Contact Pixscape</div>
+                            <div class="cta_marquee-text h-xl">{{ $content->home_work_contact_text }}</div>
                             <div class="dot is-light"></div>
-                            <div aria-hidden="true" class="cta_marquee-text h-xl">Contact Pixscape</div>
+                            <div aria-hidden="true" class="cta_marquee-text h-xl">{{ $content->home_work_contact_text }}</div>
                             <div class="dot is-light"></div>
-                            <div aria-hidden="true" class="cta_marquee-text h-xl">Contact Pixscape</div>
+                            <div aria-hidden="true" class="cta_marquee-text h-xl">{{ $content->home_work_contact_text }}</div>
                             <div class="dot is-light"></div>
-                            <div aria-hidden="true" class="cta_marquee-text h-xl">Contact Pixscape</div>
+                            <div aria-hidden="true" class="cta_marquee-text h-xl">{{ $content->home_work_contact_text }}</div>
                             <div class="dot is-light"></div>
                         </a>
                     </div>
                 </div>
             </div>
             <div class="img_overflow is-cta"><img
-                    src="https://cdn.prod.website-files.com/65249822a54c89915817034b/6540b552a3e7657917ef0f73_Riverpoint%20Apartments%20452_1.webp"
+                    src="{{ asset($content->home_work_contact_image) }}"
                     loading="lazy" sizes="(max-width: 1920px) 100vw, 1920px"
-                    srcset="https://cdn.prod.website-files.com/65249822a54c89915817034b/6540b552a3e7657917ef0f73_Riverpoint%20Apartments%20452_1-p-500.webp 500w, https://cdn.prod.website-files.com/65249822a54c89915817034b/6540b552a3e7657917ef0f73_Riverpoint%20Apartments%20452_1-p-800.webp 800w, https://cdn.prod.website-files.com/65249822a54c89915817034b/6540b552a3e7657917ef0f73_Riverpoint%20Apartments%20452_1-p-1080.webp 1080w, https://cdn.prod.website-files.com/65249822a54c89915817034b/6540b552a3e7657917ef0f73_Riverpoint%20Apartments%20452_1-p-1600.webp 1600w, https://cdn.prod.website-files.com/65249822a54c89915817034b/6540b552a3e7657917ef0f73_Riverpoint%20Apartments%20452_1.webp 1920w"
+                    srcset="{{ asset($content->home_work_contact_image) }}"
                     alt="Archipelago&#x27;s Architecture, Urban Design, Landscape Architecture project" class="cta_img" />
             </div>
         </section>

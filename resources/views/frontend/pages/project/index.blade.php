@@ -1,29 +1,19 @@
 <!DOCTYPE html><!-- Last Published: Wed Jan 21 2026 00:34:30 GMT+0000 (Coordinated Universal Time) -->
-<html data-wf-domain="www.pixscape-bd.com" data-wf-page="6543a9053fac558af9585fb5"
-    data-wf-site="65249822a54c89915817034b">
+<html data-wf-domain="www.pixscape-bd.com" data-wf-page="6543a9053fac558af9585fb5" data-wf-site="65249822a54c89915817034b">
 @php
     $logo = \App\Models\Admin\Logo::first();
 @endphp
+
 <head>
-   <meta charset="utf-8" />
+    <meta charset="utf-8" />
     <title>Pixscape - where tomorrows cities are engineered</title>
-    <meta
-        content="Pixscape - where tomorrows cities are engineered"
-        name="description" />
+    <meta content="Pixscape - where tomorrows cities are engineered" name="description" />
     <meta content="Pixscape - where tomorrows cities are engineered" property="og:title" />
-    <meta
-        content="Pixscape - where tomorrows cities are engineered"
-        property="og:description" />
-    <meta
-        content="{{ asset($logo->main_site_icon) }}"
-        property="og:image" />
+    <meta content="Pixscape - where tomorrows cities are engineered" property="og:description" />
+    <meta content="{{ asset($logo->main_site_icon) }}" property="og:image" />
     <meta content="Pixscape - where tomorrows cities are engineered" property="twitter:title" />
-    <meta
-        content="Pixscape - where tomorrows cities are engineered"
-        property="twitter:description" />
-    <meta
-        content="{{ asset($logo->main_site_icon) }}"
-        property="twitter:image" />
+    <meta content="Pixscape - where tomorrows cities are engineered" property="twitter:description" />
+    <meta content="{{ asset($logo->main_site_icon) }}" property="twitter:image" />
     <meta property="og:type" content="website" />
     <meta content="summary_large_image" name="twitter:card" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
@@ -42,10 +32,8 @@
                 .className += t + "touch")
         }(window, document);
     </script>
-   <link href="{{ asset($logo->main_site_icon) }}"
-        rel="shortcut icon" type="image/x-icon" />
-    <link href="{{ asset($logo->main_site_icon) }}"
-        rel="apple-touch-icon" />
+    <link href="{{ asset($logo->main_site_icon) }}" rel="shortcut icon" type="image/x-icon" />
+    <link href="{{ asset($logo->main_site_icon) }}" rel="apple-touch-icon" />
     <script src="https://www.google.com/recaptcha/api.js" type="text/javascript"></script>
     <link rel="preconnect" href="https://d25vfild7rvz0k.cloudfront.net" crossorigin />
     <link rel="dns-prefetch" href="https://d25vfild7rvz0k.cloudfront.net" />
@@ -430,6 +418,9 @@
             $logo = \App\Models\Admin\Logo::first();
             $aboutus = \App\Models\Admin\AboutUs::first();
         @endphp
+        @php
+            $content = \App\Models\Admin\Content::first();
+        @endphp
         @include('frontend.pages.shared.nav')
 
         <div class="page-main">
@@ -451,11 +442,11 @@
                                     <div class="page_breadcrumb-wrap"><a href="{{ url('/') }}"
                                             class="page_breadcrumb-text">Home</a>
                                         <div class="page_breadcrumb-text">/</div><a href="#" aria-current="page"
-                                            class="page_breadcrumb-text w--current">Works</a>
+                                            class="page_breadcrumb-text w--current">{{  $content->work_title }}</a>
                                     </div>
                                 </div>
                                 <div fs-cmsload-element="scroll-anchor" class="filter_wrap">
-                                    <h1 class="h-xl">Works</h1>
+                                    <h1 class="h-xl">{{  $content->work_title }}</h1>
                                     <div class="form w-form">
                                         <form id="wf-form-Projects-Filter-Form" name="wf-form-Projects-Filter-Form"
                                             data-name="Projects Filter Form" method="get"
@@ -466,14 +457,14 @@
                                                 <div class="submit-form is-filter"><input
                                                         class="submit-field is-filter w-input" maxlength="256"
                                                         name="Search" fs-cmsfilter-field="*" data-name="Search"
-                                                        placeholder="Search" fs-cmsfilter-debounce="300" type="text"
+                                                        placeholder="{{  $content->work_search_text }}" fs-cmsfilter-debounce="300" type="text"
                                                         id="search_btn" required="" /></div>
                                                 <div class="filter_ui-contain">
 
                                                     <div class="filter_dropdown">
                                                         <div class="filter_dropdown_underline-contain">
                                                             <div class="filter_dropdown-button">
-                                                                <div class="filter_dropdown-label">Filter by Sector
+                                                                <div class="filter_dropdown-label">{{  $content->work_filter_text }}
                                                                 </div>
                                                                 <div class="accordion_icon">
                                                                     <div class="accordion_minus is-vertical w-embed">

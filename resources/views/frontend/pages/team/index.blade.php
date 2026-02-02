@@ -4,6 +4,9 @@
     $aboutus = \App\Models\Admin\AboutUs::first();
     $teams = \App\Models\Admin\Team::where([['status', 1], ['delete', 0]])->get();
 @endphp
+@php
+    $content = \App\Models\Admin\Content::first();
+@endphp
 @section('content')
     <div class="page-main">
         <section class="section">
@@ -20,12 +23,12 @@
                                             </h1>
                                         </div>
                                     </a></div>
-                                <div class="page_breadcrumb-wrap"><a href="/" class="page_breadcrumb-text">Home</a>
-                                    <div class="page_breadcrumb-text">/</div><a href="/people/team" aria-current="page"
-                                        class="page_breadcrumb-text w--current">Team</a>
+                                <div class="page_breadcrumb-wrap"><a href="{{ url('/') }}" class="page_breadcrumb-text">Home</a>
+                                    <div class="page_breadcrumb-text">/</div><a href="#" aria-current="page"
+                                        class="page_breadcrumb-text w--current">{{ $content->team_title }}</a>
                                 </div>
                             </div>
-                            <h1 class="h-xl">Team</h1>
+                            <h1 class="h-xl">{{ $content->team_title }}</h1>
                         </div>
                     </div>
                 </div>
@@ -40,15 +43,14 @@
                                 <div role="list" class="team_collection-list w-dyn-items">
                                     @foreach ($teams as $team)
                                         <div role="listitem" class="team_collection-item w-dyn-item"><a
-                                                href="{{ route('frontend.teamMember',\Illuminate\Support\Str::slug( $team->team_member_name) ) }}?tmid={{ $team->id }}"
+                                                href="{{ route('frontend.teamMember', \Illuminate\Support\Str::slug($team->team_member_name)) }}?tmid={{ $team->id }}"
                                                 class="team_collection-link w-inline-block">
                                                 <div class="team_photo-ratio"><img alt="" loading="lazy"
                                                         src="{{ asset($team->team_member_image) }}"
                                                         sizes="(max-width: 767px) 100vw, (max-width: 991px) 95vw, 939.53125px"
                                                         srcset="{{ asset($team->team_member_image) }}"
                                                         class="ratio_img is-team-photo-hover" /><img alt=""
-                                                        loading="lazy"
-                                                        src="{{ asset($team->team_member_image) }}"
+                                                        loading="lazy" src="{{ asset($team->team_member_image) }}"
                                                         sizes="(max-width: 767px) 100vw, (max-width: 991px) 95vw, 939.53125px"
                                                         srcset="{{ asset($team->team_member_image) }}"
                                                         class="ratio_img is-team-photo-main" />
@@ -74,23 +76,21 @@
                 <div class="page-padding is-hiring">
                     <div class="hiring_wrap">
                         <div id="w-node-cfb97ec3-8808-cc9d-a022-0136105c2366-105c2362" class="hiring_img-ratio"><img
-                                src="https://cdn.prod.website-files.com/65249822a54c89915817034b/65540f3105b0d57b256f81b0_Two%20Archipelago%20team%20members%20having%20a%20conversation%20at%20a%20table.webp"
+                                src="{{ $content->team_career_image }}"
                                 loading="lazy"
                                 sizes="(max-width: 767px) 100vw, (max-width: 991px) 727.9921875px, 939.9921875px, 100vw"
-                                srcset="https://cdn.prod.website-files.com/65249822a54c89915817034b/65540f3105b0d57b256f81b0_Two%20Archipelago%20team%20members%20having%20a%20conversation%20at%20a%20table-p-500.webp 500w, https://cdn.prod.website-files.com/65249822a54c89915817034b/65540f3105b0d57b256f81b0_Two%20Archipelago%20team%20members%20having%20a%20conversation%20at%20a%20table-p-800.webp 800w, https://cdn.prod.website-files.com/65249822a54c89915817034b/65540f3105b0d57b256f81b0_Two%20Archipelago%20team%20members%20having%20a%20conversation%20at%20a%20table-p-1080.webp 1080w, https://cdn.prod.website-files.com/65249822a54c89915817034b/65540f3105b0d57b256f81b0_Two%20Archipelago%20team%20members%20having%20a%20conversation%20at%20a%20table-p-1600.webp 1600w, https://cdn.prod.website-files.com/65249822a54c89915817034b/65540f3105b0d57b256f81b0_Two%20Archipelago%20team%20members%20having%20a%20conversation%20at%20a%20table.webp 2003w"
+                                srcset="{{ $content->team_career_image }}"
                                 alt="" class="ratio_img" /></div>
                         <div id="w-node-cfb97ec3-8808-cc9d-a022-0136105c2368-105c2362" class="hiring_info-wrap">
-                            <div class="hiring_logo w-embed"><h2>{{ $aboutus ? $aboutus->company_name : '' }}</h2></div>
+                            <div class="hiring_logo w-embed">
+                                <h2>{{ $aboutus ? $aboutus->company_name : '' }}</h2>
+                            </div>
                             <div class="hiring_info-contain">
-                                <div class="hiring_callout">We’re hiring!</div>
-                                <p class="hiring_heading">Are you a passionate city maker eager to leave your mark on the
-                                    urban
-                                    landscape?</p>
-                                <p class="hiring_p">Join our dynamic Archipelago team and be part of crafting spaces that
-                                    will shape
-                                    Australia&#x27;s cities for generations to come.</p><a href="{{ route('frontend.careers') }}"
-                                    class="button is-hiring w-inline-block">
-                                    <div class="button_label">Join The Team</div>
+                                <div class="hiring_callout">{{ $content->team_career_headline }}</div>
+                                <p class="hiring_heading">{{ $content->team_career_title }}</p>
+                                <p class="hiring_p">{{ $content->team_career_short_details }}</p><a
+                                    href="{{ route('frontend.careers') }}" class="button is-hiring w-inline-block">
+                                    <div class="button_label">{{ $content->team_career_btn_text }}</div>
                                     <div class="button_arrow w-embed"><svg width="100%" style="" viewBox="0 0 23 17"
                                             fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" clip-rule="evenodd"

@@ -61,7 +61,25 @@ return new class extends Migration
             $table->text('team_career_title')->nullable();
             $table->text('team_career_short_details')->nullable();
             $table->text('team_career_btn_text')->nullable();
+            $table->text('team_single_footer_title')->nullable();
 
+            $table->text('service_sub_service_title')->nullable();
+
+            $table->text('work_title')->nullable();
+            $table->text('work_filter_text')->nullable();
+            $table->text('work_search_text')->nullable();
+
+            $table->text('career_title')->nullable();
+            $table->text('career_join_text')->nullable();
+            $table->text('career_resume_text')->nullable();
+            $table->text('career_resume_short_details')->nullable();
+
+            $table->text('article_title')->nullable();
+            $table->text('article_search_text')->nullable();
+
+            $table->text('contact_title')->nullable();
+            $table->text('contact_form_title')->nullable();
+            $table->text('contact_form_btn_text')->nullable();
 
             $table->text('footer_subscribe_text')->nullable();
 

@@ -4,6 +4,9 @@
     $aboutus = \App\Models\Admin\AboutUs::first();
     $contact = \App\Models\Admin\Contact::first();
 @endphp
+@php
+    $content = \App\Models\Admin\Content::first();
+@endphp
 @section('content')
     <div class="page-main">
         <section class="section">
@@ -23,10 +26,10 @@
                                 <div class="page_breadcrumb-wrap"><a href="{{ url('/') }}"
                                         class="page_breadcrumb-text">Home</a>
                                     <div class="page_breadcrumb-text">/</div><a href="#" aria-current="page"
-                                        class="page_breadcrumb-text w--current">Contact</a>
+                                        class="page_breadcrumb-text w--current">{{ $content->contact_title }}</a>
                                 </div>
                             </div>
-                            <h1 class="h-xl">Contact Us</h1>
+                            <h1 class="h-xl">{{ $content->contact_title }}</h1>
                         </div>
                     </div>
                 </div>
@@ -74,11 +77,12 @@
                     <div class="section-padding is-100svh">
                         <div class="contact_wrap">
                             <div class="section_content-grid is-2 is-light">
-                                <p class="page_sub-heading " style="color: white">Contact Pixscape</p>
+                                <p class="page_sub-heading " style="color: white">{{ $content->contact_form_title }}</p>
                                 <div class="section_info-wrap">
                                     <div class="form w-form">
                                         @if (session()->has('success'))
-                                            <div style="width: 100%;padding:10px; background:#3f8639;text-align: center;color:white">
+                                            <div
+                                                style="width: 100%;padding:10px; background:#3f8639;text-align: center;color:white">
                                                 <span style="text-align: center">{{ session()->get('success') }}</span>
                                             </div>
                                         @endif
@@ -108,8 +112,8 @@
                                             <div class="button is-white"
                                                 style="color: white;border-bottom:1px solid white"><input type="submit"
                                                     data-wait="Please wait..." class="contact_submit-button w-button"
-                                                    value="Send Enquiry" />
-                                                <div class="button_label">Send Enquiry</div>
+                                                    value="{{ $content->contact_form_btn_text }}" />
+                                                <div class="button_label">{{ $content->contact_form_btn_text }}</div>
                                                 <div class="button_arrow w-embed" style="color: white"><svg
                                                         width="100%" style="" viewBox="0 0 23 17"
                                                         fill="currentColor" xmlns="http://www.w3.org/2000/svg">

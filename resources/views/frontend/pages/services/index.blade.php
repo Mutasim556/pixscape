@@ -3,6 +3,7 @@
 @php
     $logo = \App\Models\Admin\Logo::first();
 @endphp
+
 <head>
     <meta charset="utf-8" />
     <title>Pixscape - where tomorrows cities are engineered</title>
@@ -417,6 +418,7 @@
             $logo = \App\Models\Admin\Logo::first();
             $aboutus = \App\Models\Admin\AboutUs::first();
         @endphp
+        
         @include('frontend.pages.shared.nav')
 
         <div class="page-main">

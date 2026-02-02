@@ -122,7 +122,7 @@
                             href="{{ route('admin.pages.contactUs') }}">{{ __('admin_local.Contact') }}</a>
                     </li>
                 @endif
-                @if (hasPermission(['aboutus-index', 'service-index', 'famework-index', 'value-index','sub-service-index']))
+                @if (hasPermission(['aboutus-index', 'service-index', 'famework-index', 'value-index', 'sub-service-index']))
                     <li>
                         <a class="submenu-title" href="javascript:void(0)"
                             style="margin-bottom:5px;">{{ __('admin_local.About Page') }}<span class="sub-arrow"><i
@@ -174,7 +174,7 @@
                         </ul>
                     </li>
                 @endif
-                @if (hasPermission(['career-index','job-application-index']))
+                @if (hasPermission(['career-index', 'job-application-index']))
                     <li>
                         <a class="submenu-title" href="javascript:void(0)"
                             style="margin-bottom:5px;">{{ __('admin_local.Career Page') }}<span class="sub-arrow"><i
@@ -187,7 +187,7 @@
                                         style="margin-bottom:5px;">{{ __('admin_local.Career') }}</a>
                                 </li>
                             @endif
-                             @if (hasPermission(['job-application-index']))
+                            @if (hasPermission(['job-application-index']))
                                 <li>
                                     <a class="sidebar-link" href="{{ route('admin.pages.jobApplications') }}"
                                         style="margin-bottom:5px;">{{ __('admin_local.Applications') }}</a>
@@ -251,6 +251,11 @@
                         </a>
                     </li>
                 @endif
+                <li>
+                    <a href="{{ route('admin.settings.contentIndex') }}" class="sidebar-link">
+                        <span> {{ __('admin_local.Site Contents') }} </span>
+                    </a>
+                </li>
             </ul>
         </li>
     @endif

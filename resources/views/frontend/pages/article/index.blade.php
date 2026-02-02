@@ -430,6 +430,9 @@
             $logo = \App\Models\Admin\Logo::first();
             $aboutus = \App\Models\Admin\AboutUs::first();
         @endphp
+        @php
+            $content = \App\Models\Admin\Content::first();
+        @endphp
         @include('frontend.pages.shared.nav')
 
         <style class="articles-css">
@@ -490,7 +493,7 @@
                                     </div>
                                 </div>
                                 <div fs-cmsload-element="scroll-anchor" class="filter_wrap">
-                                    <h1 class="h-xl">Articles</h1>
+                                    <h1 class="h-xl">{{ $content->article_title }}</h1>
                                     <div class="form w-form">
                                         <form id="wf-form-Blog-Filter-Form" name="wf-form-Blog-Filter-Form"
                                             data-name="Blog Filter Form" method="get" fs-cmsfilter-element="filters"
@@ -500,7 +503,7 @@
                                                 <div class="submit-form is-filter"><input
                                                         class="submit-field is-filter w-input" maxlength="256"
                                                         name="field" fs-cmsfilter-field="*" data-name="Field"
-                                                        placeholder="Search" type="text" id="field"
+                                                        placeholder="{{ $content->article_search_text }}" type="text" id="field"
                                                         required="" /></div>
                                                 {{-- <div class="filter_ui-contain">
                                                     <div class="filter_dropdown">

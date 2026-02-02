@@ -412,6 +412,9 @@
             $logo = \App\Models\Admin\Logo::first();
             $aboutus = \App\Models\Admin\AboutUs::first();
         @endphp
+        @php
+            $content = \App\Models\Admin\Content::first();
+        @endphp
         @include('frontend.pages.shared.nav')
         <div class="page-main">
             <section class="section">
@@ -434,7 +437,7 @@
                                             class="page_breadcrumb-text w--current">About Us</a>
                                     </div>
                                 </div>
-                                <h1 class="h-xl">About Us</h1>
+                                <h1 class="h-xl">{{ $content->about_title }}</h1>
                             </div>
                         </div>
                     </div>
@@ -465,14 +468,11 @@
                         <div class="section-padding is-10em is-about">
                             <div class="section_top is-5em">
                                 <div class="section_heading-wrap">
-                                    <h2 class="h1">Our Services</h2>
+                                    <h2 class="h1">{{ $content->about_service_title }}</h2>
                                 </div>
                                 <div class="section_content-grid">
                                     <div class="section_info-wrap">
-                                        <p>We always look at the bigger picture—how different services work together and
-                                            support each other—which shows our strong understanding of industry needs,
-                                            regulations, and opportunities. We believe creative work is interconnected,
-                                            and our services and expertise are designed with that same mindset.</p>
+                                        <p>{{ $content->about_service_short_details }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -542,59 +542,67 @@
                     <div class="page-padding">
                         <div class="section-padding is-5em">
                             <div class="section_top is-right-padding">
-                                <h2 class="h1">The PIXSCAPE Framework</h2>
+                                <h2 class="h1">{{ $content->about_framwork_title }}</h2>
                             </div>
                             <div class="section_middle is-framework">
-                                <p id="w-node-cd87aaec-6c01-ac6f-6c96-4531983be464-f9585fac">We use creative ideas
-                                    supported by research to reveal opportunities that aren’t always apparent at the
-                                    beginning of a project, ensuring outcomes that create real and lasting change.
+                                <p id="w-node-cd87aaec-6c01-ac6f-6c96-4531983be464-f9585fac">
+                                    {{ $content->about_framwork_details1 }}
                                     <br><br>
-                                    Our portfolio of work in master planning and urban development reveals a commitment
-                                    to shaping cities through context-driven design. We realize the full potential of
-                                    every site, creating public spaces and thoughtfully designed buildings that
-                                    strengthen the unique identity of the neighborhoods we work in.
+                                    {{ $content->about_framwork_details2 }}
                                 </p>
-                                <p id="w-node-_59e720e2-a366-09ff-993e-12e52932f5ea-f9585fac">Seeing the bigger picture
-                                    enables us to recognize valuable connections and opportunities, delivering improved
-                                    quality and amenity with a balanced, cost-conscious approach. <br><br>
-                                    We design with people in mind, creating places that support life in all its
-                                    forms—learning, working, resting, and connecting.</p>
+                                <p id="w-node-_59e720e2-a366-09ff-993e-12e52932f5ea-f9585fac">
+                                    {{ $content->about_framwork_details3 }} <br><br>
+                                    {{ $content->about_framwork_details4 }}</p>
                             </div>
                             <div hide-scrollbar="" data-lenis-prevent="" class="section_bottom is-about-framework">
                                 <div id="w-node-_2029f510-8504-e3f0-c696-9f89819280ee-f9585fac" class="vertical_3em">
-                                    <img src="https://cdn.prod.website-files.com/65249822a54c89915817034b/653641f56e334d11c63b64f6_archipelago-room.svg"
+                                    <img src="{{ asset($content->about_framwork_image1) }}"
                                         loading="lazy" data-animate=""
                                         alt="Archipelago&#x27;s Architecture, Urban Design, Landscape Architecture city shaping plans"
                                         class="about_framework-image" />
-                                    <div>Room</div>
+                                    <div>{{ $content->about_framwork_image_text1 }}</div>
                                 </div>
                                 <div id="w-node-c86a692a-b097-ca1a-8dd6-fedf146adbb8-f9585fac" class="vertical_3em">
-                                    <img src="https://cdn.prod.website-files.com/65249822a54c89915817034b/653641f5f181ce66f663c589_archipelago-site.svg"
+                                    <img src="{{ asset($content->about_framwork_image2) }}"
                                         loading="lazy" data-animate=""
                                         alt="Archipelago&#x27;s Architecture, Urban Design, Landscape Architecture city shaping plans"
                                         class="about_framework-image" />
-                                    <div>Site</div>
+                                    <div>{{ $content->about_framwork_image_text2 }}</div>
                                 </div>
                                 <div id="w-node-b5350664-35a2-deee-dbd2-cd374e136e7a-f9585fac" class="vertical_3em">
-                                    <img src="https://cdn.prod.website-files.com/65249822a54c89915817034b/653641f55ba2403cb38111f3_archipelago-neighbourhood.svg"
+                                    <img src="{{ asset($content->about_framwork_image3) }}"
                                         loading="lazy" data-animate=""
                                         alt="Archipelago&#x27;s Architecture, Urban Design, Landscape Architecture city shaping plans"
                                         class="about_framework-image" />
-                                    <div>Neighbourhood</div>
+                                    <div>{{ $content->about_framwork_image_text3 }}</div>
                                 </div>
                                 <div id="w-node-_38225d05-807c-215a-f3d0-8cf4b037b0b2-f9585fac" class="vertical_3em">
-                                    <img src="https://cdn.prod.website-files.com/65249822a54c89915817034b/653641f6d6ca1fc34347d66b_archipelago-city.svg"
+                                    <img src="{{ asset($content->about_framwork_image4) }}"
                                         loading="lazy" data-animate=""
                                         alt="Archipelago&#x27;s Architecture, Urban Design City"
                                         class="about_framework-image" />
-                                    <div>City</div>
+                                    <div>{{ $content->about_framwork_image_text4 }}</div>
+                                </div>
+                                <div id="w-node-_38225d05-807c-215a-f3d0-8cf4b037b0b2-f9585fac" class="vertical_3em">
+                                    <img src="{{ asset($content->about_framwork_image4) }}"
+                                        loading="lazy" data-animate=""
+                                        alt="Archipelago&#x27;s Architecture, Urban Design City"
+                                        class="about_framework-image" />
+                                    <div>{{ $content->about_framwork_image_text4 }}</div>
+                                </div>
+                                <div id="w-node-_38225d05-807c-215a-f3d0-8cf4b037b0b2-f9585fac" class="vertical_3em">
+                                    <img src="{{ asset($content->about_framwork_image4) }}"
+                                        loading="lazy" data-animate=""
+                                        alt="Archipelago&#x27;s Architecture, Urban Design City"
+                                        class="about_framework-image" />
+                                    <div>{{ $content->about_framwork_image_text4 }}</div>
                                 </div>
                                 <div id="w-node-_311b4da9-19b3-5a7a-3e4a-1999c71d52a4-f9585fac" class="vertical_3em">
-                                    <img src="https://cdn.prod.website-files.com/65249822a54c89915817034b/653641f591e3fde39e6a4911_archipelago-region.svg"
+                                    <img src="{{ asset($content->about_framwork_image5) }}"
                                         loading="lazy" data-animate=""
                                         alt="Archipelago&#x27;s Architecture, Urban Design, Landscape Architecture city shaping plans"
                                         class="about_framework-image" />
-                                    <div>Region</div>
+                                    <div>{{ $content->about_framwork_image_text5 }}</div>
                                 </div><img
                                     src="https://cdn.prod.website-files.com/65249822a54c89915817034b/653641efb55fc64b2d631992_archipelago-framework-line.webp"
                                     loading="lazy" id="w-node-_377ff006-e0e2-49af-94ed-825514fe3db9-f9585fac"
@@ -612,13 +620,13 @@
                         <div class="section-padding is-6-5em">
                             <div class="section_top is-5em">
                                 <div class="section_heading-wrap">
-                                    <h2 class="h1">Our Framework</h2>
+                                    <h2 class="h1">{{ $content->about_oframework_title }}</h2>
                                 </div>
                             </div>
                             <div class="section_middle is-service"><img
-                                    src="https://cdn.prod.website-files.com/65249822a54c89915817034b/6536524d0580816a6a399f95_archipelago_our-approach.svg"
+                                    src="{{ asset($content->about_oframwork_image) }}"
                                     loading="lazy" data-animate="" alt="" class="about_service-img" />
-                                <p class="about_service-hero">Our Approach to <br />Delivering Enduring Value</p>
+                                <p class="about_service-hero">{{ $content->about_oframework_short_details }}</p>
                             </div>
                             <div class="section_bottom is-service">
                                 @php
@@ -639,7 +647,7 @@
                     </div>
                     <div class="about_clients_component">
                         <div class="page-padding">
-                            <div class="about_sub-heading">Clients &amp; collaborators.</div>
+                            <div class="about_sub-heading">{{ $content->about_client_title }}</div>
                         </div>
                         <div class="clients_marquee_component">
                             <div class="clients_marquee_row">
@@ -690,7 +698,7 @@
                         <div class="section-padding is-10em">
                             <div class="section_top is-5em">
                                 <div class="section_heading-wrap">
-                                    <h2 class="h1">Our Values</h2>
+                                    <h2 class="h1">{{ $content->about_values_title }}</h2>
                                 </div>
                             </div>
                             <div class="section_middle is-values">
@@ -890,13 +898,11 @@
                                                 src="{{ asset($logo->main_site_footer_logo) }}" alt=""></div>
                                         <div class="vertical_3em is-left">
                                             <div class="vertical_1em">
-                                                <div class="about_workshop-heading">Book an Appointment </div>
-                                                <p class="about_workshop-p">Ready to take the next step with
-                                                    confidence? Let’s bring your vision to life—connect with Pixscape
-                                                    and book a friendly project consultation today.</p>
+                                                <div class="about_workshop-heading">{{ $content->about_app_title }}</div>
+                                                <p class="about_workshop-p">{{ $content->about_app_short_details }}</p>
                                             </div><a href="{{ route('frontend.contact') }}#message_form"
                                                 class="button is-small w-inline-block">
-                                                <div class="button_label">Book Now</div>
+                                                <div class="button_label">{{ $content->about_app_btn_text }}</div>
                                                 <div class="button_arrow w-embed"><svg width="100%" style=""
                                                         viewBox="0 0 23 17" fill="currentColor"
                                                         xmlns="http://www.w3.org/2000/svg">
@@ -997,7 +1003,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </section> --}}
@@ -1056,14 +1062,11 @@
                                 <div class="hiring_logo w-embed" style="width: 10em"><img
                                         src="{{ asset($logo->main_site_logo3) }}" alt=""></div>
                                 <div class="hiring_info-contain">
-                                    <div class="hiring_callout">We’re hiring!</div>
-                                    <p class="hiring_heading">Do you have a passion for shaping cities and creating
-                                        impactful urban environments? Join PIXSCAPE and make your mark on the future of
-                                        city living! </p>
-                                    <p class="hiring_p">Join the dynamic PIXSCAPE team and help design the spaces where
-                                        tomorrow’s cities are engineered.</p><a href="{{ route('frontend.careers') }}"
+                                    <div class="hiring_callout">{{ $content->about_career_headline }}</div>
+                                    <p class="hiring_heading">{{ $content->about_career_title }}</p>
+                                    <p class="hiring_p">{{ $content->about_career_short_details }}</p><a href="{{ route('frontend.careers') }}"
                                         class="button is-hiring w-inline-block">
-                                        <div class="button_label">Join The Team</div>
+                                        <div class="button_label">{{ $content->about_career_btn_text }}</div>
                                         <div class="button_arrow w-embed"><svg width="100%" style=""
                                                 viewBox="0 0 23 17" fill="currentColor"
                                                 xmlns="http://www.w3.org/2000/svg">

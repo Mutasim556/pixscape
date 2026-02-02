@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AwardController;
 use App\Http\Controllers\Admin\CareerController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\ContactUsController;
+use App\Http\Controllers\Admin\ContentController;
 use App\Http\Controllers\Admin\CounterController;
 use App\Http\Controllers\Admin\DesignExpController;
 use App\Http\Controllers\Admin\FrameworkController;
@@ -84,6 +85,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
             /** Logo Start */
             Route::resource('logo', LogoIconController::class)->except('create', 'show', 'store');
             /** Logo End */
+            Route::controller(ContentController::class)->prefix('content')->group(function(){
+                Route::get('/','index')->name('contentIndex');
+                Route::put('/update/{id}','update')->name('contentUpdate');
+            });
         });
 
         Route::prefix('pages')->name('pages.')->group(function () {
