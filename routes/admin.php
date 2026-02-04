@@ -131,6 +131,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::resource('project', ProjectController::class)->except('create', 'show');
             Route::controller(ProjectController::class)->prefix('project')->group(function () {
                 Route::get('/update/status/{id}/{status}', 'updateStatus');
+                Route::get('/get/sub-service/{id}', 'getSubService');
             });
             /** Project End */
 

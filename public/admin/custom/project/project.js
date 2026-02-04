@@ -102,7 +102,30 @@ $(document).on('submit', '#add_project_form', function (e) {
         },
     })
 });
-
+$(document).on('change', '#service_id', function () {
+    var service_id = $(this).val();
+    var sub_service_id = '#'+$(this).closest('form').attr('id');
+    $.ajax({
+        type: "get",
+        url: 'project/get/sub-service/' + service_id,
+        success: function (data) {
+            var option =`<option value="" selected disabled>Select Please</option>`;
+            $.each(data,function(key,val){
+                option = option+`<option value="${val.id}">${val.name}</option>`
+            })
+            $(sub_service_id+" #sub_service_id").empty().append(option);
+        },
+        error: function (err) {
+            var err_message = err.responseJSON.message.split("(");
+            swal({
+                icon: "warning",
+                title: "Warning !",
+                text: err_message[0],
+                confirmButtonText: "Ok",
+            });
+        }
+    });
+});
 //update status
 $(document).on('change', '#status_change', function () {
     var status = $(this).data('status');
@@ -152,6 +175,15 @@ $(document).on('click', '#edit_button', function () {
             $('#edit_project_form #project_title').val(data.title);
             $('#edit_project_form #project_short_details').val(data.short_details);
             $('#edit_project_form #project_type').val(data.project_type_id);
+            $('#edit_project_form #service_id').val(data.service_id);
+
+            var s_option = `<option selected disabled>Select Please</option>`;
+            $.each(data.subServices,function(skey,sval){
+                s_option = s_option+`<option value="${sval.id}">${sval.name}</option>`;
+            })
+            $('#edit_project_form #sub_service_id').empty().append(s_option);
+             $('#edit_project_form #sub_service_id').val(data.sub_service_id);
+
 
             CKEDITOR.instances['challenges2'].setData(data.challenges);
             CKEDITOR.instances['solutions2'].setData(data.solutions);

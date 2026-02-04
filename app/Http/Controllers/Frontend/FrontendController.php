@@ -249,20 +249,29 @@ class FrontendController extends Controller
 
     public function postResume(Request $data)
     {
-        $data->validate([
+        
+         $validator = Validator::make($data->all(), [
             'applicant_name' => 'required',
             'applicant_email' => 'required',
-            'applicant_resume' => 'required|mimes:pdf',
+            'applicant_resume' => 'required|mimes:pdf|max:2480',
         ], [
             'applicant_name.required' => 'Applicant Name Required',
             'applicant_email.required' => 'Applicant Email Required',
             'applicant_resume.required' => 'Applicant Resume Required',
             'applicant_resume.mimes' => 'Applicant resume must be pdf',
+            'applicant_resume.max' => 'File size not more then 2 MB',
         ]);
+        if ($validator->fails()) {
+            return redirect()
+                ->to(url()->previous() . '#applicant_form')
+                ->withErrors($validator)
+                ->withInput();
+        }
 
         $newResume = new JobApplication();
         $newResume->app_name = $data->applicant_name;
         $newResume->app_email = $data->applicant_email;
+        $newResume->job_post = $data->job_post;
 
         $dir = getDirectoryLink('career/career-resume');
         $makeDir = createDirectory($dir);

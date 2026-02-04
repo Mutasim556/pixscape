@@ -182,6 +182,25 @@
                                              @endforeach
                                          </select>
                                      </div>
+                                     <div class="form-group col-md-12">
+                                         <label for="">{{ __('admin_local.Select Service') }}</label>
+                                         <select name="service_id" id="service_id" class="form-control">
+                                             <option value="" selected disabled>
+                                                 {{ __('admin_local.Select Please') }}</option>
+                                             @foreach (\App\Models\Admin\Service::where([['status', 1], ['delete', 0]])->get() as $service)
+                                                 <option value="{{ $service->id }}">{{ $service->service_name }}
+                                                 </option>
+                                             @endforeach
+                                         </select>
+                                     </div>
+                                     <div class="form-group col-md-12">
+                                         <label for="">{{ __('admin_local.Select Sub Service') }}</label>
+                                         <select name="sub_service_id" id="sub_service_id" class="form-control">
+                                             <option value="" selected disabled>
+                                                 {{ __('admin_local.Select Please') }}</option>
+
+                                         </select>
+                                     </div>
                                  </div>
                              </div>
                              <div class="col-sm-12 col-xl-4">
@@ -426,6 +445,25 @@
                                                  <option value="{{ $projecttype->id }}">{{ $projecttype->title }}
                                                  </option>
                                              @endforeach
+                                         </select>
+                                     </div>
+                                     <div class="form-group col-md-12">
+                                         <label for="">{{ __('admin_local.Select Service') }}</label>
+                                         <select name="service_id" id="service_id" class="form-control">
+                                             <option value="" selected disabled>
+                                                 {{ __('admin_local.Select Please') }}</option>
+                                             @foreach (\App\Models\Admin\Service::where([['status', 1], ['delete', 0]])->get() as $service)
+                                                 <option value="{{ $service->id }}">{{ $service->service_name }}
+                                                 </option>
+                                             @endforeach
+                                         </select>
+                                     </div>
+                                     <div class="form-group col-md-12">
+                                         <label for="">{{ __('admin_local.Select Sub Service') }}</label>
+                                         <select name="sub_service_id" id="sub_service_id" class="form-control">
+                                             <option value="" selected disabled>
+                                                 {{ __('admin_local.Select Please') }}</option>
+
                                          </select>
                                      </div>
                                  </div>

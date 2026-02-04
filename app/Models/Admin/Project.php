@@ -5,6 +5,7 @@ namespace App\Models\Admin;
 use App\Models\Admin;
 use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Model;
+use SebastianBergmann\CodeUnit\FunctionUnit;
 
 class Project extends Model
 {
@@ -51,5 +52,12 @@ class Project extends Model
     }
     public function team(){
         return $this->belongsTo(Team::class,'team_id','id');
+    }
+
+    public function service(){
+        return $this->belongsTo(Service::class,'service_id','id');
+    }
+    public function subService(){
+        return $this->belongsTo(SubService::class,'sub_service_id','id');
     }
 }

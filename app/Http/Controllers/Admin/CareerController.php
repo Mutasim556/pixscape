@@ -65,6 +65,7 @@ class CareerController extends Controller
         $update = Career::find($id);
         $update->title = $data->title;
         $update->details = $data->details;
+        $update->job_post = $data->job_post;
 
         $dir = getDirectoryLink('career/career-images');
         $makeDir = createDirectory($dir);

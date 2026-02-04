@@ -175,10 +175,44 @@ class ContentController extends Controller
         $content->about_app_title = $data->about_app_title;
         $content->about_app_short_details = $data->about_app_short_details;
         $content->about_app_btn_text = $data->about_app_btn_text;
+        if ($data->about_app_image) {
+            $image = $data->about_app_image;
+            $ext   = strtolower($image->getClientOriginalExtension());
+            $imageName = 'aboutAppImage' . time() . '.' . $ext;
+            $imagePath = $dir . '/' . $imageName;
+
+            if ($ext === 'svg') {
+                $image->move($dir, $imageName);
+            } else {
+                $manager = new ImageManager(new Driver());
+                $manager
+                    ->read($image)
+                    ->save($imagePath, 100);
+            }
+            $imageName  =  $dir . '/' . $imageName;
+            $content->about_app_image = $imageName;
+        }
         $content->about_career_headline = $data->about_career_headline;
         $content->about_career_title = $data->about_career_title;
         $content->about_career_short_details = $data->about_career_short_details;
         $content->about_career_btn_text = $data->about_career_btn_text;
+        if ($data->about_career_image) {
+            $image = $data->about_career_image;
+            $ext   = strtolower($image->getClientOriginalExtension());
+            $imageName = 'aboutCareerImage' . time() . '.' . $ext;
+            $imagePath = $dir . '/' . $imageName;
+
+            if ($ext === 'svg') {
+                $image->move($dir, $imageName);
+            } else {
+                $manager = new ImageManager(new Driver());
+                $manager
+                    ->read($image)
+                    ->save($imagePath, 100);
+            }
+            $imageName  =  $dir . '/' . $imageName;
+            $content->about_career_image = $imageName;
+        }
         $content->team_title = $data->team_title;
         $content->team_career_headline = $data->team_career_headline;
         $content->team_career_title = $data->team_career_title;
@@ -204,6 +238,7 @@ class ContentController extends Controller
         }
         $content->team_single_footer_title = $data->team_single_footer_title;
         $content->service_sub_service_title = $data->service_sub_service_title;
+        $content->sub_service_work_title = $data->sub_service_work_title;
         $content->work_title = $data->work_title;
         $content->work_filter_text = $data->work_filter_text;
         $content->work_search_text = $data->work_search_text;

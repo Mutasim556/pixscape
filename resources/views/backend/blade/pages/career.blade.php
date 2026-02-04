@@ -70,6 +70,14 @@
                             </div>
                             <div class="row mt-2">
                                 <div class="col-md-3 py-2">
+                                    <label for="">{{ __('admin_local.Job Post') }}</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="text" name="job_post" id="job_post" class="form-control" value="{{ $career->job_post }}">
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-3 py-2">
                                     <label for="">{{ __('admin_local.Image') }}</label>
                                 </div>
                                 <div class="col-md-9">

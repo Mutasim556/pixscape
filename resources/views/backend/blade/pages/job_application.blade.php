@@ -195,7 +195,7 @@
 
                      <div class="card-body">
                          <form action="{{ route('admin.pages.jobApplications') }}" method="GET">
-                            @csrf
+                             @csrf
                              <div class="row">
                                  <div class="col-lg-8 mx-auto py-5">
                                      <div class="row">
@@ -205,7 +205,9 @@
                                                      <label for="">{{ __('admin_local.Start Date') }}</label>
                                                  </div>
                                                  <div class="col-lg-6">
-                                                     <input type="date" name="start_date" value="{{ request()->has('start_date')?request()->get('start_date'):'' }}" class="form-control">
+                                                     <input type="date" name="start_date"
+                                                         value="{{ request()->has('start_date') ? request()->get('start_date') : '' }}"
+                                                         class="form-control">
                                                  </div>
                                              </div>
                                          </div>
@@ -215,7 +217,9 @@
                                                      <label for="">{{ __('admin_local.End Date') }}</label>
                                                  </div>
                                                  <div class="col-lg-6">
-                                                     <input type="date" name="end_date" value="{{ request()->has('end_date')?request()->get('end_date'):'' }}" class="form-control">
+                                                     <input type="date" name="end_date"
+                                                         value="{{ request()->has('end_date') ? request()->get('end_date') : '' }}"
+                                                         class="form-control">
                                                  </div>
                                              </div>
                                          </div>
@@ -223,7 +227,8 @@
                                          <div class="col-lg-2">
                                              <div class="row">
                                                  <div class="col-lg-6" style="text-align: right">
-                                                     <button type="submit" class="btn btn-primary">{{ __('admin_local.Search') }}</button>
+                                                     <button type="submit"
+                                                         class="btn btn-primary">{{ __('admin_local.Search') }}</button>
                                                  </div>
                                                  <div class="col-lg-6">
                                                      {{-- <input type="date" name="end_date" class="form-control"> --}}
@@ -243,6 +248,7 @@
                                          <th>{{ __('admin_local.Sender Name') }}</th>
                                          <th>{{ __('admin_local.Sender Email') }}</th>
                                          <th>{{ __('admin_local.Resume') }}</th>
+                                         <th>{{ __('admin_local.Job Post') }}</th>
                                          <th>{{ __('admin_local.Action') }}</th>
 
                                      </tr>
@@ -255,6 +261,7 @@
                                              <td>{{ $application->app_email }}</td>
                                              <td><a target="__blank" href="{{ asset($application->app_resume) }}"
                                                      class="btn btn-success btn sm py-1 px-2">View</a></td>
+                                             <td>{{ $application->job_post }}</td>
                                              <td><a onclick="return confirm('Are you sure want to delete ?')"
                                                      href="{{ route('admin.pages.jobApplicationsDelete', $application->id) }}"
                                                      class="btn btn-danger btn sm py-1 px-2">Delete</a></td>

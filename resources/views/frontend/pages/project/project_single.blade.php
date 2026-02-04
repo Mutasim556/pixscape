@@ -5,26 +5,17 @@
 @php
     $logo = \App\Models\Admin\Logo::first();
 @endphp
+
 <head>
-   <meta charset="utf-8" />
+    <meta charset="utf-8" />
     <title>Pixscape - where tomorrows cities are engineered</title>
-    <meta
-        content="Pixscape - where tomorrows cities are engineered"
-        name="description" />
+    <meta content="Pixscape - where tomorrows cities are engineered" name="description" />
     <meta content="Pixscape - where tomorrows cities are engineered" property="og:title" />
-    <meta
-        content="Pixscape - where tomorrows cities are engineered"
-        property="og:description" />
-    <meta
-        content="{{ asset($logo->main_site_icon) }}"
-        property="og:image" />
+    <meta content="Pixscape - where tomorrows cities are engineered" property="og:description" />
+    <meta content="{{ asset($logo->main_site_icon) }}" property="og:image" />
     <meta content="Pixscape - where tomorrows cities are engineered" property="twitter:title" />
-    <meta
-        content="Pixscape - where tomorrows cities are engineered"
-        property="twitter:description" />
-    <meta
-        content="{{ asset($logo->main_site_icon) }}"
-        property="twitter:image" />
+    <meta content="Pixscape - where tomorrows cities are engineered" property="twitter:description" />
+    <meta content="{{ asset($logo->main_site_icon) }}" property="twitter:image" />
     <meta property="og:type" content="website" />
     <meta content="summary_large_image" name="twitter:card" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
@@ -43,10 +34,8 @@
                 .className += t + "touch")
         }(window, document);
     </script>
-    <link href="{{ asset($logo->main_site_icon) }}"
-        rel="shortcut icon" type="image/x-icon" />
-    <link href="{{ asset($logo->main_site_icon) }}"
-        rel="apple-touch-icon" />
+    <link href="{{ asset($logo->main_site_icon) }}" rel="shortcut icon" type="image/x-icon" />
+    <link href="{{ asset($logo->main_site_icon) }}" rel="apple-touch-icon" />
     <script src="https://www.google.com/recaptcha/api.js" type="text/javascript"></script>
     <link rel="preconnect" href="https://d25vfild7rvz0k.cloudfront.net" crossorigin />
     <link rel="dns-prefetch" href="https://d25vfild7rvz0k.cloudfront.net" />
@@ -521,11 +510,8 @@
                 @php
                     $images = json_decode($project->images);
                 @endphp
-                <div class="img_overflow is-cta"><img loading="lazy"
-                        src="{{ asset($images[0]) }}"
-                        alt="" sizes="100vw"
-                        srcset="{{ asset($images[0]) }}"
-                        class="cta_img" /></div>
+                <div class="img_overflow is-cta"><img loading="lazy" src="{{ asset($images[0]) }}" alt=""
+                        sizes="100vw" srcset="{{ asset($images[0]) }}" class="cta_img" /></div>
             </section>
             <section class="section">
                 <div class="w-layout-blockcontainer container w-container">
@@ -551,27 +537,34 @@
                                             @php
                                                 $members = json_decode($project->team_members);
                                             @endphp
-                                            @foreach ($members as $member)
-                                                @php
-                                                    $expMember = explode('-', $member);
-                                                    $team = \App\Models\Admin\Team::where('id', $expMember[0])->first();
-                                                @endphp
-                                                <div role="listitem" class="project_team-collection-item w-dyn-item">
-                                                    <a href="/team-member/daniel-cocker-287bb"
-                                                        class="project_team-collection-link w-inline-block"><img
-                                                            alt="" loading="lazy"
-                                                            src="{{ asset($team->team_member_image) }}"
-                                                            sizes="(max-width: 767px) 100vw, (max-width: 991px) 95vw, 938.9722290039062px"
-                                                            srcset="{{ asset($team->team_member_image) }}"
-                                                            class="project_team-img" />
-                                                        <div class="vertical_0-125em">
-                                                            <div>{{ $expMember[1] }}</div>
-                                                            <div class="p-50">{{ $expMember[2] }}</div>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            @endforeach
+                                            @if ($project->has_team==1)
 
+
+                                                @foreach ($members as $member)
+                                                    @php
+                                                        $expMember = explode('-', $member);
+                                                        $team = \App\Models\Admin\Team::where(
+                                                            'id',
+                                                            $expMember[0],
+                                                        )->first();
+                                                    @endphp
+                                                    <div role="listitem"
+                                                        class="project_team-collection-item w-dyn-item">
+                                                        <a href="/team-member/daniel-cocker-287bb"
+                                                            class="project_team-collection-link w-inline-block"><img
+                                                                alt="" loading="lazy"
+                                                                src="{{ asset($team->team_member_image) }}"
+                                                                sizes="(max-width: 767px) 100vw, (max-width: 991px) 95vw, 938.9722290039062px"
+                                                                srcset="{{ asset($team->team_member_image) }}"
+                                                                class="project_team-img" />
+                                                            <div class="vertical_0-125em">
+                                                                <div>{{ $expMember[1] }}</div>
+                                                                <div class="p-50">{{ $expMember[2] }}</div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                @endforeach
+                                            @endif
 
                                         </div>
                                     </div>

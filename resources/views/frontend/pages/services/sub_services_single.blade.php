@@ -553,7 +553,8 @@
                                             class="page_breadcrumb-text">Home</a>
                                         <div class="page_breadcrumb-text">/</div><a href="#"
                                             class="page_breadcrumb-text">Services</a>
-                                        <div class="page_breadcrumb-text">/</div><a href="{{ route('frontend.serviceSingle', \Illuminate\Support\Str::slug($subservice->service->service_name)) }}?serviceid={{ $subservice->service->id }}"
+                                        <div class="page_breadcrumb-text">/</div><a
+                                            href="{{ route('frontend.serviceSingle', \Illuminate\Support\Str::slug($subservice->service->service_name)) }}?serviceid={{ $subservice->service->id }}"
                                             class="page_breadcrumb-text">{{ $subservice->service->service_name }}</a>
                                         <div class="page_breadcrumb-text">/</div><a href="#" aria-current="page"
                                             class="page_breadcrumb-text w--current">{{ $subservice->name }}</a>
@@ -588,8 +589,8 @@
                     </div>
                 </div>
                 <div class="img_overflow is-cta"><img loading="lazy" src="{{ asset($subservice->image) }}"
-                        alt="" sizes="100vw" srcset="{{ asset($subservice->image) }}"
-                        class="cta_img" /></div>
+                        alt="" sizes="100vw" srcset="{{ asset($subservice->image) }}" class="cta_img" />
+                </div>
             </section>
             <section class="section">
                 <div class="w-layout-blockcontainer container w-container">
@@ -764,7 +765,52 @@
                         </div>
                     </div>
             </section>
+            @php
+                $content = \App\Models\Admin\Content::first();
+            @endphp
+            @php
+                $works = \App\Models\Admin\Project::where([
+                    ['status', 1],
+                    ['delete', 0],
+                    ['sub_service_id', $subservice->id],
+                ])->get();
+            @endphp
+            @if (count($works) > 0)
 
+
+                <section class="section">
+                    <div class="w-layout-blockcontainer container w-container">
+                        <div class="page-padding">
+                            <div class="section-padding is-5em is-project-images">
+                                <h3 style="text-align: center">
+                                    {{ $content->sub_service_work_title ?? 'Some of Works' }}
+                                </h3>
+                                <div class="card-container">
+
+                                    @foreach ($works as $work)
+                                        {{-- {{ route('subservice.show', $subservice->id) }} --}}
+                                        <a href="{{ route('frontend.projectSingle', \Illuminate\Support\Str::slug($work->title)) }}?projectid={{ $work->id }}"
+                                            class="card-link">
+                                            <div class="card">
+                                                <div class="card-image">
+                                                    @php
+                                                        $images = json_decode($work->images);
+                                                    @endphp
+                                                    <img src="{{ asset($images[0]) }}" alt="Image">
+                                                    <h3 class="card-title">{{ $work->title }}</h3>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p>{{ $work->short_details }}</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            @endif
         </div>
         @include('frontend.pages.shared.footer')
     </div>

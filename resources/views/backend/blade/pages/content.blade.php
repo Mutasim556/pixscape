@@ -343,6 +343,17 @@
                             </div>
                             <div class="row mt-2">
                                 <div class="col-md-5 py-2">
+                                    <label for="">{{ __('admin_local.About Page Appoinment Image') }}</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="file" class="form-control" name="about_app_image" id="about_app_image" onchange="document.getElementById('prev_about_app_image').src = window.URL.createObjectURL(this.files[0])">
+                                </div>
+                                <div class="col-md-4">
+                                    <img src="{{ asset($content->about_app_image) }}" id="prev_about_app_image" style="float: right;width:100%" alt="">
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-5 py-2">
                                     <label for="">{{ __('admin_local.About Page Career Headline') }}</label>
                                 </div>
                                 <div class="col-md-7">
@@ -371,6 +382,17 @@
                                 </div>
                                 <div class="col-md-7">
                                     <textarea class="form-control" name="about_career_btn_text" id="" cols="20" rows="2">{{ $content->about_career_btn_text }}</textarea>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-5 py-2">
+                                    <label for="">{{ __('admin_local.About Page Career Image') }}</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="file" class="form-control" name="about_career_image" id="about_career_image" onchange="document.getElementById('prev_about_career_image').src = window.URL.createObjectURL(this.files[0])">
+                                </div>
+                                <div class="col-md-4">
+                                    <img src="{{ asset($content->about_career_image) }}" id="prev_about_career_image" style="float: right;width:100%" alt="">
                                 </div>
                             </div>
                             <h4 class="text-center my-3"><u>Team Page</u></h4>
@@ -440,6 +462,14 @@
                                 </div>
                                 <div class="col-md-7">
                                     <textarea class="form-control" name="service_sub_service_title" id="" cols="20" rows="2">{{ $content->service_sub_service_title }}</textarea>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-5 py-2">
+                                    <label for="">{{ __('admin_local.Sub Service Work Title') }}</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <textarea class="form-control" name="sub_service_work_title" id="" cols="20" rows="2">{{ $content->sub_service_work_title }}</textarea>
                                 </div>
                             </div>
                             <h4 class="text-center my-3"><u>Work Page</u></h4>

@@ -915,9 +915,9 @@
                                     </div>
                                 </div>
                                 <div id="w-node-_6b374d3c-c69e-9ce0-7165-38d0ca9ed274-f9585fac"><img
-                                        src="https://cdn.prod.website-files.com/65249822a54c89915817034b/65441b82f26fa41b25cb34e6_archipelago_about-workshop.webp"
+                                        src="{{ asset($content->about_app_image) }}"
                                         loading="lazy" sizes="100vw"
-                                        srcset="https://cdn.prod.website-files.com/65249822a54c89915817034b/65441b82f26fa41b25cb34e6_archipelago_about-workshop-p-500.webp 500w, https://cdn.prod.website-files.com/65249822a54c89915817034b/65441b82f26fa41b25cb34e6_archipelago_about-workshop-p-800.webp 800w, https://cdn.prod.website-files.com/65249822a54c89915817034b/65441b82f26fa41b25cb34e6_archipelago_about-workshop-p-1080.webp 1080w, https://cdn.prod.website-files.com/65249822a54c89915817034b/65441b82f26fa41b25cb34e6_archipelago_about-workshop.webp 1271w"
+                                        srcset="{{ asset($content->about_app_image) }}"
                                         alt="Archipelago&#x27;s Architecture, Urban Design, Landscape Architecture workshop"
                                         class="about_workshop-img" /></div>
                             </div>
@@ -1053,9 +1053,9 @@
                     <div class="page-padding is-hiring">
                         <div class="hiring_wrap">
                             <div id="w-node-cfb97ec3-8808-cc9d-a022-0136105c2366-105c2362" class="hiring_img-ratio">
-                                <img src="https://cdn.prod.website-files.com/65249822a54c89915817034b/65540f3105b0d57b256f81b0_Two%20Archipelago%20team%20members%20having%20a%20conversation%20at%20a%20table.webp"
+                                <img src="{{ asset($content->about_career_image) }}"
                                     loading="lazy" sizes="100vw"
-                                    srcset="https://cdn.prod.website-files.com/65249822a54c89915817034b/65540f3105b0d57b256f81b0_Two%20Archipelago%20team%20members%20having%20a%20conversation%20at%20a%20table-p-500.webp 500w, https://cdn.prod.website-files.com/65249822a54c89915817034b/65540f3105b0d57b256f81b0_Two%20Archipelago%20team%20members%20having%20a%20conversation%20at%20a%20table-p-800.webp 800w, https://cdn.prod.website-files.com/65249822a54c89915817034b/65540f3105b0d57b256f81b0_Two%20Archipelago%20team%20members%20having%20a%20conversation%20at%20a%20table-p-1080.webp 1080w, https://cdn.prod.website-files.com/65249822a54c89915817034b/65540f3105b0d57b256f81b0_Two%20Archipelago%20team%20members%20having%20a%20conversation%20at%20a%20table-p-1600.webp 1600w, https://cdn.prod.website-files.com/65249822a54c89915817034b/65540f3105b0d57b256f81b0_Two%20Archipelago%20team%20members%20having%20a%20conversation%20at%20a%20table.webp 2003w"
+                                    srcset="{{ asset($content->about_career_image) }}"
                                     alt="" class="ratio_img" />
                             </div>
                             <div id="w-node-cfb97ec3-8808-cc9d-a022-0136105c2368-105c2362" class="hiring_info-wrap">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Language;
 use App\Models\Admin\Project;
+use App\Models\Admin\SubService;
 use App\Models\Admin\Translation;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -70,6 +71,8 @@ class ProjectController extends Controller
         $newProject->solutions = $data->solutions;
         $newProject->project_type_id = $data->project_type;
         $newProject->values = $data->values;
+        $newProject->service_id = $data->service_id;
+        $newProject->sub_service_id = $data->sub_service_id;
         $option_value = [];
         foreach ($data->option as $key => $value) {
             $option_value[]=[
@@ -203,8 +206,9 @@ class ProjectController extends Controller
      */
     public function edit(string $id)
     {
-        $project = Project::withoutGlobalScope('translate')->findOrFail($id);
+        $project = Project::withoutGlobalScope('translate')->with('service')->findOrFail($id);
         // dd(app()->getLocale());
+        $project->subServices = SubService::where([['status',1],['delete',0],['service_id',$project->service_id]])->get();
         return response($project);
     }
 
@@ -242,6 +246,8 @@ class ProjectController extends Controller
         $updateProject->solutions = $data->solutions;
         $updateProject->project_type_id = $data->project_type;
         $updateProject->values = $data->values;
+        $updateProject->service_id = $data->service_id;
+        $updateProject->sub_service_id = $data->sub_service_id;
         $option_value = [];
         foreach ($data->option as $key => $value) {
             $option_value[]=[
@@ -386,5 +392,10 @@ class ProjectController extends Controller
         Project::where('id', $data->id)->update(['status' => $data->status, 'updated_at' => Carbon::now()]);
         $prject = Project::where('id', $data->id)->first();
         return $prject;
+    }
+
+    public function getSubService(string $id){
+        $subservice = SubService::where([['status',1],['delete',0],['service_id',$id]])->get();
+        return $subservice;
     }
 }

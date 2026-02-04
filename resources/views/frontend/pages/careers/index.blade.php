@@ -161,7 +161,7 @@
                                         action="{{ route('frontend.postResume') }}">
                                         @csrf
                                         <div class="field-group">
-                                            <label class="field-label">Applicant Name</label>
+                                            <label class="field-label">Applicant Name *</label>
                                             <input type="text" class="text-input" name="applicant_name"
                                                 placeholder="Name" required>
                                             @error('applicant_name')
@@ -170,7 +170,7 @@
 
                                         </div>
                                         <div class="field-group">
-                                            <label class="field-label">Email address</label>
+                                            <label class="field-label">Email address *</label>
                                             <input type="email" class="text-input" name="applicant_email"
                                                 placeholder="name@example.com" required>
                                             @error('applicant_email')
@@ -179,7 +179,24 @@
                                         </div>
 
                                         <div class="field-group">
-                                            <label class="field-label">Upload PDF</label>
+                                            <label class="field-label">Post *</label>
+                                            <select class="text-input" name="job_post" required>
+                                                <option value="" selected disabled>Select Please</option>
+                                                @php
+                                                    $career = \App\Models\Admin\Career::first();
+                                                @endphp
+                                                @foreach (explode('|',$career->job_post) as $post)
+                                                        <option value="{{ $post }}">{{ $post }}</option>
+                                                @endforeach
+                                                
+                                            </select>
+                                            @error('job_post')
+                                                <span style="color:red">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="field-group">
+                                            <label class="field-label">Upload PDF *</label>
                                             <input type="file" name="applicant_resume" class="file-input"
                                                 accept="application/pdf" required>
                                             @error('applicant_resume')
