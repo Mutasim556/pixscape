@@ -542,7 +542,7 @@
                     src="{{ asset($content->home_work_contact_image) }}"
                     loading="lazy" sizes="(max-width: 1920px) 100vw, 1920px"
                     srcset="{{ asset($content->home_work_contact_image) }}"
-                    alt="Archipelago&#x27;s Architecture, Urban Design, Landscape Architecture project" class="cta_img" />
+                    alt="#" class="cta_img" />
             </div>
         </section>
     </main>

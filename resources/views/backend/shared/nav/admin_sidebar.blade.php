@@ -256,6 +256,11 @@
                         <span> {{ __('admin_local.Site Contents') }} </span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('admin.settings.themeIndex') }}" class="sidebar-link">
+                        <span> {{ __('admin_local.Theme Setting') }} </span>
+                    </a>
+                </li>
             </ul>
         </li>
     @endif

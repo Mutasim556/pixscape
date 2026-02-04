@@ -34,6 +34,14 @@
             Typekit.load();
         } catch (e) {}
     </script>
+    @php
+        $theme = \App\Models\Admin\ThemeSetting::first();
+    @endphp
+    <style>
+        :root {
+            --swatch--olive-green: {{ $theme->theme_color }};
+        }
+    </style>
     <script type="text/javascript">
         ! function(o, c) {
             var n = c.documentElement,

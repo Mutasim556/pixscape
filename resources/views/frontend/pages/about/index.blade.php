@@ -33,6 +33,14 @@
                 .className += t + "touch")
         }(window, document);
     </script>
+    @php
+        $theme = \App\Models\Admin\ThemeSetting::first();
+    @endphp
+    <style>
+        :root {
+            --swatch--olive-green: {{ $theme->theme_color }};
+        }
+    </style>
     <link href="{{ asset($logo->main_site_icon) }}" rel="shortcut icon" type="image/x-icon" />
     <link href="{{ asset($logo->main_site_icon) }}" rel="apple-touch-icon" />
     <script src="https://www.google.com/recaptcha/api.js" type="text/javascript"></script>

@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\Settings\MaintenanceModeController;
 use App\Http\Controllers\Admin\SubServiceController;
 use App\Http\Controllers\Admin\TeamController;
+use App\Http\Controllers\Admin\ThemeSettingController;
 use App\Http\Controllers\Admin\User\UserController;
 use App\Http\Controllers\Admin\ValuesController;
 use Illuminate\Support\Facades\Route;
@@ -88,6 +89,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::controller(ContentController::class)->prefix('content')->group(function(){
                 Route::get('/','index')->name('contentIndex');
                 Route::put('/update/{id}','update')->name('contentUpdate');
+            });
+            Route::controller(ThemeSettingController::class)->prefix('theme')->group(function(){
+                Route::get('/','index')->name('themeIndex');
+                Route::put('/update/{id}','update')->name('themeUpdate');
             });
         });
 

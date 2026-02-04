@@ -29,6 +29,14 @@
     <meta content="summary_large_image" name="twitter:card" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <link href="{{ asset('public/pixscape/css/style.css') }}" rel="stylesheet" type="text/css" />
+    @php
+        $theme = \App\Models\Admin\ThemeSetting::first();
+    @endphp
+    <style>
+        :root {
+            --swatch--olive-green: {{ $theme->theme_color }};
+        }
+    </style>
     <script src="https://use.typekit.net/qns3mjk.js" type="text/javascript"></script>
     <script type="text/javascript">
         try {

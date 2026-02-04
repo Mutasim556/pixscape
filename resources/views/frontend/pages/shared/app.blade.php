@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- Last Published: Tue Nov 18 2025 23:26:56 GMT+0000 (Coordinated Universal Time) -->
 <html data-wf-domain="www.pixscape-bd.com" data-wf-page="6543a9053fac558af9585fa4" data-wf-site="65249822a54c89915817034b">
 @php
     $logo = \App\Models\Admin\Logo::first();
@@ -18,28 +17,62 @@
     <meta property="og:type" content="website" />
     <meta content="summary_large_image" name="twitter:card" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
+
     <link href="{{ asset('public/pixscape/css/style.css') }}" rel="stylesheet" type="text/css" />
-    @stack('css')
     <script src="https://use.typekit.net/qns3mjk.js" type="text/javascript"></script>
     <script type="text/javascript">
         try {
             Typekit.load();
         } catch (e) {}
     </script>
-    <script type="text/javascript">
-        ! function(o, c) {
-            var n = c.documentElement,
-                t = " w-mod-";
-            n.className += t + "js", ("ontouchstart" in o || o.DocumentTouch && c instanceof DocumentTouch) && (n
-                .className += t + "touch")
-        }(window, document);
-    </script>
+    @php
+        $theme = \App\Models\Admin\ThemeSetting::first();
+    @endphp
+    <style>
+        :root {
+            --swatch--olive-green: {{ $theme->theme_color }};
+        }
+    </style>
+    @stack('css')
     <link rel="icon" href="{{ asset($logo->main_site_icon) }}" type="image/png">
     <link href="{{ asset($logo->main_site_icon) }}" rel="shortcut icon" type="image/x-icon" />
     <link href="{{ asset($logo->main_site_icon) }}" rel="apple-touch-icon" />
-    <script src="https://www.google.com/recaptcha/api.js" type="text/javascript"></script>
-    <link rel="preconnect" href="https://d25vfild7rvz0k.cloudfront.net" crossorigin />
-    <link rel="dns-prefetch" href="https://d25vfild7rvz0k.cloudfront.net" />
+
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-PB4VWGH2');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Structured Data for Google (Organization) -->
+    @verbatim
+        <script type="application/ld+json">
+        {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Pixscape BD",
+        "url": "https://pixscape-bd.com",
+        "logo": "https://pixscape-bd.com/favicon.ico",
+        "sameAs": [
+            "https://www.facebook.com/pixscapebd",
+            "https://www.linkedin.com/company/pixscapebd"
+        ]
+        }
+    </script>
+    @endverbatim
 
     <style>
         /* Page wrapper opacity */
@@ -131,34 +164,6 @@
         });
     </script>
 
-    <!-- Google Tag Manager -->
-    <script>
-        (function(w, d, s, l, i) {
-            w[l] = w[l] || [];
-            w[l].push({
-                'gtm.start': new Date().getTime(),
-                event: 'gtm.js'
-            });
-            var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s),
-                dl = l != 'dataLayer' ? '&l=' + l : '';
-            j.async = true;
-            j.src =
-                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-            f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-WGX68N5X');
-    </script>
-    <!-- End Google Tag Manager -->
-    {{-- <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            "name": "Archipelago",
-            "url": "https://www.archipelago.com.au/",
-            "logo": "https://cdn.prod.website-files.com/65249822a54c89915817034b/6551bd4775979089cb1c796b_Archipelago%20logo_black%20shrunk.png",
-            "description": "We challenge the boundaries of conventional design to create great cities and buildings for people, now and in the future."
-        }
-    </script> --}}
 </head>
 
 <body>
@@ -441,33 +446,13 @@
                     <div class="preloader_logo-wrap">
                         <div class="preloader_logo">
                             <div class="preloader_logo-a w-embed">
-                                {{-- <svg width="auto" height="100%"
-                                    viewBox="0 0 165 245" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M114.145 114.748H50.519L82.2362 33.0332L110.92 106.895V106.859L140.059 181.064H164.545V164.033L100.127 3.7251H64.3571L-0.0605469 164.033V181.064H24.5817L39.9307 141.573H103.677L114.145 114.748Z"
-                                        fill="currentColor" />
-                                </svg> --}}
                                 <img src="{{ asset($logo ? $logo->main_site_header_logo : '') }}" alt="Logo"
                                     style="width: auto; height: 100%;" />
                             </div>
                             <div class="preloader_mid-line">
                                 <div class="preloader_logo-rchipelago w-embed"></div>
                             </div>
-                            {{-- <div class="preloader_logo-dot w-embed"><svg width="auto" height="100%" style=""
-                                    viewBox="0 0 40 245" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <g clip-path="url(#clip0_5756_1719)">
-                                        <path
-                                            d="M39.0539 19.0065C39.0539 8.51567 30.4321 0 19.7838 0C9.13547 0 0.513672 8.50384 0.513672 19.0065C0.513672 29.5092 9.14747 38.013 19.7838 38.013C30.4202 38.013 39.0539 29.5092 39.0539 19.0065Z"
-                                            fill="currentColor" />
-                                    </g>
-                                    <defs>
-                                        <clipPath id="clip0_5756_1719">
-                                            <rect width="38.5273" height="244.648" fill="currentColor"
-                                                transform="translate(0.527344)" />
-                                        </clipPath>
-                                    </defs>
-                                </svg>
-                            </div> --}}
+
                         </div>
                     </div>
                     <div class="preloader_tagline-wrapper">
@@ -476,7 +461,7 @@
                         <div class="preloader_tagline is-3">Design.</div>
                     </div>
                     <div class="preloader_para-wrap">
-                        <div class="loader_acknowledge-p">Archipelago acknowledges the Turrbal and Yuggera people as the
+                        <div class="loader_acknowledge-p">Pixscape acknowledges the Turrbal and Yuggera people as the
                             Traditional
                             Custodians of the land on which our office is located, where we are privileged to design and
                             create. We
@@ -509,8 +494,10 @@
     <script src="{{ asset('public/pixscape/js/app.js') }}" type="text/javascript"></script>
     @stack('js')
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WGX68N5X" height="0" width="0"
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB4VWGH2" height="0" width="0"
             style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <!-- End Google Tag Manager (noscript) -->
     <script>
         window.JS_SCRIPTS.push({
