@@ -30,7 +30,7 @@
     @endphp
     <style>
         :root {
-            --swatch--olive-green: {{ $theme->theme_color }};
+            --swatch--olive-green: {{ $theme->theme_color??'#BD2158' }};
         }
     </style>
     @stack('css')

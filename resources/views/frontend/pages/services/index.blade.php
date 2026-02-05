@@ -21,31 +21,60 @@
     @php
         $theme = \App\Models\Admin\ThemeSetting::first();
     @endphp
-    <style>
-        :root {
-            --swatch--olive-green: {{ $theme->theme_color }};
-        }
-    </style>
     <script src="https://use.typekit.net/qns3mjk.js" type="text/javascript"></script>
     <script type="text/javascript">
         try {
             Typekit.load();
         } catch (e) {}
     </script>
-    <script type="text/javascript">
-        ! function(o, c) {
-            var n = c.documentElement,
-                t = " w-mod-";
-            n.className += t + "js", ("ontouchstart" in o || o.DocumentTouch && c instanceof DocumentTouch) && (n
-                .className += t + "touch")
-        }(window, document);
-    </script>
+    @php
+        $theme = \App\Models\Admin\ThemeSetting::first();
+    @endphp
+    <style>
+        :root {
+            --swatch--olive-green: {{ $theme->theme_color ?? '#BD2158' }};
+        }
+    </style>
+    @stack('css')
+    <link rel="icon" href="{{ asset($logo->main_site_icon) }}" type="image/png">
     <link href="{{ asset($logo->main_site_icon) }}" rel="shortcut icon" type="image/x-icon" />
     <link href="{{ asset($logo->main_site_icon) }}" rel="apple-touch-icon" />
-    <script src="https://www.google.com/recaptcha/api.js" type="text/javascript"></script>
-    <link rel="preconnect" href="https://d25vfild7rvz0k.cloudfront.net" crossorigin />
-    <link rel="dns-prefetch" href="https://d25vfild7rvz0k.cloudfront.net" />
 
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-PB4VWGH2');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Structured Data for Google (Organization) -->
+    @verbatim
+        <script type="application/ld+json">
+        {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Pixscape BD",
+        "url": "https://pixscape-bd.com",
+        "logo": "https://pixscape-bd.com/favicon.ico",
+        "sameAs": [
+            "https://www.facebook.com/pixscapebd",
+            "https://www.linkedin.com/company/pixscapebd"
+        ]
+        }
+    </script>
+    @endverbatim
     <style>
         /* Page wrapper opacity */
         .page-wrapper {
@@ -702,7 +731,7 @@
     <script src="https://cdn.prod.website-files.com/65249822a54c89915817034b/js/webflow.a1efb5ce.2c11213f8d3c734f.js"
         type="text/javascript" integrity="sha384-XbiTwasTo6b0lAXOMhRAUaAyUS3a/VzAWgCjvoVaz1cOPtjcHBYHMlJjrM5B/Etc"
         crossorigin="anonymous"></script><!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WGX68N5X" height="0" width="0"
+     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB4VWGH2" height="0" width="0"
             style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <script>

@@ -4,26 +4,17 @@
 @php
     $logo = \App\Models\Admin\Logo::first();
 @endphp
+
 <head>
     <meta charset="utf-8" />
     <title>Pixscape - where tomorrows cities are engineered</title>
-    <meta
-        content="Pixscape - where tomorrows cities are engineered"
-        name="description" />
+    <meta content="Pixscape - where tomorrows cities are engineered" name="description" />
     <meta content="Pixscape - where tomorrows cities are engineered" property="og:title" />
-    <meta
-        content="Pixscape - where tomorrows cities are engineered"
-        property="og:description" />
-    <meta
-        content="{{ asset($logo->main_site_icon) }}"
-        property="og:image" />
+    <meta content="Pixscape - where tomorrows cities are engineered" property="og:description" />
+    <meta content="{{ asset($logo->main_site_icon) }}" property="og:image" />
     <meta content="Pixscape - where tomorrows cities are engineered" property="twitter:title" />
-    <meta
-        content="Pixscape - where tomorrows cities are engineered"
-        property="twitter:description" />
-    <meta
-        content="{{ asset($logo->main_site_icon) }}"
-        property="twitter:image" />
+    <meta content="Pixscape - where tomorrows cities are engineered" property="twitter:description" />
+    <meta content="{{ asset($logo->main_site_icon) }}" property="twitter:image" />
     <meta property="og:type" content="website" />
     <meta content="summary_large_image" name="twitter:card" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
@@ -39,24 +30,48 @@
     @endphp
     <style>
         :root {
-            --swatch--olive-green: {{ $theme->theme_color }};
+            --swatch--olive-green: {{ $theme->theme_color ?? '#BD2158' }};
         }
     </style>
-    <script type="text/javascript">
-        ! function(o, c) {
-            var n = c.documentElement,
-                t = " w-mod-";
-            n.className += t + "js", ("ontouchstart" in o || o.DocumentTouch && c instanceof DocumentTouch) && (n
-                .className += t + "touch")
-        }(window, document);
+    <link rel="icon" href="{{ asset($logo->main_site_icon) }}" type="image/png">
+    <link href="{{ asset($logo->main_site_icon) }}" rel="shortcut icon" type="image/x-icon" />
+    <link href="{{ asset($logo->main_site_icon) }}" rel="apple-touch-icon" />
+
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-PB4VWGH2');
     </script>
-    <link href="{{ asset($logo->main_site_icon) }}"
-        rel="shortcut icon" type="image/x-icon" />
-    <link href="{{ asset($logo->main_site_icon) }}"
-        rel="apple-touch-icon" />
-    <script src="https://www.google.com/recaptcha/api.js" type="text/javascript"></script>
-    <link rel="preconnect" href="https://d25vfild7rvz0k.cloudfront.net" crossorigin />
-    <link rel="dns-prefetch" href="https://d25vfild7rvz0k.cloudfront.net" />
+    <!-- End Google Tag Manager -->
+
+    <!-- Structured Data for Google (Organization) -->
+    @verbatim
+        <script type="application/ld+json">
+        {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Pixscape BD",
+        "url": "https://pixscape-bd.com",
+        "logo": "https://pixscape-bd.com/favicon.ico",
+        "sameAs": [
+            "https://www.facebook.com/pixscapebd",
+            "https://www.linkedin.com/company/pixscapebd"
+        ]
+        }
+    </script>
+    @endverbatim
 
     <style>
         /* Page wrapper opacity */
@@ -511,8 +526,8 @@
                                                 <div class="submit-form is-filter"><input
                                                         class="submit-field is-filter w-input" maxlength="256"
                                                         name="field" fs-cmsfilter-field="*" data-name="Field"
-                                                        placeholder="{{ $content->article_search_text }}" type="text" id="field"
-                                                        required="" /></div>
+                                                        placeholder="{{ $content->article_search_text }}"
+                                                        type="text" id="field" required="" /></div>
                                                 {{-- <div class="filter_ui-contain">
                                                     <div class="filter_dropdown">
                                                         <div class="filter_dropdown_underline-contain">
@@ -610,10 +625,11 @@
                                             @endphp
                                             <div data-blog-featured="yes" role="listitem"
                                                 class="blog-grid_collection-item w-dyn-item"><a
-                                                    href="{{ route('frontend.articleSingle',\Illuminate\Support\Str::slug( $article->title) ) }}?articleid={{ $article->id }}"
+                                                    href="{{ route('frontend.articleSingle', \Illuminate\Support\Str::slug($article->title)) }}?articleid={{ $article->id }}"
                                                     class="blog_link w-inline-block">
                                                     <div class="img_overflow"><img alt="" loading="lazy"
-                                                            src="{{ $articleImgs[0] }}" class="blog_item-img" /></div>
+                                                            src="{{ $articleImgs[0] }}" class="blog_item-img" />
+                                                    </div>
                                                     <div class="blog_card-content">
                                                         <h3 fs-cmsfilter-field="title" class="blog_card-heading">
                                                             {{ $article->title }}</h3>
@@ -753,7 +769,7 @@
     <script src="https://cdn.prod.website-files.com/65249822a54c89915817034b/js/webflow.a1efb5ce.2c11213f8d3c734f.js"
         type="text/javascript" integrity="sha384-XbiTwasTo6b0lAXOMhRAUaAyUS3a/VzAWgCjvoVaz1cOPtjcHBYHMlJjrM5B/Etc"
         crossorigin="anonymous"></script><!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WGX68N5X" height="0" width="0"
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB4VWGH2" height="0" width="0"
             style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <script>
