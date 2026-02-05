@@ -528,23 +528,23 @@
                                                             <div role="list"
                                                                 class="filter_dropdown-options w-dyn-items">
                                                                 @php
-                                                                    $projectTypes = \App\Models\Admin\ProjectType::where(
+                                                                    $services = \App\Models\Admin\Service::where(
                                                                         [['delete', 0], ['status', 1]],
                                                                     )->get();
                                                                 @endphp
-                                                                @foreach ($projectTypes as $projectType)
+                                                                @foreach ($services as $service)
                                                                     <div role="listitem" class="w-dyn-item"><label
                                                                             class="w-checkbox filter_dropdown-item">
                                                                             <div
                                                                                 class="w-checkbox-input w-checkbox-input--inputType-custom filter_radio">
                                                                             </div><input type="checkbox"
                                                                                 class="filter_checkbox"
-                                                                                data-value="{{ $projectType->title }}"
-                                                                                data-id="{{ $projectType->id }}"
+                                                                                data-value="{{ $service->service_name }}"
+                                                                                data-id="{{ $service->id }}"
                                                                                 style="opacity:0;position:absolute;z-index:-1" /><span
                                                                                 fs-cmsfilter-field="sector"
                                                                                 class="filter_option-label w-form-label"
-                                                                                for="sector[]-2">{{ $projectType->title }}</span>
+                                                                                for="sector[]-2">{{ $service->service_name }}</span>
                                                                         </label></div>
                                                                 @endforeach
                                                             </div>

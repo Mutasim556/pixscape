@@ -140,8 +140,7 @@
                                                     <div>Published</div>
                                                 </div>
                                                 <div class="blog_published-date">
-                                                    <p class="p-50">17</p>
-                                                    <p class="p-50">November 2023</p>
+                                                    <p class="p-50">{{ \Carbon\Carbon::parse($article->created_at)->format('d F Y') }}</p>
                                                 </div>
                                             </div>
                                             <div class="blog_info-row">

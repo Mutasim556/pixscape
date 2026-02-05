@@ -155,7 +155,7 @@
                                 ])->get();
                             @endphp
                             @foreach ($projectTypes as $projectType)
-                                <a data-animate="" href="/projects?discipline=Architecture"
+                                <a data-animate="" href="{{ route('frontend.project') }}?typeid={{ $projectType->id }}"
                                     class="about_card w-inline-block">
                                     <div class="img_overflow"><img src="{{ $projectType->image }}" loading="lazy"
                                             alt="" class="about_img" />
@@ -248,7 +248,7 @@
                                     @php
                                         $projects = \App\Models\Admin\Project::where([['delete', 0], ['status', 1]])
                                             ->inRandomOrder()
-                                            ->limit(4)
+                                            ->limit(5)
                                             ->get();
                                     @endphp
                                     @foreach ($projects as $project)

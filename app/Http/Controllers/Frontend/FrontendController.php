@@ -144,7 +144,12 @@ class FrontendController extends Controller
 
     public function project()
     {
-        $projects = Project::where([['status', 1], ['delete', 0]])->get();
+        $projects = Project::where([['status', 1], ['delete', 0]]);
+
+        if(request()->get('typeid')){
+            $projects = $projects->where([['project_type_id',request()->get('typeid')]]);
+        }
+        $projects = $projects->get();
 
         return view('frontend.pages.project.index', compact('projects'));
     }
@@ -171,7 +176,7 @@ class FrontendController extends Controller
             if ($filter) {
                 $projects = $projects->where(function ($q) use ($filter) {
                     foreach (explode(',', $filter) as $term) {
-                        $q->orWhere('project_type_id', $term);
+                        $q->orWhere('service_id', $term);
                     }
                 });
             }
@@ -249,7 +254,7 @@ class FrontendController extends Controller
 
     public function postResume(Request $data)
     {
-        
+
          $validator = Validator::make($data->all(), [
             'applicant_name' => 'required',
             'applicant_email' => 'required',

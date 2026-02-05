@@ -38,7 +38,7 @@
     @endphp
     <style>
         :root {
-            --swatch--olive-green: {{ $theme->theme_color??'#BD2158' }};
+            --swatch--olive-green: {{ $theme->theme_color ?? '#BD2158' }};
         }
     </style>
     <link rel="icon" href="{{ asset($logo->main_site_icon) }}" type="image/png">
@@ -507,6 +507,52 @@
             <section class="section">
                 <div class="w-layout-blockcontainer container w-container">
                     <div class="page-padding">
+                        <div class="section-padding is-opportunity">
+                            <div class="section_top is-5em">
+                                <div class="section_heading-wrap">
+                                    <h2 class="h1" style="text-align: center;">Our Mission
+                                    </h2>
+                                </div>
+                            </div>
+                            <div class="section-padding is-5em">
+                                <div class="section_middle">
+                                    <div data-animate="" class="vertical_0-5em">
+                                        {!! $aboutus ? $aboutus->details : '' !!}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section">
+                <div class="w-layout-blockcontainer container w-container">
+                    <div class="page-padding">
+                        <div class="section-padding is-10em">
+                            <div class="section_top is-5em">
+                                <div class="section_heading-wrap">
+                                    <h2 class="h1">{{ $content->about_values_title }}</h2>
+                                </div>
+                            </div>
+                            <div class="section_middle is-values">
+                                @php
+                                    $values = \App\Models\Admin\Value::where([['status', 1], ['delete', 0]])->get();
+                                @endphp
+                                @foreach ($values as $value)
+                                    <div id="w-node-c3ef5614-2450-0e06-946c-36b22c4ec8f8-f9585fac"
+                                        class="vertical_1em">
+                                        <h5>{{ $value->title }}</h5>
+                                        {!! $value->details !!}
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section">
+                <div class="w-layout-blockcontainer container w-container">
+                    <div class="page-padding">
                         <div class="section-padding is-10em is-about">
                             <div class="section_top is-5em">
                                 <div class="section_heading-wrap">
@@ -522,13 +568,14 @@
                                 <div class="about_services-wrap"><img class="about_left-img"
                                         src="{{ asset('public/static_image/about_page_service.png') }}"
                                         alt="Pixscape&#x27;s Architecture, Urban Design, Landscape Architecture team"
-                                        sizes="(max-width: 767px) 100vw, (max-width: 991px) 95vw, 940px" loading="lazy"
-                                        data-animate=""
+                                        sizes="(max-width: 767px) 100vw, (max-width: 991px) 95vw, 940px"
+                                        loading="lazy" data-animate=""
                                         srcset="{{ asset('public/static_image/about_page_service.png') }}" />
                                 </div>
                                 <div class="about_services-wrap">
                                     @php
-                                        $services = \App\Models\Admin\Service::where([['status', 1], ['delete', 0]])
+                                        $services = \App\Models\Admin\Service::with('subServices')
+                                            ->where([['status', 1], ['delete', 0]])
                                             ->get()
                                             ->groupBy('type');
                                     @endphp
@@ -564,7 +611,17 @@
                                                         <div class="accordion_content">
                                                             <div class="accordion_content-padding">
                                                                 <div class="rich-text w-richtext">
+                                                                    @if (count($service->subServices) > 0)
+                                                                        <ul>
+                                                                            @foreach ($service->subServices as $subService)
+                                                                                <li>{{ $subService->name }}</li>
+                                                                            @endforeach
+                                                                        </ul>
+
+                                                                    @else
                                                                     {!! $service->service_details !!}
+                                                                    @endif
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -598,50 +655,36 @@
                             </div>
                             <div hide-scrollbar="" data-lenis-prevent="" class="section_bottom is-about-framework">
                                 <div id="w-node-_2029f510-8504-e3f0-c696-9f89819280ee-f9585fac" class="vertical_3em">
-                                    <img src="{{ asset($content->about_framwork_image1) }}"
-                                        loading="lazy" data-animate=""
+                                    <img src="{{ asset($content->about_framwork_image1) }}" loading="lazy"
+                                        data-animate=""
                                         alt="Archipelago&#x27;s Architecture, Urban Design, Landscape Architecture city shaping plans"
                                         class="about_framework-image" />
                                     <div>{{ $content->about_framwork_image_text1 }}</div>
                                 </div>
                                 <div id="w-node-c86a692a-b097-ca1a-8dd6-fedf146adbb8-f9585fac" class="vertical_3em">
-                                    <img src="{{ asset($content->about_framwork_image2) }}"
-                                        loading="lazy" data-animate=""
+                                    <img src="{{ asset($content->about_framwork_image2) }}" loading="lazy"
+                                        data-animate=""
                                         alt="Archipelago&#x27;s Architecture, Urban Design, Landscape Architecture city shaping plans"
                                         class="about_framework-image" />
                                     <div>{{ $content->about_framwork_image_text2 }}</div>
                                 </div>
                                 <div id="w-node-b5350664-35a2-deee-dbd2-cd374e136e7a-f9585fac" class="vertical_3em">
-                                    <img src="{{ asset($content->about_framwork_image3) }}"
-                                        loading="lazy" data-animate=""
+                                    <img src="{{ asset($content->about_framwork_image3) }}" loading="lazy"
+                                        data-animate=""
                                         alt="Archipelago&#x27;s Architecture, Urban Design, Landscape Architecture city shaping plans"
                                         class="about_framework-image" />
                                     <div>{{ $content->about_framwork_image_text3 }}</div>
                                 </div>
                                 <div id="w-node-_38225d05-807c-215a-f3d0-8cf4b037b0b2-f9585fac" class="vertical_3em">
-                                    <img src="{{ asset($content->about_framwork_image4) }}"
-                                        loading="lazy" data-animate=""
-                                        alt="Archipelago&#x27;s Architecture, Urban Design City"
+                                    <img src="{{ asset($content->about_framwork_image4) }}" loading="lazy"
+                                        data-animate="" alt="Archipelago&#x27;s Architecture, Urban Design City"
                                         class="about_framework-image" />
                                     <div>{{ $content->about_framwork_image_text4 }}</div>
                                 </div>
-                                <div id="w-node-_38225d05-807c-215a-f3d0-8cf4b037b0b2-f9585fac" class="vertical_3em">
-                                    <img src="{{ asset($content->about_framwork_image4) }}"
-                                        loading="lazy" data-animate=""
-                                        alt="Archipelago&#x27;s Architecture, Urban Design City"
-                                        class="about_framework-image" />
-                                    <div>{{ $content->about_framwork_image_text4 }}</div>
-                                </div>
-                                <div id="w-node-_38225d05-807c-215a-f3d0-8cf4b037b0b2-f9585fac" class="vertical_3em">
-                                    <img src="{{ asset($content->about_framwork_image4) }}"
-                                        loading="lazy" data-animate=""
-                                        alt="Archipelago&#x27;s Architecture, Urban Design City"
-                                        class="about_framework-image" />
-                                    <div>{{ $content->about_framwork_image_text4 }}</div>
-                                </div>
+
                                 <div id="w-node-_311b4da9-19b3-5a7a-3e4a-1999c71d52a4-f9585fac" class="vertical_3em">
-                                    <img src="{{ asset($content->about_framwork_image5) }}"
-                                        loading="lazy" data-animate=""
+                                    <img src="{{ asset($content->about_framwork_image5) }}" loading="lazy"
+                                        data-animate=""
                                         alt="Archipelago&#x27;s Architecture, Urban Design, Landscape Architecture city shaping plans"
                                         class="about_framework-image" />
                                     <div>{{ $content->about_framwork_image_text5 }}</div>
@@ -666,8 +709,8 @@
                                 </div>
                             </div>
                             <div class="section_middle is-service"><img
-                                    src="{{ asset($content->about_oframwork_image) }}"
-                                    loading="lazy" data-animate="" alt="" class="about_service-img" />
+                                    src="{{ asset($content->about_oframwork_image) }}" loading="lazy"
+                                    data-animate="" alt="" class="about_service-img" />
                                 <p class="about_service-hero">{{ $content->about_oframework_short_details }}</p>
                             </div>
                             <div class="section_bottom is-service">
@@ -730,31 +773,6 @@
                             </div>
                             <div class="clients_marquee_gradient"></div>
                             <div class="clients_marquee_gradient is-right"></div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section class="section">
-                <div class="w-layout-blockcontainer container w-container">
-                    <div class="page-padding">
-                        <div class="section-padding is-10em">
-                            <div class="section_top is-5em">
-                                <div class="section_heading-wrap">
-                                    <h2 class="h1">{{ $content->about_values_title }}</h2>
-                                </div>
-                            </div>
-                            <div class="section_middle is-values">
-                                @php
-                                    $values = \App\Models\Admin\Value::where([['status', 1], ['delete', 0]])->get();
-                                @endphp
-                                @foreach ($values as $value)
-                                    <div id="w-node-c3ef5614-2450-0e06-946c-36b22c4ec8f8-f9585fac"
-                                        class="vertical_1em">
-                                        <h5>{{ $value->title }}</h5>
-                                        {!! $value->details !!}
-                                    </div>
-                                @endforeach
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -940,8 +958,10 @@
                                                 src="{{ asset($logo->main_site_footer_logo) }}" alt=""></div>
                                         <div class="vertical_3em is-left">
                                             <div class="vertical_1em">
-                                                <div class="about_workshop-heading">{{ $content->about_app_title }}</div>
-                                                <p class="about_workshop-p">{{ $content->about_app_short_details }}</p>
+                                                <div class="about_workshop-heading">{{ $content->about_app_title }}
+                                                </div>
+                                                <p class="about_workshop-p">{{ $content->about_app_short_details }}
+                                                </p>
                                             </div><a href="{{ route('frontend.contact') }}#message_form"
                                                 class="button is-small w-inline-block">
                                                 <div class="button_label">{{ $content->about_app_btn_text }}</div>
@@ -957,8 +977,7 @@
                                     </div>
                                 </div>
                                 <div id="w-node-_6b374d3c-c69e-9ce0-7165-38d0ca9ed274-f9585fac"><img
-                                        src="{{ asset($content->about_app_image) }}"
-                                        loading="lazy" sizes="100vw"
+                                        src="{{ asset($content->about_app_image) }}" loading="lazy" sizes="100vw"
                                         srcset="{{ asset($content->about_app_image) }}"
                                         alt="Archipelago&#x27;s Architecture, Urban Design, Landscape Architecture workshop"
                                         class="about_workshop-img" /></div>
@@ -1095,10 +1114,9 @@
                     <div class="page-padding is-hiring">
                         <div class="hiring_wrap">
                             <div id="w-node-cfb97ec3-8808-cc9d-a022-0136105c2366-105c2362" class="hiring_img-ratio">
-                                <img src="{{ asset($content->about_career_image) }}"
-                                    loading="lazy" sizes="100vw"
-                                    srcset="{{ asset($content->about_career_image) }}"
-                                    alt="" class="ratio_img" />
+                                <img src="{{ asset($content->about_career_image) }}" loading="lazy" sizes="100vw"
+                                    srcset="{{ asset($content->about_career_image) }}" alt=""
+                                    class="ratio_img" />
                             </div>
                             <div id="w-node-cfb97ec3-8808-cc9d-a022-0136105c2368-105c2362" class="hiring_info-wrap">
                                 <div class="hiring_logo w-embed" style="width: 10em"><img
@@ -1106,7 +1124,8 @@
                                 <div class="hiring_info-contain">
                                     <div class="hiring_callout">{{ $content->about_career_headline }}</div>
                                     <p class="hiring_heading">{{ $content->about_career_title }}</p>
-                                    <p class="hiring_p">{{ $content->about_career_short_details }}</p><a href="{{ route('frontend.careers') }}"
+                                    <p class="hiring_p">{{ $content->about_career_short_details }}</p><a
+                                        href="{{ route('frontend.careers') }}"
                                         class="button is-hiring w-inline-block">
                                         <div class="button_label">{{ $content->about_career_btn_text }}</div>
                                         <div class="button_arrow w-embed"><svg width="100%" style=""
@@ -1138,8 +1157,8 @@
     <script src="https://cdn.prod.website-files.com/65249822a54c89915817034b/js/webflow.a1efb5ce.2c11213f8d3c734f.js"
         type="text/javascript" integrity="sha384-XbiTwasTo6b0lAXOMhRAUaAyUS3a/VzAWgCjvoVaz1cOPtjcHBYHMlJjrM5B/Etc"
         crossorigin="anonymous"></script>
-        <!-- Google Tag Manager (noscript) -->
-   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB4VWGH2" height="0" width="0"
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB4VWGH2" height="0" width="0"
             style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <script>

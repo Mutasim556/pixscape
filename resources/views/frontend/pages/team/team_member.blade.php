@@ -659,9 +659,9 @@
                                         </div>
                                     </div>
                                 </div><img alt="" loading="lazy"
-                                    src="https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/65516f6a4d1a59b8870edd5e_Dannielle%20Jenkins%20up.webp"
+                                    src="{{ asset($teamMember->team_member_image) }}"
                                     sizes="(max-width: 767px) 100vw, (max-width: 991px) 727.4140625px, 939.9375px"
-                                    srcset="https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/65516f6a4d1a59b8870edd5e_Dannielle%20Jenkins%20up-p-500.webp 500w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/65516f6a4d1a59b8870edd5e_Dannielle%20Jenkins%20up-p-800.webp 800w, https://cdn.prod.website-files.com/6526826b6b1a6430815a209b/65516f6a4d1a59b8870edd5e_Dannielle%20Jenkins%20up.webp 900w"
+                                    srcset="{{ asset($teamMember->team_member_image) }}"
                                     class="team_photo" />
                             </div>
                         </div>
