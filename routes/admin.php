@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\Auth\AdminLoginController;
 use App\Http\Controllers\Admin\AwardController;
 use App\Http\Controllers\Admin\CareerController;
 use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\ContactUsController;
 use App\Http\Controllers\Admin\ContentController;
 use App\Http\Controllers\Admin\CounterController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\Admin\Localization\BackendLanguageController;
 use App\Http\Controllers\Admin\Localization\ChangeLanguageController;
 use App\Http\Controllers\Admin\Localization\LanguageController;
 use App\Http\Controllers\Admin\LogoIconController;
+use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\Pages\HomepageSettingController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\ProjectController;
@@ -210,6 +212,20 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::get('/update/status/{id}/{status}', 'updateStatus');
             });
             /** Partner End */
+
+            /** Client Start */
+            Route::resource('client', ClientController::class)->except('create', 'show');
+            Route::controller(ClientController::class)->prefix('client')->group(function () {
+                Route::get('/update/status/{id}/{status}', 'updateStatus');
+            });
+            /** Client End */
+
+            /** Notification Start */
+            Route::resource('notification', NotificationController::class)->except('create', 'show');
+            Route::controller(NotificationController::class)->prefix('notification')->group(function () {
+                Route::get('/update/status/{id}/{status}', 'updateStatus');
+            });
+            /** Notification End */
 
             /** Award Start */
             Route::resource('award', AwardController::class)->except('create', 'show');

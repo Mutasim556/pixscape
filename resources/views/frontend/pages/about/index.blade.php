@@ -732,7 +732,7 @@
                     </div>
                     <div class="about_clients_component">
                         <div class="page-padding">
-                            <div class="about_sub-heading">{{ $content->about_client_title }}</div>
+                            <div class="about_sub-heading">{{ $content->about_partner_title??'Partners' }}</div>
                         </div>
                         <div class="clients_marquee_component">
                             <div class="clients_marquee_row">
@@ -766,6 +766,51 @@
                                                     loading="eager" src="{{ asset($partner->partner_image) }}"
                                                     alt="" sizes="100vw"
                                                     srcset="{{ asset($partner->partner_image) }}"
+                                                    class="clients_marquee_img" /></div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clients_marquee_gradient"></div>
+                            <div class="clients_marquee_gradient is-right"></div>
+                        </div>
+                    </div>
+                    <div class="about_clients_component">
+                        <div class="page-padding">
+                            <div class="about_sub-heading">{{ $content->about_client_title }}</div>
+                        </div>
+                        <div class="clients_marquee_component">
+                            <div class="clients_marquee_row">
+                                <div class="clients_marquee_list-wrapper w-dyn-list">
+                                    <div role="list" class="clients_marquee_list w-dyn-items">
+                                        @php
+                                            $clients = \App\Models\Admin\Client::where([
+                                                ['status', 1],
+                                                ['delete', 0],
+                                            ])->get();
+                                        @endphp
+                                        @foreach ($clients as $client)
+                                            <div role="listitem" class="clients_marquee_item w-dyn-item"><img
+                                                    loading="eager" src="{{ asset($client->client_image) }}"
+                                                    alt="" sizes="100vw"
+                                                    srcset="{{ asset($client->client_image) }}"
+                                                    class="clients_marquee_img" /></div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <div class="clients_marquee_list-wrapper w-dyn-list">
+                                    <div role="list" class="clients_marquee_list w-dyn-items">
+                                        @php
+                                            $clients = \App\Models\Admin\Client::where([
+                                                ['status', 1],
+                                                ['delete', 0],
+                                            ])->get();
+                                        @endphp
+                                        @foreach ($clients as $client)
+                                            <div role="listitem" class="clients_marquee_item w-dyn-item"><img
+                                                    loading="eager" src="{{ asset($client->client_image) }}"
+                                                    alt="" sizes="100vw"
+                                                    srcset="{{ asset($client->client_image) }}"
                                                     class="clients_marquee_img" /></div>
                                         @endforeach
                                     </div>

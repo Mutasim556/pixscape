@@ -303,6 +303,14 @@
                             </div>
                             <div class="row mt-2">
                                 <div class="col-md-5 py-2">
+                                    <label for="">{{ __('admin_local.About Page Partner Title') }}</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <textarea class="form-control" name="about_partner_title" id="" cols="20" rows="2">{{ $content->about_partner_title }}</textarea>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-5 py-2">
                                     <label for="">{{ __('admin_local.About Page Client Title') }}</label>
                                 </div>
                                 <div class="col-md-7">

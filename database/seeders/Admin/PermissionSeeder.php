@@ -135,6 +135,18 @@ class PermissionSeeder extends Seeder
         // Permission::create(['guard_name'=>'admin','name'=>'partner-update','group_name'=>'Partner']);
         // Permission::create(['guard_name'=>'admin','name'=>'partner-delete','group_name'=>'Partner']);
 
+        // permission for Client
+        // Permission::create(['guard_name'=>'admin','name'=>'client-index','group_name'=>'Client']);
+        // Permission::create(['guard_name'=>'admin','name'=>'client-create','group_name'=>'Client']);
+        // Permission::create(['guard_name'=>'admin','name'=>'client-update','group_name'=>'Client']);
+        // Permission::create(['guard_name'=>'admin','name'=>'client-delete','group_name'=>'Client']);
+
+        // permission for Notification
+        // Permission::create(['guard_name'=>'admin','name'=>'notification-index','group_name'=>'Notification']);
+        // Permission::create(['guard_name'=>'admin','name'=>'notification-create','group_name'=>'Notification']);
+        // Permission::create(['guard_name'=>'admin','name'=>'notification-update','group_name'=>'Notification']);
+        // Permission::create(['guard_name'=>'admin','name'=>'notification-delete','group_name'=>'Notification']);
+
         //permission for Framework
         //  Permission::create(['guard_name'=>'admin','name'=>'award-index','group_name'=>'Awards']);
         //  Permission::create(['guard_name'=>'admin','name'=>'award-create','group_name'=>'Awards']);

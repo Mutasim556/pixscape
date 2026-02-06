@@ -39,6 +39,7 @@
             'counter-index',
             'homepage-video-index',
             'contact-index',
+            'notification-index',
         ]))
         <li class="sidebar-list">
             <a class="sidebar-link sidebar-title" href="javascript:void(0)" aria-expanded="false">
@@ -54,6 +55,7 @@
                         'service-index',
                         'famework-index',
                         'value-index',
+                        'notification-index',
                     ]))
                     <li>
                         <a class="submenu-title" href="javascript:void(0)"
@@ -122,7 +124,14 @@
                             href="{{ route('admin.pages.contactUs') }}">{{ __('admin_local.Contact') }}</a>
                     </li>
                 @endif
-                @if (hasPermission(['aboutus-index', 'service-index', 'famework-index', 'value-index', 'sub-service-index']))
+                @if (hasPermission([
+                        'aboutus-index',
+                        'service-index',
+                        'famework-index',
+                        'value-index',
+                        'sub-service-index',
+                        'client-index',
+                    ]))
                     <li>
                         <a class="submenu-title" href="javascript:void(0)"
                             style="margin-bottom:5px;">{{ __('admin_local.About Page') }}<span class="sub-arrow"><i
@@ -165,7 +174,14 @@
                                         href="{{ route('admin.pages.partner.index') }}">{{ __('admin_local.Partners') }}</a>
                                 </li>
                             @endif
-                            @if (hasPermission(['partner-index']))
+                            @if (hasPermission(['client-index']))
+                                <li>
+                                    <a class="sidebar-link"
+                                        href="{{ route('admin.pages.client.index') }}">{{ __('admin_local.Clients') }}</a>
+                                </li>
+                            @endif
+
+                            @if (hasPermission(['award-index']))
                                 <li>
                                     <a class="sidebar-link"
                                         href="{{ route('admin.pages.award.index') }}">{{ __('admin_local.Awards') }}</a>
@@ -200,6 +216,12 @@
                     <li>
                         <a class="sidebar-link"
                             href="{{ route('admin.pages.contactUsMessages') }}">{{ __('admin_local.Messages') }}</a>
+                    </li>
+                @endif
+                @if (hasPermission(['notification-index']))
+                    <li>
+                        <a class="sidebar-link"
+                            href="{{ route('admin.pages.notification.index') }}">{{ __('admin_local.Notifications') }}</a>
                     </li>
                 @endif
             </ul>

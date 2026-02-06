@@ -170,6 +170,7 @@ class ContentController extends Controller
 
 
         $content->about_oframework_short_details = $data->about_oframework_short_details;
+        $content->about_partner_title = $data->about_partner_title;
         $content->about_client_title = $data->about_client_title;
         $content->about_values_title = $data->about_values_title;
         $content->about_app_title = $data->about_app_title;

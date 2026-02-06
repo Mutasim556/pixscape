@@ -8,14 +8,14 @@
             padding: 1px 0;
         }
 
-        .marquee-track {
+        /* .marquee-track {
             display: flex;
             width: max-content;
             transform: translateX(0);
             animation: marquee 30s linear infinite;
-        }
+        } */
 
-        .marquee-track span {
+        .marquee-track marquee {
             color: #fff;
             font-size: 16px;
             padding-right: 0;
@@ -23,15 +23,15 @@
             color: white !important;
         }
 
-        @keyframes marquee {
+        /* @keyframes marquee {
             0% {
-                transform: translateX(60%);
+                transform: translateX(100%);
             }
 
             100% {
-                transform: translateX(-50%);
+                transform: translateX(0%);
             }
-        }
+        } */
 
         /* .nav,
         .nav_menu,
@@ -97,16 +97,46 @@
                 display: block;
             }
         }
+
+        .search_form {
+            width: 65.5%;
+        }
+
+        @media(max-width:400px) {
+            .search_form {
+                width: 100%;
+            }
+        }
+
+        .blink {
+            animation: blinker 1.5s linear infinite;
+            color: rgb(118, 21, 21);
+            font-family: sans-serif;
+        }
+
+        @keyframes blinker {
+            50% {
+                opacity: 0;
+            }
+        }
     </style>
     <div class="w-layout-blockcontainer container w-container">
+        @php
+            $notifications = \App\Models\Admin\Notification::where([
+                ['status', 1],
+                ['delete', 0],
+                ['type', 'Alert'],
+            ])->get();
+        @endphp
         <div class="marquee-box">
             <div class="marquee-track">
-                <span>Pixscap is under construction — something amazing is coming soon 🚧</span>
-                <span>Pixscap is under construction — something amazing is coming soon 🚧</span>
-                <span>Pixscap is under construction — something amazing is coming soon 🚧</span>
-                <span>Pixscap is under construction — something amazing is coming soon 🚧</span>
-                <span>Pixscap is under construction — something amazing is coming soon 🚧</span>
-                <span>Pixscap is under construction — something amazing is coming soon 🚧</span>
+                @if (count($notifications) > 0)
+                    <marquee width="100%" direction="left">
+                        @foreach ($notifications as $notification)
+                            {!! strip_tags($notification->notification) !!}
+                        @endforeach
+                    </marquee>
+                @endif
             </div>
         </div>
         <div class="page-padding">
@@ -133,25 +163,28 @@
             </div>
 
             <div class="nav_menu">
-                <div class="nav_link-wrap" style="width: 100px;border-right: 1px solid black"><a href="{{ url('/') }}" class="nav_link"
-                        style="color: black !important">Home</a>
+                <div class="nav_link-wrap" style="width: 100px;border-right: 1px solid black"><a
+                        href="{{ url('/') }}" class="nav_link" style="color: black !important">Home</a>
                     <div class="nav_link-underline"></div>
                 </div>
-                <div class="nav_link-wrap" style="width: 120px;border-right: 1px solid black"><a href="{{ route('frontend.aboutUs') }}" class="nav_link"
-                        style="color: black !important">About Us</a>
+                <div class="nav_link-wrap" style="width: 120px;border-right: 1px solid black"><a
+                        href="{{ route('frontend.aboutUs') }}" class="nav_link" style="color: black !important">About
+                        Us</a>
                     <div class="nav_link-underline"></div>
                 </div>
-                <div class="nav_link-wrap" style="width: 100px;border-right: 1px solid black"><a href="{{ route('frontend.team') }}" class="nav_link"
-                        style="color: black !important">Team</a>
+                <div class="nav_link-wrap" style="width: 100px;border-right: 1px solid black"><a
+                        href="{{ route('frontend.team') }}" class="nav_link" style="color: black !important">Team</a>
                     <div class="nav_link-underline"></div>
                 </div>
 
                 @php
-                    $services = \App\Models\Admin\Service::where([['status', 1], ['delete', 0]])->orderBy('id','ASC')->get();
+                    $services = \App\Models\Admin\Service::where([['status', 1], ['delete', 0]])
+                        ->orderBy('id', 'ASC')
+                        ->get();
                 @endphp
                 <div class="nav_dropdown">
                     <div class="nav_dropdown-label" style="width: 200px;border-right: 1px solid black">
-                        <div class="nav_link is-label" >Our Services</div>
+                        <div class="nav_link is-label">Our Services</div>
                         <div class="nav_chevron w-embed"><svg width="100%" style="" viewBox="0 0 21 11"
                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -169,7 +202,9 @@
                         <ul style="list-style: none;margin: 0;padding:0;">
                             @foreach ($services as $service)
                                 @if ($service->type == 'Our Expertise')
-                                    <li> <a style="text-transform: capitalize !important;" href="{{ route('frontend.serviceSingle', \Illuminate\Support\Str::slug($service->service_name)) }}?serviceid={{ $service->id }}">{{ $service->service_name }}</a></li>
+                                    <li> <a style="text-transform: capitalize !important;"
+                                            href="{{ route('frontend.serviceSingle', \Illuminate\Support\Str::slug($service->service_name)) }}?serviceid={{ $service->id }}">{{ $service->service_name }}</a>
+                                    </li>
                                 @endif
                             @endforeach
                         </ul>
@@ -194,17 +229,20 @@
                             @foreach ($services as $service)
                                 @if ($service->type == 'Supporting Service')
                                     {{-- <li><a href="{{ route('frontend.serviceSingle', \Illuminate\Support\Str::slug($service->service_name)) }}?serviceid={{ $service->id }}">{{ \Illuminate\Support\Str::title($service->service_name) }}</a></li> --}}
-                                    <li><a href="{{ route('frontend.serviceSingle', \Illuminate\Support\Str::slug($service->service_name)) }}?serviceid={{ $service->id }}">{{ $service->service_name }}</a></li>
+                                    <li><a
+                                            href="{{ route('frontend.serviceSingle', \Illuminate\Support\Str::slug($service->service_name)) }}?serviceid={{ $service->id }}">{{ $service->service_name }}</a>
+                                    </li>
                                 @endif
                             @endforeach
                         </ul>
                     </div>
                 </div>
-                <div class="nav_link-wrap"  style="width: 100px;border-right: 1px solid black"><a
-                        href="{{ route('frontend.project') }}" class="nav_link" >Works</a>
+                <div class="nav_link-wrap" style="width: 100px;border-right: 1px solid black"><a
+                        href="{{ route('frontend.project') }}" class="nav_link">Works</a>
                     <div class="nav_link-underline"></div>
                 </div>
-                <div class="nav_link-wrap" style="width: 100px;border-right: 1px solid black"><a href="{{ route('frontend.careers') }}" class="nav_link"
+                <div class="nav_link-wrap" style="width: 100px;border-right: 1px solid black"><a
+                        href="{{ route('frontend.careers') }}" class="nav_link"
                         style="color: black !important">Career</a>
                     <div class="nav_link-underline"></div>
                 </div>
@@ -226,11 +264,12 @@
                     </div>
                 </div> --}}
 
-                <div class="nav_link-wrap" style="width: 100px;border-right: 1px solid black"><a href="{{ route('frontend.article') }}" class="nav_link"
+                <div class="nav_link-wrap" style="width: 100px;border-right: 1px solid black"><a
+                        href="{{ route('frontend.article') }}" class="nav_link"
                         style="color: black !important">Articles</a>
                     <div class="nav_link-underline"></div>
                 </div>
-                <div class="nav_link-wrap" ><a href="{{ route('frontend.contact') }}" class="nav_link">Contact</a>
+                <div class="nav_link-wrap"><a href="{{ route('frontend.contact') }}" class="nav_link">Contact</a>
                     <div class="nav_link-underline"></div>
                 </div>
             </div>
@@ -248,10 +287,25 @@
                             </div>
                         </div>
                     </div>
-                    <form action="/search" class="search_form w-form"><input class="submit-field is-search w-input"
-                            maxlength="256" name="query" placeholder="Search…" type="search" id="search-3"
-                            required="" /><input type="submit" title="Search"
-                            class="submit-button is-search w-button" value="" /></form>
+                    @php
+                        $notifications = \App\Models\Admin\Notification::where([
+                            ['status', 1],
+                            ['delete', 0],
+                            ['type', 'Message'],
+                        ])->get();
+                    @endphp
+                    @if (count($notifications) > 0)
+
+
+                        <form action="/search" class="search_form w-form">
+                            <marquee width="100%" direction="left" class="blink"
+                                style="font-size: 30px;color:rgb(118, 21, 21) !important">
+                                @foreach ($notifications as $notification)
+                                    {!! strip_tags($notification->notification) !!}
+                                @endforeach
+                            </marquee>
+                        </form>
+                    @endif
                 </div>
             </div>
         </div>
