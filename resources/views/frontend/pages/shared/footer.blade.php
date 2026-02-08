@@ -4,9 +4,9 @@
         $logo = \App\Models\Admin\Logo::first();
     @endphp
     <style>
-        @media(min-width:600px){
+        @media(min-width:991px){
             .footer_social-wrapper{
-                margin-left:225px !important;  
+                margin-left:225px !important;
             }
             .footer_heading{
                 line-height:.5
@@ -15,6 +15,11 @@
                 margin-top: 30px;
             }
         }
+         @media(max-width:990px){
+             .footer_social-wrapper{
+                margin-left:0px !important;
+            }
+         }
     </style>
     <div class="page-padding">
         <div class="footer_wrap">
@@ -35,7 +40,7 @@
                             class="footer_nav-link">Team</a></div>
 
                     <div class="footer_nav-contain">
-                        <a style="margin-bottom: 10px;" href="{{ route('frontend.services') }}?type=Our Expertise"
+                        <a href="{{ route('frontend.services') }}?type=Our Expertise"
                             class="footer_nav-link">Our
                             Expertise</a>
                     </div>
@@ -83,7 +88,7 @@
                             <div class="footer_heading is-space">Email</div><a
                                 href="mailto:{{ $contact ? $contact->email : '' }}"
                                 class="footer_a is-email">{{ $contact ? $contact->email : '' }}</a>
-                            <div class="footer_heading">Social</div>
+                            <div class="footer_heading" style="margin-top: 30px;margin-bottom:10px;">Social</div>
                             @if ($contact && $contact->facebook)
                                 <a href="{{ $contact->facebook }}" target="_blank" class="footer_heading"
                                     style="font-size: 18px;">Facebook</a>

@@ -588,7 +588,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <p fs-cmsfilter-field="name">{{ $project->title }}</p>
+                                                <h5 fs-cmsfilter-field="name" style="font-weight: 500">{{ $project->title }}</h5>
                                             </a>
                                             <div class="filter_hidden-identifier-wrapper">
                                                 <div fs-cmsnest-collection="discipline"

@@ -67,14 +67,13 @@
                             $notifications = \App\Models\Admin\Notification::where([
                                 ['status', 1],
                                 ['delete', 0],
-                                ['type', 'Message'],
+                                ['type', 'Slider-Message'],
                             ])->get();
                         @endphp
                         @if (count($notifications) > 0)
                             <div class="home-hero_indicators2 page-padding">
-                                <marquee width="100%" direction="left" class=""
-                                {{-- <marquee width="100%" direction="left" class="blink" --}}
-                                    style="font-size: 40px;color:rgb(255, 255, 255) !important">
+                                <marquee width="100%" direction="left" class="" {{-- <marquee width="100%" direction="left" class="blink" --}}
+                                    style="font-size: 90px;color:rgb(255, 255, 255) !important;font-weight:500">
                                     @foreach ($notifications as $notification)
                                         {!! strip_tags($notification->notification) !!}
                                     @endforeach
@@ -301,7 +300,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <p>{{ $project->title }}</p>
+                                                <h5  style="font-weight: 500">{{ $project->title }}</h5>
                                             </a>
                                         </div>
                                     @endforeach
@@ -339,19 +338,16 @@
                         <h3 class="projects_sub-heading">{{ $content->home_work_current_text }}</h3>
                     </div>
                     @php
-                        $projects = \App\Models\Admin\Project::where([['delete', 0], ['status', 1]])
-                            ->inRandomOrder()
-                            ->limit(5)
-                            ->get();
+                        $projectTypes = \App\Models\Admin\ProjectType::where([['status', 1], ['delete', 0]])->get();
                     @endphp
                     <div class="cms-marquee_component">
                         <div class="cms-marquee_row-wrapper is-no-hover-pause">
                             <div class="cms-marquee_row">
                                 <div class="w-dyn-list">
                                     <div role="list" class="cms-marquee_list w-dyn-items">
-                                        @foreach ($projects as $project)
+                                        @foreach ($projectTypes as $project)
                                             <div role="listitem" class="cms-marquee_item w-dyn-item">
-                                                <a href="{{ route('frontend.projectSingle', \Illuminate\Support\Str::slug($project->title)) }}?projectid={{ $project->id }}"
+                                                <a href="{{ route('frontend.project') }}?typeid={{ $project->id }}"
                                                     class="cms-marquee_link w-inline-block">
                                                     <div data-dot-color="light-tan" class="dot"></div>
                                                     <div class="cms-marquee_text h-xl">{{ $project->title }}
@@ -376,19 +372,13 @@
                                 </div> --}}
                             </div>
                         </div>
-                        @php
-                            $projects = \App\Models\Admin\Project::where([['delete', 0], ['status', 1]])
-                                ->inRandomOrder()
-                                ->limit(5)
-                                ->get();
-                        @endphp
                         <div class="cms-marquee_row-wrapper is-inverse is-no-hover-pause">
                             <div class="cms-marquee_row">
                                 <div class="w-dyn-list">
                                     <div role="list" class="cms-marquee_list w-dyn-items">
-                                        @foreach ($projects as $project)
+                                        @foreach ($projectTypes as $project)
                                             <div role="listitem" class="cms-marquee_item w-dyn-item">
-                                                <a href="{{ route('frontend.projectSingle', \Illuminate\Support\Str::slug($project->title)) }}?projectid={{ $project->id }}"
+                                                <a href="{{ route('frontend.project') }}?typeid={{ $project->id }}"
                                                     class="cms-marquee_link w-inline-block">
                                                     <div data-dot-color="light-tan" class="dot"></div>
                                                     <div class="cms-marquee_text h-xl">{{ $project->title }}
@@ -413,19 +403,13 @@
                                 </div> --}}
                             </div>
                         </div>
-                        @php
-                            $projects = \App\Models\Admin\Project::where([['delete', 0], ['status', 1]])
-                                ->inRandomOrder()
-                                ->limit(5)
-                                ->get();
-                        @endphp
                         <div class="cms-marquee_row-wrapper is-no-hover-pause">
                             <div class="cms-marquee_row">
                                 <div class="w-dyn-list">
                                     <div role="list" class="cms-marquee_list w-dyn-items">
-                                        @foreach ($projects as $project)
+                                        @foreach ($projectTypes as $project)
                                             <div role="listitem" class="cms-marquee_item w-dyn-item">
-                                                <a href="{{ route('frontend.projectSingle', \Illuminate\Support\Str::slug($project->title)) }}?projectid={{ $project->id }}"
+                                                <a href="{{ route('frontend.project') }}?typeid={{ $project->id }}"
                                                     class="cms-marquee_link w-inline-block">
                                                     <div data-dot-color="light-tan" class="dot"></div>
                                                     <div class="cms-marquee_text h-xl">{{ $project->title }}
@@ -450,19 +434,13 @@
                                 </div> --}}
                             </div>
                         </div>
-                        @php
-                            $projects = \App\Models\Admin\Project::where([['delete', 0], ['status', 1]])
-                                ->inRandomOrder()
-                                ->limit(5)
-                                ->get();
-                        @endphp
                         <div class="cms-marquee_row-wrapper is-inverse is-no-hover-pause">
                             <div class="cms-marquee_row">
                                 <div class="w-dyn-list">
                                     <div role="list" class="cms-marquee_list w-dyn-items">
-                                        @foreach ($projects as $project)
+                                        @foreach ($projectTypes as $project)
                                             <div role="listitem" class="cms-marquee_item w-dyn-item">
-                                                <a href="{{ route('frontend.projectSingle', \Illuminate\Support\Str::slug($project->title)) }}?projectid={{ $project->id }}"
+                                                <a href="{{ route('frontend.project') }}?typeid={{ $project->id }}"
                                                     class="cms-marquee_link w-inline-block">
                                                     <div data-dot-color="light-tan" class="dot"></div>
                                                     <div class="cms-marquee_text h-xl">{{ $project->title }}
@@ -487,19 +465,13 @@
                                 </div> --}}
                             </div>
                         </div>
-                        @php
-                            $projects = \App\Models\Admin\Project::where([['delete', 0], ['status', 1]])
-                                ->inRandomOrder()
-                                ->limit(5)
-                                ->get();
-                        @endphp
                         <div class="cms-marquee_row-wrapper is-no-hover-pause">
                             <div class="cms-marquee_row">
                                 <div class="w-dyn-list">
                                     <div role="list" class="cms-marquee_list w-dyn-items">
-                                        @foreach ($projects as $project)
+                                        @foreach ($projectTypes as $project)
                                             <div role="listitem" class="cms-marquee_item w-dyn-item">
-                                                <a href="{{ route('frontend.projectSingle', \Illuminate\Support\Str::slug($project->title)) }}?projectid={{ $project->id }}"
+                                                <a href="{{ route('frontend.project') }}?typeid={{ $project->id }}"
                                                     class="cms-marquee_link w-inline-block">
                                                     <div data-dot-color="light-tan" class="dot"></div>
                                                     <div class="cms-marquee_text h-xl">{{ $project->title }}
@@ -561,7 +533,7 @@
                                     loading="lazy"
                                     sizes="(max-width: 767px) 100vw, (max-width: 991px) 727.989990234375px, 939.989990234375px"
                                     alt="" class="img_wide" />
-                                <p>The Pixscape Team</p>
+                                <h3>The Pixscape Team</h3>
                             </div>
                         </div>
                     </div>

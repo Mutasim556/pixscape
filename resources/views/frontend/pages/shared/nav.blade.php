@@ -128,17 +128,19 @@
                 ['type', 'Alert'],
             ])->get();
         @endphp
-        <div class="marquee-box">
-            <div class="marquee-track">
-                @if (count($notifications) > 0)
+        @if (count($notifications) > 0)
+            <div class="marquee-box">
+                <div class="marquee-track">
+
                     <marquee width="100%" direction="left">
                         @foreach ($notifications as $notification)
                             {!! strip_tags($notification->notification) !!}
                         @endforeach
                     </marquee>
-                @endif
+
+                </div>
             </div>
-        </div>
+        @endif
         <div class="page-padding">
             <div class="nav_mobile">
                 <div class="nav_logo">

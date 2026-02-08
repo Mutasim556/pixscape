@@ -67,6 +67,7 @@
                                                 <option value="">{{ __("admin_local.Select Please") }}</option>
                                                 <option value="Alert">Alert</option>
                                                 <option value="Message">Message</option>
+                                                <option value="Slider-Message">Slider-Message</option>
                                             </select>
                                          <span class="text-danger err-mgs" id="type_err"></span>
                                      </div>
@@ -178,6 +179,7 @@
                                                 <option value="">{{ __("admin_local.Select Please") }}</option>
                                                 <option value="Alert">Alert</option>
                                                 <option value="Message">Message</option>
+                                                <option value="Slider-Message">Slider-Message</option>
                                             </select>
                                          <span class="text-danger err-mgs" id="type_err"></span>
                                      </div>

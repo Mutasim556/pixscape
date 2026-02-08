@@ -593,7 +593,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <p fs-cmsfilter-field="name">{{ $service->service_name }}</p>
+                                                <h4 fs-cmsfilter-field="name" style="font-weight: 500">{{ $service->service_name }}</h4>
                                             </a>
                                             <div class="filter_hidden-identifier-wrapper">
                                                 <div fs-cmsnest-collection="discipline"
