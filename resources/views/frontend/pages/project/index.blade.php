@@ -319,7 +319,7 @@
                 }
 
                 .link-reveal_component .link-reveal_track {
-                    animation: marquee var(--marquee-speed, 15s) infinite linear;
+                    animation: marquee 10s infinite linear;
                     animation-delay: calc(var(--transition-timer)*1.5);
                     animation-play-state: paused
                 }

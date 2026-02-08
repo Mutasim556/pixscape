@@ -196,7 +196,7 @@
                                         </div>
 
                                         <div class="field-group">
-                                            <label class="field-label">Upload PDF *</label>
+                                            <label class="field-label">Upload PDF * (Max 2MB Allowed)</label>
                                             <input type="file" name="applicant_resume" class="file-input"
                                                 accept="application/pdf" required>
                                             @error('applicant_resume')

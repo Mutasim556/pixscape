@@ -3,6 +3,19 @@
         $contact = \App\Models\Admin\Contact::first();
         $logo = \App\Models\Admin\Logo::first();
     @endphp
+    <style>
+        @media(min-width:600px){
+            .footer_social-wrapper{
+                margin-left:225px !important;  
+            }
+            .footer_heading{
+                line-height:.5
+            }
+            #footer_info_wrap{
+                margin-top: 30px;
+            }
+        }
+    </style>
     <div class="page-padding">
         <div class="footer_wrap">
             <div class="footer_top">
@@ -22,10 +35,12 @@
                             class="footer_nav-link">Team</a></div>
 
                     <div class="footer_nav-contain">
-                        <a style="margin-bottom: 10px;" href="{{ route('frontend.services') }}?type=Our Expertise" class="footer_nav-link">Our
+                        <a style="margin-bottom: 10px;" href="{{ route('frontend.services') }}?type=Our Expertise"
+                            class="footer_nav-link">Our
                             Expertise</a>
                     </div>
-                    <div class="footer_nav-contain"><a href="{{ route('frontend.services') }}?type=Supporting Service" class="footer_nav-link">Supproting
+                    <div class="footer_nav-contain"><a href="{{ route('frontend.services') }}?type=Supporting Service"
+                            class="footer_nav-link">Supproting
                             Services</a>
 
                     </div>
@@ -41,12 +56,78 @@
                     <div class="footer_nav-contain"><a href="{{ route('frontend.contact') }}"
                             class="footer_nav-link">Contact</a>
                     </div>
-                    
+
                 </div>
-                
+
 
             </div>
             <div class="footer_top2">
+                <div class="footer_horizontal">
+                    <div class="footer_info-wrap">
+                        <div class="footer_heading">Office</div>
+                        <a href="{{ $contact ? $contact->location : '' }}" target="_blank"
+                            class="footer_a w-inline-block">
+                            <p>{{ $contact ? $contact->address : '' }}</p>
+                        </a>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3651.049011123834!2d90.416021!3d23.781268999999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjPCsDQ2JzUyLjYiTiA5MMKwMjQnNTcuNyJF!5e0!3m2!1sen!2sbd!4v1770534480601!5m2!1sen!2sbd"
+                            width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+                    </div>
+                    <div class="footer_info-wrap">
+                        <div class="footer_social-wrapper">
+
+                            <div class="footer_heading">Phone</div><a href="tel:+{{ $contact ? $contact->phone : '' }}"
+                                class="footer_a">{{ $contact ? $contact->phone : '' }}</a>
+                            <div class="footer_heading is-space">Email</div><a
+                                href="mailto:{{ $contact ? $contact->email : '' }}"
+                                class="footer_a is-email">{{ $contact ? $contact->email : '' }}</a>
+                            <div class="footer_heading">Social</div>
+                            @if ($contact && $contact->facebook)
+                                <a href="{{ $contact->facebook }}" target="_blank" class="footer_heading"
+                                    style="font-size: 18px;">Facebook</a>
+                            @endif
+
+                            @if ($contact && $contact->linkedin)
+                                <a href="{{ $contact->linkedin }}" target="_blank" class="footer_heading"
+                                    style="font-size: 18px;">Linkedin</a>
+                            @endif
+
+                            <div class="footer_info-wrap" id="footer_info_wrap">
+                                <div class="footer_heading">Subscribe</div>
+                                <div>Our strategy, thinking and insights. Shared with you.</div>
+                            </div>
+                            <div class="form w-form">
+                                <form method="post" class="submit-form"
+                                    action="{{ route('frontend.subscribePost') }}">
+                                    @csrf
+                                    <div class="submit-form recaptcha">
+                                        <input class="submit-field is-footer-email w-input" maxlength="256"
+                                            name="email" placeholder="Enter Your Email" type="email"
+                                            required="" />
+                                        <input type="submit"title="Submit" class="submit-button w-button"
+                                            value="" />
+                                    </div>
+                                </form>
+                                @if (session()->has('success'))
+                                    <div class="form_success">
+                                        <div>Thank you! Your submission has been received!</div>
+                                    </div>
+                                @endif
+                                @error('email')
+                                    <div class="form_error">
+                                        <div>{{ $message }}</div>
+                                    </div>
+                                @enderror
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{-- <div class="footer_top2">
                 <div class="footer_horizontal">
                     <div class="footer_info-wrap">
                         <div class="footer_heading">Office</div>
@@ -101,7 +182,7 @@
 
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="footer_divider"></div>
             <div class="footer_bottom">
                 {{-- <div class="footer_horizontal">

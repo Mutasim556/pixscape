@@ -2094,11 +2094,11 @@ figure {
 }
 .footer_wrap {
     grid-column-gap: 4.25em;
-    grid-row-gap: 4.25em;
+    grid-row-gap: 2.25em;
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
-    padding-top: 8rem;
+    padding-top: 4rem;
     padding-bottom: 3rem;
     display: flex;
 }
@@ -2114,7 +2114,7 @@ figure {
     grid-column-gap: 1.5em;
     grid-row-gap: 3em;
     grid-template-rows: auto auto;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 2fr 0fr;
     grid-auto-columns: 1fr;
     display: grid;
 }
@@ -3026,6 +3026,7 @@ figure {
 }
 .track-text.h-l {
     line-height: 0.8;
+    font-size: 35px;
 }
 .projects_contain {
     width: 100%;
@@ -3114,6 +3115,18 @@ figure {
     display: flex;
     position: absolute;
     bottom: 1.5em;
+}
+.home-hero_indicators2 {
+    z-index: 6;
+    grid-column-gap: 0.5em;
+    grid-row-gap: 0.5em;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    display: flex;
+    position: absolute;
+    bottom: 7.5em;
+    height: 70px;
 }
 .hero_text {
     color: var(--swatch--white);

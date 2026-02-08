@@ -63,6 +63,24 @@
                             <div class="hero_text is-mobile-centered w-embed"><a href="/project/halcyon-blu"
                                     style="color:white">{{ $slider->slider_title }}</a></div>
                         </div>
+                        @php
+                            $notifications = \App\Models\Admin\Notification::where([
+                                ['status', 1],
+                                ['delete', 0],
+                                ['type', 'Message'],
+                            ])->get();
+                        @endphp
+                        @if (count($notifications) > 0)
+                            <div class="home-hero_indicators2 page-padding">
+                                <marquee width="100%" direction="left" class=""
+                                {{-- <marquee width="100%" direction="left" class="blink" --}}
+                                    style="font-size: 40px;color:rgb(255, 255, 255) !important">
+                                    @foreach ($notifications as $notification)
+                                        {!! strip_tags($notification->notification) !!}
+                                    @endforeach
+                                </marquee>
+                            </div>
+                        @endif
                     </div>
 
                 </div>
@@ -323,7 +341,7 @@
                     @php
                         $projects = \App\Models\Admin\Project::where([['delete', 0], ['status', 1]])
                             ->inRandomOrder()
-                            ->limit(10)
+                            ->limit(5)
                             ->get();
                     @endphp
                     <div class="cms-marquee_component">
@@ -332,21 +350,22 @@
                                 <div class="w-dyn-list">
                                     <div role="list" class="cms-marquee_list w-dyn-items">
                                         @foreach ($projects as $project)
-                                        <div role="listitem" class="cms-marquee_item w-dyn-item">
-                                            <a href="#" class="cms-marquee_link w-inline-block">
-                                                <div data-dot-color="light-tan" class="dot"></div>
-                                                <div class="cms-marquee_text h-xl">{{ $project->title }}
-                                                </div>
-                                            </a>
-                                        </div>
+                                            <div role="listitem" class="cms-marquee_item w-dyn-item">
+                                                <a href="{{ route('frontend.projectSingle', \Illuminate\Support\Str::slug($project->title)) }}?projectid={{ $project->id }}"
+                                                    class="cms-marquee_link w-inline-block">
+                                                    <div data-dot-color="light-tan" class="dot"></div>
+                                                    <div class="cms-marquee_text h-xl">{{ $project->title }}
+                                                    </div>
+                                                </a>
+                                            </div>
                                         @endforeach
                                     </div>
                                 </div>
-                                <div class="w-dyn-list">
+                                {{-- <div class="w-dyn-list">
                                     <div role="list" class="cms-marquee_list w-dyn-items">
                                          @foreach ($projects as $project)
                                         <div role="listitem" class="cms-marquee_item w-dyn-item">
-                                            <a href="#" class="cms-marquee_link w-inline-block">
+                                            <a href="{{ route('frontend.projectSingle', \Illuminate\Support\Str::slug($project->title)) }}?projectid={{ $project->id }}" class="cms-marquee_link w-inline-block">
                                                 <div data-dot-color="light-tan" class="dot"></div>
                                                 <div class="cms-marquee_text h-xl">{{ $project->title }}
                                                 </div>
@@ -354,29 +373,36 @@
                                         </div>
                                         @endforeach
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
+                        @php
+                            $projects = \App\Models\Admin\Project::where([['delete', 0], ['status', 1]])
+                                ->inRandomOrder()
+                                ->limit(5)
+                                ->get();
+                        @endphp
                         <div class="cms-marquee_row-wrapper is-inverse is-no-hover-pause">
                             <div class="cms-marquee_row">
                                 <div class="w-dyn-list">
                                     <div role="list" class="cms-marquee_list w-dyn-items">
-                                         @foreach ($projects as $project)
-                                        <div role="listitem" class="cms-marquee_item w-dyn-item">
-                                            <a href="#" class="cms-marquee_link w-inline-block">
-                                                <div data-dot-color="light-tan" class="dot"></div>
-                                                <div class="cms-marquee_text h-xl">{{ $project->title }}
-                                                </div>
-                                            </a>
-                                        </div>
+                                        @foreach ($projects as $project)
+                                            <div role="listitem" class="cms-marquee_item w-dyn-item">
+                                                <a href="{{ route('frontend.projectSingle', \Illuminate\Support\Str::slug($project->title)) }}?projectid={{ $project->id }}"
+                                                    class="cms-marquee_link w-inline-block">
+                                                    <div data-dot-color="light-tan" class="dot"></div>
+                                                    <div class="cms-marquee_text h-xl">{{ $project->title }}
+                                                    </div>
+                                                </a>
+                                            </div>
                                         @endforeach
                                     </div>
                                 </div>
-                                <div class="w-dyn-list">
+                                {{-- <div class="w-dyn-list">
                                     <div role="list" class="cms-marquee_list w-dyn-items">
                                          @foreach ($projects as $project)
                                         <div role="listitem" class="cms-marquee_item w-dyn-item">
-                                            <a href="#" class="cms-marquee_link w-inline-block">
+                                            <a href="{{ route('frontend.projectSingle', \Illuminate\Support\Str::slug($project->title)) }}?projectid={{ $project->id }}" class="cms-marquee_link w-inline-block">
                                                 <div data-dot-color="light-tan" class="dot"></div>
                                                 <div class="cms-marquee_text h-xl">{{ $project->title }}
                                                 </div>
@@ -384,29 +410,36 @@
                                         </div>
                                         @endforeach
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
+                        @php
+                            $projects = \App\Models\Admin\Project::where([['delete', 0], ['status', 1]])
+                                ->inRandomOrder()
+                                ->limit(5)
+                                ->get();
+                        @endphp
                         <div class="cms-marquee_row-wrapper is-no-hover-pause">
                             <div class="cms-marquee_row">
                                 <div class="w-dyn-list">
                                     <div role="list" class="cms-marquee_list w-dyn-items">
-                                         @foreach ($projects as $project)
-                                        <div role="listitem" class="cms-marquee_item w-dyn-item">
-                                            <a href="#" class="cms-marquee_link w-inline-block">
-                                                <div data-dot-color="light-tan" class="dot"></div>
-                                                <div class="cms-marquee_text h-xl">{{ $project->title }}
-                                                </div>
-                                            </a>
-                                        </div>
+                                        @foreach ($projects as $project)
+                                            <div role="listitem" class="cms-marquee_item w-dyn-item">
+                                                <a href="{{ route('frontend.projectSingle', \Illuminate\Support\Str::slug($project->title)) }}?projectid={{ $project->id }}"
+                                                    class="cms-marquee_link w-inline-block">
+                                                    <div data-dot-color="light-tan" class="dot"></div>
+                                                    <div class="cms-marquee_text h-xl">{{ $project->title }}
+                                                    </div>
+                                                </a>
+                                            </div>
                                         @endforeach
                                     </div>
                                 </div>
-                                <div class="w-dyn-list">
+                                {{-- <div class="w-dyn-list">
                                     <div role="list" class="cms-marquee_list w-dyn-items">
                                          @foreach ($projects as $project)
                                         <div role="listitem" class="cms-marquee_item w-dyn-item">
-                                            <a href="#" class="cms-marquee_link w-inline-block">
+                                            <a href="{{ route('frontend.projectSingle', \Illuminate\Support\Str::slug($project->title)) }}?projectid={{ $project->id }}" class="cms-marquee_link w-inline-block">
                                                 <div data-dot-color="light-tan" class="dot"></div>
                                                 <div class="cms-marquee_text h-xl">{{ $project->title }}
                                                 </div>
@@ -414,29 +447,36 @@
                                         </div>
                                         @endforeach
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
+                        @php
+                            $projects = \App\Models\Admin\Project::where([['delete', 0], ['status', 1]])
+                                ->inRandomOrder()
+                                ->limit(5)
+                                ->get();
+                        @endphp
                         <div class="cms-marquee_row-wrapper is-inverse is-no-hover-pause">
                             <div class="cms-marquee_row">
                                 <div class="w-dyn-list">
                                     <div role="list" class="cms-marquee_list w-dyn-items">
-                                         @foreach ($projects as $project)
-                                        <div role="listitem" class="cms-marquee_item w-dyn-item">
-                                            <a href="#" class="cms-marquee_link w-inline-block">
-                                                <div data-dot-color="light-tan" class="dot"></div>
-                                                <div class="cms-marquee_text h-xl">{{ $project->title }}
-                                                </div>
-                                            </a>
-                                        </div>
+                                        @foreach ($projects as $project)
+                                            <div role="listitem" class="cms-marquee_item w-dyn-item">
+                                                <a href="{{ route('frontend.projectSingle', \Illuminate\Support\Str::slug($project->title)) }}?projectid={{ $project->id }}"
+                                                    class="cms-marquee_link w-inline-block">
+                                                    <div data-dot-color="light-tan" class="dot"></div>
+                                                    <div class="cms-marquee_text h-xl">{{ $project->title }}
+                                                    </div>
+                                                </a>
+                                            </div>
                                         @endforeach
                                     </div>
                                 </div>
-                                <div class="w-dyn-list">
+                                {{-- <div class="w-dyn-list">
                                     <div role="list" class="cms-marquee_list w-dyn-items">
                                          @foreach ($projects as $project)
                                         <div role="listitem" class="cms-marquee_item w-dyn-item">
-                                            <a href="#" class="cms-marquee_link w-inline-block">
+                                            <a href="{{ route('frontend.projectSingle', \Illuminate\Support\Str::slug($project->title)) }}?projectid={{ $project->id }}" class="cms-marquee_link w-inline-block">
                                                 <div data-dot-color="light-tan" class="dot"></div>
                                                 <div class="cms-marquee_text h-xl">{{ $project->title }}
                                                 </div>
@@ -444,29 +484,36 @@
                                         </div>
                                         @endforeach
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
+                        @php
+                            $projects = \App\Models\Admin\Project::where([['delete', 0], ['status', 1]])
+                                ->inRandomOrder()
+                                ->limit(5)
+                                ->get();
+                        @endphp
                         <div class="cms-marquee_row-wrapper is-no-hover-pause">
                             <div class="cms-marquee_row">
                                 <div class="w-dyn-list">
                                     <div role="list" class="cms-marquee_list w-dyn-items">
-                                         @foreach ($projects as $project)
-                                        <div role="listitem" class="cms-marquee_item w-dyn-item">
-                                            <a href="#" class="cms-marquee_link w-inline-block">
-                                                <div data-dot-color="light-tan" class="dot"></div>
-                                                <div class="cms-marquee_text h-xl">{{ $project->title }}
-                                                </div>
-                                            </a>
-                                        </div>
+                                        @foreach ($projects as $project)
+                                            <div role="listitem" class="cms-marquee_item w-dyn-item">
+                                                <a href="{{ route('frontend.projectSingle', \Illuminate\Support\Str::slug($project->title)) }}?projectid={{ $project->id }}"
+                                                    class="cms-marquee_link w-inline-block">
+                                                    <div data-dot-color="light-tan" class="dot"></div>
+                                                    <div class="cms-marquee_text h-xl">{{ $project->title }}
+                                                    </div>
+                                                </a>
+                                            </div>
                                         @endforeach
                                     </div>
                                 </div>
-                                <div class="w-dyn-list">
+                                {{-- <div class="w-dyn-list">
                                     <div role="list" class="cms-marquee_list w-dyn-items">
                                          @foreach ($projects as $project)
                                         <div role="listitem" class="cms-marquee_item w-dyn-item">
-                                            <a href="#" class="cms-marquee_link w-inline-block">
+                                            <a href="{{ route('frontend.projectSingle', \Illuminate\Support\Str::slug($project->title)) }}?projectid={{ $project->id }}" class="cms-marquee_link w-inline-block">
                                                 <div data-dot-color="light-tan" class="dot"></div>
                                                 <div class="cms-marquee_text h-xl">{{ $project->title }}
                                                 </div>
@@ -474,7 +521,7 @@
                                         </div>
                                         @endforeach
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -528,20 +575,21 @@
                         <a href="{{ route('frontend.contact') }}" class="cta_marquee-content w-inline-block">
                             <div class="cta_marquee-text h-xl">{{ $content->home_work_contact_text }}</div>
                             <div class="dot is-light"></div>
-                            <div aria-hidden="true" class="cta_marquee-text h-xl">{{ $content->home_work_contact_text }}</div>
+                            <div aria-hidden="true" class="cta_marquee-text h-xl">{{ $content->home_work_contact_text }}
+                            </div>
                             <div class="dot is-light"></div>
-                            <div aria-hidden="true" class="cta_marquee-text h-xl">{{ $content->home_work_contact_text }}</div>
+                            <div aria-hidden="true" class="cta_marquee-text h-xl">{{ $content->home_work_contact_text }}
+                            </div>
                             <div class="dot is-light"></div>
-                            <div aria-hidden="true" class="cta_marquee-text h-xl">{{ $content->home_work_contact_text }}</div>
+                            <div aria-hidden="true" class="cta_marquee-text h-xl">{{ $content->home_work_contact_text }}
+                            </div>
                             <div class="dot is-light"></div>
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="img_overflow is-cta"><img
-                    src="{{ asset($content->home_work_contact_image) }}"
-                    loading="lazy" sizes="(max-width: 1920px) 100vw, 1920px"
-                    srcset="{{ asset($content->home_work_contact_image) }}"
+            <div class="img_overflow is-cta"><img src="{{ asset($content->home_work_contact_image) }}" loading="lazy"
+                    sizes="(max-width: 1920px) 100vw, 1920px" srcset="{{ asset($content->home_work_contact_image) }}"
                     alt="#" class="cta_img" />
             </div>
         </section>

@@ -322,7 +322,7 @@
                 }
 
                 .link-reveal_component .link-reveal_track {
-                    animation: marquee var(--marquee-speed, 15s) infinite linear;
+                    animation: marquee 10s infinite linear;
                     animation-delay: calc(var(--transition-timer)*1.5);
                     animation-play-state: paused
                 }
@@ -731,7 +731,7 @@
     <script src="https://cdn.prod.website-files.com/65249822a54c89915817034b/js/webflow.a1efb5ce.2c11213f8d3c734f.js"
         type="text/javascript" integrity="sha384-XbiTwasTo6b0lAXOMhRAUaAyUS3a/VzAWgCjvoVaz1cOPtjcHBYHMlJjrM5B/Etc"
         crossorigin="anonymous"></script><!-- Google Tag Manager (noscript) -->
-     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB4VWGH2" height="0" width="0"
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB4VWGH2" height="0" width="0"
             style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <script>
